@@ -1,0 +1,290 @@
+.newsletter-container {
+  background-color: #082567;
+  display: flex;
+  width: 100%;
+  padding: 120px 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Kupfer-Lichteffekt wie in Process.css */
+.newsletter-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(184, 115, 51, 0.15) 0%, rgba(184, 115, 51, 0.05) 40%, rgba(8, 37, 103, 0) 80%);
+  opacity: 0.5;
+  filter: blur(70px);
+}
+
+.newsletter-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.iphone-mockup {
+  width: 30%;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.iphone-mockup img {
+  max-width: 100%;
+  height: auto;
+  transform: perspective(800px) rotateY(15deg);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+  transition: transform 0.5s ease;
+}
+
+.iphone-mockup:hover img {
+  transform: perspective(800px) rotateY(0);
+}
+
+.newsletter-heading {
+  color: #fff;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.highlight-gold {
+  display: inline-block;
+  color: #b87333;
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine-copper 3s infinite linear;
+}
+
+@keyframes shine-copper {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.newsletter-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.newsletter-features {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #b87333, #e2ac6b);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  color: #ffffff !important;
+  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.newsletter-features .feature-item .feature-text {
+  color: #ffffff !important;
+}
+
+/* Spezifischere Regel für Newsletter-Features */
+.newsletter-container .newsletter-content .newsletter-text .newsletter-features .feature-item .feature-text {
+  color: #ffffff !important;
+}
+
+.newsletter-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px;
+  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.email-input {
+  flex: 1;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 54px;
+  padding: 0 25px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.email-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.email-input:hover, .email-input:focus {
+  border-color: rgba(184, 115, 51, 0.7);
+  box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.2);
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.subscribe-btn {
+  border-radius: 50px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  height: 54px;
+  padding: 0 30px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 8px 20px rgba(184, 115, 51, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.subscribe-btn:hover {
+  background: linear-gradient(90deg, #e2ac6b, #b87333);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(184, 115, 51, 0.4);
+}
+
+.newsletter-disclaimer {
+  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.highlight-price {
+  display: inline-block;
+  font-size: 120%;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin: 0 2px;
+  box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1200px) {
+  .newsletter-container {
+    padding: 100px 40px;
+  }
+  
+  .newsletter-heading {
+    font-size: 36px;
+  }
+  
+  .iphone-mockup {
+    min-width: 260px;
+  }
+}
+
+@media (max-width: 991px) {
+  .newsletter-container {
+    padding: 80px 30px;
+  }
+  
+  .newsletter-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .newsletter-text {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .iphone-mockup {
+    width: 60%;
+    min-width: auto;
+    max-width: 300px;
+  }
+  
+  .iphone-mockup img {
+    transform: perspective(800px) rotateY(0);
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .email-input {
+    width: 100%;
+  }
+  
+  .subscribe-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter-container {
+    padding: 60px 20px;
+  }
+  
+  .newsletter-heading {
+    font-size: 28px;
+  }
+  
+  .newsletter-description {
+    font-size: 16px;
+  }
+  
+  .iphone-mockup {
+    width: 80%;
+  }
+}

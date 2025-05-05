@@ -1,0 +1,663 @@
+.problem-section {
+  position: relative;
+  background-color: #082567;
+  color: #fff;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+/* Kupfer-Lichteffekt im Hintergrund */
+.problem-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+/* Animierter Kupfereffekt */
+.problem-copper-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.copper-effect-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  opacity: 0.15;
+  filter: blur(70px);
+}
+
+.problem-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Überschrift als ein zusammenhängender Satz */
+.problem-section .section-heading {
+  display: flex;
+  align-items: center;
+  font-size: 48px;
+  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Neuer Unterstrich-Effekt für "Die Probleme" */
+.problem-title-box {
+  position: relative;
+  display: inline-block;
+  color: white;
+  font-weight: 800;
+  margin-right: 15px;
+  padding-bottom: 5px;
+}
+
+.problem-title-box::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #b87333, #FFFFFF, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+  border-radius: 5px;
+}
+
+/* Text "der traditionellen Altersvorsorge" */
+.problem-subtitle {
+  color: white;
+  font-weight: 800;
+}
+
+@keyframes shine-copper {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.problem-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: white;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.problem-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+  margin-bottom: 60px;
+  margin-top: 40px;
+}
+
+/* Problem Karte */
+.problem-card {
+  display: flex;
+  background-color: rgba(8, 37, 103, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease-out;
+  position: relative;
+}
+
+/* Umgekehrtes Layout (Text links, Graph rechts) */
+.problem-card.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+  z-index: 1;
+}
+
+.problem-card:hover::before {
+  height: 4px;
+}
+
+/* Graph-Container */
+.problem-graph-container {
+  flex: 1;
+  padding: 30px;
+  background-color: #082567;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.problem-graph-container.slide-right {
+  transform: translateX(-100px);
+}
+
+.problem-graph-container.slide-left {
+  transform: translateX(100px);
+}
+
+.problem-graph-container.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Text im Graph-Bereich */
+.problem-graph-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.graph-subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+  color: white;
+}
+
+.graph-highlight {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 5px 0;
+  font-style: italic;
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Graph Visualisierung */
+.graph-visualization {
+  flex: 1;
+  position: relative;
+  min-height: 200px;
+}
+
+/* Graph-Grid */
+.graph-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0;
+  z-index: 1;
+}
+
+.grid-line {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Graph-Linien */
+.graph-lines {
+  position: relative;
+  height: 100%;
+  z-index: 2;
+}
+
+.graph-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.graph-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s forwards ease-out;
+}
+
+.copper-path {
+  animation-delay: 0.5s;
+}
+
+.blue-path {
+  animation-delay: 0.5s;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.data-point {
+  opacity: 0;
+  animation: fadeInPoint 0.5s forwards;
+  animation-delay: 1.5s;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.blue-point {
+  animation-delay: 1.8s;
+}
+
+.data-point-label {
+  font-size: 10px;
+  font-family: sans-serif;
+  fill: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  animation: fadeInPoint 0.5s forwards;
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
+}
+
+@keyframes fadeInPoint {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Datenpunktgruppe */
+.data-point-group:hover .data-point {
+  fill: #ffffff;
+  r: 6;
+}
+
+.data-point-group:hover .data-point-label {
+  fill: #ffffff;
+  font-weight: bold;
+}
+
+/* Graph Legende */
+.graph-legend {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.legend-dot-copper {
+  background-color: #b87333;
+}
+
+.legend-dot-blue {
+  background-color: #1E90FF;
+}
+
+/* Graph-Labels Container */
+.graph-labels-container {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.graph-label-item {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInLabel 0.5s forwards;
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
+}
+
+@keyframes fadeInLabel {
+  from { opacity: 0; transform: translateY(10px) translateX(-50%); }
+  to { opacity: 1; transform: translateY(0) translateX(-50%); }
+}
+
+/* Beschreibungs-Container */
+.problem-description-container {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  min-width: 300px;
+  background-color: rgba(255, 255, 255, 0.03);
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.problem-description-container.slide-right {
+  transform: translateX(100px);
+}
+
+.problem-description-container.slide-left {
+  transform: translateX(-100px);
+}
+
+.problem-description-container.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.problem-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: white;
+}
+
+.problem-card-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.problem-card-arrow {
+  display: none; /* Pfeile in den Karten ausblenden */
+}
+
+/* Highlight Effekt */
+.highlight-copper {
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+/* CTA Bereich */
+.problem-cta {
+  margin-top: 10px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.problem-cta.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.problem-button {
+  background-color: #b87333;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
+}
+
+.problem-button:hover {
+  background-color: #d08c45;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(184, 115, 51, 0.4);
+}
+
+/* Animation classes */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-up.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .problem-section .section-heading {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .problem-title-box {
+    margin-right: 0;
+    margin-bottom: 15px;
+    font-size: 40px;
+  }
+  
+  .problem-subtitle {
+    font-size: 40px;
+  }
+  
+  .problem-card,
+  .problem-card.reverse-layout {
+    flex-direction: column;
+  }
+  
+  .problem-graph-container,
+  .problem-description-container {
+    width: 100%;
+    min-width: auto;
+    transform: translateY(50px);
+  }
+  
+  .problem-graph-container.slide-right,
+  .problem-graph-container.slide-left,
+  .problem-description-container.slide-right,
+  .problem-description-container.slide-left {
+    transform: translateY(50px);
+  }
+  
+  .problem-graph-container.animate-in,
+  .problem-description-container.animate-in {
+    transform: translateY(0);
+  }
+  
+  .problem-graph-container {
+    padding-bottom: 50px;
+  }
+  
+  .graph-visualization {
+    min-height: 180px;
+  }
+  
+  .problem-cards-container {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .problem-section {
+    padding: 60px 15px;
+  }
+  
+  .problem-title-box, 
+  .problem-subtitle {
+    font-size: 36px;
+  }
+  
+  .problem-cards-container {
+    gap: 30px;
+  }
+  
+  .graph-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .graph-highlight {
+    font-size: 1.4rem;
+  }
+  
+  .problem-card-title {
+    font-size: 1.3rem;
+  }
+  
+  .problem-card-text {
+    font-size: 0.9rem;
+  }
+  
+  .problem-graph-container,
+  .problem-description-container {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .problem-title-box, 
+  .problem-subtitle {
+    font-size: 28px;
+  }
+  
+  .graph-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .graph-highlight {
+    font-size: 1.3rem;
+  }
+  
+  .problem-graph-container,
+  .problem-description-container {
+    padding: 20px;
+  }
+  
+  .problem-button {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Verbesserte Karten-Animationen */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(80px);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Graph Container Animation */
+.problem-graph-container.slide-right.animate-in {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.problem-graph-container.slide-left.animate-in {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+/* Beschreibungs-Container Animation */
+.problem-description-container.slide-left.animate-in {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.problem-description-container.slide-right.animate-in {
+  animation: slideInFromRight 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+/* Für Mobile Ansicht */
+@media (max-width: 992px) {
+  @keyframes slideInFromBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  
+  .problem-graph-container.animate-in,
+  .problem-description-container.animate-in {
+    animation: slideInFromBottom 0.8s ease-out forwards !important;
+  }
+  
+  .problem-description-container.animate-in {
+    animation-delay: 0.2s !important;
+  }
+}

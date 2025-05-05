@@ -1,0 +1,296 @@
+/* Solution Section Styles */
+.solution-section {
+  position: relative;
+  /*background-color: #f8f9fa;*/ /* Hintergrund wurde nach JSX verschoben */
+  color: white; /* Textfarbe auf weiß geändert für dunklen Hintergrund */
+  padding: 80px 20px 100px;
+  overflow: hidden;
+}
+
+.solution-copper-effect {
+  position: absolute;
+  top: -100px;
+  right: -200px;
+  z-index: 0;
+  opacity: 0.15;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.copper-effect-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.solution-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* Überschrift im gleichen Stil wie Problem */
+.solution-section .section-heading {
+  display: flex;
+  align-items: center;
+  font-size: 48px;
+  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Box für "Die Lösung" */
+.solution-title-box {
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+  color: black;
+  padding: 15px 20px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 5px 15px rgba(184, 115, 51, 0.4);
+  font-weight: 800;
+  margin-right: 15px;
+}
+
+/* Text "für finanzielle Unabhängigkeit" */
+.solution-subtitle {
+  color: white;
+  font-weight: 800;
+}
+
+@keyframes shine-copper {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.highlight-copper {
+  color: #e2ac6b; /* Kupferfarbe etwas heller für besseren Kontrast auf dunklem Hintergrund */
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+}
+
+/* Solution Grid */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.solution-card {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparenter Hintergrund */
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px); /* Glaseffekt */
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform: translateY(20px);
+  opacity: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtile Rahmenlinie */
+}
+
+.solution-card.animate-in {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.solution-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.15); /* Etwas heller beim Hover */
+}
+
+.solution-card-header {
+  background-color: rgba(255, 255, 255, 0.1); /* Leicht transparenter Hintergrund */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Verbesserte Icon-Container mit mehr Kupfer-Sichtbarkeit */
+.solution-icon-container {
+  background: linear-gradient(135deg, #b87333, #e2ac6b);
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  box-shadow: 0 4px 12px rgba(184, 115, 51, 0.5);
+  flex-shrink: 0;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.solution-card:hover .solution-icon-container {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(184, 115, 51, 0.6);
+}
+
+.solution-icon-container svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+.solution-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: white; /* Weiße Überschrift für dunklen Hintergrund */
+  flex: 1;
+}
+
+.solution-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.solution-card-description {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9); /* Leicht transparentes Weiß für bessere Lesbarkeit */
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CTA Section */
+.cta-container {
+  background-color: rgba(8, 37, 103, 0.8); /* Blauer Hintergrund #082567 mit Transparenz */
+  color: white;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px); /* Glaseffekt */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff; /* Weiße Farbe explizit festlegen */
+}
+
+.cta-text {
+  font-size: 1.05rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-button {
+  background-color: #b87333;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
+}
+
+.cta-button:hover {
+  background-color: #e2ac6b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(184, 115, 51, 0.4);
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .solution-section .section-heading {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .solution-title-box {
+    margin-right: 0;
+    margin-bottom: 15px;
+    font-size: 40px;
+  }
+  
+  .solution-subtitle {
+    font-size: 40px;
+  }
+  
+  .solutions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .solution-section {
+    padding: 60px 15px;
+  }
+  
+  .solution-title-box, 
+  .solution-subtitle {
+    font-size: 36px;
+  }
+  
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-container {
+    padding: 30px 20px;
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .solution-section {
+    padding: 60px 15px 80px;
+  }
+  
+  .solution-title-box, 
+  .solution-subtitle {
+    font-size: 28px;
+  }
+  
+  .cta-button {
+    width: 100%;
+  }
+}

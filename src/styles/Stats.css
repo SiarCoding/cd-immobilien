@@ -1,0 +1,126 @@
+.stats-section {
+  width: 100%;
+  padding: 100px 20px;
+  background-color: white;
+  position: relative;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.stats-section .section-heading {
+  color: #023c38;
+  font-size: 48px;
+  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Blue highlight effect similar to the copper one in Hero */
+.stats-section .highlight-blue {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, #082567, #3a5ca9, #082567);
+  background-size: 200% 100%;
+  animation: shine-blue 3s infinite linear;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 5px 15px rgba(8, 37, 103, 0.3);
+}
+
+@keyframes shine-blue {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.stats-items {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  gap: 80px;
+  margin-top: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-value {
+  color: #000000;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  color: #5d6462;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 991px) {
+  .stats-section {
+    padding: 80px 20px;
+  }
+  
+  .stats-heading {
+    font-size: 40px;
+  }
+  
+  .stats-subheading {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .stats-items {
+    justify-content: center;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .stats-section {
+    padding: 60px 20px;
+  }
+  
+  .stats-heading {
+    font-size: 36px;
+  }
+  
+  .stats-items {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-item {
+    width: 100%;
+    max-width: 320px;
+  }
+}

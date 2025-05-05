@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
+// Import all section components
+import Chatbot from './components/Chatbot';
+import HomePage from './pages/HomePage';
+import Kontakt from './components/sections/Kontakt';
+import Footer from './components/sections/Footer';
+import Testimonials from "./components/sections/Blog";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          {/* Weitere Routen hier hinzufügen */}
+        </Routes>
+        <Footer />
+        <Chatbot />
+      </div>
+    </Router>
   );
 }
 

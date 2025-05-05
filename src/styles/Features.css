@@ -1,0 +1,1037 @@
+/* Features Sektion mit modernem Design in Blau-Kupfer-Farbschema */
+.features-section {
+  position: relative;
+  padding: 3rem 0;
+  color: #fff;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Kupfer Effekt im Hintergrund */
+.features-copper-effect {
+  position: absolute;
+  top: -180px;
+  right: -180px;
+  width: 450px;
+  height: 450px;
+  z-index: -1;
+  opacity: 0.3;
+  animation: rotate 30s infinite linear;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.copper-effect-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-15deg);
+  animation: subtle-rotate 20s infinite alternate ease-in-out;
+}
+
+@keyframes subtle-rotate {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(5deg); }
+}
+
+/* Container und Überschriften */
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Neue Überschrift im Stil von Solution.css */
+.features-section .section-heading {
+  display: flex;
+  align-items: center;
+  font-size: 48px;
+  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.features-title-box {
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+  color: black;
+  padding: 15px 20px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 5px 15px rgba(184, 115, 51, 0.4);
+  font-weight: 800;
+  margin-right: 15px;
+}
+
+.features-subtitle {
+  color: white;
+  font-weight: 800;
+}
+
+/* Unterstrich-Effekt ähnlich wie bei Hero.jsx */
+.underlined-special {
+  position: relative;
+  display: inline-block;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* Entferne alle anderen möglichen Unterstriche */
+.underlined-special::before {
+  display: none !important;
+}
+
+/* Behalte nur diesen einen Unterstrich */
+.underlined-special::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #b87333, #FFFFFF, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 2s infinite linear;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* Verhindere einen doppelten Unterstrich bei profitieren */
+.features-subtitle .underlined-special {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.features-subtitle .underlined-special::before,
+.features-subtitle .underlined-special > *::before,
+.features-subtitle .underlined-special + *::before {
+  display: none !important;
+}
+
+/* Stelle sicher, dass im gesamten H1 keine anderen Unterstriche erscheinen */
+.section-heading *,
+.section-heading *::before,
+.section-heading *::after {
+  border-bottom: none;
+  box-shadow: none;
+}
+
+/* Nur der eine gewünschte Unterstrich wird angezeigt */
+.section-heading .underlined-special::after {
+  display: block !important;
+}
+
+.building-value .value-amount {
+  border-bottom: 2px solid #333;
+}
+
+@keyframes shine-copper {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Vorteilskarten */
+.benefits-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 0 auto 2rem;
+  max-width: 1100px;
+}
+
+.benefit-card {
+  background: rgba(8, 37, 103, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.benefit-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.benefit-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.benefit-card-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(226, 172, 107, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  color: #e2ac6b;
+}
+
+.benefit-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+}
+
+.benefit-card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #e2ac6b;
+  border-bottom: 2px solid #e2ac6b;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.benefit-card-description {
+  margin-top: auto;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+/* Rechner Bereich */
+.calculator-wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 0.5rem;
+  margin: 0 auto;
+  max-width: 1100px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.calculator-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.calculator-left-panel {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(8, 37, 103, 0.4);
+  border-radius: 12px;
+}
+
+.calculator-right-panel {
+  padding: 1.5rem;
+  background: rgba(8, 37, 103, 0.4);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calculator-section {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.calculator-section-title {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e2ac6b;
+}
+
+.calculator-section-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Form Elemente */
+.modern-input {
+  margin-bottom: 1rem;
+}
+
+.modern-input label {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.input-with-currency {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-input {
+  width: 100%;
+  padding: 0.8rem 2rem 0.8rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.currency-input:focus {
+  outline: none;
+  border-color: #e2ac6b;
+  box-shadow: 0 0 0 2px rgba(226, 172, 107, 0.3);
+}
+
+.currency-symbol {
+  position: absolute;
+  right: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.select-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4L6 8L10 4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.select-input:focus {
+  outline: none;
+  border-color: #e2ac6b;
+  box-shadow: 0 0 0 2px rgba(226, 172, 107, 0.3);
+}
+
+/* Info Icon und Tooltip */
+.info-icon {
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  font-style: italic;
+  position: relative;
+  cursor: help;
+}
+
+.info-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 200px;
+  font-size: 0.8rem;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
+  text-align: center;
+  pointer-events: none;
+  font-style: normal;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+}
+
+.info-icon:hover .info-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Checkbox Styling */
+.checkbox-container {
+  margin-bottom: 1rem;
+}
+
+.checkbox-modern {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+  color: #ccc;
+}
+
+.checkbox-modern input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.checkbox-modern:hover input ~ .checkmark {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-modern input:checked ~ .checkmark {
+  background-color: #e2ac6b;
+  border-color: #e2ac6b;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-modern input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-modern .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label {
+  margin-left: 0.5rem;
+}
+
+.expenses-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  opacity: 0;
+}
+
+/* Ergebnisbereich */
+.results-heading {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  color: #e2ac6b;
+  text-align: center;
+}
+
+.afa-info-box {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid rgba(226, 172, 107, 0.2);
+}
+
+.afa-info-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.afa-badge {
+  background: #e2ac6b;
+  color: #333;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.afa-info-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.afa-info-text p {
+  margin: 0;
+}
+
+.financial-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.financial-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.financial-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.financial-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.financial-value.highlight {
+  color: #e2ac6b;
+  font-size: 1.3rem;
+}
+
+/* Verbessertes Design für Gebäude-/Grundstücksaufteilung */
+.property-division {
+  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.property-division-header {
+  margin-bottom: 1rem;
+}
+
+.property-division-title {
+  margin: 0 0 0.3rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.property-division-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.property-division-bar {
+  height: 40px;
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.building-value {
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0 0.5rem;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.land-value {
+  background: rgba(8, 37, 103, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 0 0.5rem;
+}
+
+.value-label-container {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.value-label {
+  margin-right: 0.3rem;
+  font-weight: normal;
+}
+
+.value-amount {
+  font-weight: 600;
+  color: inherit;
+}
+
+.property-division-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 0.5rem;
+}
+
+.legend-marker.building {
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+}
+
+.legend-marker.land {
+  background: rgba(8, 37, 103, 0.6);
+}
+
+/* Verbesserte Darstellung des Steuersatzes */
+.tax-rate-display {
+  display: flex;
+  align-items: center;
+  background: rgba(8, 37, 103, 0.5);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(226, 172, 107, 0.3);
+}
+
+.tax-rate-circle {
+  background: linear-gradient(135deg, #082567, #061d4e);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  border: 2px solid #e2ac6b;
+  box-shadow: 0 0 15px rgba(226, 172, 107, 0.3);
+}
+
+.tax-rate-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tax-rate-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tax-rate-info {
+  flex: 1;
+}
+
+.tax-rate-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #e2ac6b;
+  line-height: 1.4;
+}
+
+/* Charts und Graphen */
+.tax-savings-chart-container {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tax-savings-chart-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #fff;
+  text-align: center;
+}
+
+.recharts-wrapper {
+  margin: 0 -10px;
+  height: 250px;
+}
+
+.total-savings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-savings-label {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.total-savings-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e2ac6b;
+  position: relative;
+  display: inline-block;
+}
+
+.total-savings-value::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  border-radius: 2px;
+}
+
+/* Steuer-Tipp */
+.tax-advice {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(226, 172, 107, 0.1);
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 1px solid rgba(226, 172, 107, 0.3);
+}
+
+.tax-advice-icon {
+  font-size: 1.5rem;
+}
+
+.tax-advice-content {
+  flex: 1;
+}
+
+.tax-advice-content strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #e2ac6b;
+}
+
+.tax-advice-content p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Call-to-Action */
+.features-cta {
+  background: linear-gradient(90deg, rgba(8, 37, 103, 0.8) 0%, rgba(22, 58, 140, 0.8) 100%);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  margin-top: 2rem;
+  border: 1px solid rgba(226, 172, 107, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.17, 0.67, 0.38, 0.92);
+}
+
+.features-cta.animate-in {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #e2ac6b;
+}
+
+.cta-text {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: #e2ac6b;
+  color: #082567;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background: #c9986a;
+}
+
+.button-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.cta-button:hover .button-icon {
+  transform: translateX(5px);
+}
+
+/* Steuervorteile Zusammenfassung */
+.tax-benefits-summary {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.tax-benefit-item {
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: rgba(8, 37, 103, 0.4);
+  border: 1px solid rgba(226, 172, 107, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tax-benefit-item:hover {
+  background: rgba(8, 37, 103, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tax-benefit-label {
+  font-size: 0.8rem;
+  color: #e2ac6b;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
+.tax-benefit-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.tax-benefit-desc {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 992px) {
+  .calculator-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .calculator-left-panel,
+  .calculator-right-panel {
+    padding: 1.2rem;
+  }
+  
+  .benefits-cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .tax-benefit-item {
+    padding: 0.6rem;
+  }
+  
+  .features-section .section-heading {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .features-title-box {
+    margin-right: 0;
+    margin-bottom: 15px;
+    font-size: 40px;
+  }
+  
+  .features-subtitle {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .benefits-cards-container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .financial-overview {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .tax-rate-display {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .tax-rate-circle {
+    margin: 0 auto 1rem auto;
+  }
+  
+  .property-division-bar {
+    height: auto;
+    flex-direction: column;
+  }
+  
+  .building-value, .land-value {
+    padding: 0.8rem;
+  }
+  
+  .tax-benefits-summary {
+    padding: 1rem;
+  }
+  
+  .tax-benefit-value {
+    font-size: 1.2rem;
+  }
+  
+  .features-title-box, 
+  .features-subtitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .features-section {
+    padding: 2.5rem 0;
+  }
+  
+  .features-container {
+    padding: 0 1rem;
+  }
+  
+  .calculator-section,
+  .financial-item,
+  .tax-savings-chart-container,
+  .tax-advice,
+  .afa-info-box {
+    padding: 0.8rem;
+  }
+  
+  .currency-input,
+  .select-input {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .cta-content {
+    padding: 1.5rem;
+  }
+  
+  .features-title-box, 
+  .features-subtitle {
+    font-size: 24px;
+  }
+  
+  .benefit-card-value {
+    font-size: 1.6rem;
+  }
+}
+
+/* Animation für die Checkboxen und Inputs */
+.expenses-container.active {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* Reveal-Animationen */
+.reveal-title {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: all 0.8s cubic-bezier(0.17, 0.67, 0.38, 0.92);
+}
+
+.reveal-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
