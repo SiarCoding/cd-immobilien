@@ -226,9 +226,14 @@
 .hero-title .highlight-blue {
   position: relative;
   display: inline-block;
-  background: linear-gradient(90deg, #b87333, #FFFFFF, #b87333);
+  background: linear-gradient(90deg, 
+    #b87333 0%, 
+    #b87333 30%, 
+    #FFFFFF 50%, 
+    #b87333 70%, 
+    #b87333 100%);
   background-size: 200% 100%;
-  animation: shine 3s infinite linear;
+  animation: shine 3s linear infinite;
   color: #000;
   padding: 8px 18px;
   border-radius: 8px;
@@ -239,7 +244,6 @@
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
-
 .hero-title .highlight-blue:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(184, 115, 51, 0.4);
@@ -343,10 +347,10 @@
 
 @keyframes shine {
   0% {
-    background-position: -100% 0;
+    background-position: -200% 0;
   }
   100% {
-    background-position: 200% 0;
+    background-position: 0% 0;
   }
 }
 
@@ -707,15 +711,6 @@ z-index: -1;
   height: 100%;
   filter: blur(70px);
   opacity: 0.3;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 60px 60px;
-  }
 }
 
 .avatar-container {

@@ -21,7 +21,7 @@ const Hero = () => {
         <div className="hero-left-column">
           <div className="hero-text-container">
             <h1 className="hero-title">
-              <div className="title-container">Baue mit Immobilien nachhaltig <span className="highlight-blue">Vermögen</span> auf und senke deine <span className="underlined-blue-special">Steuerlast</span></div>
+              <div className="title-container">Bauen Sie mit Immobilien nachhaltig <span className="highlight-blue">Vermögen</span> auf und senken Sie Ihre <span className="underlined-blue-special">Steuerlast</span></div>
             </h1>
             <div className="hero-subtitle">
               Mit unserer Expertise helfen wir Ihnen, durch strategische Immobilieninvestitionen ein nachhaltiges Vermögen aufzubauen und Ihre finanzielle Zukunft zu sichern.

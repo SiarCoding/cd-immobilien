@@ -9,7 +9,7 @@ const Stats = () => {
   // Stats data
   const statsData = [
     { value: 500, label: 'Mio. € Projektvolumen', suffix: '+', prefix: '' },
-    { value: 200, label: 'Zufriedene Kunden', suffix: '+', prefix: '' },
+    { value: 1400, label: 'Zufriedene Kunden', suffix: '+', prefix: '' },
     { value: 15, label: 'Jahre Erfahrung', suffix: '+', prefix: '' }
   ];
 

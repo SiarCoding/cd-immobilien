@@ -28,9 +28,9 @@ const Problem = () => {
     {
       id: 1,
       title: "Niedrige Renditen",
-      subtitle: "Traditionelle Geldanlagen verlieren an Wert",
-      highlight: "Negativzinsen",
-      description: "Die meisten deutschen Sparer verlieren jährlich Geld durch Inflation, während Tages- und Festgelder kaum Rendite abwerfen. Eine erfolgreiche Vermögensplanung braucht renditestarke Alternativen.",
+      subtitle: "Gefahr durch negative Realzinsen",
+      highlight: "Verfehlte finanzielle Ziele",
+      description: "Allein durch regelmäßiges Sparen in Versicherungs- und Bankprodukte läuft man Gefahr, seine finanziellen Ziele erheblich zu verfehlen. Egal ob mit Aktiensparen oder Versicherungssparen. Hohe Verwaltungskosten und falsche Risikoeinschätzung führen nach Berücksichtigung der drohenden Inflation zu negativen Realzinsen oder zu massiven Verlusten.",
       // Pfad für einen abfallenden Trend
       graphPath: "M10,50 C60,70 100,90 200,100 C300,110 350,150 400,180",
       dataPoints: [
@@ -44,9 +44,9 @@ const Problem = () => {
     {
       id: 2,
       title: "Rentenlücke",
-      subtitle: "Die Altersarmut droht für viele Deutsche",
-      highlight: "Unterfinanzierung",
-      description: "Das deutsche Rentensystem steht vor enormen Herausforderungen. Viele Arbeitnehmer werden im Alter nicht genug zum Leben haben. Private Vorsorge ist unerlässlich, um den Lebensstandard zu halten.",
+      subtitle: "Altersarmut als drohende Realität",
+      highlight: "Damoklesschwert der Altersarmut",
+      description: "Die Altersarmut als Konsequenz des Nichthandelns während unserer Erwerbsjahre schwebt wie ein Damoklesschwert über uns. Immer mehr Rentner belasten die Rentenkassen. Gleichzeitig zahlen immer weniger Menschen in die Kassen ein. Die Folge: Altersarmut und Entwertung durch Inflation.",
       // Pfad für einen anderen abfallenden Trend
       graphPath: "M10,60 C90,100 150,110 250,150 C300,180 350,190 400,220",
       dataPoints: [
@@ -60,9 +60,9 @@ const Problem = () => {
     {
       id: 3,
       title: "Inflationsdruck",
-      subtitle: "Kaufkraftverlust durch steigende Preise",
-      highlight: "Wertverlust",
-      description: "Die Inflation frisst die Ersparnisse auf. Traditionelle Anlagen wie Sparbücher können mit den Preissteigerungen nicht Schritt halten. Sachwerte wie Immobilien bieten hingegen einen natürlichen Inflationsschutz.",
+      subtitle: "Herausforderungen der Rentenversicherung",
+      highlight: "Private Vorsorge als Schlüssel",
+      description: "Die deutsche Rentenversicherung steht vor enormen Herausforderungen. Viele Arbeitnehmer werden im Alter nicht genug zum Leben haben. Private Vorsorge durch Investitionen in diverse Immobilien ist daher ein unerlässlicher Finanzbaustein, um seinen Lebensstil auch im Rentenalter zu bewahren und abzusichern.",
       // Pfad für einen steil abfallenden Trend
       graphPath: "M10,40 C60,90 120,130 200,160 C280,180 350,210 400,240",
       dataPoints: [
@@ -76,58 +76,185 @@ const Problem = () => {
     {
       id: 4,
       title: "Langlebigkeitsrisiko",
-      subtitle: "Finanzielle Absicherung bis zum Lebensende",
-      highlight: "Versorgungslücke",
-      description: "Rentenzahlungen und Ersparnisse reichen oft nicht bis zum Lebensende. Die höhere Lebenserwartung bedeutet eine längere Bezugsdauer bei gleichzeitig sinkenden Leistungen. Immobilieninvestitionen bieten einen beständigen Einkommensstrom im Alter.",
-      // Pfad für einen zunehmenden Kostenanstieg (beibehaltene Graphik)
-      graphPath: "M10,200 C90,180 150,160 250,120 C300,90 350,60 400,40",
+      subtitle: "Unzureichende Rentenzahlungen",
+      highlight: "Gefahr der Altersarmut",
+      description: "Rentenzahlungen und Ersparnisse reichen oft nicht bis zum Lebensende aus, da Einkünfte, Leistungen und Bezüge im Rentenalter häufig nicht mit der Inflation Schritt halten. Im Gegenteil, die Folge ist Altersarmut und homöopathische Rentenzahlungen.",
+      // Pfad für einen abfallenden Trend (umgekehrt)
+      graphPath: "M10,40 C90,60 150,90 250,120 C300,150 350,180 400,200",
       dataPoints: [
-        { cx: 10, cy: 200 },
-        { cx: 100, cy: 180 },
+        { cx: 10, cy: 40 },
+        { cx: 100, cy: 60 },
         { cx: 250, cy: 120 },
-        { cx: 350, cy: 60 },
-        { cx: 400, cy: 40 }
+        { cx: 350, cy: 180 },
+        { cx: 400, cy: 200 }
       ]
     }
   ];
 
   useEffect(() => {
-    // Animation beim Scrollen mit IntersectionObserver
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2
-    };
-
-    const handleIntersection = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Animiere das entsprechende Element
-          entry.target.classList.add('animate-in');
-          // Element nicht mehr beobachten, nachdem es einmal animiert wurde
-          observer.unobserve(entry.target);
+    // Direkter Mobile-Fix ohne komplizierte Logik
+    const isMobile = window.innerWidth <= 992;
+    
+    if (isMobile) {
+      // Sofortiger Fix für mobile Geräte
+      setTimeout(() => {
+        graphContainerRefs.current.forEach((ref, index) => {
+          if (ref) {
+            // Container sichtbar machen
+            ref.style.cssText = `
+              opacity: 1 !important;
+              visibility: visible !important;
+              display: flex !important;
+              transform: none !important;
+              animation: none !important;
+              transition: none !important;
+            `;
+            
+            // Alle SVG-Elemente direkt adressieren
+            const svgElement = ref.querySelector('.graph-svg');
+            if (svgElement) {
+              svgElement.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                width: 100% !important;
+                height: 100% !important;
+              `;
+            }
+            
+            // Alle Pfade direkt adressieren
+            const pathElements = ref.querySelectorAll('.graph-path');
+            pathElements.forEach(path => {
+              path.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                stroke: #b87333 !important;
+                stroke-width: 3px !important;
+                fill: none !important;
+              `;
+            });
+            
+            // Alle Datenpunkte direkt adressieren
+            const dataPoints = ref.querySelectorAll('.data-point');
+            dataPoints.forEach(point => {
+              point.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                fill: #e2ac6b !important;
+              `;
+            });
+            
+            // Graph-Visualization Container
+            const graphViz = ref.querySelector('.graph-visualization');
+            if (graphViz) {
+              graphViz.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                height: 250px !important;
+                min-height: 250px !important;
+                position: relative !important;
+              `;
+            }
+          }
+        });
+        
+        // Description Container auch sichtbar machen
+        descriptionContainerRefs.current.forEach(ref => {
+          if (ref) {
+            ref.style.cssText = `
+              opacity: 1 !important;
+              visibility: visible !important;
+              display: flex !important;
+              transform: none !important;
+            `;
+          }
+        });
+        
+        if (ctaRef.current) {
+          ctaRef.current.style.cssText = `
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+          `;
         }
+      }, 100);
+      
+    } else {
+      // Desktop: Normale Scroll-Animation
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+      };
+
+      const handleIntersection = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+      graphContainerRefs.current.forEach(ref => {
+        if (ref) observer.observe(ref);
       });
+      descriptionContainerRefs.current.forEach(ref => {
+        if (ref) observer.observe(ref);
+      });
+      if (ctaRef.current) observer.observe(ctaRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+    
+    // Resize Handler für dynamische Änderungen
+    const handleResize = () => {
+      const isMobileNow = window.innerWidth <= 992;
+      if (isMobileNow) {
+        // Mobile Fixes erneut anwenden
+        setTimeout(() => {
+          graphContainerRefs.current.forEach(ref => {
+            if (ref) {
+              const svgElement = ref.querySelector('.graph-svg');
+              const pathElements = ref.querySelectorAll('.graph-path');
+              const dataPoints = ref.querySelectorAll('.data-point');
+              
+              if (svgElement) {
+                svgElement.style.display = 'block';
+                svgElement.style.visibility = 'visible';
+                svgElement.style.opacity = '1';
+              }
+              
+              pathElements.forEach(path => {
+                path.style.display = 'block';
+                path.style.visibility = 'visible';
+                path.style.opacity = '1';
+                path.style.stroke = '#b87333';
+              });
+              
+              dataPoints.forEach(point => {
+                point.style.display = 'block';
+                point.style.visibility = 'visible';
+                point.style.opacity = '1';
+                point.style.fill = '#e2ac6b';
+              });
+            }
+          });
+        }, 50);
+      }
     };
-
-    const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-    // Beobachte alle Graph-Container
-    graphContainerRefs.current.forEach(ref => {
-      if (ref) observer.observe(ref);
-    });
-
-    // Beobachte alle Beschreibungs-Container
-    descriptionContainerRefs.current.forEach(ref => {
-      if (ref) observer.observe(ref);
-    });
-
-    // Beobachte den CTA-Bereich
-    if (ctaRef.current) observer.observe(ctaRef.current);
-
-    // Cleanup beim Unmount
+    
+    window.addEventListener('resize', handleResize);
+    
     return () => {
-      observer.disconnect();
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -175,7 +302,7 @@ const Problem = () => {
                       <path 
                         d={card.graphPath} 
                         fill="none"
-                        stroke="url(#copperGradient)"
+                        stroke="#b87333"
                         strokeWidth="3"
                         className="graph-path copper-path"
                       />
@@ -189,17 +316,8 @@ const Problem = () => {
                           r="5" 
                           fill="#e2ac6b" 
                           className="data-point"
-                          style={{ animationDelay: `${1.5 + i * 0.1}s` }}
                         />
                       ))}
-
-                      {/* Farbverlauf für die Kupfer-Linie */}
-                      <defs>
-                        <linearGradient id="copperGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="#b87333" />
-                          <stop offset="100%" stopColor="#e2ac6b" />
-                        </linearGradient>
-                      </defs>
                     </svg>
                   </div>
                 </div>
