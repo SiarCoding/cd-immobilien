@@ -22,6 +22,7 @@ const Problem = () => {
   const graphContainerRefs = useRef([]);
   const descriptionContainerRefs = useRef([]);
   const ctaRef = useRef(null);
+  const observerRef = useRef(null); // Ref to store the observer instance
 
   // Problem-Karten mit Daten für die Graphen
   const problemCards = [
@@ -91,98 +92,18 @@ const Problem = () => {
     }
   ];
 
+  const [isMobileView, setIsMobileView] = React.useState(window.innerWidth <= 992);
+
   useEffect(() => {
-    // Direkter Mobile-Fix ohne komplizierte Logik
-    const isMobile = window.innerWidth <= 992;
-    
-    if (isMobile) {
-      // Sofortiger Fix für mobile Geräte
-      setTimeout(() => {
-        graphContainerRefs.current.forEach((ref, index) => {
-          if (ref) {
-            // Container sichtbar machen
-            ref.style.cssText = `
-              opacity: 1 !important;
-              visibility: visible !important;
-              display: flex !important;
-              transform: none !important;
-              animation: none !important;
-              transition: none !important;
-            `;
-            
-            // Alle SVG-Elemente direkt adressieren
-            const svgElement = ref.querySelector('.graph-svg');
-            if (svgElement) {
-              svgElement.style.cssText = `
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                width: 100% !important;
-                height: 100% !important;
-              `;
-            }
-            
-            // Alle Pfade direkt adressieren
-            const pathElements = ref.querySelectorAll('.graph-path');
-            pathElements.forEach(path => {
-              path.style.cssText = `
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                stroke: #b87333 !important;
-                stroke-width: 3px !important;
-                fill: none !important;
-              `;
-            });
-            
-            // Alle Datenpunkte direkt adressieren
-            const dataPoints = ref.querySelectorAll('.data-point');
-            dataPoints.forEach(point => {
-              point.style.cssText = `
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                fill: #e2ac6b !important;
-              `;
-            });
-            
-            // Graph-Visualization Container
-            const graphViz = ref.querySelector('.graph-visualization');
-            if (graphViz) {
-              graphViz.style.cssText = `
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                height: 250px !important;
-                min-height: 250px !important;
-                position: relative !important;
-              `;
-            }
-          }
-        });
-        
-        // Description Container auch sichtbar machen
-        descriptionContainerRefs.current.forEach(ref => {
-          if (ref) {
-            ref.style.cssText = `
-              opacity: 1 !important;
-              visibility: visible !important;
-              display: flex !important;
-              transform: none !important;
-            `;
-          }
-        });
-        
-        if (ctaRef.current) {
-          ctaRef.current.style.cssText = `
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-          `;
-        }
-      }, 100);
-      
-    } else {
+    const checkMobileView = () => {
+      setIsMobileView(window.innerWidth <= 992);
+    };
+
+    window.addEventListener('resize', checkMobileView);
+    // Initial check
+    checkMobileView();
+
+    if (!isMobileView) {
       // Desktop: Normale Scroll-Animation
       const observerOptions = {
         root: null,
@@ -190,73 +111,65 @@ const Problem = () => {
         threshold: 0.2
       };
 
-      const handleIntersection = (entries, observer) => {
+      const handleIntersection = (entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
+            // Ensure class is removed if element is not intersecting and we want re-animation
+            // For now, it only adds the class and unobserves, so it animates once.
+            obs.unobserve(entry.target);
           }
         });
       };
 
-      const observer = new IntersectionObserver(handleIntersection, observerOptions);
+      observerRef.current = new IntersectionObserver(handleIntersection, observerOptions);
+      const currentObserver = observerRef.current;
 
-      graphContainerRefs.current.forEach(ref => {
-        if (ref) observer.observe(ref);
+      // Collect all elements to observe
+      const elementsToObserve = [
+        ...graphContainerRefs.current.filter(el => el),
+        ...descriptionContainerRefs.current.filter(el => el)
+      ];
+      if (ctaRef.current) {
+        elementsToObserve.push(ctaRef.current);
+      }
+      
+      elementsToObserve.forEach(ref => {
+        currentObserver.observe(ref);
       });
-      descriptionContainerRefs.current.forEach(ref => {
-        if (ref) observer.observe(ref);
-      });
-      if (ctaRef.current) observer.observe(ctaRef.current);
 
       return () => {
-        observer.disconnect();
+        if (currentObserver) {
+          currentObserver.disconnect();
+        }
       };
+    } else {
+      // Mobile view: Ensure any existing observer is disconnected
+      // and remove 'animate-in' class if elements might have had it from desktop view.
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+      // Optionally, remove 'animate-in' class from elements if they were previously observed
+      const elementsToReset = [
+        ...graphContainerRefs.current.filter(el => el),
+        ...descriptionContainerRefs.current.filter(el => el)
+      ];
+      if (ctaRef.current) {
+        elementsToReset.push(ctaRef.current);
+      }
+      elementsToReset.forEach(el => {
+        if (el) el.classList.remove('animate-in');
+      });
     }
     
-    // Resize Handler für dynamische Änderungen
-    const handleResize = () => {
-      const isMobileNow = window.innerWidth <= 992;
-      if (isMobileNow) {
-        // Mobile Fixes erneut anwenden
-        setTimeout(() => {
-          graphContainerRefs.current.forEach(ref => {
-            if (ref) {
-              const svgElement = ref.querySelector('.graph-svg');
-              const pathElements = ref.querySelectorAll('.graph-path');
-              const dataPoints = ref.querySelectorAll('.data-point');
-              
-              if (svgElement) {
-                svgElement.style.display = 'block';
-                svgElement.style.visibility = 'visible';
-                svgElement.style.opacity = '1';
-              }
-              
-              pathElements.forEach(path => {
-                path.style.display = 'block';
-                path.style.visibility = 'visible';
-                path.style.opacity = '1';
-                path.style.stroke = '#b87333';
-              });
-              
-              dataPoints.forEach(point => {
-                point.style.display = 'block';
-                point.style.visibility = 'visible';
-                point.style.opacity = '1';
-                point.style.fill = '#e2ac6b';
-              });
-            }
-          });
-        }, 50);
+    return () => {
+      window.removeEventListener('resize', checkMobileView);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
       }
     };
-    
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  }, [isMobileView]); // Re-run effect when isMobileView changes
 
   return (
     <section ref={sectionRef} className="problem-section">

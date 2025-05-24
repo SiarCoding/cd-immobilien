@@ -601,126 +601,11 @@
   }
 } */
 
-/* Mobile Fixes - NUR für Graphen-Linien */
-@media (max-width: 1024px) {
-  /* Container Fixes - minimale Änderungen */
-  .problem-graph-container {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  .problem-graph-container.slide-right,
-  .problem-graph-container.slide-left,
-  .problem-graph-container.animate-in {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-  }
-  
-  /* Description Container Fixes */
-  .problem-description-container {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  
-  .problem-description-container.slide-right,
-  .problem-description-container.slide-left,
-  .problem-description-container.animate-in {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-  }
-  
-  /* Graph Visualization - sicherstellen dass Container sichtbar ist */
-  .graph-visualization {
-    min-height: 180px !important;
-    height: 180px !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 10 !important;
-  }
-  
-  /* SVG Container - sicherstellen dass SVG sichtbar ist */
-  .graph-svg {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 10 !important;
-  }
-  
-  /* Graph Path - DIE KUPFER LINIE */
-  .graph-path {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    stroke: #b87333 !important;
-    stroke-width: 3px !important;
-    fill: none !important;
-    stroke-dasharray: none !important;
-    stroke-dashoffset: 0 !important;
-    animation: none !important;
-  }
-  
-  .graph-path.copper-path {
-    animation: none !important;
-    stroke-dasharray: none !important;
-    stroke-dashoffset: 0 !important;
-  }
-  
-  /* Data Points - die Punkte auf der Linie */
-  .data-point {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    fill: #e2ac6b !important;
-    r: 5 !important;
-    animation: none !important;
-  }
-  
-  /* Grid Elements */
-  .graph-grid {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .grid-line {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Graph Lines Container */
-  .graph-lines {
-    position: relative !important;
-    height: 100% !important;
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10 !important;
-  }
-  
-  /* Graph Content */
-  .problem-graph-content {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Alle Keyframe-Animationen deaktivieren */
-  .problem-graph-container *,
-  .problem-description-container * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
+/* 
+  The media query for max-width: 1024px and the media query for 
+  max-width: 992px with orientation have been removed. 
+  Relevant rules are consolidated into the @media (max-width: 992px) block below.
+*/
 
 /* Spezifischer Fix für gestapelte Karten (mobile Ansicht) */
 @media (max-width: 992px) {
@@ -741,311 +626,215 @@
   
   .problem-card,
   .problem-card.reverse-layout {
-    flex-direction: column;
+    flex-direction: column; /* Ensure cards stack vertically */
   }
   
   .problem-cards-container {
     gap: 40px;
   }
-  
-  /* WICHTIG: Graph-Container in gestapelter Ansicht sicherstellen */
-  .problem-graph-container {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    display: flex !important;
-    visibility: visible !important;
-    min-height: 200px !important;
-  }
-  
-  /* Graph Visualization für gestapelte Karten */
-  .graph-visualization {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: 200px !important;
-    min-height: 200px !important;
-    position: relative !important;
-    overflow: visible !important;
-  }
-  
-  /* SVG für gestapelte Karten */
-  .graph-svg {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    overflow: visible !important;
-  }
-  
-  /* Graph Pfade für gestapelte Karten */
-  .graph-path {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    stroke: #b87333 !important;
-    stroke-width: 3px !important;
-    fill: none !important;
-    vector-effect: non-scaling-stroke !important;
-  }
-  
-  /* Data Points für gestapelte Karten */
-  .data-point {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    fill: #e2ac6b !important;
-    r: 5 !important;
-  }
-  
-  /* Grid für gestapelte Karten */
-  .graph-grid {
-    display: flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .grid-line {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Graph Lines für gestapelte Karten */
-  .graph-lines {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: 100% !important;
-    position: relative !important;
-  }
-  
-  /* Alle Container-Regeln werden von den Mobile Fixes überschrieben */
-}
 
-/* Zusätzlicher SVG-Fix für mobile Geräte */
-@media (max-width: 992px) and (orientation: portrait), 
-       (max-width: 992px) and (orientation: landscape) {
-  
-  /* SVG-spezifische Fixes für mobile Ansicht */
-  .graph-svg {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    overflow: visible !important;
-    preserve-aspect-ratio: xMidYMid meet !important;
-  }
-  
-  /* Path-spezifische Fixes */
-  .graph-path,
-  .graph-path.copper-path {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    stroke: #b87333 !important;
-    stroke-width: 3px !important;
-    fill: none !important;
-    vector-effect: non-scaling-stroke !important;
-    pointer-events: none !important;
-  }
-  
-  /* Data Point Fixes */
-  .data-point {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    fill: #e2ac6b !important;
-    r: 5 !important;
-    pointer-events: none !important;
-  }
-  
-  /* Container für SVG absolut sicherstellen */
-  .graph-visualization {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: 200px !important;
-    min-height: 200px !important;
-    position: relative !important;
-    overflow: visible !important;
-    background: transparent !important;
-  }
-  
+  /* CONSOLIDATED GRAPH STYLES FOR MOBILE (max-width: 992px) */
+
   /* Graph Container */
   .problem-graph-container {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    min-height: 250px !important;
-    flex-direction: column !important;
+    display: flex; 
+    flex-direction: column; 
+    visibility: visible;
+    opacity: 1;
+    transform: none; /* Reset desktop animations */
+    animation: none; /* Reset desktop animations */
+    min-height: 300px; /* Ensure enough space for the graph */
+    height: auto; /* Allow height to adjust to content */
+    position: relative; 
+    overflow: visible; /* Ensure no clipping of SVG */
+    background-color: #082567; 
+    padding: 20px; 
+    border-radius: 16px;
+  }
+
+  /* Reset animations for children of graph container and description container */
+  .problem-graph-container *,
+  .problem-description-container * {
+    animation: none !important; /* Important to override existing animations */
+    transition: none !important; /* Important to override existing transitions */
+  }
+  
+  /* Graph Content (Text above graph) */
+  .problem-graph-content {
+    display: flex;
+    flex-direction: column;
+    visibility: visible;
+    opacity: 1;
+    margin-bottom: 15px; 
+    text-align: center;
+  }
+
+  /* Graph Visualization (Container for the SVG) */
+  .graph-visualization {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: relative; /* Crucial for SVG positioning */
+    height: 250px;    /* Fixed height for the graph area */
+    min-height: 250px; /* Minimum height */
+    width: 100%;       /* Full width of its parent */
+    overflow: visible; /* Allow SVG to be fully visible */
+    background: transparent; 
+    border: none;      
+    margin: 0;         
+    padding: 0;        
+    flex: 1;           
+  }
+
+  /* Graph Lines Container (Wrapper around SVG) */
+  .graph-lines {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: relative; 
+    height: 100%;      
+    width: 100%;       
+    z-index: 2;        
+    overflow: visible;
+  }
+
+  /* SVG Element (The actual graph) */
+  .graph-svg {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;       
+    height: 100%;      
+    z-index: 3;        
+    overflow: visible !important; /* Ensure SVG isn't clipped */
+    background: transparent;
+    border: none;
+    pointer-events: none; 
+    preserve-aspect-ratio: xMidYMid meet; 
+  }
+
+  /* Graph Path (The lines in the SVG) */
+  .graph-path,
+  .graph-path.copper-path { 
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    stroke: #b87333; /* Default copper color */
+    stroke-width: 3px; 
+    fill: none;        
+    vector-effect: non-scaling-stroke; 
+    pointer-events: none; 
+    animation: none;    
+    transition: none;   
+    stroke-dasharray: none; 
+    stroke-dashoffset: 0;   
+  }
+  
+   .graph-path.blue-path {
+    stroke: #1E90FF; /* Blue color for the other line */
+    /* Inherits other properties from .graph-path */
+  }
+
+  /* Data Points (Circles on the lines) */
+  .data-point {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    fill: #e2ac6b; /* Default copper point color */
+    r: 4px;        
+    pointer-events: none;
+    animation: none;
+    transition: none;
+  }
+  
+  .data-point.blue-point {
+    fill: #1E90FF; /* Blue color for points on the blue line */
+  }
+
+  /* Grid (Background lines in the graph) */
+  .graph-grid {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0; 
+    z-index: 1;      
+  }
+
+  .grid-line {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Ensure description container also resets animations and transforms, and has appropriate padding */
+  .problem-description-container {
+    opacity: 1;
+    transform: none;
+    animation: none; /* Already covered by .problem-description-container * but good for clarity */
+    transition: none; /* Already covered by .problem-description-container * but good for clarity */
+    padding: 20px; 
+  }
+
+  /* Explicitly reset animation states for containers if previously set by js or other CSS */
+  .problem-graph-container.slide-right,
+  .problem-graph-container.slide-left,
+  .problem-graph-container.animate-in,
+  .problem-description-container.slide-right,
+  .problem-description-container.slide-left,
+  .problem-description-container.animate-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
 
 @media (max-width: 768px) {
-  /* Alle Container-Regeln werden von den Mobile Fixes überschrieben */
+  /* Further adjustments for smaller screens (typography, spacing) */
+   .problem-title-box, 
+   .problem-subtitle {
+    font-size: 32px; 
+  }
+
+  .problem-graph-container {
+    padding: 15px; 
+    min-height: 280px; 
+  }
+
+  .graph-visualization {
+    height: 220px;    
+    min-height: 220px;
+  }
+  
+  .graph-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .graph-highlight {
+    font-size: 1.3rem;
+  }
+  
+  .problem-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .problem-card-text {
+    font-size: 0.85rem;
+  }
 }
 
-/* AGGRESSIVE MOBILE SVG FIX - Höchste Priorität */
-@media (max-width: 992px) {
-  /* Komplette Override für mobile Ansicht */
-  .problem-card {
-    flex-direction: column !important;
-  }
-  
-  .problem-card.reverse-layout {
-    flex-direction: column !important;
-  }
-  
-  /* Graph Container - absolute Kontrolle */
-  .problem-graph-container {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: flex !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-    min-height: 300px !important;
-    height: auto !important;
-    position: relative !important;
-    overflow: visible !important;
-    background-color: #082567 !important;
-    padding: 30px !important;
-    border-radius: 16px !important;
-    flex-direction: column !important;
-  }
-  
-  .problem-graph-container * {
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  .problem-graph-container.slide-right,
-  .problem-graph-container.slide-left,
-  .problem-graph-container.animate-in {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: flex !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  /* Graph Content */
-  .problem-graph-content {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    flex-direction: column !important;
-    margin-bottom: 20px !important;
-    text-align: center !important;
-  }
-  
-  /* Graph Visualization - absolute Kontrolle */
-  .graph-visualization {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    height: 250px !important;
-    min-height: 250px !important;
-    width: 100% !important;
-    overflow: visible !important;
-    background: transparent !important;
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    flex: 1 !important;
-  }
-  
-  /* Graph Lines Container */
-  .graph-lines {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    height: 100% !important;
-    width: 100% !important;
-    z-index: 20 !important;
-    overflow: visible !important;
-  }
-  
-  /* SVG Element - absolute Kontrolle */
-  .graph-svg {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 21 !important;
-    overflow: visible !important;
-    background: transparent !important;
-    border: none !important;
-    pointer-events: none !important;
-  }
-  
-  /* Path Element - absolute Kontrolle */
-  .graph-path,
-  .graph-path.copper-path {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    stroke: #b87333 !important;
-    stroke-width: 3px !important;
-    fill: none !important;
-    vector-effect: non-scaling-stroke !important;
-    pointer-events: none !important;
-    animation: none !important;
-    transition: none !important;
-    stroke-dasharray: none !important;
-    stroke-dashoffset: 0 !important;
-  }
-  
-  /* Data Points - absolute Kontrolle */
-  .data-point {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    fill: #e2ac6b !important;
-    r: 5 !important;
-    pointer-events: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  /* Grid - absolute Kontrolle */
-  .graph-grid {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    padding: 10px 0 !important;
-    z-index: 19 !important;
-  }
-  
-  .grid-line {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    height: 1px !important;
-    width: 100% !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-  }
-}
+/* The "AGGRESSIVE MOBILE SVG FIX" section has been removed.
+   Its rules will be consolidated carefully into the primary 
+   @media (max-width: 992px) block. */
