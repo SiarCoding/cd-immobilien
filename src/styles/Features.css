@@ -49,7 +49,7 @@
 .features-section .section-heading {
   display: flex;
   align-items: center;
-  font-size: 48px;
+  font-size: 42px;
   font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 800;
   line-height: 1.2;
@@ -60,22 +60,34 @@
   width: 100%;
 }
 
+/* Überschreibt die globale section-heading::after Regel aus Faq.css */
+.features-section .section-heading::after {
+  display: none;
+}
+
 .features-title-box {
   background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
   background-size: 200% 100%;
   animation: shine-copper 3s infinite linear;
   color: black;
-  padding: 15px 20px;
+  padding: 8px 12px;
   border-radius: 6px;
   white-space: nowrap;
   box-shadow: 0 5px 15px rgba(184, 115, 51, 0.4);
   font-weight: 800;
-  margin-right: 15px;
+  margin: 0 4px;
+  display: inline-block;
+  font-size: inherit;
 }
 
 .features-subtitle {
   color: white;
   font-weight: 800;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
 }
 
 /* Unterstrich-Effekt ähnlich wie bei Hero.jsx */
@@ -158,7 +170,7 @@
 }
 
 .benefit-card {
-  background: rgba(8, 37, 103, 0.6);
+  background: rgba(15, 55, 150, 0.6); /* Helleres Blau */
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -224,7 +236,7 @@
 
 /* Rechner Bereich */
 .calculator-wrapper {
-  background: rgba(0, 0, 0, 0.5);
+  background: #082567;
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 0.5rem;
@@ -246,13 +258,13 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background: rgba(8, 37, 103, 0.4);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
 }
 
 .calculator-right-panel {
   padding: 1.5rem;
-  background: rgba(8, 37, 103, 0.4);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -278,6 +290,34 @@
 .calculator-section-icon {
   margin-right: 0.5rem;
   font-size: 1.2rem;
+}
+
+/* Feste Parameter Styling */
+.fixed-parameters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.parameter-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(226, 172, 107, 0.2);
+}
+
+.parameter-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.parameter-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e2ac6b;
 }
 
 /* Form Elemente */
@@ -397,82 +437,6 @@
   opacity: 1;
 }
 
-/* Checkbox Styling */
-.checkbox-container {
-  margin-bottom: 1rem;
-}
-
-.checkbox-modern {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding-left: 30px;
-  cursor: pointer;
-  font-size: 1rem;
-  user-select: none;
-  color: #ccc;
-}
-
-.checkbox-modern input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.checkbox-modern:hover input ~ .checkmark {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.checkbox-modern input:checked ~ .checkmark {
-  background-color: #e2ac6b;
-  border-color: #e2ac6b;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkbox-modern input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.checkbox-modern .checkmark:after {
-  left: 7px;
-  top: 3px;
-  width: 6px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.checkbox-label {
-  margin-left: 0.5rem;
-}
-
-.expenses-container {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-  opacity: 0;
-}
-
 /* Ergebnisbereich */
 .results-heading {
   margin-top: 0;
@@ -482,233 +446,169 @@
   text-align: center;
 }
 
-.afa-info-box {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.2rem;
-  border: 1px solid rgba(226, 172, 107, 0.2);
-}
-
-.afa-info-title {
-  display: flex;
-  align-items: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.afa-badge {
-  background: #e2ac6b;
-  color: #333;
-  font-weight: 700;
-  border-radius: 4px;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-}
-
-.afa-info-text {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.4;
-}
-
-.afa-info-text p {
-  margin: 0;
-}
-
-.financial-overview {
+/* Results Grid Layout */
+.results-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.2rem;
   margin-bottom: 1.5rem;
 }
 
-.financial-item {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
+.results-left-column,
+.results-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-.financial-label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0.5rem;
+/* Neue Styles für die rechte Spalte - Steuervorteile */
+.tax-benefits-overview {
+  background: linear-gradient(135deg, rgba(226, 172, 107, 0.15) 0%, rgba(226, 172, 107, 0.05) 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid rgba(226, 172, 107, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
-.financial-value {
+.tax-benefits-overview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+}
+
+.benefits-main-title {
   font-size: 1.2rem;
-  font-weight: 600;
-  color: #fff;
-}
-
-.financial-value.highlight {
+  font-weight: 700;
   color: #e2ac6b;
-  font-size: 1.3rem;
-}
-
-/* Verbessertes Design für Gebäude-/Grundstücksaufteilung */
-.property-division {
-  margin-bottom: 1.5rem;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.property-division-header {
-  margin-bottom: 1rem;
-}
-
-.property-division-title {
-  margin: 0 0 0.3rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fff;
-}
-
-.property-division-subtitle {
-  margin: 0;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.property-division-bar {
-  height: 40px;
-  display: flex;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.building-value {
-  background: linear-gradient(90deg, #b87333, #e2ac6b);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0 0.5rem;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-.land-value {
-  background: rgba(8, 37, 103, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 0.95rem;
-  padding: 0 0.5rem;
-}
-
-.value-label-container {
+  margin: 0 0 1.2rem 0;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.benefit-highlight-card {
   display: flex;
-  align-items: center;
-  gap: 0.3rem;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.value-label {
-  margin-right: 0.3rem;
-  font-weight: normal;
-}
-
-.value-amount {
-  font-weight: 600;
-  color: inherit;
-}
-
-.property-division-legend {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-}
-
-.legend-marker {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  margin-right: 0.5rem;
-}
-
-.legend-marker.building {
-  background: linear-gradient(90deg, #b87333, #e2ac6b);
-}
-
-.legend-marker.land {
-  background: rgba(8, 37, 103, 0.6);
-}
-
-/* Verbesserte Darstellung des Steuersatzes */
-.tax-rate-display {
-  display: flex;
-  align-items: center;
-  background: rgba(8, 37, 103, 0.5);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(226, 172, 107, 0.3);
-}
-
-.tax-rate-circle {
-  background: linear-gradient(135deg, #082567, #061d4e);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.benefit-amount {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-  border: 2px solid #e2ac6b;
-  box-shadow: 0 0 15px rgba(226, 172, 107, 0.3);
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(226, 172, 107, 0.2);
+  transition: transform 0.2s ease;
 }
 
-.tax-rate-value {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fff;
+.benefit-amount:hover {
+  transform: translateY(-2px);
 }
 
-.tax-rate-label {
-  font-size: 0.7rem;
+.benefit-label {
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
-.tax-rate-info {
-  flex: 1;
-}
-
-.tax-rate-info p {
-  margin: 0;
-  font-size: 0.95rem;
+.benefit-value {
+  font-size: 1.3rem;
+  font-weight: 700;
   color: #e2ac6b;
-  line-height: 1.4;
+  text-align: center;
+}
+
+/* Berechnungsdetails */
+.tax-calculation-details {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.details-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1rem 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.6rem;
+}
+
+.calculation-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.calc-step {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.calc-step:hover {
+  border-left-color: #e2ac6b;
+}
+
+.calc-step.final-step {
+  background: rgba(226, 172, 107, 0.1);
+  border-left-color: #e2ac6b;
+  font-weight: 600;
+}
+
+.step-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.step-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.step-value.negative {
+  color: #ff6b6b;
+}
+
+.calc-arrow {
+  font-size: 1.2rem;
+  color: #e2ac6b;
+  font-weight: bold;
+  margin: 0.2rem 0;
 }
 
 /* Charts und Graphen */
-.tax-savings-chart-container {
+.cashflow-chart-container {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.tax-savings-chart-title {
+.chart-title {
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
@@ -721,7 +621,7 @@
   height: 250px;
 }
 
-.total-savings {
+.total-cashflow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -731,12 +631,12 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.total-savings-label {
+.total-cashflow-label {
   font-size: 1rem;
   color: #ccc;
 }
 
-.total-savings-value {
+.total-cashflow-value {
   font-size: 1.1rem;
   font-weight: 700;
   color: #e2ac6b;
@@ -744,7 +644,7 @@
   display: inline-block;
 }
 
-.total-savings-value::after {
+.total-cashflow-value::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -755,40 +655,9 @@
   border-radius: 2px;
 }
 
-/* Steuer-Tipp */
-.tax-advice {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  background: rgba(226, 172, 107, 0.1);
-  border-radius: 12px;
-  padding: 1.2rem;
-  border: 1px solid rgba(226, 172, 107, 0.3);
-}
-
-.tax-advice-icon {
-  font-size: 1.5rem;
-}
-
-.tax-advice-content {
-  flex: 1;
-}
-
-.tax-advice-content strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #e2ac6b;
-}
-
-.tax-advice-content p {
-  font-size: 0.9rem;
-  color: #ccc;
-  margin: 0;
-}
-
 /* Call-to-Action */
 .features-cta {
-  background: linear-gradient(90deg, rgba(8, 37, 103, 0.8) 0%, rgba(22, 58, 140, 0.8) 100%);
+  background: linear-gradient(90deg, rgba(15, 55, 150, 0.8) 0%, rgba(30, 80, 180, 0.8) 100%); /* Helleres Blau */
   border-radius: 20px;
   padding: 3rem 2rem;
   margin-top: 2rem;
@@ -855,51 +724,6 @@
   transform: translateX(5px);
 }
 
-/* Steuervorteile Zusammenfassung */
-.tax-benefits-summary {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 1.2rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
-.tax-benefit-item {
-  padding: 0.6rem;
-  border-radius: 8px;
-  background: rgba(8, 37, 103, 0.4);
-  border: 1px solid rgba(226, 172, 107, 0.2);
-  transition: all 0.3s ease;
-}
-
-.tax-benefit-item:hover {
-  background: rgba(8, 37, 103, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.tax-benefit-label {
-  font-size: 0.8rem;
-  color: #e2ac6b;
-  margin-bottom: 0.2rem;
-  font-weight: 600;
-}
-
-.tax-benefit-value {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.2rem;
-}
-
-.tax-benefit-desc {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.2;
-}
-
 /* Responsive Anpassungen */
 @media (max-width: 992px) {
   .calculator-container {
@@ -915,23 +739,13 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
   
-  .tax-benefit-item {
-    padding: 0.6rem;
-  }
-  
   .features-section .section-heading {
-    flex-direction: column;
-    align-items: center;
+    font-size: 36px;
   }
   
   .features-title-box {
-    margin-right: 0;
-    margin-bottom: 15px;
-    font-size: 40px;
-  }
-  
-  .features-subtitle {
-    font-size: 40px;
+    padding: 6px 10px;
+    margin: 0 3px;
   }
 }
 
@@ -943,40 +757,86 @@
     margin-right: auto;
   }
   
-  .financial-overview {
+  .results-grid {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
+    gap: 1rem;
   }
   
-  .tax-rate-display {
-    flex-direction: column;
-    text-align: center;
+  .results-left-column,
+  .results-right-column {
+    gap: 1rem;
   }
   
-  .tax-rate-circle {
-    margin: 0 auto 1rem auto;
+  /* Responsive Anpassungen für neue rechte Spalte */
+  .tax-benefits-overview {
+    padding: 1.2rem;
   }
   
-  .property-division-bar {
-    height: auto;
-    flex-direction: column;
+  .benefits-main-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
   }
   
-  .building-value, .land-value {
+  .benefit-amount {
     padding: 0.8rem;
   }
   
-  .tax-benefits-summary {
-    padding: 1rem;
-  }
-  
-  .tax-benefit-value {
+  .benefit-value {
     font-size: 1.2rem;
   }
   
-  .features-title-box, 
-  .features-subtitle {
-    font-size: 32px;
+  .tax-calculation-details {
+    padding: 1rem;
+  }
+  
+  .calc-step {
+    padding: 0.7rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .step-label {
+    margin-right: 0;
+    font-size: 0.8rem;
+  }
+  
+  .step-value {
+    align-self: flex-end;
+    font-size: 0.85rem;
+  }
+  
+  .result-category {
+    padding: 1rem;
+  }
+  
+  .category-title {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .result-item {
+    padding: 0.6rem 0;
+    min-height: 35px;
+  }
+  
+  .result-item.highlight {
+    padding: 0.7rem;
+    margin: 0.3rem 0;
+  }
+  
+  .result-item.final-result {
+    padding: 0.8rem;
+    margin: 0.4rem 0 0 0;
+  }
+  
+  .features-section .section-heading {
+    font-size: 28px;
+  }
+  
+  .features-title-box {
+    padding: 5px 8px;
+    margin: 0 2px;
   }
 }
 
@@ -989,11 +849,46 @@
     padding: 0 1rem;
   }
   
+  /* Mobile Anpassungen für Steuervorteile */
+  .tax-benefits-overview {
+    padding: 1rem;
+  }
+  
+  .benefit-highlight-card {
+    gap: 0.8rem;
+  }
+  
+  .benefit-amount {
+    padding: 0.7rem;
+  }
+  
+  .benefit-label {
+    font-size: 0.8rem;
+  }
+  
+  .benefit-value {
+    font-size: 1.1rem;
+  }
+  
+  .calc-step {
+    padding: 0.6rem;
+  }
+  
+  .step-label {
+    font-size: 0.75rem;
+  }
+  
+  .step-value {
+    font-size: 0.8rem;
+  }
+  
+  .calc-arrow {
+    font-size: 1rem;
+  }
+  
   .calculator-section,
-  .financial-item,
-  .tax-savings-chart-container,
-  .tax-advice,
-  .afa-info-box {
+  .result-category,
+  .cashflow-chart-container {
     padding: 0.8rem;
   }
   
@@ -1007,20 +902,23 @@
     padding: 1.5rem;
   }
   
-  .features-title-box, 
+  .features-section .section-heading {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+  
+  .features-title-box {
+    padding: 4px 6px;
+    margin: 0 1px;
+  }
+  
   .features-subtitle {
-    font-size: 24px;
+    gap: 2px;
   }
   
   .benefit-card-value {
     font-size: 1.6rem;
   }
-}
-
-/* Animation für die Checkboxen und Inputs */
-.expenses-container.active {
-  max-height: 100px;
-  opacity: 1;
 }
 
 /* Reveal-Animationen */
@@ -1033,5 +931,79 @@
 .reveal-title.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Bestehende Styles für linke Spalte beibehalten */
+.result-category {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1.2rem;
+  border: 1px solid rgba(226, 172, 107, 0.2);
+  flex: 1;
+}
+
+.category-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e2ac6b;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid rgba(226, 172, 107, 0.3);
+  padding-bottom: 0.6rem;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 40px;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.result-item.highlight {
+  background: rgba(226, 172, 107, 0.1);
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(226, 172, 107, 0.3);
+  margin: 0.4rem 0;
+  min-height: auto;
+}
+
+.result-item.final-result {
+  background: rgba(226, 172, 107, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #e2ac6b;
+  margin: 0.6rem 0 0 0;
+  font-weight: 700;
+  min-height: auto;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.3;
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.result-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.result-item.highlight .result-value,
+.result-item.final-result .result-value {
+  color: #e2ac6b;
+  font-weight: 700;
+  font-size: 1rem;
 }
 

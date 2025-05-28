@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/Stats.css';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const Stats = () => {
+  const { t } = useLanguage();
   // Standardmäßig nicht sichtbar, wird erst beim Scrollen aktiviert
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   
   // Stats data
   const statsData = [
-    { value: 500, label: 'Mio. € Projektvolumen', suffix: '+', prefix: '' },
-    { value: 1400, label: 'Zufriedene Kunden', suffix: '+', prefix: '' },
-    { value: 15, label: 'Jahre Erfahrung', suffix: '+', prefix: '' }
+    { value: 500, label: t('stats.projectVolume'), suffix: '+', prefix: '' },
+    { value: 1400, label: t('stats.customers'), suffix: '+', prefix: '' },
+    { value: 15, label: t('stats.experience'), suffix: '+', prefix: '' }
   ];
 
   // Animierte Counter-Komponente
@@ -87,7 +89,7 @@ const Stats = () => {
     <section className="stats-section" ref={sectionRef}>
       <div className="stats-container">
         <div className="section-heading">
-          <span className="highlight-blue">Unsere Zahlen</span> sprechen für sich
+          <span className="highlight-blue">{t('stats.title')}</span> {t('stats.titleHighlight')}
         </div>
         <div className="stats-items">
           {statsData.map((stat, index) => (

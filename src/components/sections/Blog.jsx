@@ -1,16 +1,18 @@
 import React from "react";
 import "../../styles/Blog.css";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Testimonials = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="testimonials-section">
       <div className="centered-content">
         <div className="section-heading">
-          <span className="highlight-blue highlight-text-white">Kundenstimmen</span> zu unserer Expertise
+          <span className="highlight-blue highlight-text-white">{t('blog.title')}</span> {t('blog.titleHighlight')}
         </div>
         <div className="section-text">
-          Erfahren Sie, was unsere zufriedenen Kunden über unsere Immobilieninvestments 
-          und unseren persönlichen Service sagen.
+          {t('blog.subtitle')}
         </div>
       </div>
       <div className="testimonials-content">
@@ -37,13 +39,13 @@ const Testimonials = () => {
               </svg>
             </div>
             <div className="testimonial-text">
-              "Die Beratung war erstklassig. Das Team hat uns durch den gesamten Prozess geführt und alle Fragen zur Finanzierung und Steuern kompetent beantwortet. Unsere Immobilie erwirtschaftet jetzt genau die Rendite, die uns versprochen wurde."
+              {t('blog.testimonials.michael.text')}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/michael.png")} className="author-image" alt="Kunde" />
+              <img src={require("../../assets/michael.png")} className="author-image" alt={t('blog.testimonials.michael.alt')} />
               <div className="author-info">
-                <div className="author-name">Michael Schneider</div>
-                <div className="author-title">Unternehmer, München</div>
+                <div className="author-name">{t('blog.testimonials.michael.name')}</div>
+                <div className="author-title">{t('blog.testimonials.michael.title')}</div>
               </div>
             </div>
           </div>
@@ -72,13 +74,13 @@ const Testimonials = () => {
               </svg>
             </div>
             <div className="testimonial-text">
-              "Als Ärztin habe ich wenig Zeit, mich um Immobilieninvestitionen zu kümmern. Das Team hat mir eine maßgeschneiderte Strategie entwickelt, die perfekt zu meiner steuerlichen Situation passt. Die Kommunikation war immer transparent, und ich wurde in jeden Schritt einbezogen."
+              {t('blog.testimonials.sarah.text')}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/sarahh.png")} className="author-image" alt="Kundin" />
+              <img src={require("../../assets/sarahh.png")} className="author-image" alt={t('blog.testimonials.sarah.alt')} />
               <div className="author-info">
-                <div className="author-name">Dr. Sarah Müller</div>
-                <div className="author-title">Ärztin, Hamburg</div>
+                <div className="author-name">{t('blog.testimonials.sarah.name')}</div>
+                <div className="author-title">{t('blog.testimonials.sarah.title')}</div>
               </div>
             </div>
           </div>
@@ -107,13 +109,13 @@ const Testimonials = () => {
               </svg>
             </div>
             <div className="testimonial-text">
-              "Wir haben lange nach einem vertrauenswürdigen Partner für unsere Altersvorsorge gesucht. Das Team hat uns bei der Auswahl der richtigen Immobilien geholfen und uns alle steuerlichen Vorteile aufgezeigt. Der ROI ist besser als erwartet."
+              {t('blog.testimonials.thomas.text')}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/thomas.png")} className="author-image" alt="Kunde" />
+              <img src={require("../../assets/thomas.png")} className="author-image" alt={t('blog.testimonials.thomas.alt')} />
               <div className="author-info">
-                <div className="author-name">Thomas Wagner</div>
-                <div className="author-title">IT-Manager, Berlin</div>
+                <div className="author-name">{t('blog.testimonials.thomas.name')}</div>
+                <div className="author-title">{t('blog.testimonials.thomas.title')}</div>
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ const Kontakt = () => {
                     </div>
                     <div className="detail-text">
                       <h3>Telefon</h3>
-                      <p>+49 (0) 30 123456789</p>
+                      <p>+49 911 13039057</p>
                     </div>
                   </div>
                   
@@ -42,7 +42,7 @@ const Kontakt = () => {
                     </div>
                     <div className="detail-text">
                       <h3>E-Mail</h3>
-                      <p>info@immobilien-investment.de</p>
+                      <p>p.chowdhury@cd-immo.de</p>
                     </div>
                   </div>
                   
@@ -55,7 +55,7 @@ const Kontakt = () => {
                     </div>
                     <div className="detail-text">
                       <h3>Adresse</h3>
-                      <p>Kurfürstendamm 123<br />10719 Berlin</p>
+                      <p>Bauvereinstr. 47<br />90489 Nürnberg</p>
                     </div>
                   </div>
                   
@@ -105,14 +105,14 @@ const Kontakt = () => {
             
             <div className="map-container">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.4090427798806!2d13.32591941580138!3d52.50314287981142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a850ffca96e8bf%3A0xb88f6e83d5cbfe19!2sKurf%C3%BCrstendamm%2C%20Berlin!5e0!3m2!1sde!2sde!4v1656413989425!5m2!1sde!2sde" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.3!2d11.07783!3d49.44471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479f57ad2bb2c35d%3A0x65b2b5be5b9a3a4e!2sBauvereinstra%C3%9Fe%2C%20N%C3%BCrnberg!5e0!3m2!1sde!2sde!4v1656413989425!5m2!1sde!2sde" 
                 width="100%" 
                 height="500" 
                 style={{ border: 0 }} 
                 allowFullScreen="" 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Google Maps"
+                title="Google Maps - Bauvereinstr. 47, Nürnberg"
               ></iframe>
             </div>
           </div>

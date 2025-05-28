@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Team.css';
+import { useLanguage } from '../../contexts/LanguageContext';
 // Importiere die Bilder aus dem assets-Ordner
 import thaiImage from '../../assets/panadda.jpg';
 import azimchoudryImage from '../../assets/azim3.jpg';
@@ -24,6 +25,7 @@ const CopperBlurEffect = () => (
 );
 
 const Team = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef(null);
   const teamMembersRef = useRef([]);
   const observerRef = useRef(null);
@@ -72,9 +74,9 @@ const Team = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Panadda Srisuwan",
-      position: "Geschäftsführerin",
-      bio: "Mit über 15 Jahren Erfahrung im Immobilienbereich hat Panadda zahlreiche erfolgreiche Investments betreut und ein tiefes Verständnis für den deutschen Immobilienmarkt entwickelt.",
+      name: t('team.members.panadda.name'),
+      position: t('team.members.panadda.position'),
+      bio: t('team.members.panadda.bio'),
       image: thaiImage,
       imagePosition: "center 25%", // Nach oben verschoben
       social: {
@@ -84,9 +86,9 @@ const Team = () => {
     },
     {
       id: 2,
-      name: "Azim Choudry",
-      position: "Gründer & Geschäftsführer",
-      bio: "Azim ist spezialisiert auf die Optimierung von Finanzierungsstrukturen und die Analyse von Investitionsmöglichkeiten. Er hat einen Master in Finanzwirtschaft und ist zertifizierter Finanzberater.",
+      name: t('team.members.azim.name'),
+      position: t('team.members.azim.position'),
+      bio: t('team.members.azim.bio'),
       image: azimchoudryImage,
       imagePosition: "center 25%", // Nach oben verschoben
       social: {
@@ -96,9 +98,9 @@ const Team = () => {
     },
     {
       id: 3,
-      name: "Chris",
-      position: "Leiter Immobilienakquise",
-      bio: "Chris verfügt über ein umfangreiches Netzwerk in der Immobilienbranche. Er ist verantwortlich für die Identifizierung und Prüfung von Immobilienobjekten mit bestem Wertsteigerungspotenzial.",
+      name: t('team.members.chris.name'),
+      position: t('team.members.chris.position'),
+      bio: t('team.members.chris.bio'),
       image: chrisImage,
       imagePosition: "center center", // Standard-Position
       social: {
@@ -108,9 +110,9 @@ const Team = () => {
     },
     {
       id: 4,
-      name: "Gavino",
-      position: "Senior Berater",
-      bio: "Gavino unterstützt Klienten mit seiner Expertise in Vermögensplanung und Steueroptimierung. Er hat zahlreiche Kunden erfolgreich durch den Immobilienkauf begleitet und ist spezialisiert auf Anlagestrategien.",
+      name: t('team.members.gavino.name'),
+      position: t('team.members.gavino.position'),
+      bio: t('team.members.gavino.bio'),
       image: gavinoImage,
       imagePosition: "center center", // Standard-Position
       social: {
@@ -120,9 +122,9 @@ const Team = () => {
     },
     {
       id: 5,
-      name: "Maurice",
-      position: "Leiter Projektentwicklung",
-      bio: "Maurice hat einen Hintergrund in Architektur und Projektmanagement. Er überwacht Renovierungs- und Entwicklungsprojekte und sorgt für maximale Wertsteigerung der Immobilieninvestitionen.",
+      name: t('team.members.peter.name'),
+      position: t('team.members.peter.position'),
+      bio: t('team.members.peter.bio'),
       image: mauriceImage,
       imagePosition: "center center", // Standard-Position
       social: {
@@ -139,12 +141,11 @@ const Team = () => {
       
       <div className="team-container">
         <h2 className="section-title">
-          <span>Unser <span className="underlined-copper-special">Expertenteam</span></span>
+          <span>{t('team.title')} <span className="underlined-copper-special">{t('team.titleHighlight')}</span></span>
         </h2>
         
         <p className="team-intro">
-          Unser erfahrenes Team besteht aus Spezialisten in Immobilieninvestment, Finanzierung und Vermögensaufbau.
-          Mit fundiertem Fachwissen und persönlichem Engagement unterstützen wir Sie bei der Realisierung Ihrer finanziellen Ziele.
+          {t('team.intro')}
         </p>
 
         <div className="team-members-grid">
@@ -188,7 +189,7 @@ const Team = () => {
         
         <div className="team-cta">
           <button className="team-button">
-            Vereinbaren Sie ein persönliches Beratungsgespräch
+            {t('team.cta')}
           </button>
         </div>
       </div>

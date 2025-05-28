@@ -4,31 +4,32 @@ import logo from "../assets/logo-csd.png";
 import { HoverButton } from "./ui/animated-hover-button";
 import "../styles/AnimatedButton.css";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Header = () => {
+  const { language, changeLanguage, t } = useLanguage();
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('DE');
+  const [selectedLanguage, setSelectedLanguage] = useState(language);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const btnRef = useRef(null);
   
-  // Scrolling-Effekt hinzufügen
+  // Scrolling-Effekt verbessert
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      if (scrollPosition > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const newScrolled = scrollPosition > 50;
+      if (newScrolled !== isScrolled) {
+        setIsScrolled(newScrolled);
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isScrolled]);
   
   // Klick außerhalb des Menüs erkennen und Menü schließen
   useEffect(() => {
@@ -56,6 +57,7 @@ const Header = () => {
   
   const selectLanguage = (lang) => {
     setSelectedLanguage(lang);
+    changeLanguage(lang);
     setIsLangDropdownOpen(false);
   };
 
@@ -68,70 +70,137 @@ const Header = () => {
   };
   
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="header-content">
-        <div className="logo-container">
-          <Link to="/">
-            <img src={logo} className="logo-icon" alt="Immobilien logo" />
-          </Link>
-        </div>
-        
-        <div className="mobile-menu-btn" onClick={toggleMobileMenu} ref={btnRef}>
-          <div className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}>
-            <span></span>
-            <span></span>
-            <span></span>
+    <header className={`header-fixed ${isScrolled ? 'header-scrolled' : ''}`}>
+      <div className="header-container">
+        <div className="header-wrapper">
+          {/* Logo */}
+          <div className="logo-section">
+            <Link to="/" className="logo-link">
+              <img src={logo} className="logo-image" alt="Immobilien logo" />
+            </Link>
           </div>
-        </div>
-        
-        <nav className={`nav-links-container ${isMobileMenuOpen ? 'mobile-open' : ''}`} ref={menuRef}>
-          <div className="nav-links">
-            <div className="nav-links-wrapper">
-              <Link to="/" className="nav-link" onClick={closeMobileMenu}>Startseite</Link>
-              <Link to="/uber-uns" className="nav-link" onClick={closeMobileMenu}>Über uns</Link>
-              <Link to="/team" className="nav-link" onClick={closeMobileMenu}>Team</Link>
-              <Link to="/rechner" className="nav-link" onClick={closeMobileMenu}>Rechner</Link>
-              <Link to="/testimonials" className="nav-link" onClick={closeMobileMenu}>Kundenstimmen</Link>
-              <Link to="/kontakt" className="nav-link" onClick={closeMobileMenu}>Kontakt</Link>
-            </div>
-          </div>
-          <div className="header-right-elements">
-            <HoverButton
-              startColor="#b87333"
-              endColor="#e0ac69"
-              animationIntensity="medium"
-              className="header-animated-button"
-              onClick={closeMobileMenu}
-            >
-              Beratung anfragen
-            </HoverButton>
-            
-            <div className="language-selector-glass">
-              <div className="selected-language" onClick={toggleLangDropdown}>
-                <div className="language-icon-wrapper">
-                  <span className="world-icon">🌐</span>
-                  <span className="language-code">{selectedLanguage}</span>
+
+          {/* Desktop Navigation */}
+          <div className="desktop-nav">
+            <div className="nav-center">
+              <nav className="nav-items">
+                <div className="nav-links-flex">
+                  <Link to="/" className="nav-item" onClick={closeMobileMenu}>{t('header.home')}</Link>
+                  <Link to="/uber-uns" className="nav-item" onClick={closeMobileMenu}>{t('header.about')}</Link>
+                  <Link to="/team" className="nav-item" onClick={closeMobileMenu}>{t('header.team')}</Link>
+                  <Link to="/rechner" className="nav-item" onClick={closeMobileMenu}>{t('header.calculator')}</Link>
+                  <Link to="/testimonials" className="nav-item" onClick={closeMobileMenu}>{t('header.testimonials')}</Link>
+                  <Link to="/kontakt" className="nav-item" onClick={closeMobileMenu}>{t('header.contact')}</Link>
+                </div>
+              </nav>
+
+              {/* Button and Language Container */}
+              <div className="header-actions">
+                <HoverButton
+                  startColor="#b87333"
+                  endColor="#e0ac69"
+                  animationIntensity="medium"
+                  className="header-action-button"
+                  onClick={closeMobileMenu}
+                >
+                  {t('header.consultation')}
+                </HoverButton>
+                
+                <div className="language-selector">
+                  <div className="language-selected" onClick={toggleLangDropdown}>
+                    <div className="language-wrapper">
+                      <span className="language-icon">🌐</span>
+                      <span className="language-text">{selectedLanguage}</span>
+                    </div>
+                  </div>
+                  {isLangDropdownOpen && (
+                    <div className="language-dropdown-menu">
+                      <div 
+                        className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
+                        onClick={() => selectLanguage('DE')}
+                      >
+                        Deutsch
+                      </div>
+                      <div 
+                        className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
+                        onClick={() => selectLanguage('EN')}
+                      >
+                        English
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-              {isLangDropdownOpen && (
-                <div className="language-dropdown">
-                  <div 
-                    className={`language-option ${selectedLanguage === 'DE' ? 'active' : ''}`}
-                    onClick={() => selectLanguage('DE')}
-                  >
-                    Deutsch
-                  </div>
-                  <div 
-                    className={`language-option ${selectedLanguage === 'EN' ? 'active' : ''}`}
-                    onClick={() => selectLanguage('EN')}
-                  >
-                    English
-                  </div>
-                </div>
-              )}
             </div>
           </div>
-        </nav>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu} 
+            ref={btnRef}
+          >
+            <div className={`hamburger-menu ${isMobileMenuOpen ? 'hamburger-active' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div 
+          className={`mobile-overlay ${isMobileMenuOpen ? 'mobile-overlay-open' : ''}`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          <nav className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`} ref={menuRef}>
+            <div className="mobile-menu-content">
+              <Link to="/" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.home')}</Link>
+              <Link to="/uber-uns" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.about')}</Link>
+              <Link to="/team" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.team')}</Link>
+              <Link to="/rechner" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.calculator')}</Link>
+              <Link to="/testimonials" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.testimonials')}</Link>
+              <Link to="/kontakt" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.contact')}</Link>
+
+              <HoverButton
+                startColor="#b87333"
+                endColor="#e0ac69"
+                animationIntensity="medium"
+                className="mobile-action-button"
+                onClick={closeMobileMenu}
+              >
+                {t('header.consultation')}
+              </HoverButton>
+
+              <div className="mobile-language-section">
+                <div className="language-selector">
+                  <div className="language-selected" onClick={toggleLangDropdown}>
+                    <div className="language-wrapper">
+                      <span className="language-icon">🌐</span>
+                      <span className="language-text">{selectedLanguage}</span>
+                    </div>
+                  </div>
+                  {isLangDropdownOpen && (
+                    <div className="language-dropdown-menu">
+                      <div 
+                        className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
+                        onClick={() => selectLanguage('DE')}
+                      >
+                        Deutsch
+                      </div>
+                      <div 
+                        className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
+                        onClick={() => selectLanguage('EN')}
+                      >
+                        English
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
   );

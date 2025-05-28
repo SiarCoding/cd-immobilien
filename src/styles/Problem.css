@@ -1,9 +1,18 @@
+/* CSS-Variablen für einheitliche Farben */
+:root {
+  --copper-color: #b87333;
+  --copper-light: #e2ac6b;
+  --blue-dark: #082567;
+}
+
 .problem-section {
   position: relative;
   background-color: #082567;
   color: #fff;
-  padding: 80px 20px;
+  padding: 160px 20px 80px; /* Erhöhter top-padding für neuen Header */
   overflow: hidden;
+  z-index: 1; /* Niedrigster z-index für Sektion */
+  margin-top: 0;
 }
 
 /* Kupfer-Lichteffekt im Hintergrund */
@@ -46,7 +55,7 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 2; /* Höher als Sektion, aber unter Header */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,6 +74,13 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  color: white;
+  gap: 15px;
+}
+
+/* Überschreibt die globale section-heading::after Regel aus Faq.css */
+.problem-section .section-heading::after {
+  display: none;
 }
 
 /* Neuer Unterstrich-Effekt für "Die Probleme" */
@@ -84,17 +100,13 @@
   bottom: -8px;
   width: 100%;
   height: 5px;
-  background: linear-gradient(90deg, #b87333, #FFFFFF, #b87333);
+  background: linear-gradient(90deg, var(--copper-color), #FFFFFF, var(--copper-color));
   background-size: 200% 100%;
   animation: shine-copper 3s infinite linear;
   border-radius: 5px;
 }
 
-/* Text "der traditionellen Altersvorsorge" */
-.problem-subtitle {
-  color: white;
-  font-weight: 800;
-}
+/* Text "der traditionellen Altersvorsorge" - Removed as it's no longer wrapped in a span */
 
 @keyframes shine-copper {
   0% {
@@ -143,6 +155,7 @@
   flex-direction: row-reverse;
 }
 
+/* Verbesserte Kupferkante oben für ALLE Problem-Karten mit Animation */
 .problem-card::before {
   content: '';
   position: absolute;
@@ -150,14 +163,17 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background: linear-gradient(90deg, var(--copper-color), var(--copper-light), var(--copper-color));
   background-size: 200% 100%;
   animation: shine-copper 3s infinite linear;
-  z-index: 1;
+  z-index: 2;
+  border-radius: 16px 16px 0 0; /* Runde Ecken oben passend zur Karte */
 }
 
 .problem-card:hover::before {
   height: 4px;
+  background: linear-gradient(90deg, var(--copper-color), var(--copper-light), var(--copper-color));
+  box-shadow: 0 0 15px rgba(184, 115, 51, 0.6); /* Leuchteffekt beim Hover */
 }
 
 /* Graph-Container */
@@ -172,6 +188,7 @@
   opacity: 0;
   transform: translateX(-100px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  z-index: 10 !important; /* Deutlich unter Header (z-index: 9999) */
 }
 
 .problem-graph-container.slide-right {
@@ -208,7 +225,7 @@
   font-weight: 700;
   margin: 5px 0;
   font-style: italic;
-  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  background: linear-gradient(90deg, var(--copper-color), var(--copper-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -220,6 +237,7 @@
   flex: 1;
   position: relative;
   min-height: 200px;
+  z-index: 10 !important; /* Deutlich unter Header (z-index: 9999) */
 }
 
 /* Graph-Grid */
@@ -246,7 +264,60 @@
 .graph-lines {
   position: relative;
   height: 100%;
-  z-index: 2;
+  z-index: 10 !important; /* Deutlich unter Header (z-index: 9999) */
+}
+
+/* Desktop Graph - Standard Anzeige */
+.desktop-graph {
+  display: block;
+}
+
+/* Mobile Graph - Initial versteckt */
+.mobile-graph {
+  display: none;
+}
+
+/* Elegante mobile Graph-Container - Ohne Debugging */
+.mobile-graph-simple {
+  background: transparent !important;
+  border: none !important;
+  min-height: 250px !important;
+  z-index: 10 !important; /* Deutlich unter Header (z-index: 9999) */
+}
+
+/* Elegante SVG-Elemente - Ohne Debugging */
+.mobile-graph-simple svg {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Elegante Kupfer-Pfade für mobile Ansicht */
+.mobile-graph-simple path {
+  stroke: var(--copper-color) !important; /* Schöne Kupferfarbe */
+  stroke-width: 2.5px !important; /* Elegante dünne Linie */
+  stroke-opacity: 1 !important;
+  fill: none !important;
+  stroke-linecap: round !important; /* Runde Linienenden */
+  stroke-linejoin: round !important; /* Runde Verbindungen */
+}
+
+/* Mobile Graph SVG */
+.graph-svg-mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Mobile Graph Path */
+.mobile-graph-path {
+  stroke: #b87333;
+  stroke-width: 4px;
+  fill: none;
+  opacity: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 .graph-svg {
@@ -479,6 +550,12 @@
 @media (max-width: 768px) {
   .problem-section {
     padding: 60px 15px;
+    padding-top: 140px; /* Angepasst für mobile */
+  }
+  
+  /* Stelle sicher, dass die gesamte Überschrift die gleiche Schriftgröße hat */
+  .problem-section .section-heading {
+    font-size: 36px;
   }
   
   .problem-title-box, 
@@ -508,8 +585,15 @@
 }
 
 @media (max-width: 480px) {
-  .problem-title-box, 
-  .problem-subtitle {
+  .problem-section {
+    padding-top: 120px; /* Angepasst für sehr kleine Bildschirme */
+  }
+  
+  .problem-section .section-heading {
+    font-size: 28px;
+  }
+  
+  .problem-title-box {
     font-size: 28px;
   }
   
@@ -612,15 +696,12 @@
   .problem-section .section-heading {
     flex-direction: column;
     align-items: center;
+    font-size: 40px; /* Stelle sicher, dass die gesamte Überschrift die gleiche Größe hat */
   }
   
   .problem-title-box {
     margin-right: 0;
     margin-bottom: 15px;
-    font-size: 40px;
-  }
-  
-  .problem-subtitle {
     font-size: 40px;
   }
   
@@ -698,60 +779,40 @@
     overflow: visible;
   }
 
-  /* SVG Element (The actual graph) */
-  .graph-svg {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;       
-    height: 100%;      
-    z-index: 3;        
-    overflow: visible !important; /* Ensure SVG isn't clipped */
-    background: transparent;
-    border: none;
-    pointer-events: none; 
-    preserve-aspect-ratio: xMidYMid meet; 
+  /* Mobile Graph Anzeige aktivieren */
+  .mobile-graph {
+    display: block !important;
+    position: relative !important;
+    height: 100% !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
-  /* Graph Path (The lines in the SVG) */
+  /* Desktop Graph verstecken */
+  .desktop-graph {
+    display: none !important;
+  }
+
+  /* Mobile Graph SVG - Spezifische Regeln */
+  .graph-svg-mobile {
+    display: none !important;
+  }
+
+  /* Mobile Graph Path - Optimiert für mobile Anzeige */
+  .mobile-graph-path {
+    display: none !important;
+  }
+
+  /* SVG Element (The actual graph) - Für Desktop nur */
+  .graph-svg {
+    display: none !important;
+  }
+
+  /* Graph Path (The lines in the SVG) - Für Desktop nur */
   .graph-path,
   .graph-path.copper-path { 
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    stroke: #b87333; /* Default copper color */
-    stroke-width: 3px; 
-    fill: none;        
-    vector-effect: non-scaling-stroke; 
-    pointer-events: none; 
-    animation: none;    
-    transition: none;   
-    stroke-dasharray: none; 
-    stroke-dashoffset: 0;   
-  }
-  
-   .graph-path.blue-path {
-    stroke: #1E90FF; /* Blue color for the other line */
-    /* Inherits other properties from .graph-path */
-  }
-
-  /* Data Points (Circles on the lines) */
-  .data-point {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    fill: #e2ac6b; /* Default copper point color */
-    r: 4px;        
-    pointer-events: none;
-    animation: none;
-    transition: none;
-  }
-  
-  .data-point.blue-point {
-    fill: #1E90FF; /* Blue color for points on the blue line */
+    display: none !important;
   }
 
   /* Grid (Background lines in the graph) */
@@ -799,14 +860,22 @@
     transform: none;
     animation: none;
   }
+
+  /* Stelle sicher, dass die Kupferkante in mobiler Ansicht sichtbar bleibt */
+  .problem-card::before {
+    height: 4px;
+    z-index: 3; /* Höhere Priorität in mobiler Ansicht */
+    background: linear-gradient(90deg, var(--copper-color), var(--copper-light), var(--copper-color));
+    animation: shine-copper 3s infinite linear;
+    border-radius: 16px 16px 0 0;
+  }
 }
 
 @media (max-width: 768px) {
   /* Further adjustments for smaller screens (typography, spacing) */
-   .problem-title-box, 
-   .problem-subtitle {
+   .problem-title-box {
     font-size: 32px; 
-  }
+   }
 
   .problem-graph-container {
     padding: 15px; 
@@ -838,3 +907,200 @@
 /* The "AGGRESSIVE MOBILE SVG FIX" section has been removed.
    Its rules will be consolidated carefully into the primary 
    @media (max-width: 992px) block. */
+
+/* Einfache mobile Graphs sicherstellen */
+.mobile-graph-simple {
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 10 !important; /* Unter Header (z-index: 9999) */
+  background: transparent !important;
+  border: none !important;
+  min-height: 250px !important;
+}
+
+.mobile-graph-simple svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.mobile-graph-simple path {
+  display: block !important;
+  stroke: var(--copper-color) !important; /* Schöne Kupferfarbe */
+  stroke-width: 2.5px !important; /* Elegante dünne Linie */
+  fill: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  stroke-opacity: 1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+/* 
+  =================================================================
+  KRITISCHE FIXES FÜR MOBILE SVG-ANZEIGE
+  =================================================================
+  Diese Regeln beheben Konflikte mit globalen CSS-Regeln
+*/
+
+/* Überschreibt die globale overflow-x: hidden Regel aus App.css für die Problem-Sektion */
+.problem-section {
+  overflow: visible !important;
+}
+
+.problem-section *,
+.problem-section *::before,
+.problem-section *::after {
+  overflow: visible !important;
+}
+
+/* Stellt sicher, dass alle Graph-Container die notwendigen z-index Werte haben */
+.problem-graph-container,
+.graph-visualization,
+.graph-lines,
+.mobile-graph,
+.mobile-graph-simple {
+  z-index: 10 !important; /* Deutlich unter Header (z-index: 9999) */
+  position: relative !important;
+}
+
+/* Spezifische SVG-Fixes für mobile Ansicht */
+@media (max-width: 992px) {
+  /* Überschreibt alle potentiell versteckenden Regeln */
+  .problem-section,
+  .problem-container,
+  .problem-cards-container,
+  .problem-card,
+  .problem-graph-container,
+  .graph-visualization,
+  .graph-lines,
+  .mobile-graph,
+  .mobile-graph-simple {
+    overflow: visible !important;
+    clip: none !important;
+    clip-path: none !important;
+    mask: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Stellt sicher, dass SVGs nicht durch overflow abgeschnitten werden */
+  .mobile-graph-simple svg,
+  .mobile-graph svg,
+  .graph-svg {
+    overflow: visible !important;
+    clip: none !important;
+    clip-path: none !important;
+  }
+
+  /* Temporärer Debugging-Hintergrund für Container */
+  .mobile-graph-simple {
+    background: transparent !important;
+    border: none !important;
+    min-height: 250px !important;
+  }
+
+  /* Debugging für SVG-Elemente */
+  .mobile-graph-simple svg {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* Debugging für SVG-Pfade */
+  .mobile-graph-simple path {
+    stroke: var(--copper-color) !important;
+    stroke-width: 2.5px !important;
+    stroke-opacity: 1 !important;
+  }
+}
+
+/* Ensure Problem Section doesn't conflict with Header */
+.problem-section {
+  padding-top: 120px; /* Genug Abstand vom fixierten Header */
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .problem-section {
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .problem-section {
+    padding-top: 90px;
+  }
+}
+
+/* 
+  =================================================================
+  FINALE ELEGANTE MOBILE SVG-STYLES (Überschreibt alle Debugging-Styles)
+  =================================================================
+*/
+
+/* Finale elegante mobile Graph-Styles - Überschreibt alle vorherigen */
+.mobile-graph-simple {
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 10 !important; /* Unter Header (z-index: 9999) */
+  background: transparent !important;
+  border: none !important;
+  min-height: 250px !important;
+}
+
+.mobile-graph-simple svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.mobile-graph-simple path {
+  display: block !important;
+  stroke: var(--copper-color) !important; /* Elegante Kupferfarbe */
+  stroke-width: 2.5px !important; /* Dünne elegante Linie */
+  fill: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  stroke-opacity: 1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+/* Finale Override für alle Debug-Styles in Media Queries */
+@media (max-width: 992px) {
+  .mobile-graph-simple {
+    background: transparent !important;
+    border: none !important;
+    z-index: 10 !important; /* Unter Header */
+  }
+
+  .mobile-graph-simple svg {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .mobile-graph-simple path {
+    stroke: var(--copper-color) !important;
+    stroke-width: 2.5px !important;
+    stroke-opacity: 1 !important;
+  }
+}

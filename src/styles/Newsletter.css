@@ -142,33 +142,36 @@
 
 .newsletter-form {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  align-items: center;
-  gap: 15px;
+  align-items: stretch;
+  gap: 16px;
   font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 400;
 }
 
-.email-input {
+.name-input, .phone-input, .email-input {
   flex: 1;
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  height: 54px;
-  padding: 0 25px;
+  height: 120px;
+  padding: 0 36px;
   color: #fff;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   transition: all 0.3s ease;
   width: 100%;
+  font-size: 22px;
 }
 
-.email-input::placeholder {
+.name-input::placeholder, .phone-input::placeholder, .email-input::placeholder {
   color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
 }
 
-.email-input:hover, .email-input:focus {
+.name-input:hover, .name-input:focus, .phone-input:hover, .phone-input:focus {
   border-color: rgba(184, 115, 51, 0.7);
   box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.2);
   outline: none;
@@ -176,6 +179,8 @@
 }
 
 .subscribe-btn {
+  width: 100%;
+  margin-top: 8px;
   border-radius: 50px;
   background: linear-gradient(90deg, #b87333, #e2ac6b);
   height: 54px;

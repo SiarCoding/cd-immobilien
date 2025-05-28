@@ -7,35 +7,21 @@ import {
   Key, 
   Users 
 } from 'lucide-react';
-
-// Kupfer-Effekt Komponente
-const CopperBlurEffect = () => (
-  <div className="copper-blur-effect">
-    <svg className="copper-blur-svg" viewBox="0 0 444 536" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M225.919 112.719C343.98 64.6648 389.388 -70.487 437.442 47.574C485.496 165.635 253.266 481.381 135.205 529.435C17.1445 577.488 57.9596 339.654 9.9057 221.593C-38.1482 103.532 107.858 160.773 225.919 112.719Z" fill="url(#copper-gradient)" />
-      <defs>
-        <linearGradient id="copper-gradient" x1="82.7339" y1="550.792" x2="-39.945" y2="118.965" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#B87333" />
-          <stop offset="50%" stopColor="#E2AC6B" />
-          <stop offset="100%" stopColor="#B87333" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-);
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const Process = () => {
+  const { t } = useLanguage();
   const [activeStep, setActiveStep] = useState(null);
   const timelineRef = useRef(null);
   const cardRefs = useRef([]);
 
-  // Prozessschritte der Immobilieninvestition
+  // Prozessschritte der Immobilieninvestition mit Übersetzungen
   const processSteps = [
     {
       id: 1,
-      title: "Beratungsgespräch",
-      date: "Phase 1",
-      content: "In einem persönlichen Gespräch analysieren wir Ihre finanzielle Situation und Ihre Ziele für die Immobilieninvestition.",
+      title: t('process.consultation.title'),
+      date: t('process.consultation.phase'),
+      content: t('process.consultation.content'),
       icon: PhoneCall,
       relatedIds: [2],
       status: "completed",
@@ -43,9 +29,9 @@ const Process = () => {
     },
     {
       id: 2,
-      title: "Objektsuche",
-      date: "Phase 2",
-      content: "Wir suchen gemeinsam nach passenden Immobilien und analysieren deren Rentabilität und Steuervorteile.",
+      title: t('process.search.title'),
+      date: t('process.search.phase'),
+      content: t('process.search.content'),
       icon: FileSearch,
       relatedIds: [1, 3],
       status: "in-progress",
@@ -53,9 +39,9 @@ const Process = () => {
     },
     {
       id: 3,
-      title: "Finanzierung",
-      date: "Phase 3",
-      content: "Wir optimieren Ihre Finanzierungsstruktur und nutzen alle verfügbaren Fördermittel für maximale Rendite.",
+      title: t('process.financing.title'),
+      date: t('process.financing.phase'),
+      content: t('process.financing.content'),
       icon: PiggyBank,
       relatedIds: [2, 4],
       status: "pending",
@@ -63,9 +49,9 @@ const Process = () => {
     },
     {
       id: 4,
-      title: "Kaufabwicklung",
-      date: "Phase 4",
-      content: "Wir begleiten Sie durch den gesamten Kaufprozess - vom Notartermin bis zur Schlüsselübergabe.",
+      title: t('process.purchase.title'),
+      date: t('process.purchase.phase'),
+      content: t('process.purchase.content'),
       icon: Key,
       relatedIds: [3, 5],
       status: "pending",
@@ -73,9 +59,9 @@ const Process = () => {
     },
     {
       id: 5,
-      title: "Vermietungsbetreuung",
-      date: "Phase 5",
-      content: "Nach dem Kauf unterstützen wir Sie bei der Vermietung und der laufenden Verwaltung Ihrer Immobilie.",
+      title: t('process.rental.title'),
+      date: t('process.rental.phase'),
+      content: t('process.rental.content'),
       icon: Users,
       relatedIds: [4],
       status: "pending",
@@ -118,15 +104,14 @@ const Process = () => {
 
   return (
     <section className="process-section">
-      {/* Kupfer-Blur-Effekt */}
-      <CopperBlurEffect />
+      {/* Kupfer-Blur-Effekt entfernt */}
       
       <div className="process-container">
         <h2 className="section-title">
-          Unser <span className="highlight-blue">Prozess</span>
+          {t('process.title')} <span className="highlight-blue">{t('process.titleHighlight')}</span>
         </h2>
         <p className="section-subtitle">
-          Wir begleiten Sie durch jeden Schritt Ihrer Immobilieninvestition
+          {t('process.subtitle')}
         </p>
 
         <div className="timeline-container" ref={timelineRef}>
@@ -178,7 +163,7 @@ const Process = () => {
 
                   {step.relatedIds.length > 0 && (
                     <div className="related-steps">
-                      <h4 className="related-title">Verbundene Phasen</h4>
+                      <h4 className="related-title">{t('process.relatedPhases')}</h4>
                       <div className="related-buttons">
                         {step.relatedIds.map(relatedId => {
                           const relatedStep = processSteps.find(s => s.id === relatedId);

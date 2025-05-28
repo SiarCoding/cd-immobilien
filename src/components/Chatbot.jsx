@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Chatbot.css';
 import chatbotAvatar from '../assets/chatbot-azim.png';
 import logoImg from '../assets/logo-csd.png';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Chatbot = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
@@ -44,7 +46,7 @@ const Chatbot = () => {
       setTimeout(() => {
         setMessages([
           { 
-            text: "Willkommen beim Kundenservice von CD Immobilien Portfolio GmbH!", 
+            text: t('chatbot.messages.welcome'), 
             sender: 'bot' 
           }
         ]);
@@ -56,7 +58,7 @@ const Chatbot = () => {
             setMessages(prev => [
               ...prev,
               { 
-                text: "Haben Sie Fragen zu Immobilieninvestitionen oder wie Sie von den aktuellen Steuervorteilen profitieren können? Ich helfe Ihnen gerne weiter.", 
+                text: t('chatbot.messages.intro'), 
                 sender: 'bot' 
               }
             ]);
@@ -65,7 +67,7 @@ const Chatbot = () => {
         }, 800);
       }, 1500);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, t]);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -121,17 +123,8 @@ const Chatbot = () => {
         ]
       };
       
-      // Systemkontext in separatem Prompt hinzufügen
-      const systemContext = `Du bist ein Kundenberater für CD Immobilien Portfolio GmbH. Dein Name ist Azim Choudry.
-      CD steht für "Capital Development", eine Immobilien-Investmentgesellschaft in Deutschland.
-      Das Unternehmen hat Immobilien in verschiedenen Großstädten Deutschlands, vor allem in Berlin, München, Hamburg und Frankfurt.
-      CD Immobilien Portfolio GmbH bietet Wohnimmobilien, Gewerbeimmobilien und Grundstücke zur Kapitalanlage an.
-      
-      Bei Fragen nach Immobilien antworte, dass CD Immobilien Portfolio GmbH verschiedene Immobilien in deutschen Großstädten anbietet, von Wohnungen in Berlin und München bis zu Gewerbeobjekten in Hamburg und Frankfurt.
-      
-      Halte deine Antworten knapp, freundlich und informativ.
-      Betone die Vorteile von Immobilieninvestitionen als Inflationsschutz und zur Steueroptimierung.
-      Antworte auf Deutsch.
+      // Systemkontext mit Übersetzung in separatem Prompt hinzufügen
+      const systemContext = `${t('chatbot.systemPrompt')}
       
       Die Frage lautet: ${prompt}`;
       
@@ -157,7 +150,7 @@ const Chatbot = () => {
       
       if (!data.candidates || data.candidates.length === 0) {
         console.error("No candidates in response", data);
-        return "Ich entschuldige mich für die Unannehmlichkeiten. Bei CD Immobilien Portfolio GmbH haben wir verschiedene Immobilien in deutschen Großstädten im Angebot. Für genauere Informationen stehe ich Ihnen gerne zur Verfügung.";
+        return t('chatbot.messages.error');
       }
       
       // Extrahieren der Antwort aus der API-Antwort
@@ -165,28 +158,13 @@ const Chatbot = () => {
       
       if (!geminiResponse) {
         console.error("No text in response", data);
-        return "CD Immobilien Portfolio GmbH bietet verschiedene Immobilienobjekte in Berlin, München, Hamburg und Frankfurt an. Wir haben Wohnimmobilien, Gewerbeimmobilien und Grundstücke zur Kapitalanlage im Portfolio.";
+        return t('chatbot.messages.error');
       }
       
       return geminiResponse;
     } catch (error) {
       console.error("Error fetching from Gemini API:", error);
-      
-      // Fallback-Antworten basierend auf häufigen Fragen
-      const fallbackResponses = {
-        "immobilien": "CD Immobilien Portfolio GmbH hat verschiedene Immobilien in deutschen Großstädten. Wir bieten Wohnimmobilien in Berlin und München sowie Gewerbeimmobilien in Hamburg und Frankfurt an.",
-        "cd": "CD steht für 'Capital Development'. Wir sind eine deutsche Immobilien-Investmentgesellschaft, die sich auf langfristige Kapitalanlage und Steueroptimierung spezialisiert hat.",
-        "steuer": "Immobilieninvestitionen bieten hervorragende Steuervorteile durch Abschreibungsmöglichkeiten. Mit unserem Immobilienrechner können Sie Ihre potenzielle Steuerersparnis berechnen."
-      };
-      
-      // Suche nach relevanten Schlüsselwörtern in der Anfrage
-      for (const [keyword, response] of Object.entries(fallbackResponses)) {
-        if (prompt.toLowerCase().includes(keyword)) {
-          return response;
-        }
-      }
-      
-      return "Bei CD Immobilien Portfolio GmbH bieten wir verschiedene Immobilien zur Kapitalanlage an. Unsere Experten beraten Sie gerne persönlich zu den aktuellen Angeboten und Steuervorteilen. Für detaillierte Informationen kontaktieren Sie uns bitte unter info@cd-immobilien.de.";
+      return t('chatbot.messages.error');
     }
   };
 
@@ -218,7 +196,7 @@ const Chatbot = () => {
         setMessages(prev => [
           ...prev,
           { 
-            text: `Danke ${message}! Bitte geben Sie Ihre Telefonnummer ein, damit wir Sie für ein persönliches Beratungsgespräch kontaktieren können:`, 
+            text: t('chatbot.messages.askPhone').replace('{name}', message), 
             sender: 'bot' 
           }
         ]);
@@ -239,7 +217,7 @@ const Chatbot = () => {
         setMessages(prev => [
           ...prev, 
           { 
-            text: "Vielen Dank! Unser Experte wird sich in Kürze bei Ihnen melden, um Ihnen bei Ihrer Immobilieninvestition zu helfen. Sie können uns weiterhin Fragen stellen, oder besuchen Sie unsere Website für mehr Informationen.", 
+            text: t('chatbot.messages.thankYou'), 
             sender: 'bot' 
           }
         ]);
@@ -267,7 +245,7 @@ const Chatbot = () => {
             setMessages(prev => [
               ...prev,
               { 
-                text: "Um Ihnen besser helfen zu können, würde ich gerne Ihren Namen wissen. Wie darf ich Sie nennen?", 
+                text: t('chatbot.messages.askName'), 
                 sender: 'bot' 
               }
             ]);
@@ -283,7 +261,7 @@ const Chatbot = () => {
       setMessages(prev => [
         ...prev,
         { 
-          text: "Entschuldigung, es gab ein Problem bei der Verarbeitung Ihrer Anfrage. Bitte versuchen Sie es später noch einmal.", 
+          text: t('chatbot.messages.error'), 
           sender: 'bot' 
         }
       ]);
@@ -298,8 +276,8 @@ const Chatbot = () => {
             <img src={chatbotAvatar} alt="" className="notification-avatar-img" />
           </div>
           <div className="notification-content">
-            <p>Fragen zu Ihrer Immobilieninvestition?</p>
-            <p className="notification-subtext">Jetzt beraten lassen!</p>
+            <p>{t('chatbot.notification.title')}</p>
+            <p className="notification-subtext">{t('chatbot.notification.subtitle')}</p>
           </div>
         </div>
       )}
@@ -313,8 +291,8 @@ const Chatbot = () => {
                   <img src={chatbotAvatar} alt="" />
                 </div>
                 <div className="chat-header-info">
-                  <h3>Azim Choudry</h3>
-                  <span className="status-indicator online">Immobilien-Berater</span>
+                  <h3>{t('chatbot.header.title')}</h3>
+                  <span className="status-indicator online">{t('chatbot.header.status')}</span>
                 </div>
               </div>
               <button className="close-btn" onClick={toggleChat}>×</button>
@@ -361,9 +339,9 @@ const Chatbot = () => {
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder={
-                  askForName ? "Bitte geben Sie Ihren Namen ein..." : 
-                  askForPhone ? "Bitte geben Sie Ihre Telefonnummer ein..." : 
-                  "Schreiben Sie Ihre Nachricht..."
+                  askForName ? t('chatbot.placeholders.name') : 
+                  askForPhone ? t('chatbot.placeholders.phone') : 
+                  t('chatbot.placeholders.default')
                 }
                 ref={inputRef}
                 autoComplete="off"
@@ -377,7 +355,7 @@ const Chatbot = () => {
             </form>
             
             <div className="chat-footer">
-              <p>© CD Immobilien Portfolio GmbH</p>
+              <p>{t('chatbot.footer')}</p>
             </div>
           </div>
         )}
@@ -385,7 +363,7 @@ const Chatbot = () => {
         <button 
           className="chat-toggle-btn" 
           onClick={toggleChat}
-          aria-label="Chat öffnen"
+          aria-label={t('chatbot.ariaLabel')}
         >
           <div className="bot-avatar-container">
             <img src={chatbotAvatar} alt="Chatbot Avatar" className="bot-avatar-img" />

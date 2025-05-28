@@ -354,13 +354,14 @@
 
 .chat-input input {
   flex: 1;
-  padding: 12px 15px;
+  padding: 0 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 25px;
   background: rgba(255, 255, 255, 0.1);
   color: white;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
+  height: 48px;
   transition: all 0.3s ease;
 }
 

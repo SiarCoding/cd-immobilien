@@ -7,21 +7,7 @@
   min-height: 2400px;
 }
 
-/* Kupfer-Lichteffekt im Hintergrund */
-.process-section::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%;
-  height: 140%;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(ellipse at center, rgba(184, 115, 51, 0.15) 0%, rgba(184, 115, 51, 0.05) 40%, rgba(8, 37, 103, 0) 80%);
-  opacity: 0.5;
-  filter: blur(70px);
-}
+/* Kupfer-Lichteffekt im Hintergrund entfernt */
 
 :root {
   --copper-color: #b87333;
@@ -204,7 +190,7 @@
 .timeline-card {
   padding: 25px;
   border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(8, 37, 103, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -217,7 +203,7 @@
 .timeline-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(8, 37, 103, 0.4);
 }
 
 /* Kupferkante oben für ALLE Karten mit Animation */
@@ -234,24 +220,7 @@
   background-size: 200% 100%;
 }
 
-/* Lichteffekt innerhalb der Karten hinzufügen */
-.timeline-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at top right, rgba(226, 172, 107, 0.1), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.timeline-card:hover::after {
-  opacity: 1;
-}
+/* Lichteffekt innerhalb der Karten entfernt */
 
 /* Karten-Icon */
 .card-icon {
@@ -535,29 +504,6 @@
     transform: translateY(0);
     opacity: 1;
   }
-}
-
-/* Kupfer-Blur-Effekt Styling */
-.copper-blur-effect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.copper-blur-svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150%;
-  height: 150%;
-  opacity: 0.15;
-  filter: blur(70px);
 }
 
 /* Verbesserte Timeline-Card-Animation */

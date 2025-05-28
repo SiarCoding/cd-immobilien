@@ -5,6 +5,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, 
   Tooltip, ResponsiveContainer, Legend 
 } from 'recharts';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 // Kupfer-Effekt Komponente für Features-Sektion
 const CopperBlurEffect = () => (
@@ -49,86 +50,153 @@ const BenefitCard = ({ icon, title, value, description }) => {
 };
 
 const Features = () => {
-  // State für Immobilienwerte mit festen Werten für Grundstückanteil und Steuersatz
-  const [propertyValue, setPropertyValue] = useState(500000);
-  // Fester Grundstückanteil von 80% (typischer Wert im deutschen Immobilienmarkt)
-  const buildingRatio = 80;
-  const [buildingValue, setBuildingValue] = useState(400000);
-  const [landValue, setLandValue] = useState(100000);
-  const [constructionYear, setConstructionYear] = useState(2023);
-  // Degressive Abschreibung mit 5%
-  const afaRate = 5;
-
-  // Fester Steuersatz von 42% (Spitzensteuersatz in Deutschland)
-  const taxRate = 42;
-  const [rentalIncome, setRentalIncome] = useState(24000);
-
-  // State für Ergebnisse
-  const [annualDepreciation, setAnnualDepreciation] = useState(0);
-  const [taxSavings, setTaxSavings] = useState(0);
-  const [totalTaxSavings, setTotalTaxSavings] = useState(0);
-  const [effectiveYield, setEffectiveYield] = useState(0);
+  const { t } = useLanguage();
   
-  // State für Chart-Daten
+  // Eingabewerte
+  const [kaufpreis, setKaufpreis] = useState(400000);
+  const [flaeche, setFlaeche] = useState(77);
+  const [kaltmiete, setKaltmiete] = useState(1126);
+  const [qualitaetsstufe, setQualitaetsstufe] = useState(0.70); // QNG Qualität als Standard
+
+  // Feste Werte
+  const anschaffungskostenProzent = 5;
+  const zinssatz = 3.7;
+  const tilgung = 1.5;
+  const verwaltungskosten = 40;
+  const steuersatz = 42;
+  const afaAnteil = 93;
+  const afaSatz = 10; // 10% im ersten Jahr
+
+  // Berechnete Werte
+  const [anschaffungskosten, setAnschaffungskosten] = useState(0);
+  const [zinsbetrag, setZinsbetrag] = useState(0);
+  const [tilgungsbetrag, setTilgungsbetrag] = useState(0);
+  const [monatlicheBankrate, setMonatlicheBankrate] = useState(0);
+  const [instandhaltungsruecklage, setInstandhaltungsruecklage] = useState(0);
+  const [afaAnschaffungskosten, setAfaAnschaffungskosten] = useState(0);
+  const [afaSatzBetrag, setAfaSatzBetrag] = useState(0);
+  const [zws, setZws] = useState(0);
+  const [absetzung, setAbsetzung] = useState(0);
+  const [steuervorteilMonatlich, setSteuervorteilMonatlich] = useState(0);
+  const [steuervorteilJaehrlich, setSteuervorteilJaehrlich] = useState(0);
+  const [cashflow, setCashflow] = useState(0);
+  
+  // Chart-Daten
   const [chartData, setChartData] = useState([]);
 
-  // Refs für Animation und Beobachtung
+  // Refs für Animation
   const headingRef = useRef(null);
   const calculatorRef = useRef(null);
   const resultsRef = useRef(null);
   const ctaRef = useRef(null);
-  const cardRefs = useRef([]);
 
-  // Setzt den Gebäudewert basierend auf dem festen Grundstückanteil
-  const handlePropertyValueChange = (value) => {
-    const newPropertyValue = parseFloat(value) || 0;
-    setPropertyValue(newPropertyValue);
-    const newBuildingValue = Math.round((newPropertyValue * buildingRatio) / 100);
-    const newLandValue = newPropertyValue - newBuildingValue;
-    setBuildingValue(newBuildingValue);
-    setLandValue(newLandValue);
+  // Qualitätsstufen-Optionen mit Übersetzungen
+  const qualitaetsstufen = [
+    { value: 0.70, label: t('features.qngQuality') },
+    { value: 0.90, label: t('features.highQuality') },
+    { value: 1.20, label: t('features.surfaceQuality') }
+  ];
+
+  // Input Handler Funktionen
+  const handleKaufpreisChange = (e) => {
+    const value = e.target.value;
+    setKaufpreis(value === '' ? '' : parseFloat(value) || '');
   };
 
-  // Berechnet die jährliche AfA und Steuerersparnis
+  const handleFlaecheChange = (e) => {
+    const value = e.target.value;
+    setFlaeche(value === '' ? '' : parseFloat(value) || '');
+  };
+
+  const handleKaltmieteChange = (e) => {
+    const value = e.target.value;
+    setKaltmiete(value === '' ? '' : parseFloat(value) || '');
+  };
+
+  const handleBlur = (setter, defaultValue = 0) => {
+    return (e) => {
+      const value = e.target.value;
+      if (value === '' || isNaN(parseFloat(value))) {
+        setter(defaultValue);
+      }
+    };
+  };
+
+  // Berechnungen
   useEffect(() => {
-    // Berechne jährliche AfA mit festem Satz von 5%
-    const yearlyAfa = Math.round(buildingValue * (afaRate / 100));
-    setAnnualDepreciation(yearlyAfa);
+    // Konvertiere leere Strings zu 0 für Berechnungen
+    const kaufpreisValue = parseFloat(kaufpreis) || 0;
+    const flaecheValue = parseFloat(flaeche) || 0;
+    const kaltmieteValue = parseFloat(kaltmiete) || 0;
     
-    // Berechne jährliche Steuerersparnis basierend auf AfA und Steuersatz
-    const yearlySaving = Math.round(yearlyAfa * (taxRate / 100));
-    setTaxSavings(yearlySaving);
+    // Anschaffungskosten 5%: A2*0.05
+    const anschaffung = kaufpreisValue * (anschaffungskostenProzent / 100);
+    setAnschaffungskosten(anschaffung);
+
+    // Zinssatz 3,7%: A2*0.037
+    const zins = kaufpreisValue * (zinssatz / 100);
+    setZinsbetrag(zins);
+
+    // Tilgung 1,5%: A2*0.015
+    const tilg = kaufpreisValue * (tilgung / 100);
+    setTilgungsbetrag(tilg);
     
-    // Berechne Gesamtersparnis über 30 Jahre (vereinfacht)
-    const totalSavings = yearlySaving * 30;
-    setTotalTaxSavings(totalSavings);
+    // Monatlicher Bankbeitrag: (C2+D2)/12
+    const bankrate = (zins + tilg) / 12;
+    setMonatlicheBankrate(bankrate);
+
+    // Instandhaltungsrücklage: F2*0.7
+    const instand = flaecheValue * qualitaetsstufe;
+    setInstandhaltungsruecklage(instand);
+
+    // AfA der Anschaffungskosten 93%: (A2 + B2)*0.93
+    const afaAnsch = (kaufpreisValue + anschaffung) * (afaAnteil / 100);
+    setAfaAnschaffungskosten(afaAnsch);
     
-    // Berechne effektive Rendite basierend auf Mieteinnahmen und Steuerersparnis
-    // Berücksichtige die jährlichen Mieteinnahmen direkt in der Renditeberechnung
-    const yearlyReturn = ((rentalIncome * (taxRate / 100)) + yearlySaving) / propertyValue * 100;
-    setEffectiveYield(parseFloat(yearlyReturn.toFixed(2)));
+    // AfA Satz der Anschaffungskosten: -J2 * 0.1 (negativ!)
+    const afaSatzBetr = -afaAnsch * (afaSatz / 100);
+    setAfaSatzBetrag(afaSatzBetr);
+
+    // ZWS (Zwischensumme): G2 - H2 - I2 - E2 (Kaltmiete - Verwaltung - Instandhaltung - Bankrate)
+    const zwischensumme = kaltmieteValue - verwaltungskosten - instand - bankrate;
+    setZws(zwischensumme);
+
+    // Absetzung: K2-C2 + ((G2-H2)*12) (AfA Satz - Zinsbetrag + ((Kaltmiete - Verwaltung)*12))
+    const absetz = afaSatzBetr - zins + ((kaltmieteValue - verwaltungskosten) * 12);
+    setAbsetzung(absetz);
+
+    // Steuervorteil (Monatlich): -M2*0.42/12 (negativ von Absetzung!)
+    const steuervorteilMon = (-absetz * 0.42) / 12;
+    setSteuervorteilMonatlich(steuervorteilMon);
+
+    // Steuervorteil (Jährlich): N2*12
+    const steuervorteilJahr = steuervorteilMon * 12;
+    setSteuervorteilJaehrlich(steuervorteilJahr);
+
+    // Cashflow: N2+L2 (Steuervorteil monatlich + ZWS)
+    const cf = steuervorteilMon + zwischensumme;
+    setCashflow(cf);
     
-    // Daten für recharts vorbereiten
+    // Chart-Daten für 30 Jahre
     const data = [];
-    let cumulativeSavings = 0;
+    let kumulativerCashflow = 0;
     
-    for (let year = 1; year <= 30; year++) {
-      cumulativeSavings += yearlySaving;
+    for (let jahr = 1; jahr <= 30; jahr++) {
+      kumulativerCashflow += cf * 12;
       
-      // Nur für bestimmte Jahre (alle 5 Jahre) in die Daten für recharts einfügen
-      if (year === 1 || year % 5 === 0 || year === 30) {
+      if (jahr === 1 || jahr % 5 === 0 || jahr === 30) {
         data.push({
-          year: year,
-          yearlyTaxSaving: yearlySaving,
-          cumulativeSavings: cumulativeSavings,
-          yearlyDepreciation: yearlyAfa,
+          year: jahr,
+          monatlicherCashflow: cf,
+          kumulativerCashflow: kumulativerCashflow,
+          steuervorteilJaehrlich: steuervorteilJahr,
         });
       }
     }
     
     setChartData(data);
     
-  }, [buildingValue, taxRate, propertyValue, rentalIncome]);
+  }, [kaufpreis, flaeche, kaltmiete, qualitaetsstufe]);
 
   // Intersection Observer für Animationen
   useEffect(() => {
@@ -147,10 +215,6 @@ const Features = () => {
     if (calculatorRef.current) observer.observe(calculatorRef.current);
     if (resultsRef.current) observer.observe(resultsRef.current);
     if (ctaRef.current) observer.observe(ctaRef.current);
-    
-    cardRefs.current.forEach(card => {
-      if (card) observer.observe(card);
-    });
 
     return () => {
       observer.disconnect();
@@ -162,43 +226,9 @@ const Features = () => {
     return new Intl.NumberFormat('de-DE', {
       style: 'currency',
       currency: 'EUR',
-      maximumFractionDigits: 0
+      maximumFractionDigits: 2
     }).format(amount);
   };
-
-  // Wichtige Steuervorteile-Karten für moderne Darstellung
-  const taxBenefitCards = [
-    {
-      title: "Jährliche Steuerersparnis",
-      value: formatCurrency(taxSavings),
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 8V16M9 11H15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      ),
-      description: "Pro Jahr sparen Sie direkt diese Summe an Steuern"
-    },
-    {
-      title: "Steuerersparnis über 30 Jahre",
-      value: formatCurrency(totalTaxSavings),
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 8V12L15 15M3 3L6 6M18 6L21 3M8.5 20.001H15.5C19 20.001 20 18.001 20 15.501V8.50099C20 6.00099 19 4.00099 15.5 4.00099H8.5C5 4.00099 4 6.00099 4 8.50099V15.501C4 18.001 5 20.001 8.5 20.001Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      ),
-      description: "Gesamte Steuerersparnis über die Abschreibungsdauer"
-    },
-    {
-      title: "Effektive Rendite",
-      value: `${effectiveYield.toFixed(2)}%`,
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      ),
-      description: "Ihre echte Rendite inklusive Steuervorteile"
-    }
-  ];
 
   return (
     <section className="features-section" style={{
@@ -212,8 +242,7 @@ const Features = () => {
       
       <div className="features-container">
         <h1 className="section-heading">
-          <span className="features-title-box">Immobilien-Rechner</span>
-          <span className="features-subtitle">Berechne selber wie du mit unseren Immobilien <span className="underlined-special">profitieren</span> kannst</span>
+          <span className="features-subtitle">{t('features.calculateYour')} <span className="features-title-box">{t('features.cashflow')}</span> {t('features.and')} <span className="features-title-box">{t('features.taxBenefit')}</span></span>
         </h1>
 
         <div className="calculator-wrapper">
@@ -222,81 +251,82 @@ const Features = () => {
               <div className="calculator-section">
                 <h3 className="calculator-section-title">
                   <span className="calculator-section-icon">🏢</span>
-                Immobiliendaten
+                {t('features.propertyData')}
               </h3>
               
                 <div className="input-group modern-input">
-                  <label htmlFor="property-value">
-                    Gesamtkaufpreis
-                    <InfoIcon tooltip="Geben Sie den Gesamtkaufpreis ein. Der Gebäudewert (80%) ist abschreibungsfähig, während der Grundstückswert (20%) nicht abgeschrieben werden kann." />
+                  <label htmlFor="kaufpreis">
+                    {t('features.purchasePrice')}
+                    <InfoIcon tooltip={t('features.purchasePriceTooltip')} />
                   </label>
                 <div className="input-with-currency">
                   <input
                     type="number"
-                    id="property-value"
+                      id="kaufpreis"
                     className="currency-input"
-                    value={propertyValue}
-                    onChange={(e) => handlePropertyValueChange(e.target.value)}
+                      value={kaufpreis}
+                      onChange={handleKaufpreisChange}
+                    onBlur={handleBlur(setKaufpreis)}
                     min="0"
                   />
                   <span className="currency-symbol">€</span>
                 </div>
               </div>
               
-                {/* Verbesserte Darstellung der Wertaufteilung */}
-                <div className="property-division">
-                  <div className="property-division-header">
-                    <h4 className="property-division-title">Aufteilung des Kaufpreises</h4>
-                    <p className="property-division-subtitle">Nur der Gebäudewert ist steuerlich abschreibbar</p>
-                  </div>
-                  
-                  <div className="property-division-chart">
-                    <div className="property-division-bar">
-                      <div 
-                        className="building-value" 
-                        style={{width: `${buildingRatio}%`}}
-                      >
-                        <div className="value-label-container">
-                          <span className="value-label">Gebäudewert:</span>
-                          <span className="value-amount">{formatCurrency(buildingValue)}</span>
-                        </div>
-                      </div>
-                      <div 
-                        className="land-value" 
-                        style={{width: `${100 - buildingRatio}%`}}
-                      >
-                        <div className="value-label-container">
-                          <span className="value-label">Grundstück:</span>
-                          <span className="value-amount">{formatCurrency(landValue)}</span>
-                        </div>
+                <div className="input-group modern-input">
+                  <label htmlFor="flaeche">
+                    {t('features.area')}
+                    <InfoIcon tooltip={t('features.areaTooltip')} />
+                  </label>
+                  <div className="input-with-currency">
+                    <input
+                      type="number"
+                      id="flaeche"
+                      className="currency-input"
+                      value={flaeche}
+                      onChange={handleFlaecheChange}
+                      onBlur={handleBlur(setFlaeche)}
+                      min="0"
+                    />
+                    <span className="currency-symbol">m²</span>
                       </div>
                     </div>
                     
-                    <div className="property-division-legend">
-                      <div className="legend-item">
-                        <span className="legend-marker building"></span>
-                        <span className="legend-text">Abschreibungsfähig</span>
-                      </div>
-                      <div className="legend-item">
-                        <span className="legend-marker land"></span>
-                        <span className="legend-text">Nicht abschreibungsfähig</span>
-                      </div>
-                    </div>
+                <div className="input-group modern-input">
+                  <label htmlFor="kaltmiete">
+                    {t('features.coldRent')}
+                    <InfoIcon tooltip={t('features.coldRentTooltip')} />
+                  </label>
+                  <div className="input-with-currency">
+                    <input
+                      type="number"
+                      id="kaltmiete"
+                      className="currency-input"
+                      value={kaltmiete}
+                      onChange={handleKaltmieteChange}
+                      onBlur={handleBlur(setKaltmiete)}
+                      min="0"
+                    />
+                    <span className="currency-symbol">€</span>
                   </div>
                 </div>
 
                 <div className="input-group modern-input">
-                  <label htmlFor="construction-year">
-                    Baujahr des Gebäudes
-                    <InfoIcon tooltip="Das Baujahr des Gebäudes. Für degressive Abschreibung (5%) muss das Baujahr ab 2023 sein." />
+                  <label htmlFor="qualitaetsstufe">
+                    {t('features.qualityLevel')}
+                    <InfoIcon tooltip={t('features.qualityLevelTooltip')} />
                   </label>
                 <select 
-                  id="construction-year"
+                    id="qualitaetsstufe"
                   className="select-input"
-                  value={constructionYear}
-                    onChange={(e) => setConstructionYear(parseInt(e.target.value))}
+                    value={qualitaetsstufe}
+                    onChange={(e) => setQualitaetsstufe(parseFloat(e.target.value))}
                   >
-                    <option value="2023">Neubau ab 2023</option>
+                    {qualitaetsstufen.map((stufe) => (
+                      <option key={stufe.value} value={stufe.value}>
+                        {stufe.label}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
@@ -304,64 +334,129 @@ const Features = () => {
               <div className="calculator-section">
                 <h3 className="calculator-section-title">
                   <span className="calculator-section-icon">💰</span>
-                Steuerparameter
+                  {t('features.fixedParameters')}
               </h3>
               
-                <div className="tax-rate-display">
-                  <div className="tax-rate-circle">
-                    <div className="tax-rate-value">{taxRate}%</div>
-                    <div className="tax-rate-label">Steuersatz</div>
+                <div className="fixed-parameters">
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.acquisitionCosts')}</span>
+                    <span className="parameter-value">{anschaffungskostenProzent}%</span>
                   </div>
-                  <div className="tax-rate-info">
-                    <p>Berechnung mit Spitzensteuersatz für maximalen Steuervorteil</p>
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.interestRate')}</span>
+                    <span className="parameter-value">{zinssatz}%</span>
                   </div>
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.repayment')}</span>
+                    <span className="parameter-value">{tilgung}%</span>
+                  </div>
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.managementCosts')}</span>
+                    <span className="parameter-value">{formatCurrency(verwaltungskosten)}</span>
               </div>
-              
-                <div className="input-group modern-input">
-                  <label htmlFor="rental-income">
-                    Jährliche Mieteinnahmen (netto)
-                    <InfoIcon tooltip="Ihre jährlichen Mieteinnahmen nach Abzug der Umlagen." />
-                  </label>
-                <div className="input-with-currency">
-                  <input
-                    type="number"
-                    id="rental-income"
-                    className="currency-input"
-                    value={rentalIncome}
-                    onChange={(e) => setRentalIncome(parseFloat(e.target.value) || 0)}
-                    min="0"
-                  />
-                  <span className="currency-symbol">€</span>
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.taxRate')}</span>
+                    <span className="parameter-value">{steuersatz}%</span>
                 </div>
               </div>
               </div>
             </div>
             
             <div ref={resultsRef} className="calculator-right-panel">
-              <h3 className="results-heading">Ihre Steuerersparnis im Überblick</h3>
+              <h3 className="results-heading">{t('features.resultsHeading')}</h3>
               
-              <div className="afa-info-box">
-                <div className="afa-info-title">
-                  <span className="afa-badge">5%</span> Degressive Abschreibung
-              </div>
-                <div className="afa-info-text">
-                  <p>Mit der degressiven AfA von 5% p.a. in den ersten vier Jahren sparen Sie deutlich mehr Steuern als mit der linearen AfA von 3%.</p>
-              </div>
+              <div className="results-grid">
+                <div className="results-left-column">
+                  <div className="result-category">
+                    <h4 className="category-title">{t('features.costsFinancing')}</h4>
+                    <div className="result-item">
+                      <span className="result-label">{t('features.acquisitionCostsResult')}</span>
+                      <span className="result-value">{formatCurrency(anschaffungskosten)}</span>
+                    </div>
+                    <div className="result-item">
+                      <span className="result-label">{t('features.interestAmount')}</span>
+                      <span className="result-value">{formatCurrency(zinsbetrag)}</span>
+                    </div>
+                    <div className="result-item">
+                      <span className="result-label">{t('features.repaymentAmount')}</span>
+                      <span className="result-value">{formatCurrency(tilgungsbetrag)}</span>
+                    </div>
+                    <div className="result-item highlight">
+                      <span className="result-label">{t('features.monthlyBankRate')}</span>
+                      <span className="result-value">{formatCurrency(monatlicheBankrate)}</span>
+                    </div>
+                  </div>
+
+                  <div className="result-category">
+                    <h4 className="category-title">{t('features.runningCosts')}</h4>
+                    <div className="result-item">
+                      <span className="result-label">{t('features.managementCostsResult')}</span>
+                      <span className="result-value">{formatCurrency(verwaltungskosten)}</span>
+                    </div>
+                    <div className="result-item">
+                      <span className="result-label">{t('features.maintenanceReserve')}</span>
+                      <span className="result-value">{formatCurrency(instandhaltungsruecklage)}</span>
+                    </div>
+                  </div>
+
+                  <div className="result-category">
+                    <h4 className="category-title">{t('features.results')}</h4>
+                    <div className="result-item">
+                      <span className="result-label">{t('features.zws')}</span>
+                      <span className="result-value">{formatCurrency(zws)}</span>
+                    </div>
+                    <div className="result-item final-result">
+                      <span className="result-label">{t('features.cashflowMonthly')}</span>
+                      <span className="result-value">{formatCurrency(cashflow)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="results-right-column">
+                  <div className="tax-benefits-overview">
+                    <h4 className="benefits-main-title">{t('features.taxBenefitsTitle')}</h4>
+                    
+                    <div className="benefit-highlight-card">
+                      <div className="benefit-amount">
+                        <span className="benefit-label">{t('features.monthlyTaxBenefit')}</span>
+                        <span className="benefit-value">{formatCurrency(steuervorteilMonatlich)}</span>
+                      </div>
+                      <div className="benefit-amount">
+                        <span className="benefit-label">{t('features.yearlyTaxBenefit')}</span>
+                        <span className="benefit-value">{formatCurrency(steuervorteilJaehrlich)}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="tax-calculation-details">
+                    <h4 className="details-title">{t('features.calculationBasis')}</h4>
+                    
+                    <div className="calculation-flow">
+                      <div className="calc-step">
+                        <span className="step-label">{t('features.afaBasis')}</span>
+                        <span className="step-value">{formatCurrency(afaAnschaffungskosten)}</span>
+                      </div>
+                      
+                      <div className="calc-arrow">↓</div>
+                      
+                      <div className="calc-step">
+                        <span className="step-label">{t('features.yearlyAfa')}</span>
+                        <span className="step-value negative">{formatCurrency(afaSatzBetrag)}</span>
+                      </div>
+                      
+                      <div className="calc-arrow">↓</div>
+                      
+                      <div className="calc-step final-step">
+                        <span className="step-label">{t('features.taxDeduction')}</span>
+                        <span className="step-value">{formatCurrency(absetzung)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              <div className="financial-overview">
-                <div className="financial-item">
-                  <div className="financial-label">Jährliche AfA (Jahre 1-4)</div>
-                  <div className="financial-value">{formatCurrency(annualDepreciation)}</div>
-              </div>
-                <div className="financial-item">
-                  <div className="financial-label">Monatliche Steuerersparnis</div>
-                  <div className="financial-value highlight">{formatCurrency(Math.round(taxSavings/12))}</div>
-            </div>
-              </div>
-              
-              <div className="tax-savings-chart-container">
-                <h4 className="tax-savings-chart-title">Steuerersparnis über 30 Jahre</h4>
+              <div className="cashflow-chart-container">
+                <h4 className="chart-title">{t('features.cashflowDevelopment')}</h4>
                 <div className="recharts-wrapper">
                   <ResponsiveContainer width="100%" height={250}>
                     <AreaChart
@@ -369,7 +464,7 @@ const Features = () => {
                       margin={{ top: 10, right: 30, left: 0, bottom: 20 }}
                     >
                       <defs>
-                        <linearGradient id="colorSavings" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id="colorCashflow" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#e2ac6b" stopOpacity={0.8}/>
                           <stop offset="95%" stopColor="#e2ac6b" stopOpacity={0.2}/>
                         </linearGradient>
@@ -382,12 +477,12 @@ const Features = () => {
                       <YAxis 
                         tick={{ fill: '#fff' }} 
                         axisLine={{ stroke: 'rgba(255,255,255,0.3)' }}
-                        tickFormatter={(value) => `${value / 1000}k€`}
+                        tickFormatter={(value) => `${(value / 1000).toFixed(0)}k€`}
                       />
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
                       <Tooltip 
-                        formatter={(value) => [`${formatCurrency(value)}`, 'Steuerersparnis']}
-                        labelFormatter={(year) => `Jahr ${year}`}
+                        formatter={(value) => [`${formatCurrency(value)}`, t('features.cumulativeCashflow')]}
+                        labelFormatter={(year) => `${t('features.year')} ${year}`}
                         contentStyle={{ 
                           backgroundColor: 'rgba(8, 37, 103, 0.9)',
                           border: '1px solid #e2ac6b',
@@ -397,11 +492,11 @@ const Features = () => {
                       />
                       <Area 
                         type="monotone" 
-                        dataKey="cumulativeSavings" 
-                        name="Kumulierte Steuerersparnis"
+                        dataKey="kumulativerCashflow" 
+                        name={t('features.cumulativeCashflow')}
                         stroke="#e2ac6b" 
                         strokeWidth={3}
-                        fill="url(#colorSavings)" 
+                        fill="url(#colorCashflow)" 
                         activeDot={{ r: 8, fill: '#fff', stroke: '#e2ac6b' }}
                       />
                       <Legend 
@@ -411,27 +506,9 @@ const Features = () => {
                   </ResponsiveContainer>
                 </div>
                 
-                <div className="total-savings">
-                  <div className="total-savings-label">Gesamte Steuerersparnis:</div>
-                  <div className="total-savings-value">{formatCurrency(totalTaxSavings)}</div>
-                </div>
-              </div>
-              
-              <div className="tax-benefits-summary">
-                <div className="tax-benefit-item">
-                  <div className="tax-benefit-label">Jährliche Steuerersparnis</div>
-                  <div className="tax-benefit-value">{formatCurrency(taxSavings)}</div>
-                  <div className="tax-benefit-desc">Durch AfA und Berücksichtigung der Mieteinnahmen</div>
-                </div>
-                <div className="tax-benefit-item">
-                  <div className="tax-benefit-label">Steuerersparnis über 30 Jahre</div>
-                  <div className="tax-benefit-value">{formatCurrency(totalTaxSavings)}</div>
-                  <div className="tax-benefit-desc">Gesamte Steuerersparnis über die Abschreibungsdauer</div>
-                </div>
-                <div className="tax-benefit-item">
-                  <div className="tax-benefit-label">Effektive Rendite</div>
-                  <div className="tax-benefit-value">{effectiveYield.toFixed(2)}%</div>
-                  <div className="tax-benefit-desc">Ihre echte Rendite inklusive Steuervorteile</div>
+                <div className="total-cashflow">
+                  <div className="total-cashflow-label">{t('features.cumulativeCashflow30')}</div>
+                  <div className="total-cashflow-value">{formatCurrency(cashflow * 12 * 30)}</div>
                 </div>
               </div>
             </div>
@@ -441,12 +518,12 @@ const Features = () => {
         {/* Call-to-Action */}
         <div ref={ctaRef} className="features-cta">
           <div className="cta-content">
-            <h3 className="cta-heading">Optimieren Sie Ihre Steuervorteile</h3>
+            <h3 className="cta-heading">{t('features.ctaTitle')}</h3>
           <p className="cta-text">
-              Lassen Sie sich von unseren Experten beraten, wie Sie mit cleveren Immobilieninvestitionen maximale Steuervorteile erzielen können.
+              {t('features.ctaText')}
             </p>
             <button className="cta-button">
-              <span className="button-text">Beratungstermin vereinbaren</span>
+              <span className="button-text">{t('features.ctaButton')}</span>
               <span className="button-icon">→</span>
             </button>
           </div>

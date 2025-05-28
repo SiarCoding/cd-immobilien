@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Solution.css';
 import apartmentBg from '../../assets/team.jpg';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const Solution = () => {
+  const { t } = useLanguage();
   const solutionCardsRef = useRef([]);
   const ctaRef = useRef(null);
 
@@ -38,8 +40,8 @@ const Solution = () => {
   const solutionCards = [
     {
       id: 1,
-      title: 'Sachwerte für Ihre Altersvorsorge',
-      description: 'Immobilien bieten einen inflationsgeschützten Sachwert, der als stabile Säule Ihrer Altersvorsorge dient. Bauen Sie ein diversifiziertes Immobilienportfolio auf, das langfristig Sicherheit bietet.',
+      title: t('solution.realAssets.title'),
+      description: t('solution.realAssets.description'),
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M21 6H3V18H21V6Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -51,8 +53,8 @@ const Solution = () => {
     },
     {
       id: 2,
-      title: 'Steuervorteile nutzen',
-      description: 'Profitieren Sie von erheblichen Steuerentlastungen durch Abschreibungen und Werbungskosten. Mit unserer Expertise maximieren Sie Ihre Steuervorteile und optimieren Ihre Netto-Rendite.',
+      title: t('solution.taxBenefits.title'),
+      description: t('solution.taxBenefits.description'),
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -62,8 +64,8 @@ const Solution = () => {
     },
     {
       id: 3,
-      title: 'Stabile Rendite',
-      description: 'Erzielen Sie attraktive Mietrenditen von 3-5% p.a. plus Wertsteigerungspotential. Unsere ausgewählten Immobilien in erstklassigen Lagen sichern Ihnen stabile Erträge auch in unsicheren Zeiten.',
+      title: t('solution.stableReturns.title'),
+      description: t('solution.stableReturns.description'),
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M22 12H18L15 21L9 3L6 12H2" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -72,8 +74,8 @@ const Solution = () => {
     },
     {
       id: 4,
-      title: 'Inflationsschutz',
-      description: 'Schützen Sie Ihr Vermögen vor Inflation. Immobilien bieten einen natürlichen Inflationsschutz, da Mieten und Immobilienwerte in der Regel mit der Inflation steigen.',
+      title: t('solution.inflationProtection.title'),
+      description: t('solution.inflationProtection.description'),
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 1V23" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -83,8 +85,8 @@ const Solution = () => {
     },
     {
       id: 5,
-      title: 'Vermögensübertragung',
-      description: 'Planen Sie Ihren Vermögensaufbau generationenübergreifend. Immobilien bieten exzellente Möglichkeiten zur steueroptimierten Vermögensübertragung an Ihre Nachkommen.',
+      title: t('solution.wealthTransfer.title'),
+      description: t('solution.wealthTransfer.description'),
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 8H17C16.4696 8 15.9609 8.21071 15.5858 8.58579C15.2107 8.96086 15 9.46957 15 10V21H3V10C3 9.46957 3.21071 8.96086 3.58579 8.58579C3.96086 8.21071 4.46957 8 5 8H4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -97,8 +99,8 @@ const Solution = () => {
     },
     {
       id: 6,
-      title: 'Langfristiger Vermögensaufbau',
-      description: 'Profitieren Sie vom Hebeleffekt durch Fremdkapital und bauen Sie systematisch Vermögen auf. Unsere Strategie zielt auf nachhaltiges Wachstum und kontinuierliche Wertsteigerung.',
+      title: t('solution.longTermWealth.title'),
+      description: t('solution.longTermWealth.description'),
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -141,8 +143,8 @@ const Solution = () => {
       <div className="solution-container">
         {/* Überschrift im gleichen Stil wie Problem.jsx */}
         <h1 className="section-heading">
-          <span className="solution-title-box">Die Lösung</span>
-          <span className="solution-subtitle">für nachhaltigen Vermögensaufbau</span>
+          <span className="solution-title-box">{t('solution.title')}</span>
+          <span className="solution-subtitle">{t('solution.subtitle')}</span>
         </h1>
 
         <div className="solutions-grid">
@@ -166,12 +168,11 @@ const Solution = () => {
         </div>
 
         <div className="cta-container fade-in" ref={ctaRef}>
-          <h2 className="cta-title">Starten Sie jetzt Ihren Vermögensaufbau mit Immobilien</h2>
+          <h2 className="cta-title">{t('solution.ctaTitle')}</h2>
           <p className="cta-text">
-            Unsere Immobilienstrategie bietet Ihnen eine sichere, renditestarke und steueroptimierte Möglichkeit, 
-            Vermögen aufzubauen und langfristig für Ihre Altersvorsorge vorzusorgen. Profitieren Sie von unserem Experten-Netzwerk.
+            {t('solution.ctaText')}
           </p>
-          <button className="cta-button">Jetzt Beratungstermin vereinbaren</button>
+          <button className="cta-button">{t('solution.ctaButton')}</button>
         </div>
       </div>
     </section>

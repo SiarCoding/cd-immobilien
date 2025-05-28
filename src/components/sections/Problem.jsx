@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Problem.css';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 // Kupfer-Effekt Komponente
 const CopperBlurEffect = () => (
@@ -18,6 +19,7 @@ const CopperBlurEffect = () => (
 );
 
 const Problem = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef(null);
   const graphContainerRefs = useRef([]);
   const descriptionContainerRefs = useRef([]);
@@ -28,10 +30,10 @@ const Problem = () => {
   const problemCards = [
     {
       id: 1,
-      title: "Niedrige Renditen",
-      subtitle: "Gefahr durch negative Realzinsen",
-      highlight: "Verfehlte finanzielle Ziele",
-      description: "Allein durch regelmäßiges Sparen in Versicherungs- und Bankprodukte läuft man Gefahr, seine finanziellen Ziele erheblich zu verfehlen. Egal ob mit Aktiensparen oder Versicherungssparen. Hohe Verwaltungskosten und falsche Risikoeinschätzung führen nach Berücksichtigung der drohenden Inflation zu negativen Realzinsen oder zu massiven Verlusten.",
+      title: t('problem.lowReturns.title'),
+      subtitle: t('problem.lowReturns.subtitle'),
+      highlight: t('problem.lowReturns.highlight'),
+      description: t('problem.lowReturns.description'),
       // Pfad für einen abfallenden Trend
       graphPath: "M10,50 C60,70 100,90 200,100 C300,110 350,150 400,180",
       dataPoints: [
@@ -44,10 +46,10 @@ const Problem = () => {
     },
     {
       id: 2,
-      title: "Rentenlücke",
-      subtitle: "Altersarmut als drohende Realität",
-      highlight: "Damoklesschwert der Altersarmut",
-      description: "Die Altersarmut als Konsequenz des Nichthandelns während unserer Erwerbsjahre schwebt wie ein Damoklesschwert über uns. Immer mehr Rentner belasten die Rentenkassen. Gleichzeitig zahlen immer weniger Menschen in die Kassen ein. Die Folge: Altersarmut und Entwertung durch Inflation.",
+      title: t('problem.pensionGap.title'),
+      subtitle: t('problem.pensionGap.subtitle'),
+      highlight: t('problem.pensionGap.highlight'),
+      description: t('problem.pensionGap.description'),
       // Pfad für einen anderen abfallenden Trend
       graphPath: "M10,60 C90,100 150,110 250,150 C300,180 350,190 400,220",
       dataPoints: [
@@ -60,10 +62,10 @@ const Problem = () => {
     },
     {
       id: 3,
-      title: "Inflationsdruck",
-      subtitle: "Herausforderungen der Rentenversicherung",
-      highlight: "Private Vorsorge als Schlüssel",
-      description: "Die deutsche Rentenversicherung steht vor enormen Herausforderungen. Viele Arbeitnehmer werden im Alter nicht genug zum Leben haben. Private Vorsorge durch Investitionen in diverse Immobilien ist daher ein unerlässlicher Finanzbaustein, um seinen Lebensstil auch im Rentenalter zu bewahren und abzusichern.",
+      title: t('problem.inflation.title'),
+      subtitle: t('problem.inflation.subtitle'),
+      highlight: t('problem.inflation.highlight'),
+      description: t('problem.inflation.description'),
       // Pfad für einen steil abfallenden Trend
       graphPath: "M10,40 C60,90 120,130 200,160 C280,180 350,210 400,240",
       dataPoints: [
@@ -76,10 +78,10 @@ const Problem = () => {
     },
     {
       id: 4,
-      title: "Langlebigkeitsrisiko",
-      subtitle: "Unzureichende Rentenzahlungen",
-      highlight: "Gefahr der Altersarmut",
-      description: "Rentenzahlungen und Ersparnisse reichen oft nicht bis zum Lebensende aus, da Einkünfte, Leistungen und Bezüge im Rentenalter häufig nicht mit der Inflation Schritt halten. Im Gegenteil, die Folge ist Altersarmut und homöopathische Rentenzahlungen.",
+      title: t('problem.longevity.title'),
+      subtitle: t('problem.longevity.subtitle'),
+      highlight: t('problem.longevity.highlight'),
+      description: t('problem.longevity.description'),
       // Pfad für einen abfallenden Trend (umgekehrt)
       graphPath: "M10,40 C90,60 150,90 250,120 C300,150 350,180 400,200",
       dataPoints: [
@@ -103,6 +105,97 @@ const Problem = () => {
     // Initial check
     checkMobileView();
 
+    // KRITISCHE MOBILE GRAPH-FIXES
+    const forceMobileGraphDisplay = () => {
+      const isMobile = window.innerWidth <= 992;
+      
+      if (isMobile) {
+        // Alle mobilen Graphen finden und forcieren
+        const mobileGraphs = document.querySelectorAll('.mobile-graph-simple');
+        
+        mobileGraphs.forEach((graph, index) => {
+          if (graph) {
+            // Alle möglichen versteckenden Eigenschaften überschreiben
+            const forceStyles = {
+              display: 'block',
+              visibility: 'visible',
+              opacity: '1',
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+              zIndex: '200',
+              overflow: 'visible',
+              clip: 'none',
+              clipPath: 'none',
+              mask: 'none',
+              transform: 'none',
+              filter: 'none',
+              pointerEvents: 'auto',
+              // Elegante transparente Hintergründe
+              background: 'transparent',
+              border: 'none'
+            };
+            
+            Object.assign(graph.style, forceStyles);
+            
+            // SVG-Element forcieren
+            const svg = graph.querySelector('svg');
+            if (svg) {
+              Object.assign(svg.style, {
+                display: 'block',
+                visibility: 'visible',
+                opacity: '1',
+                width: '100%',
+                height: '100%',
+                overflow: 'visible',
+                background: 'transparent',
+                border: 'none'
+              });
+              
+              // SVG-Pfad forcieren
+              const path = svg.querySelector('path');
+              if (path) {
+                Object.assign(path.style, {
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: '1',
+                  stroke: '#b87333', // Elegante Kupferfarbe
+                  strokeWidth: '2.5px', // Dünne elegante Linie
+                  strokeOpacity: '1',
+                  fill: 'none',
+                  strokeLinecap: 'round', // Runde Linienenden
+                  strokeLinejoin: 'round' // Runde Verbindungen
+                });
+              }
+            }
+          }
+        });
+
+        // Auch alle Graph-Visualisierung-Container überprüfen
+        const graphVisualizations = document.querySelectorAll('.graph-visualization');
+        graphVisualizations.forEach((viz, index) => {
+          Object.assign(viz.style, {
+            overflow: 'visible',
+            position: 'relative',
+            minHeight: '250px',
+            display: 'block',
+            visibility: 'visible',
+            opacity: '1'
+          });
+        });
+      }
+    };
+
+    // Sofort ausführen
+    forceMobileGraphDisplay();
+    
+    // Nach kurzer Verzögerung nochmals ausführen
+    setTimeout(forceMobileGraphDisplay, 100);
+    setTimeout(forceMobileGraphDisplay, 500);
+    setTimeout(forceMobileGraphDisplay, 1000);
+
     if (!isMobileView) {
       // Desktop: Normale Scroll-Animation
       const observerOptions = {
@@ -115,8 +208,6 @@ const Problem = () => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-in');
-            // Ensure class is removed if element is not intersecting and we want re-animation
-            // For now, it only adds the class and unobserves, so it animates once.
             obs.unobserve(entry.target);
           }
         });
@@ -145,12 +236,11 @@ const Problem = () => {
       };
     } else {
       // Mobile view: Ensure any existing observer is disconnected
-      // and remove 'animate-in' class if elements might have had it from desktop view.
       if (observerRef.current) {
         observerRef.current.disconnect();
         observerRef.current = null;
       }
-      // Optionally, remove 'animate-in' class from elements if they were previously observed
+      // Remove 'animate-in' class from elements if they were previously observed
       const elementsToReset = [
         ...graphContainerRefs.current.filter(el => el),
         ...descriptionContainerRefs.current.filter(el => el)
@@ -178,8 +268,8 @@ const Problem = () => {
       
       <div className="problem-container">
         <h1 className="section-heading">
-          <span className="problem-title-box">Die Probleme</span>
-          <span className="problem-subtitle">der traditionellen Altersvorsorge</span>
+          <span className="problem-title-box">{t('problem.title')}</span>
+          {t('problem.subtitle')}
         </h1>
 
         <div className="problem-cards-container">
@@ -208,8 +298,8 @@ const Problem = () => {
                     <div className="grid-line"></div>
                   </div>
 
-                  {/* Graph Linien */}
-                  <div className="graph-lines">
+                  {/* Desktop Graph Linien */}
+                  <div className="graph-lines desktop-graph">
                     <svg className="graph-svg" viewBox="0 0 400 250" preserveAspectRatio="none">
                       {/* Kupferne Linie für den Trend */}
                       <path 
@@ -219,19 +309,22 @@ const Problem = () => {
                         strokeWidth="3"
                         className="graph-path copper-path"
                       />
-
-                      {/* Datenpunkte für die Linie */}
-                      {card.dataPoints.map((point, i) => (
-                        <circle 
-                          key={i}
-                          cx={point.cx} 
-                          cy={point.cy} 
-                          r="5" 
-                          fill="#e2ac6b" 
-                          className="data-point"
-                        />
-                      ))}
                     </svg>
+                  </div>
+
+                  {/* Mobile Graph Linien - Vereinfachte Version */}
+                  <div className="graph-lines mobile-graph">
+                    <div className="mobile-graph-simple">
+                      <svg width="100%" height="100%" viewBox="0 0 400 250" style={{display: 'block', visibility: 'visible', opacity: 1}}>
+                        <path 
+                          d={card.graphPath} 
+                          fill="none"
+                          stroke="#b87333"
+                          strokeWidth="4"
+                          style={{display: 'block', visibility: 'visible', opacity: 1}}
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -251,7 +344,7 @@ const Problem = () => {
         {/* CTA-Bereich */}
         <div ref={ctaRef} className="problem-cta">
           <button className="problem-button">
-            Mehr über Immobilieninvestments erfahren
+            {t('problem.cta')}
           </button>
         </div>
       </div>
