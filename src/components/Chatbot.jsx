@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Chatbot.css';
-import chatbotAvatar from '../assets/chatbot-azim.png';
-import logoImg from '../assets/logo-csd.png';
+import chatbotAvatar from '../assets/chatbot-azim.webp';
+import logoImg from '../assets/logo-csd.webp';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Chatbot = () => {

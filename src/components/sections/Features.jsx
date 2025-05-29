@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/Features.css';
-import apartmentBg from '../../assets/apartment.png';
+import apartmentBg from '../../assets/apartment.webp';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, 
   Tooltip, ResponsiveContainer, Legend 

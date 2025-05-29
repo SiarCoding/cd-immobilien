@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/About.css";
-import planingImage from "../../assets/planing.jpg";
-import planing2Image from "../../assets/planing2.jpg";
+import planingImage from '../../assets/planing.webp';
+import planing2Image from '../../assets/planing2.webp';
 import { useLanguage } from "../../contexts/LanguageContext";
 
 const About = () => {

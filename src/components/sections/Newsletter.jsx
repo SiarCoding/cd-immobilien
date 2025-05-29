@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/Newsletter.css";
 import { Check } from "lucide-react";
-import iphoneMockup from "../../assets/leitfaden-banner.png"; // Pfad anpassen, falls nötig
+import iphoneMockup from '../../assets/leitfaden-banner.webp'; // Pfad anpassen, falls nötig
 import { useLanguage } from "../../contexts/LanguageContext";
 
 const Newsletter = () => {

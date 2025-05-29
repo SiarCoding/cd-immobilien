@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Solution.css';
-import apartmentBg from '../../assets/team.jpg';
+import apartmentBg from '../../assets/team.webp';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const Solution = () => {

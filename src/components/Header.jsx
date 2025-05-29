@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/Header.css";
-import logo from "../assets/logo-csd.png";
+import logo from '../assets/logo-csd.webp';
 import { HoverButton } from "./ui/animated-hover-button";
 import "../styles/AnimatedButton.css";
 import { Link } from "react-router-dom";

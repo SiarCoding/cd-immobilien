@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundImage from "../assets/neubauazim.png";
+import backgroundImage from '../assets/neubauazim.webp';
 import "../styles/BackgroundVideo.css";
 
 const BackgroundVideo = () => (

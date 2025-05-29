@@ -42,7 +42,7 @@ const Testimonials = () => {
               {t('blog.testimonials.michael.text')}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/michael.png")} className="author-image" alt={t('blog.testimonials.michael.alt')} />
+              <img src={require('../../assets/michael.webp')} className="author-image" alt={t('blog.testimonials.michael.alt')} />
               <div className="author-info">
                 <div className="author-name">{t('blog.testimonials.michael.name')}</div>
                 <div className="author-title">{t('blog.testimonials.michael.title')}</div>
@@ -77,7 +77,7 @@ const Testimonials = () => {
               {t('blog.testimonials.sarah.text')}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/sarahh.png")} className="author-image" alt={t('blog.testimonials.sarah.alt')} />
+              <img src={require('../../assets/sarahh.webp')} className="author-image" alt={t('blog.testimonials.sarah.alt')} />
               <div className="author-info">
                 <div className="author-name">{t('blog.testimonials.sarah.name')}</div>
                 <div className="author-title">{t('blog.testimonials.sarah.title')}</div>
@@ -112,7 +112,7 @@ const Testimonials = () => {
               {t('blog.testimonials.thomas.text')}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/thomas.png")} className="author-image" alt={t('blog.testimonials.thomas.alt')} />
+              <img src={require('../../assets/thomas.webp')} className="author-image" alt={t('blog.testimonials.thomas.alt')} />
               <div className="author-info">
                 <div className="author-name">{t('blog.testimonials.thomas.name')}</div>
                 <div className="author-title">{t('blog.testimonials.thomas.title')}</div>

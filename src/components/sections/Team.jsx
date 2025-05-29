@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import '../../styles/Team.css';
 import { useLanguage } from '../../contexts/LanguageContext';
 // Importiere die Bilder aus dem assets-Ordner
-import thaiImage from '../../assets/panadda.jpg';
-import azimchoudryImage from '../../assets/azim3.jpg';
-import chrisImage from '../../assets/chris.jpg';
-import gavinoImage from '../../assets/gavino.jpg';
-import mauriceImage from '../../assets/maurice.jpg';
+import thaiImage from '../../assets/panadda.webp';
+import azimchoudryImage from '../../assets/azim3.webp';
+import chrisImage from '../../assets/chris.webp';
+import gavinoImage from '../../assets/gavino.webp';
+import mauriceImage from '../../assets/maurice.webp';
 
 // Kupfer-Effekt Komponente
 const CopperBlurEffect = () => (

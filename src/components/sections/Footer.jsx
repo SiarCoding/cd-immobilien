@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/Footer.css";
-import logo from "../../assets/logo-csd.png";
+import logo from '../../assets/logo-csd.webp';
 import { useLanguage } from "../../contexts/LanguageContext";
 
 const Footer = () => {
