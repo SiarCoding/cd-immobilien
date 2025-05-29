@@ -54,7 +54,7 @@
 }
 
 .logo-image {
-  height: 50px;
+  height: 45px;
   width: auto;
   object-fit: contain;
   transition: all 0.3s ease;
@@ -96,7 +96,7 @@
 
 .nav-item {
   color: #c7d5d3;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
@@ -138,12 +138,12 @@
 }
 
 .header-action-button {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 8px 16px;
+  font-size: 15px;
   font-weight: 500;
   border-radius: 8px;
-  min-width: 180px;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  min-width: 160px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   transition: all 0.3s ease;
   z-index: 9999 !important;
 }
@@ -161,7 +161,7 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
   padding: 8px 12px;
@@ -194,17 +194,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #b87333, #e0ac69);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
 }
 
 .language-text {
   display: block;
   font-size: 14px;
   font-weight: 700;
-  color: #b87333;
+  color: #ffffff;
 }
 
 .language-dropdown-menu {
@@ -227,7 +224,7 @@
 .language-item {
   padding: 12px 18px;
   color: #fff;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -337,7 +334,7 @@
 
 .mobile-nav-item {
   color: #fff;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
   text-decoration: none;

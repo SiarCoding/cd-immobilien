@@ -50,8 +50,9 @@
 .investment-section .section-heading {
   color: #333;
   font-size: 48px;
-  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 800;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
   line-height: 1.2;
   text-align: center;
   margin-bottom: 20px;
@@ -87,8 +88,9 @@
 
 .investment-section .section-text {
   color: #5d6462;
-  font-family: 'Outfit', -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 18px;
+  font-weight: 400;
   line-height: 1.6;
   margin-bottom: 10px;
 }
@@ -133,9 +135,9 @@
 
 .investment-section .feature-text {
   color: #000 !important;
-  font-family: 'Outfit', -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px !important;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .copper-features .feature-text {
@@ -170,17 +172,19 @@
 
 .chart-title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   color: #fff;
   margin: 0 0 8px 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
 }
 
 .chart-subtitle {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
-  font-family: 'Outfit', -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .chart-wrapper {

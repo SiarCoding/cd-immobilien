@@ -35,8 +35,9 @@
   display: flex;
   align-items: center;
   font-size: 48px;
-  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 800;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
   line-height: 1.2;
   text-align: center;
   margin-bottom: 40px;
@@ -55,14 +56,14 @@
   border-radius: 6px;
   white-space: nowrap;
   box-shadow: 0 5px 15px rgba(184, 115, 51, 0.4);
-  font-weight: 800;
+  font-weight: 600;
   margin-right: 15px;
 }
 
 /* Text "für finanzielle Unabhängigkeit" */
 .solution-subtitle {
   color: white;
-  font-weight: 800;
+  font-weight: 400;
 }
 
 @keyframes shine-copper {
@@ -156,10 +157,12 @@
 
 .solution-card-title {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
   color: white; /* Weiße Überschrift für dunklen Hintergrund */
   flex: 1;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
 }
 
 .solution-card-body {
@@ -174,6 +177,8 @@
   color: rgba(255, 255, 255, 0.9); /* Leicht transparentes Weiß für bessere Lesbarkeit */
   line-height: 1.6;
   margin: 0;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 /* CTA Section */
@@ -191,9 +196,11 @@
 
 .cta-title {
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 20px;
   color: #fff; /* Weiße Farbe explizit festlegen */
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
 }
 
 .cta-text {
@@ -202,6 +209,8 @@
   margin: 0 auto 30px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .cta-button {
@@ -210,11 +219,12 @@
   border: none;
   padding: 15px 30px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .cta-button:hover {
