@@ -42,11 +42,12 @@
 
 .team-section .section-title {
   font-size: 48px;
-  font-weight: 800;
+  font-weight: 400;
   color: #fff;
   text-align: center;
   margin-bottom: 20px;
   font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
   line-height: 1.2;
   position: relative;
   z-index: 10;
@@ -60,13 +61,13 @@
 
 .team-section .section-title > span:not(.highlight-copper) {
   color: #fff;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .team-section .underlined-copper-special {
   position: relative;
   display: inline-block;
-  font-weight: 700;
+  font-weight: 400;
   color: #fff;
 }
 
@@ -92,7 +93,7 @@
   white-space: nowrap;
   transition: transform 0.3s ease;
   z-index: 10;
-  font-weight: 900;
+  font-weight: 600;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
@@ -134,6 +135,8 @@
   color: rgba(255, 255, 255, 0.9);
   font-size: 20px;
   line-height: 1.6;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .team-members-grid {
@@ -272,9 +275,11 @@
 
 .member-name {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 500;
   margin: 0 0 5px;
   color: white;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
 }
 
 .member-position {
@@ -282,6 +287,7 @@
   color: #e2ac6b;
   margin: 0 0 15px;
   font-weight: 500;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .separator {
@@ -297,6 +303,8 @@
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
   flex-grow: 1;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .team-cta {
@@ -310,12 +318,13 @@
   border: none;
   padding: 16px 36px;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 8px 20px rgba(184, 115, 51, 0.3);
   will-change: transform;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .team-button:hover {

@@ -70,8 +70,9 @@
   color: #fff;
   font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 42px;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.2;
+  letter-spacing: -0.025em;
   margin-bottom: 24px;
 }
 
@@ -94,7 +95,7 @@
 
 .newsletter-description {
   color: rgba(255, 255, 255, 0.9);
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
@@ -127,8 +128,10 @@
 
 .feature-text {
   color: #ffffff !important;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .newsletter-features .feature-item .feature-text {
@@ -145,48 +148,62 @@
   flex-direction: column;
   width: 100%;
   align-items: stretch;
-  gap: 16px;
-  font-family: Outfit, -apple-system, Roboto, Helvetica, sans-serif;
+  gap: 20px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 400;
 }
 
 .name-input, .phone-input, .email-input {
   flex: 1;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  height: 120px;
-  padding: 0 36px;
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
+  height: 36px;
   width: 100%;
-  font-size: 22px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
 }
 
 .name-input::placeholder, .phone-input::placeholder, .email-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
-.name-input:hover, .name-input:focus, .phone-input:hover, .phone-input:focus {
-  border-color: rgba(184, 115, 51, 0.7);
-  box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.2);
+.name-input:focus, .phone-input:focus, .email-input:focus {
+  border-color: rgba(184, 115, 51, 0.8);
   outline: none;
-  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.2);
+}
+
+.name-input:hover, .phone-input:hover, .email-input:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.name-input:disabled, .phone-input:disabled, .email-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .subscribe-btn {
   width: 100%;
   margin-top: 8px;
-  border-radius: 50px;
+  border-radius: 12px;
   background: linear-gradient(90deg, #b87333, #e2ac6b);
-  height: 54px;
+  height: 60px;
   padding: 0 30px;
   color: #fff;
   font-weight: 600;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
   cursor: pointer;
   white-space: nowrap;
   display: flex;
@@ -208,6 +225,9 @@
   margin-top: 15px;
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .highlight-price {
@@ -291,5 +311,20 @@
   
   .iphone-mockup {
     width: 80%;
+  }
+  
+  .name-input, .phone-input, .email-input {
+    height: 50px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+  
+  .name-input::placeholder, .phone-input::placeholder, .email-input::placeholder {
+    font-size: 14px;
+  }
+  
+  .subscribe-btn {
+    height: 50px;
+    font-size: 14px;
   }
 }

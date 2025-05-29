@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/Faq.css";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { PhoneCall, ChevronDown } from "lucide-react";
 
 const Faq = () => {
   const { t } = useLanguage();
@@ -15,39 +16,53 @@ const Faq = () => {
 
   return (
     <div className="faq-section">
-      <div className="centered-content">
-        <div className="faq-header">
-          <div className="section-heading">{t('faq.title')}</div>
-          <div className="section-text">
-            {t('faq.subtitle')}
+      <div className="faq-container">
+        <div className="faq-grid">
+          {/* Left Column - Content */}
+          <div className="faq-content">
+            <div className="faq-content-inner">
+              <div className="faq-text-content">
+                <h2 className="faq-title">
+                  {t('faq.title')}
+                </h2>
+                <p className="faq-description">
+                  {t('faq.subtitle')}
+                </p>
+              </div>
+              <button className="faq-contact-btn">
+                <span>{t('faq.button')}</span>
+                <PhoneCall className="faq-btn-icon" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column - FAQ Accordion */}
+          <div className="faq-accordion">
+            {faqData.map((faq, index) => (
+              <div 
+                key={index} 
+                className={`faq-item ${expandedIndex === index ? 'faq-item-expanded' : ''}`}
+              >
+                <button 
+                  className="faq-trigger"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <span className="faq-question-text">
+                    {faq.question}
+                  </span>
+                  <ChevronDown 
+                    className={`faq-chevron ${expandedIndex === index ? 'faq-chevron-rotated' : ''}`}
+                  />
+                </button>
+                <div className={`faq-content-wrapper ${expandedIndex === index ? 'faq-content-expanded' : ''}`}>
+                  <div className="faq-answer">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-      <div className="faq-container">
-        <div className="faq-list">
-          {faqData.map((faq, index) => (
-            <div 
-              key={index} 
-              className={`faq-item ${expandedIndex === index ? 'faq-item-expanded' : ''}`}
-              onClick={() => toggleFaq(index)}
-            >
-              <div className="faq-question">
-                <div className="faq-question-text">
-                  {faq.question}
-                </div>
-                <div className={expandedIndex === index ? 'faq-minus-icon' : 'faq-plus-icon'}></div>
-              </div>
-              {expandedIndex === index && (
-                <div className="faq-answer">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <button className="contact-btn">
-          {t('faq.button')}
-        </button>
       </div>
     </div>
   );
