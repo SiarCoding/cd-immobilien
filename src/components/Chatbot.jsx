@@ -45,10 +45,10 @@ const Chatbot = () => {
         setMessages([
           { 
             text: "Willkommen beim Kundenservice von CD Immobilien Portfolio GmbH! Ich bin die digitale Assistentin und helfe Ihnen gerne bei Fragen zu Immobilieninvestitionen, Steuervorteilen und Vermögensaufbau weiter.", 
-            sender: 'bot' 
-          }
-        ]);
-        setIsTyping(false);
+                sender: 'bot' 
+              }
+            ]);
+            setIsTyping(false);
       }, 1500);
     }
   }, [isOpen, messages.length]);

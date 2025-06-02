@@ -383,6 +383,11 @@
 @media (max-width: 768px) {
   .kontakt-section {
     padding: 100px 0 80px;
+    background-image: url('../assets/office.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
   }
   
   .kontakt-container {
@@ -416,6 +421,11 @@
 @media (max-width: 480px) {
   .kontakt-section {
     padding: 80px 0 70px;
+    background-image: url('../assets/office.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
   }
   
   .section-heading {

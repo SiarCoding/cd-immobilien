@@ -923,12 +923,19 @@ const translations = {
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('DE');
 
-  const t = (path) => {
+  const t = (path, interpolations = {}) => {
     const keys = path.split('.');
     let value = translations[language];
     
     for (const key of keys) {
       value = value?.[key];
+    }
+    
+    // Handle string interpolation
+    if (typeof value === 'string' && interpolations) {
+      return value.replace(/\{(\w+)\}/g, (match, key) => {
+        return interpolations[key] || match;
+      });
     }
     
     return value || path;

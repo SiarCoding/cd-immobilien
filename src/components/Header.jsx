@@ -15,6 +15,15 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const btnRef = useRef(null);
+  const langRef = useRef(null);
+  const langBtnRef = useRef(null);
+  const mobileLangRef = useRef(null);
+  const mobileLangBtnRef = useRef(null);
+  
+  // Synchronisiere selectedLanguage mit language aus Context
+  useEffect(() => {
+    setSelectedLanguage(language);
+  }, [language]);
   
   // Smooth scroll function für Anchor-Links
   const scrollToSection = (sectionId) => {
@@ -53,38 +62,78 @@ const Header = () => {
     };
   }, [isScrolled]);
   
-  // Klick außerhalb des Menüs erkennen und Menü schließen
+  // Verbesserte Klick-außerhalb-Erkennung für Mobile Menu und Language Dropdown
   useEffect(() => {
     const handleOutsideClick = (e) => {
+      // Prüfe Mobile Menu (aber nicht Language Dropdown)
       if (
         isMobileMenuOpen && 
         menuRef.current && 
         !menuRef.current.contains(e.target) &&
         btnRef.current && 
-        !btnRef.current.contains(e.target)
+        !btnRef.current.contains(e.target) &&
+        langRef.current &&
+        !langRef.current.contains(e.target) &&
+        langBtnRef.current &&
+        !langBtnRef.current.contains(e.target) &&
+        mobileLangRef.current &&
+        !mobileLangRef.current.contains(e.target) &&
+        mobileLangBtnRef.current &&
+        !mobileLangBtnRef.current.contains(e.target)
       ) {
         setIsMobileMenuOpen(false);
+      }
+      
+      // Prüfe Desktop Language Dropdown separat
+      if (
+        isLangDropdownOpen &&
+        langRef.current &&
+        !langRef.current.contains(e.target) &&
+        langBtnRef.current &&
+        !langBtnRef.current.contains(e.target) &&
+        mobileLangRef.current &&
+        !mobileLangRef.current.contains(e.target) &&
+        mobileLangBtnRef.current &&
+        !mobileLangBtnRef.current.contains(e.target)
+      ) {
+        setIsLangDropdownOpen(false);
       }
     };
     
     document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isLangDropdownOpen]);
   
-  const toggleLangDropdown = () => {
+  const toggleLangDropdown = (e) => {
+    e.stopPropagation();
     setIsLangDropdownOpen(!isLangDropdownOpen);
   };
   
-  const selectLanguage = (lang) => {
+  const selectLanguage = (lang, e) => {
+    e.stopPropagation();
+    console.log('Changing language to:', lang); // Debug log
     setSelectedLanguage(lang);
     changeLanguage(lang);
     setIsLangDropdownOpen(false);
+    
+    // Schließe auch das Mobile Menu wenn eine Sprache gewählt wird
+    if (isMobileMenuOpen) {
+      setTimeout(() => {
+        setIsMobileMenuOpen(false);
+      }, 300); // Kurze Verzögerung für bessere UX
+    }
   };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Schließe Language Dropdown wenn Mobile Menu geöffnet wird
+    if (!isMobileMenuOpen) {
+      setIsLangDropdownOpen(false);
+    }
   };
 
   const closeMobileMenu = () => {
@@ -151,8 +200,8 @@ const Header = () => {
                     </HoverButton>
                   </Link>
                   
-                  <div className="language-selector">
-                    <div className="language-selected" onClick={toggleLangDropdown}>
+                  <div className="language-selector" ref={langRef}>
+                    <div className="language-selected" onClick={toggleLangDropdown} ref={langBtnRef}>
                       <div className="language-wrapper">
                         <div className="language-icon">
                           <span className="current-flag">
@@ -171,14 +220,14 @@ const Header = () => {
                       <div className="language-dropdown-menu">
                         <div 
                           className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
-                          onClick={() => selectLanguage('DE')}
+                          onClick={(e) => selectLanguage('DE', e)}
                         >
                           <span className="flag-icon">🇩🇪</span>
                           <span>Deutsch</span>
                         </div>
                         <div 
                           className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
-                          onClick={() => selectLanguage('EN')}
+                          onClick={(e) => selectLanguage('EN', e)}
                         >
                           <span className="flag-icon">🇬🇧</span>
                           <span>English</span>
@@ -251,8 +300,8 @@ const Header = () => {
                 </Link>
 
                 <div className="mobile-language-section">
-                  <div className="language-selector">
-                    <div className="language-selected" onClick={toggleLangDropdown}>
+                  <div className="language-selector mobile-language-selector" ref={mobileLangRef}>
+                    <div className="language-selected" onClick={toggleLangDropdown} ref={mobileLangBtnRef}>
                       <div className="language-wrapper">
                         <div className="language-icon">
                           <span className="current-flag">
@@ -268,17 +317,17 @@ const Header = () => {
                       </div>
                     </div>
                     {isLangDropdownOpen && (
-                      <div className="language-dropdown-menu">
+                      <div className="language-dropdown-menu mobile-language-dropdown">
                         <div 
                           className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
-                          onClick={() => selectLanguage('DE')}
+                          onClick={(e) => selectLanguage('DE', e)}
                         >
                           <span className="flag-icon">🇩🇪</span>
                           <span>Deutsch</span>
                         </div>
                         <div 
                           className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
-                          onClick={() => selectLanguage('EN')}
+                          onClick={(e) => selectLanguage('EN', e)}
                         >
                           <span className="flag-icon">🇬🇧</span>
                           <span>English</span>

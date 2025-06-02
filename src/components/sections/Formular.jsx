@@ -134,18 +134,6 @@ const Formular = () => {
             style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
           />
         </div>
-        <div className="progress-steps-modern">
-          {[1, 2, 3].map((step) => (
-            <div 
-              key={step} 
-              className={`progress-step-modern ${currentStep >= step ? 'active' : ''} ${currentStep > step ? 'completed' : ''}`}
-            >
-              <div className="step-circle-modern">
-                {currentStep > step ? <Check size={16} /> : step}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
       <p className="progress-text">
         {t('formular.progress', { current: currentStep, total: totalSteps })}

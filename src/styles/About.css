@@ -254,6 +254,15 @@
     gap: 40px;
   }
   
+  /* Mobile: Zweiter Abschnitt - Text zuerst, dann Bild (wie beim ersten) */
+  .second-content .about-text-container {
+    order: 1;
+  }
+  
+  .second-content .about-image-container {
+    order: 2;
+  }
+  
   .about-text-container,
   .about-image-container {
     max-width: 100%;
