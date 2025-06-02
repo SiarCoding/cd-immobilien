@@ -2,6 +2,14 @@
 .solution-section {
   position: relative;
   /*background-color: #f8f9fa;*/ /* Hintergrund wurde nach JSX verschoben */
+  
+  /* Background Image Properties - Desktop uses team.webp */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/team.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
   color: white; /* Textfarbe auf weiß geändert für dunklen Hintergrund */
   padding: 80px 20px 100px;
   overflow: hidden;
@@ -213,24 +221,29 @@
   font-weight: 400;
 }
 
-.cta-button {
-  background-color: #b87333;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  border-radius: 5px;
+/* CTA Button - Spezifischer Selektor um Features.css zu überschreiben */
+.solution-section .cta-container .cta-button {
+  background-color: #b87333 !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 28px !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
-  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3) !important;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif !important;
+  display: inline-block !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
 }
 
-.cta-button:hover {
-  background-color: #e2ac6b;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(184, 115, 51, 0.4);
+.solution-section .cta-container .cta-button:hover {
+  background-color: #d08c45 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 15px rgba(184, 115, 51, 0.4) !important;
 }
 
 /* Animation Classes */
@@ -247,6 +260,13 @@
 
 /* Responsive Styles */
 @media (max-width: 992px) {
+  .solution-section {
+    background-attachment: scroll;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.png');
+    background-size: cover;
+    background-position: center center;
+  }
+  
   .solution-section .section-heading {
     flex-direction: column;
     align-items: center;
@@ -270,6 +290,10 @@
 @media (max-width: 768px) {
   .solution-section {
     padding: 60px 15px;
+    background-attachment: scroll;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.png');
+    background-size: cover;
+    background-position: center center;
   }
   
   .solution-title-box, 
@@ -293,6 +317,10 @@
 @media (max-width: 480px) {
   .solution-section {
     padding: 60px 15px 80px;
+    background-attachment: scroll;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.png');
+    background-size: cover;
+    background-position: center center;
   }
   
   .solution-title-box, 
@@ -300,7 +328,9 @@
     font-size: 28px;
   }
   
-  .cta-button {
-    width: 100%;
+  .solution-section .cta-container .cta-button {
+    width: 100% !important;
+    padding: 10px 24px !important;
+    font-size: 0.9rem !important;
   }
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../styles/Faq.css";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { PhoneCall, ChevronDown } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 const Faq = () => {
   const { t } = useLanguage();
@@ -29,10 +30,12 @@ const Faq = () => {
                   {t('faq.subtitle')}
                 </p>
               </div>
-              <button className="faq-contact-btn">
-                <span>{t('faq.button')}</span>
-                <PhoneCall className="faq-btn-icon" />
-              </button>
+              <Link to="/formular">
+                <button className="faq-contact-btn">
+                  <span>{t('faq.button')}</span>
+                  <PhoneCall className="faq-btn-icon" />
+                </button>
+              </Link>
             </div>
           </div>
 

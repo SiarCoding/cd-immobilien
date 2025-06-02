@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Team.css';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 // Importiere die Bilder aus dem assets-Ordner
 import thaiImage from '../../assets/panadda.webp';
 import azimchoudryImage from '../../assets/azim3.webp';
-import chrisImage from '../../assets/chris.webp';
+import chrisImage from '../../assets/chris2.jpg';
 import gavinoImage from '../../assets/gavino.webp';
 import mauriceImage from '../../assets/maurice.webp';
 
@@ -188,9 +189,11 @@ const Team = () => {
         </div>
         
         <div className="team-cta">
-          <button className="team-button">
-            {t('team.cta')}
-          </button>
+          <Link to="/formular">
+            <button className="team-button">
+              {t('team.cta')}
+            </button>
+          </Link>
         </div>
       </div>
     </section>

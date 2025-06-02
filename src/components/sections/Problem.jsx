@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Problem.css';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 
 // Kupfer-Effekt Komponente
 const CopperBlurEffect = () => (
@@ -269,7 +270,7 @@ const Problem = () => {
       <div className="problem-container">
         <h1 className="section-heading">
           <span className="problem-title-box">{t('problem.title')}</span>
-          {t('problem.subtitle')}
+          <span className="problem-subtitle">{t('problem.subtitle')}</span>
         </h1>
 
         <div className="problem-cards-container">
@@ -343,9 +344,11 @@ const Problem = () => {
 
         {/* CTA-Bereich */}
         <div ref={ctaRef} className="problem-cta">
-          <button className="problem-button">
-            {t('problem.cta')}
-          </button>
+          <Link to="/formular">
+            <button className="problem-button">
+              {t('problem.cta')}
+            </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -2,7 +2,8 @@
 :root {
   --copper-color: #b87333;
   --copper-light: #e2ac6b;
-  --blue-dark: #082567;
+  --copper-dark: #8b5a3c;
+  --blue-color: #082567;
 }
 
 .problem-section {
@@ -65,23 +66,24 @@
 .problem-section .section-heading {
   display: flex;
   align-items: center;
+  color: white !important;
   font-size: 48px;
   font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.2;
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  color: white;
-  gap: 15px;
 }
 
-/* Überschreibt die globale section-heading::after Regel aus Faq.css */
+/* Überschreibt die globale section-heading::after Regel aus anderen CSS-Dateien */
 .problem-section .section-heading::after {
-  display: none;
+  content: '';
 }
 
 /* Neuer Unterstrich-Effekt für "Die Probleme" */
@@ -564,14 +566,26 @@
     padding-top: 140px; /* Angepasst für mobile */
   }
   
-  /* Stelle sicher, dass die gesamte Überschrift die gleiche Schriftgröße hat */
+  /* Verbesserte Responsive Headline - ähnlich wie Solution */
   .problem-section .section-heading {
+    flex-direction: column;
+    align-items: center;
     font-size: 36px;
   }
   
-  .problem-title-box, 
+  .problem-title-box {
+    margin-right: 0;
+    margin-bottom: 15px;
+    font-size: 36px;
+  }
+  
+  /* Neuer Stil für den Subtitle-Teil */
   .problem-subtitle {
     font-size: 36px;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.2;
   }
   
   .problem-cards-container {
@@ -605,6 +619,10 @@
   }
   
   .problem-title-box {
+    font-size: 28px;
+  }
+  
+  .problem-subtitle {
     font-size: 28px;
   }
   
@@ -714,6 +732,14 @@
     margin-right: 0;
     margin-bottom: 15px;
     font-size: 40px;
+  }
+  
+  .problem-subtitle {
+    font-size: 40px;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.2;
   }
   
   .problem-card,

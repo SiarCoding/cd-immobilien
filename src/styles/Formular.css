@@ -1,0 +1,881 @@
+/* Formular Page Styles - Compact Design with lösung.webp background */
+.formular-page {
+  min-height: 100vh;
+  background: url('../assets/lösung.webp') center center / cover no-repeat,
+              linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%);
+  background-blend-mode: overlay;
+  padding: 80px 15px 30px;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Pattern - Subtle dark overlay */
+.formular-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main Container */
+.formular-content-wrapper {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.formular-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Logo Header */
+.formular-logo-header {
+  text-align: center;
+  padding: 20px 0 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.formular-logo {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.formular-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Unified Premium Card */
+.formular-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 
+              0 5px 15px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.8s ease-out;
+  max-height: 85vh;
+}
+
+/* Inner Glow Effect */
+.formular-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.02) 50%, 
+    rgba(226, 172, 107, 0.04) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card Layout - Optimized for larger team section */
+.formular-card-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+/* Left Side - Form */
+.formular-form-section {
+  padding: 30px 35px;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Right Side - Team (Larger) */
+.formular-advisor-section {
+  background: linear-gradient(135deg, rgba(226, 172, 107, 0.08), rgba(255, 255, 255, 0.05));
+  padding: 35px 30px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Advisor Image - Much Larger */
+.advisor-image {
+  width: 220px;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.advisor-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, transparent 0%, rgba(226, 172, 107, 0.1) 100%);
+  pointer-events: none;
+}
+
+.advisor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.advisor-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Advisor Content - Better Spacing */
+.advisor-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 10px;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.advisor-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Advisor Badge - Elegant with Copper Underline */
+.advisor-badge {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  animation: none;
+  text-align: center;
+}
+
+.badge-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.badge-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  border-radius: 2px;
+  animation: copperShine 3s infinite linear;
+  background-size: 200% 100%;
+  box-shadow: 0 0 8px rgba(184, 115, 51, 0.4);
+}
+
+@keyframes copperShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Modern Progress Bar with Lines Behind Circles */
+.progress-container {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.progress-bar-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+  padding: 0 16px;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.progress-steps-modern {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  padding: 0 16px;
+  z-index: 3;
+}
+
+.progress-step-modern {
+  position: relative;
+  z-index: 3;
+}
+
+/* Glasmorphism Circles for Inactive Steps */
+.step-circle-modern {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.4s ease;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  position: relative;
+  z-index: 3;
+}
+
+.progress-step-modern.active .step-circle-modern {
+  background: linear-gradient(135deg, #e2ac6b, rgba(226, 172, 107, 0.9));
+  border-color: #e2ac6b;
+  color: #082567;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(226, 172, 107, 0.6), 0 4px 15px rgba(0, 0, 0, 0.4);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.progress-step-modern.completed .step-circle-modern {
+  background: linear-gradient(135deg, #e2ac6b, rgba(226, 172, 107, 0.9));
+  border-color: #e2ac6b;
+  color: #082567;
+  box-shadow: 0 0 15px rgba(226, 172, 107, 0.5), 0 4px 15px rgba(0, 0, 0, 0.4);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Process/Team Style Buttons */
+.action-button {
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(184, 115, 51, 0.4);
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.action-button:hover::before {
+  left: 100%;
+}
+
+.action-button.primary {
+  background: linear-gradient(90deg, #b87333, #e2ac6b);
+  flex: 1;
+}
+
+.action-button.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(184, 115, 51, 0.5);
+  background: linear-gradient(90deg, #e2ac6b, #b87333);
+}
+
+.action-button.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fillLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .formular-card-content {
+    grid-template-columns: 1fr 340px;
+  }
+  
+  .advisor-image {
+    width: 200px;
+    height: 145px;
+  }
+  
+  .advisor-title {
+    font-size: 20px;
+  }
+  
+  .advisor-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .formular-page {
+    padding: 70px 10px 20px;
+  }
+  
+  .formular-card {
+    max-height: none;
+    height: auto;
+  }
+  
+  .formular-card-content {
+    grid-template-columns: 1fr;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .formular-advisor-section {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 30px 25px;
+    flex-direction: row;
+    gap: 25px;
+    text-align: left;
+  }
+  
+  .advisor-image {
+    width: 180px;
+    height: 135px;
+    margin-bottom: 0;
+  }
+  
+  .advisor-content {
+    text-align: left;
+  }
+  
+  .advisor-title {
+    font-size: 20px;
+  }
+  
+  .advisor-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formular-page {
+    padding: 60px 10px 30px;
+    min-height: 100vh;
+    height: auto;
+  }
+  
+  .formular-content-wrapper {
+    height: auto;
+    min-height: auto;
+  }
+  
+  .formular-card {
+    max-height: none;
+    height: auto;
+    overflow: visible;
+  }
+  
+  .formular-card-content {
+    overflow: visible;
+    height: auto;
+  }
+  
+  .formular-form-section {
+    padding: 25px 20px;
+    overflow: visible;
+  }
+  
+  .formular-logo {
+    height: 40px;
+  }
+  
+  .formular-logo-header {
+    padding: 15px 0 10px;
+    margin-bottom: 20px;
+  }
+  
+  .formular-advisor-section {
+    padding: 25px 20px 30px;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .advisor-image {
+    width: 160px;
+    height: 120px;
+    margin-bottom: 15px;
+  }
+  
+  .step-title {
+    font-size: 24px;
+  }
+  
+  .step-subtitle {
+    font-size: 14px;
+  }
+  
+  .step-circle-modern {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  
+  .progress-text {
+    margin-top: 18px;
+    font-size: 12px;
+  }
+  
+  .progress-bar-wrapper {
+    padding: 0 14px;
+  }
+  
+  .progress-steps-modern {
+    padding: 0 14px;
+  }
+  
+  .option-button {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+  
+  .form-input {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .formular-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .action-button {
+    width: 100%;
+    padding: 14px 20px;
+  }
+  
+  .badge-text {
+    font-size: 13px;
+  }
+  
+  .advisor-title {
+    font-size: 18px;
+  }
+  
+  .advisor-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formular-page {
+    padding: 50px 8px 40px;
+    min-height: 100vh;
+    height: auto;
+  }
+  
+  .formular-card {
+    border-radius: 16px;
+    max-height: none;
+    height: auto;
+    overflow: visible;
+  }
+  
+  .formular-logo {
+    height: 35px;
+  }
+  
+  .formular-form-section {
+    padding: 20px 15px;
+    overflow: visible;
+  }
+  
+  .formular-advisor-section {
+    padding: 20px 15px 30px;
+  }
+  
+  .step-title {
+    font-size: 20px;
+  }
+  
+  .step-subtitle {
+    font-size: 13px;
+  }
+  
+  .step-circle-modern {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+  
+  .progress-text {
+    margin-top: 16px;
+    font-size: 11px;
+  }
+  
+  .progress-bar-wrapper {
+    padding: 0 13px;
+  }
+  
+  .progress-steps-modern {
+    padding: 0 13px;
+  }
+  
+  .option-button {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  
+  .form-input {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+  
+  .action-button {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .formular-actions {
+    margin-bottom: 25px;
+  }
+  
+  .advisor-image {
+    width: 140px;
+    height: 105px;
+  }
+  
+  .advisor-title {
+    font-size: 16px;
+  }
+  
+  .advisor-subtitle {
+    font-size: 12px;
+  }
+  
+  .badge-text {
+    font-size: 12px;
+  }
+}
+
+/* Large Screens Optimization */
+@media (min-width: 1400px) {
+  .formular-card-content {
+    grid-template-columns: 1fr 420px;
+  }
+  
+  .formular-form-section {
+    padding: 40px 45px;
+  }
+  
+  .formular-advisor-section {
+    padding: 40px 35px;
+  }
+  
+  .advisor-image {
+    width: 260px;
+    height: 190px;
+  }
+  
+  .advisor-title {
+    font-size: 24px;
+  }
+  
+  .advisor-subtitle {
+    font-size: 16px;
+  }
+}
+
+/* Ultra-wide Screens */
+@media (min-width: 1920px) {
+  .formular-content-wrapper {
+    max-width: 1200px;
+  }
+  
+  .formular-card {
+    max-height: 80vh;
+  }
+}
+
+.progress-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 500;
+  margin: 0;
+  margin-top: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Step Content */
+.step-content {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.step-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin-bottom: 12px;
+  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.step-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Option Buttons */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.option-button {
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: hidden;
+}
+
+.option-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.option-button:hover::before {
+  left: 100%;
+}
+
+.option-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(226, 172, 107, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.option-button.selected {
+  background: linear-gradient(135deg, rgba(226, 172, 107, 0.25), rgba(255, 255, 255, 0.15));
+  border-color: #e2ac6b;
+  box-shadow: 0 6px 20px rgba(226, 172, 107, 0.3);
+}
+
+.option-arrow {
+  opacity: 0.7;
+  transition: all 0.4s ease;
+}
+
+.option-button:hover .option-arrow,
+.option-button.selected .option-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Form Fields */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(15px);
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #e2ac6b;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(226, 172, 107, 0.3);
+}
+
+/* Action Buttons Container */
+.formular-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  justify-content: space-between;
+} 

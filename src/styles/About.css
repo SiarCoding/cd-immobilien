@@ -59,6 +59,11 @@
   position: relative;
 }
 
+/* Spezifische Farbe für "für Ihren Erfolg" - schwarz */
+.about-section .section-heading {
+  color: #000 !important;
+}
+
 /* Blue highlight effect exactly like in Stats.css */
 .about-section .highlight-blue,
 .section-heading .highlight-blue {
@@ -86,8 +91,9 @@
   }
 }
 
-.section-text {
-  color: #5d6462;
+/* Schwarze Schrift für die Beschreibungstexte */
+.about-section .section-text {
+  color: #000 !important;
   font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -98,6 +104,7 @@
 .larger-text {
   font-size: 20px;
   line-height: 1.7;
+  color: #000 !important;
 }
 
 .about-features {
@@ -178,7 +185,7 @@
   height: 400px;
   margin-left: 20px;
   border-right: 4px solid transparent;
-  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #b87333, #e2ac6b);
+  background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #082567, #3a5ca9);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -273,7 +280,7 @@
     border-right: none;
     border-left: none;
     border-bottom: 4px solid transparent;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #b87333, #e2ac6b);
+    background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #082567, #3a5ca9);
     background-origin: border-box;
     background-clip: content-box, border-box;
   }

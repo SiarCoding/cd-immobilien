@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Chatbot.css';
 import chatbotAvatar from '../assets/chatbot-azim.webp';
-import logoImg from '../assets/logo-csd.webp';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Chatbot = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [askForName, setAskForName] = useState(false);
-  const [askForPhone, setAskForPhone] = useState(false);
-  const [leadData, setLeadData] = useState({ name: '', phone: '' });
   const [responseCount, setResponseCount] = useState(0);
   
   const messagesEndRef = useRef(null);
@@ -46,28 +44,14 @@ const Chatbot = () => {
       setTimeout(() => {
         setMessages([
           { 
-            text: t('chatbot.messages.welcome'), 
+            text: "Willkommen beim Kundenservice von CD Immobilien Portfolio GmbH! Ich bin die digitale Assistentin und helfe Ihnen gerne bei Fragen zu Immobilieninvestitionen, Steuervorteilen und Vermögensaufbau weiter.", 
             sender: 'bot' 
           }
         ]);
-        
-        // Zweite Nachricht mit Verzögerung anzeigen
-        setTimeout(() => {
-          setIsTyping(true);
-          setTimeout(() => {
-            setMessages(prev => [
-              ...prev,
-              { 
-                text: t('chatbot.messages.intro'), 
-                sender: 'bot' 
-              }
-            ]);
-            setIsTyping(false);
-          }, 1500);
-        }, 800);
+        setIsTyping(false);
       }, 1500);
     }
-  }, [isOpen, messages.length, t]);
+  }, [isOpen, messages.length]);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -81,60 +65,117 @@ const Chatbot = () => {
     }
   };
 
-  // Funktion zum Abrufen von Antworten von der Gemini API
-  const fetchGeminiResponse = async (prompt) => {
-    const API_KEY = "AIzaSyC-dB5kebL_AfOkQtWmTh3-4xAuA2tLxAU";
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+  // Funktion zum Abrufen von Antworten von der Mistral AI über OpenRouter
+  const fetchMistralResponse = async (prompt) => {
+    const API_KEY = "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";
+    const url = "https://openrouter.ai/api/v1/chat/completions";
     
     try {
-      console.log("Sending request to Gemini API...");
+      console.log("Sending request to Mistral AI via OpenRouter...");
+      
+      // Erweiterte Knowledge Base mit Website-Inhalten
+      const systemContext = `Du bist die digitale Assistentin von CD Immobilien Portfolio GmbH, einem Spezialisten für Immobilieninvestitionen und Steueroptimierung mit Sitz in Nürnberg.
+
+WICHTIGE ANWEISUNGEN:
+- Antworte immer kurz und prägnant (max. 2-3 Sätze)
+- Erwähne NICHT in jeder Antwort, dass du die digitale Assistentin bist
+- Gehe direkt auf die gestellte Frage ein
+- Bei Fragen zu Steuervorteilen oder Cashflow-Berechnung verweise auf unseren Rechner
+- Nutze die folgende Knowledge Base für deine Antworten
+
+KNOWLEDGE BASE - CD IMMOBILIEN PORTFOLIO GMBH:
+
+ÜBER UNS:
+- 15+ Jahre Erfahrung im Immobilienbereich
+- 1400+ zufriedene Kunden
+- 500+ Mio. € Projektvolumen
+- Standort: Bauvereinstr. 47, 90489 Nürnberg
+- Telefon: +49 911 13039057
+- E-Mail: p.chowdhury@cd-immo.de
+
+KERNLEISTUNGEN:
+1. Strategische Immobilieninvestitionen für nachhaltigen Vermögensaufbau
+2. Steueroptimierung - bis zu 90% Steuern sparen durch Abschreibungen
+3. Eigenkapitalrenditen von über 10% p.a. durch konservative Mietrenditen
+4. Inflationsschutz durch Sachwerte
+5. Generationenübergreifende Vermögensübertragung
+
+STEUERVORTEILE:
+- Bis zu 90% Steuerersparnis möglich
+- AfA (Abschreibung für Abnutzung) - 10% im ersten Jahr
+- 93% der Anschaffungskosten sind abschreibungsfähig
+- Zinsen und Werbungskosten steuerlich absetzbar
+- Steuersatz von 42% wird in der Berechnung verwendet
+
+RECHNER & BERECHNUNGEN:
+- Kostenloser Online-Rechner für Cashflow und Steuervorteile
+- Beispiel: Bei 400.000€ Kaufpreis entstehen monatlich 2.514,98€ Cashflow
+- Monatlicher Steuervorteil: 1.428,98€
+- Jährlicher Steuervorteil: 17.147,76€
+- Feste Parameter: 5% Anschaffungskosten, 3,7% Zinssatz, 1,5% Tilgung
+
+PROZESS (5 Phasen):
+1. Beratungsgespräch - Analyse der finanziellen Situation
+2. Objektsuche - Suche nach rentablen Immobilien
+3. Finanzierung - Optimierung der Finanzierungsstruktur
+4. Kaufabwicklung - Begleitung bis zur Schlüsselübergabe
+5. Vermietungsbetreuung - Langfristige Betreuung
+
+EXPERTENTEAM:
+- Azim Chowdhury (Gründer) - Entwickler innovativer Bewertungsmethoden
+- Panadda Srisuwan (Geschäftsführerin) - Bauwesen und internationale Investoren
+- Chris Schwarz (Director of Sales) - Statistische Immobilienbewertung
+- Gavino Crabu (Director Key Account) - Mehrsprachige Beratung
+- Peter Friedlhuber (Externer Berater) - Erfolgreicher Vollzeitinvestor
+
+PROBLEME TRADITIONELLER ALTERSVORSORGE:
+- Negative Realzinsen durch Inflation
+- Hohe Verwaltungskosten bei Versicherungsprodukten
+- Drohende Altersarmut
+- Unzureichende Rentenzahlungen
+- Rentenlücke durch demografischen Wandel
+
+LÖSUNGSANSATZ:
+- Immobilien als Sachwerte für stabilen Einkommensstrom
+- Inflationsschutz durch steigende Mieten und Immobilienwerte
+- Passives Investieren mit wissenschaftlich fundierten Methoden
+- 100% unabhängige, kostentransparente Beratung
+
+ANTWORT-RICHTLINIEN:
+- Bei Steuerfragen: Erwähne konkreten Steuervorteil (bis zu 90%) und verweise auf Rechner
+- Bei Rendite-Fragen: Nenne über 10% p.a. Eigenkapitalrendite
+- Bei Cashflow-Fragen: Verweise auf kostenlosen Rechner
+- Bei Prozess-Fragen: Erkläre 5-Phasen-Modell
+- Bei Team-Fragen: Nenne Expertise der Gründer
+- Biete immer kostenlose Beratung an
+
+RECHNER-VERWEIS:
+Sage: "Nutzen Sie unseren kostenlosen Rechner, um Ihren individuellen Cashflow und Ihre Steuervorteile zu berechnen." (wenn es um Berechnungen geht)`;
       
       const requestBody = {
-        contents: [
+        model: "mistralai/devstral-small:free",
+        messages: [
           {
-            parts: [
-              { text: prompt }
-            ]
+            role: "system",
+            content: systemContext
+          },
+          {
+            role: "user",
+            content: prompt
           }
         ],
-        generationConfig: {
-          temperature: 0.7,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 800,
-        },
-        safetySettings: [
-          {
-            category: "HARM_CATEGORY_HARASSMENT",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE"
-          },
-          {
-            category: "HARM_CATEGORY_HATE_SPEECH",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE"
-          },
-          {
-            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE"
-          },
-          {
-            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-            threshold: "BLOCK_MEDIUM_AND_ABOVE"
-          }
-        ]
+        temperature: 0.7,
+        max_tokens: 200, // Etwas mehr für detailliertere Antworten
+        top_p: 0.95
       };
-      
-      // Systemkontext mit Übersetzung in separatem Prompt hinzufügen
-      const systemContext = `${t('chatbot.systemPrompt')}
-      
-      Die Frage lautet: ${prompt}`;
-      
-      // Den erweiterten Prompt in die Anfrage einfügen
-      requestBody.contents[0].parts[0].text = systemContext;
       
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
+          "HTTP-Referer": "https://www.cd-immo.de",
+          "X-Title": "CD Immobilien Portfolio GmbH",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(requestBody),
       });
@@ -146,26 +187,30 @@ const Chatbot = () => {
       }
       
       const data = await response.json();
-      console.log("Gemini API Response:", data);
+      console.log("Mistral AI API Response:", data);
       
-      if (!data.candidates || data.candidates.length === 0) {
-        console.error("No candidates in response", data);
-        return t('chatbot.messages.error');
+      if (!data.choices || data.choices.length === 0) {
+        console.error("No choices in response", data);
+        return "Entschuldigung, ich kann Ihnen gerade nicht antworten. Versuchen Sie es bitte erneut.";
       }
       
       // Extrahieren der Antwort aus der API-Antwort
-      const geminiResponse = data.candidates[0]?.content?.parts?.[0]?.text;
+      const mistralResponse = data.choices[0]?.message?.content;
       
-      if (!geminiResponse) {
-        console.error("No text in response", data);
-        return t('chatbot.messages.error');
+      if (!mistralResponse) {
+        console.error("No content in response", data);
+        return "Entschuldigung, ich kann Ihnen gerade nicht antworten. Versuchen Sie es bitte erneut.";
       }
       
-      return geminiResponse;
+      return mistralResponse;
     } catch (error) {
-      console.error("Error fetching from Gemini API:", error);
-      return t('chatbot.messages.error');
+      console.error("Error fetching from Mistral AI API:", error);
+      return "Entschuldigung, ich kann Ihnen gerade nicht antworten. Versuchen Sie es bitte erneut.";
     }
+  };
+
+  const handleFormularRedirect = () => {
+    navigate('/formular');
   };
 
   const handleInputChange = (e) => {
@@ -185,50 +230,9 @@ const Chatbot = () => {
     // Bot "typing" Status anzeigen
     setIsTyping(true);
     
-    // Wenn im Lead-Generierungsprozess
-    if (askForName) {
-      setIsTyping(false);
-      setLeadData({ ...leadData, name: message });
-      setAskForName(false);
-      setAskForPhone(true);
-      
-      setTimeout(() => {
-        setMessages(prev => [
-          ...prev,
-          { 
-            text: t('chatbot.messages.askPhone').replace('{name}', message), 
-            sender: 'bot' 
-          }
-        ]);
-      }, 500);
-      
-      return;
-    }
-    
-    if (askForPhone) {
-      setIsTyping(false);
-      setLeadData({ ...leadData, phone: message });
-      setAskForPhone(false);
-      
-      // Lead-Daten speichern (hier könnte man einen API-Call implementieren)
-      console.log("Lead generiert:", { ...leadData, phone: message });
-      
-      setTimeout(() => {
-        setMessages(prev => [
-          ...prev, 
-          { 
-            text: t('chatbot.messages.thankYou'), 
-            sender: 'bot' 
-          }
-        ]);
-      }, 500);
-      
-      return;
-    }
-    
     try {
-      // Gemini API Antwort abrufen
-      const botResponse = await fetchGeminiResponse(message);
+      // Mistral AI Antwort abrufen
+      const botResponse = await fetchMistralResponse(message);
       
       // Antwort zum Chat hinzufügen
       setTimeout(() => {
@@ -239,18 +243,18 @@ const Chatbot = () => {
         const newCount = responseCount + 1;
         setResponseCount(newCount);
         
-        // Nach der zweiten Antwort nach Kontaktdaten fragen
-        if (newCount === 2) {
+        // Nach der 3. Antwort Formular-Button anzeigen
+        if (newCount === 3) {
           setTimeout(() => {
             setMessages(prev => [
               ...prev,
               { 
-                text: t('chatbot.messages.askName'), 
-                sender: 'bot' 
+                text: "Möchten Sie eine kostenlose persönliche Beratung? Unser Expertenteam entwickelt gerne eine maßgeschneiderte Strategie für Sie!", 
+                sender: 'bot',
+                showButton: true
               }
             ]);
-            setAskForName(true);
-          }, 1500);
+          }, 1000);
         }
       }, 1500); // Verzögerung für natürlicheres Verhalten
       
@@ -261,7 +265,7 @@ const Chatbot = () => {
       setMessages(prev => [
         ...prev,
         { 
-          text: t('chatbot.messages.error'), 
+          text: "Entschuldigung, ich kann Ihnen gerade nicht antworten. Versuchen Sie es bitte erneut.", 
           sender: 'bot' 
         }
       ]);
@@ -272,9 +276,6 @@ const Chatbot = () => {
     <div className="chatbot-container">
       {showNotification && !isOpen && (
         <div className="chat-notification">
-          <div className="notification-avatar">
-            <img src={chatbotAvatar} alt="" className="notification-avatar-img" />
-          </div>
           <div className="notification-content">
             <p>{t('chatbot.notification.title')}</p>
             <p className="notification-subtext">{t('chatbot.notification.subtitle')}</p>
@@ -291,8 +292,8 @@ const Chatbot = () => {
                   <img src={chatbotAvatar} alt="" />
                 </div>
                 <div className="chat-header-info">
-                  <h3>{t('chatbot.header.title')}</h3>
-                  <span className="status-indicator online">{t('chatbot.header.status')}</span>
+                  <h3>Digitale Assistentin</h3>
+                  <span className="status-indicator online">Online</span>
                 </div>
               </div>
               <button className="close-btn" onClick={toggleChat}>×</button>
@@ -313,6 +314,14 @@ const Chatbot = () => {
                         {i < msg.text.split('\n').length - 1 && <br />}
                       </React.Fragment>
                     ))}
+                    {msg.showButton && (
+                      <button 
+                        className="formular-redirect-button" 
+                        onClick={handleFormularRedirect}
+                      >
+                        Lass dich für mehr Infos kostenlos beraten
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -338,11 +347,7 @@ const Chatbot = () => {
                 type="text" 
                 value={inputValue}
                 onChange={handleInputChange}
-                placeholder={
-                  askForName ? t('chatbot.placeholders.name') : 
-                  askForPhone ? t('chatbot.placeholders.phone') : 
-                  t('chatbot.placeholders.default')
-                }
+                placeholder="Ihre Frage zu Immobilieninvestitionen..."
                 ref={inputRef}
                 autoComplete="off"
               />
@@ -355,7 +360,7 @@ const Chatbot = () => {
             </form>
             
             <div className="chat-footer">
-              <p>{t('chatbot.footer')}</p>
+              <p>Powered by CD Immobilien Portfolio GmbH</p>
             </div>
           </div>
         )}
@@ -363,7 +368,7 @@ const Chatbot = () => {
         <button 
           className="chat-toggle-btn" 
           onClick={toggleChat}
-          aria-label={t('chatbot.ariaLabel')}
+          aria-label="Chat öffnen"
         >
           <div className="bot-avatar-container">
             <img src={chatbotAvatar} alt="Chatbot Avatar" className="bot-avatar-img" />

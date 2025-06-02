@@ -629,64 +629,6 @@
 }
 
 /* Charts und Graphen */
-.cashflow-chart-container {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.chart-title {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin: 0 0 1rem 0;
-  color: #fff;
-  text-align: center;
-  font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
-  letter-spacing: -0.025em;
-}
-
-.recharts-wrapper {
-  margin: 0 -10px;
-  height: 250px;
-}
-
-.total-cashflow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.total-cashflow-label {
-  font-size: 1rem;
-  color: #ccc;
-  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
-.total-cashflow-value {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #e2ac6b;
-  position: relative;
-  display: inline-block;
-  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
-}
-
-.total-cashflow-value::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #b87333, #e2ac6b);
-  border-radius: 2px;
-}
 
 /* Call-to-Action */
 .features-cta {
@@ -730,27 +672,27 @@
 }
 
 .cta-button {
+  background-color: #b87333;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: #e2ac6b;
-  color: #082567;
-  font-weight: 500;
-  border-radius: 10px;
-  border: none;
-  font-size: 1.1rem;
-  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-  background: #c9986a;
+  background-color: #d08c45;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(184, 115, 51, 0.4);
 }
 
 .button-icon {
@@ -925,8 +867,7 @@
   }
   
   .calculator-section,
-  .result-category,
-  .cashflow-chart-container {
+  .result-category {
     padding: 0.8rem;
   }
   

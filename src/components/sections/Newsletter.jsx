@@ -19,7 +19,7 @@ const Newsletter = () => {
             {t('newsletter.title')} <span className="highlight-gold">{t('newsletter.titleHighlight')}</span> {t('newsletter.titleEnd')}
           </h2>
           <p className="newsletter-description">
-            {t('newsletter.description')} <span className="highlight-price">{t('newsletter.priceHighlight')}</span> {t('newsletter.priceEnd')}
+            {t('newsletter.description')} <span className="highlight-price">{t('newsletter.priceHighlight')}</span> statt regulär für <span className="price-strikethrough">899,90€</span>.
           </p>
           
           <div className="newsletter-features">

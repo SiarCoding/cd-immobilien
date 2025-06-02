@@ -19,10 +19,11 @@
   color: #023c38;
   font-size: 48px;
   font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
   text-align: center;
   margin-bottom: 20px;
+  letter-spacing: -0.025em;
 }
 
 /* Blue highlight effect similar to the copper one in Hero */
@@ -72,16 +73,17 @@
   color: #000000;
   font-family: "Plus Jakarta Sans", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 64px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   margin-bottom: 10px;
+  letter-spacing: -0.025em;
 }
 
 .stat-label {
   color: #5d6462;
   font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.4;
 }
 
@@ -90,18 +92,21 @@
     padding: 80px 20px;
   }
   
-  .stats-heading {
+  .stats-section .section-heading {
     font-size: 40px;
   }
   
-  .stats-subheading {
-    font-size: 18px;
-    margin-bottom: 40px;
+  .stat-value {
+    font-size: 48px;
+  }
+  
+  .stat-label {
+    font-size: 16px;
   }
   
   .stats-items {
     justify-content: center;
-    gap: 30px;
+    gap: 50px;
   }
 }
 
@@ -110,17 +115,48 @@
     padding: 60px 20px;
   }
   
-  .stats-heading {
+  .stats-section .section-heading {
     font-size: 36px;
+  }
+  
+  .stat-value {
+    font-size: 42px;
+  }
+  
+  .stat-label {
+    font-size: 15px;
   }
   
   .stats-items {
     flex-direction: column;
     align-items: center;
+    gap: 40px;
   }
   
   .stat-item {
     width: 100%;
     max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-section {
+    padding: 50px 20px;
+  }
+  
+  .stats-section .section-heading {
+    font-size: 32px;
+  }
+  
+  .stat-value {
+    font-size: 36px;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+  }
+  
+  .stats-items {
+    gap: 35px;
   }
 }

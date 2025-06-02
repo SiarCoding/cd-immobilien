@@ -16,7 +16,7 @@ const FeaturedEpisodes = () => {
       <div className="episodes-container">
         <div className="episodes-grid">
           <div className="episode-card">
-            <img src="" />
+            <img src="" alt="Lage und Infrastruktur" />
             <div className="episode-content">
               <div className="episode-text">
                 <div className="episode-title">

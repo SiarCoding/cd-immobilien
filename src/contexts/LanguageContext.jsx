@@ -21,7 +21,7 @@ const translations = {
       titleUnderlined: "Steuerlast",
       subtitle: "Mit unserer Expertise helfen wir Ihnen, durch strategische Immobilieninvestitionen ein nachhaltiges Vermögen aufzubauen und Ihre finanzielle Zukunft zu sichern.",
       ctaButton: "Kostenlose Beratung sichern",
-      statsNumber: "200+",
+      statsNumber: "1400+",
       statsLabel: "Zufriedene Kunden"
     },
     // Header Navigation
@@ -181,6 +181,7 @@ const translations = {
       cumulativeCashflow: "Kumulativer Cashflow",
       year: "Jahr",
       cumulativeCashflow30: "Kumulativer Cashflow (30 Jahre):",
+      cashflowFirstYear: "Cashflow im ersten Jahr",
       
       // CTA
       ctaTitle: "Optimieren Sie Ihren Immobilien-Cashflow",
@@ -394,6 +395,74 @@ const translations = {
       socialInstagram: "Instagram",
       socialLinkedIn: "LinkedIn", 
       socialFacebook: "Facebook"
+    },
+    // Formular Section
+    formular: {
+      pageTitle: "Geben Sie Ihr Anliegen ein",
+      progress: "Schritt {current} von {total}",
+      step1: {
+        title: "Wie ist Ihr Familienstand?",
+        subtitle: "Diese Information hilft uns bei der optimalen Steuerberatung",
+        marriedJointly: "Verheiratet - Gemeinsam veranlagt",
+        single: "Ledig",
+        marriedSeparately: "Verheiratet - Getrennt veranlagt",
+        continue: "Weiter"
+      },
+      step2: {
+        title: "Wie hoch ist Ihr monatliches Nettoeinkommen?",
+        subtitle: "Diese Informationen helfen uns, die beste Strategie für Sie zu entwickeln",
+        income: {
+          under3000: "Unter 3.000€",
+          range3000_4000: "3.000€ - 4.000€",
+          range4000_5000: "4.000€ - 5.000€",
+          above5000: "Über 5.000€"
+        },
+        equity: "Wie viel Eigenkapital steht Ihnen zur Verfügung?",
+        equityOptions: {
+          under20k: "Unter 20.000€",
+          range20k_50k: "20.000€ - 50.000€",
+          above50k: "Über 50.000€"
+        },
+        continue: "Weiter"
+      },
+      step3: {
+        title: "Ihre Kontaktdaten",
+        subtitle: "Unser Experte wird sich in Kürze bei Ihnen melden",
+        name: "Vollständiger Name",
+        phone: "Telefonnummer",
+        email: "E-Mail-Adresse",
+        privacy: "Mit dem Absenden des Formulars erkläre ich mich einverstanden mit",
+        privacyLink: "Datenschutzerklärung",
+        submit: "Daten absenden",
+        validation: {
+          nameRequired: "Name ist erforderlich",
+          phoneRequired: "Telefonnummer ist erforderlich",
+          emailRequired: "E-Mail ist erforderlich",
+          emailInvalid: "Ungültige E-Mail-Adresse",
+          privacyRequired: "Datenschutzerklärung muss akzeptiert werden",
+          messageRequired: "Nachricht ist erforderlich"
+        }
+      },
+      success: {
+        title: "Vielen Dank!",
+        subtitle: "Ihre Daten wurden erfolgreich übermittelt. Unser Experte wird sich in Kürze bei Ihnen melden.",
+        backHome: "Zurück zur Startseite"
+      },
+      back: "Zurück"
+    },
+    // Contact Section
+    contact: {
+      title: "Kontakt",
+      titleSuffix: "aufnehmen",
+      description: "Haben Sie Fragen oder möchten Sie einen Beratungstermin vereinbaren? Kontaktieren Sie uns - unser Expertenteam steht Ihnen gerne zur Verfügung.",
+      phone: "Telefon",
+      email: "E-Mail",
+      address: "Adresse",
+      openingHours: "Öffnungszeiten",
+      openingHoursText: "Mo-Fr: 9:00 - 18:00 Uhr\nSa: Nach Vereinbarung",
+      sendMessage: "Nachricht senden",
+      messagePlaceholder: "Ihre Nachricht",
+      sendButton: "Nachricht senden"
     }
   },
   EN: {
@@ -404,8 +473,8 @@ const translations = {
       titleEnd: "with real estate and reduce your",
       titleUnderlined: "tax burden",
       subtitle: "With our expertise, we help you build sustainable wealth through strategic real estate investments and secure your financial future.",
-      ctaButton: "Get free consultation",
-      statsNumber: "200+",
+      ctaButton: "Get consultation",
+      statsNumber: "1400+",
       statsLabel: "Satisfied customers"
     },
     // Header Navigation
@@ -565,6 +634,7 @@ const translations = {
       cumulativeCashflow: "Cumulative Cashflow",
       year: "Year",
       cumulativeCashflow30: "Cumulative Cashflow (30 Years):",
+      cashflowFirstYear: "Cashflow in the first year",
       
       // CTA
       ctaTitle: "Optimize Your Real Estate Cashflow",
@@ -778,6 +848,74 @@ const translations = {
       socialInstagram: "Instagram",
       socialLinkedIn: "LinkedIn",
       socialFacebook: "Facebook"
+    },
+    // Formular Section
+    formular: {
+      pageTitle: "Submit Your Request",
+      progress: "Step {current} of {total}",
+      step1: {
+        title: "What is your marital status?",
+        subtitle: "This information helps us provide optimal tax advice",
+        marriedJointly: "Married - Filing jointly",
+        single: "Single",
+        marriedSeparately: "Married - Filing separately",
+        continue: "Continue"
+      },
+      step2: {
+        title: "What is your monthly net income?",
+        subtitle: "This information helps us develop the best strategy for you",
+        income: {
+          under3000: "Under €3,000",
+          range3000_4000: "€3,000 - €4,000",
+          range4000_5000: "€4,000 - €5,000",
+          above5000: "Over €5,000"
+        },
+        equity: "How much equity is available to you?",
+        equityOptions: {
+          under20k: "Under €20,000",
+          range20k_50k: "€20,000 - €50,000",
+          above50k: "Over €50,000"
+        },
+        continue: "Continue"
+      },
+      step3: {
+        title: "Your Contact Details",
+        subtitle: "Our expert will contact you shortly",
+        name: "Full Name",
+        phone: "Phone Number",
+        email: "Email Address",
+        privacy: "By submitting the form, I agree to the",
+        privacyLink: "Privacy Policy",
+        submit: "Submit Data",
+        validation: {
+          nameRequired: "Name is required",
+          phoneRequired: "Phone number is required",
+          emailRequired: "Email is required",
+          emailInvalid: "Invalid email address",
+          privacyRequired: "Privacy policy must be accepted",
+          messageRequired: "Message is required"
+        }
+      },
+      success: {
+        title: "Thank You!",
+        subtitle: "Your data has been successfully submitted. Our expert will contact you shortly.",
+        backHome: "Back to Home"
+      },
+      back: "Back"
+    },
+    // Contact Section
+    contact: {
+      title: "Contact",
+      titleSuffix: "Us",
+      description: "Do you have questions or would you like to schedule a consultation appointment? Contact us - our expert team is happy to assist you.",
+      phone: "Phone",
+      email: "Email",
+      address: "Address",
+      openingHours: "Opening Hours",
+      openingHoursText: "Mon-Fri: 9:00 AM - 6:00 PM\nSat: By appointment",
+      sendMessage: "Send Message",
+      messagePlaceholder: "Your message",
+      sendButton: "Send Message"
     }
   }
 };

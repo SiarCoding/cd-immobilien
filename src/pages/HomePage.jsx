@@ -8,28 +8,50 @@ import About from "../components/sections/About";
 import Features from "../components/sections/Features";
 import Process from "../components/sections/Process";
 import Investment from "../components/sections/Investment";
-import FeaturedEpisodes from "../components/sections/FeaturedEpisodes";
 import Team from "../components/sections/Team";
 import Blog from "../components/sections/Blog";
 import Newsletter from "../components/sections/Newsletter";
 import Faq from "../components/sections/Faq";
+import SEOHead from "../components/SEOHead";
+import { useSEO } from "../contexts/SEOContext";
 
 const HomePage = () => {
+  const { seoData } = useSEO();
+  const homePageSEO = seoData.home;
+
   return (
     <>
+      <SEOHead 
+        title={homePageSEO.title}
+        description={homePageSEO.description}
+        keywords={homePageSEO.keywords}
+        canonical={homePageSEO.canonical}
+        ogImage={homePageSEO.ogImage}
+        ogType="website"
+      />
       <Header />
-      <Hero />
-      <Stats />
-      <Problem />
-      <Solution />
-      <About />
-      <Features />
-      <Process />
-      <Investment />
-      <Team />
-      <Blog />
-      <Newsletter />
-      <Faq />
+      <main>
+        <Hero />
+        <Stats />
+        <Problem />
+        <Solution />
+        <div id="about">
+          <About />
+        </div>
+        <div id="features">
+          <Features />
+        </div>
+        <Process />
+        <Investment />
+        <div id="team">
+          <Team />
+        </div>
+        <div id="blog">
+          <Blog />
+        </div>
+        <Newsletter />
+        <Faq />
+      </main>
     </>
   );
 };

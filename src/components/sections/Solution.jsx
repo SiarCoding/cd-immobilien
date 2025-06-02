@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import '../../styles/Solution.css';
-import apartmentBg from '../../assets/team.webp';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const Solution = () => {
   const { t } = useLanguage();
@@ -18,20 +18,25 @@ const Solution = () => {
       });
     }, { threshold: 0.2 });
 
-    solutionCardsRef.current.forEach((card) => {
+    // Speichere aktuelle Referenzen in lokalen Variablen für die Cleanup-Funktion
+    const currentCards = solutionCardsRef.current;
+    const currentCta = ctaRef.current;
+
+    currentCards.forEach((card) => {
       if (card) observer.observe(card);
     });
 
-    if (ctaRef.current) {
-      observer.observe(ctaRef.current);
+    if (currentCta) {
+      observer.observe(currentCta);
     }
 
     return () => {
-      solutionCardsRef.current.forEach((card) => {
+      // Verwende die gespeicherten Referenzen für die Cleanup
+      currentCards.forEach((card) => {
         if (card) observer.unobserve(card);
       });
-      if (ctaRef.current) {
-        observer.unobserve(ctaRef.current);
+      if (currentCta) {
+        observer.unobserve(currentCta);
       }
     };
   }, []);
@@ -113,13 +118,7 @@ const Solution = () => {
   ];
 
   return (
-    <section className="solution-section" style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${apartmentBg})`,
-      backgroundSize: '110%',
-      backgroundPosition: 'center top',
-      backgroundRepeat: 'no-repeat',
-      backgroundAttachment: 'fixed'
-    }}>
+    <section className="solution-section">
       <div className="solution-copper-effect">
         <svg className="copper-effect-svg" width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_f_12_56)">
@@ -172,7 +171,9 @@ const Solution = () => {
           <p className="cta-text">
             {t('solution.ctaText')}
           </p>
-          <button className="cta-button">{t('solution.ctaButton')}</button>
+          <Link to="/formular">
+            <button className="cta-button">{t('solution.ctaButton')}</button>
+          </Link>
         </div>
       </div>
     </section>

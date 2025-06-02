@@ -1,12 +1,89 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "../../styles/Blog.css";
 import { useLanguage } from "../../contexts/LanguageContext";
 
 const Testimonials = () => {
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [displayedTexts, setDisplayedTexts] = useState(["", "", ""]);
+  const previousLanguageRef = useRef(currentLanguage);
+  
+  // Memoized testimonial texts to prevent recreation on every render
+  const testimonialTexts = useMemo(() => [
+    t('blog.testimonials.michael.text'),
+    t('blog.testimonials.sarah.text'),
+    t('blog.testimonials.thomas.text')
+  ], [t]);
+  
+  // Reset animation when language changes
+  useEffect(() => {
+    if (previousLanguageRef.current !== currentLanguage) {
+      previousLanguageRef.current = currentLanguage;
+      setDisplayedTexts(["", "", ""]);
+      
+      if (isVisible) {
+        setIsVisible(false);
+        // Short delay before restarting animation
+        setTimeout(() => {
+          setIsVisible(true);
+        }, 100);
+      }
+    }
+  }, [currentLanguage, isVisible]); // Now properly includes isVisible
+  
+  // Intersection Observer for triggering animation
+  useEffect(() => {
+    const currentRef = sectionRef.current;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+    
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [isVisible]);
+  
+  // Typewriter effect for all 3 testimonials simultaneously
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    const duration = 1500; // 1.5 seconds for the complete effect
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const newDisplayedTexts = testimonialTexts.map(text => {
+        const targetLength = Math.floor(text.length * progress);
+        return text.substring(0, targetLength);
+      });
+      
+      setDisplayedTexts(newDisplayedTexts);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [isVisible, testimonialTexts]);
   
   return (
-    <div className="testimonials-section">
+    <div className="testimonials-section" ref={sectionRef}>
       <div className="centered-content">
         <div className="section-heading">
           <span className="highlight-blue highlight-text-white">{t('blog.title')}</span> {t('blog.titleHighlight')}
@@ -39,7 +116,8 @@ const Testimonials = () => {
               </svg>
             </div>
             <div className="testimonial-text">
-              {t('blog.testimonials.michael.text')}
+              {displayedTexts[0]}
+              {isVisible && displayedTexts[0].length < testimonialTexts[0].length && <span className="typewriter-cursor">|</span>}
             </div>
             <div className="testimonial-author">
               <img src={require("../../assets/michael.png")} className="author-image" alt={t('blog.testimonials.michael.alt')} />
@@ -74,7 +152,8 @@ const Testimonials = () => {
               </svg>
             </div>
             <div className="testimonial-text">
-              {t('blog.testimonials.sarah.text')}
+              {displayedTexts[1]}
+              {isVisible && displayedTexts[1].length < testimonialTexts[1].length && <span className="typewriter-cursor">|</span>}
             </div>
             <div className="testimonial-author">
               <img src={require("../../assets/sarahh.png")} className="author-image" alt={t('blog.testimonials.sarah.alt')} />
@@ -109,7 +188,8 @@ const Testimonials = () => {
               </svg>
             </div>
             <div className="testimonial-text">
-              {t('blog.testimonials.thomas.text')}
+              {displayedTexts[2]}
+              {isVisible && displayedTexts[2].length < testimonialTexts[2].length && <span className="typewriter-cursor">|</span>}
             </div>
             <div className="testimonial-author">
               <img src={require("../../assets/thomas.png")} className="author-image" alt={t('blog.testimonials.thomas.alt')} />

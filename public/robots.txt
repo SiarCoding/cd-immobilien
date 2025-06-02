@@ -1,3 +1,29 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap-Verweis
+Sitemap: https://www.cd-immo.de/sitemap.xml
+
+# Bevorzugte Domain
+Host: www.cd-immo.de
+
+# Crawl-delay für Bots
+Crawl-delay: 1
+
+# Spezielle Regeln für Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Spezielle Regeln für Bingbot  
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+# Blockiere unwichtige Bereiche
+Disallow: /build/
+Disallow: /node_modules/
+Disallow: /_next/
+Disallow: /api/
+Disallow: /admin/
