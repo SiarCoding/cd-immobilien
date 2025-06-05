@@ -239,18 +239,58 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button 
-              className="mobile-menu-toggle"
-              onClick={toggleMobileMenu} 
-              ref={btnRef}
-            >
-              <div className={`hamburger-menu ${isMobileMenuOpen ? 'hamburger-active' : ''}`}>
-                <span></span>
-                <span></span>
-                <span></span>
+            {/* Mobile Actions - Language Selector und Menu Button */}
+            <div className="mobile-actions">
+              {/* Mobile Language Selector */}
+              <div className="language-selector mobile-language-selector" ref={mobileLangRef}>
+                <div className="language-selected" onClick={toggleLangDropdown} ref={mobileLangBtnRef}>
+                  <div className="language-wrapper">
+                    <div className="language-icon">
+                      <span className="current-flag">
+                        {selectedLanguage === 'DE' ? '🇩🇪' : '🇬🇧'}
+                      </span>
+                    </div>
+                    <span className="language-text">{selectedLanguage}</span>
+                    <div className="dropdown-arrow">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10L12 15L17 10H7Z" fill="currentColor"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                {isLangDropdownOpen && (
+                  <div className="language-dropdown-menu mobile-language-dropdown">
+                    <div 
+                      className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
+                      onClick={(e) => selectLanguage('DE', e)}
+                    >
+                      <span className="flag-icon">🇩🇪</span>
+                      <span>Deutsch</span>
+                    </div>
+                    <div 
+                      className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
+                      onClick={(e) => selectLanguage('EN', e)}
+                    >
+                      <span className="flag-icon">🇬🇧</span>
+                      <span>English</span>
+                    </div>
+                  </div>
+                )}
               </div>
-            </button>
+              
+              {/* Mobile Menu Button */}
+              <button 
+                className="mobile-menu-toggle"
+                onClick={toggleMobileMenu} 
+                ref={btnRef}
+              >
+                <div className={`hamburger-menu ${isMobileMenuOpen ? 'hamburger-active' : ''}`}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Overlay */}
@@ -298,44 +338,6 @@ const Header = () => {
                     {t('header.consultation')}
                   </HoverButton>
                 </Link>
-
-                <div className="mobile-language-section">
-                  <div className="language-selector mobile-language-selector" ref={mobileLangRef}>
-                    <div className="language-selected" onClick={toggleLangDropdown} ref={mobileLangBtnRef}>
-                      <div className="language-wrapper">
-                        <div className="language-icon">
-                          <span className="current-flag">
-                            {selectedLanguage === 'DE' ? '🇩🇪' : '🇬🇧'}
-                          </span>
-                        </div>
-                        <span className="language-text">{selectedLanguage}</span>
-                        <div className="dropdown-arrow">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 10L12 15L17 10H7Z" fill="currentColor"/>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    {isLangDropdownOpen && (
-                      <div className="language-dropdown-menu mobile-language-dropdown">
-                        <div 
-                          className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
-                          onClick={(e) => selectLanguage('DE', e)}
-                        >
-                          <span className="flag-icon">🇩🇪</span>
-                          <span>Deutsch</span>
-                        </div>
-                        <div 
-                          className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
-                          onClick={(e) => selectLanguage('EN', e)}
-                        >
-                          <span className="flag-icon">🇬🇧</span>
-                          <span>English</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
               </div>
             </nav>
           </div>

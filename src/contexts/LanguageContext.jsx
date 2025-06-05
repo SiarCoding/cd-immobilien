@@ -128,17 +128,17 @@ const translations = {
       propertyData: "Immobiliendaten",
       purchasePrice: "Kaufpreis",
       purchasePriceTooltip: "Der vollständige Kaufpreis der Immobilie",
-      area: "Fläche in m²",
+      area: "Fläche",
       areaTooltip: "Die Größe der Immobilie in Quadratmetern",
-      coldRent: "Kaltmiete (Monatlich)",
+      coldRent: "Kaltmiete (monatlich)",
       coldRentTooltip: "Die monatliche Mieteinnahme ohne Nebenkosten",
-      qualityLevel: "Qualitätsstufe Instandhaltungsrücklage",
+      qualityLevel: "Instandhaltungsrücklage nach Qualitätsstufe",
       qualityLevelTooltip: "Wählen Sie die Qualitätsstufe für die Berechnung der Instandhaltungsrücklage",
       
       // Quality levels
-      qngQuality: "QNG Qualität (70 Cent/m²)",
-      highQuality: "High Quality (90 Cent/m²)",
-      surfaceQuality: "Flächenqualität (1,20€/m²)",
+      qngQuality: "Stein auf Stein: Best Quality gem. QNG (70 Cent/m²) ",
+      highQuality: "Stein auf Stein: High Quality (90 Cent/m²)",
+      surfaceQuality: "Stein auf Stein: Low Quality (1,20€/m²)",
       
       // Fixed parameters
       fixedParameters: "Feste Parameter",
@@ -147,6 +147,7 @@ const translations = {
       repayment: "Tilgung:",
       managementCosts: "Verwaltungskosten:",
       taxRate: "Steuersatz:",
+      buildingShare: "Gebäudeanteil bzw. QNG Anteil:",
       
       // Results
       resultsHeading: "Berechnungsergebnisse",
@@ -154,7 +155,7 @@ const translations = {
       // Left column categories
       costsFinancing: "Kosten & Finanzierung",
       acquisitionCostsResult: "Anschaffungskosten (5%)",
-      interestAmount: "Zinsbetrag (3,7%)",
+      interestAmount: "Zinsbetrag",
       repaymentAmount: "Tilgungsbetrag (1,5%)",
       monthlyBankRate: "Monatliche Bankrate",
       
@@ -162,12 +163,12 @@ const translations = {
       managementCostsResult: "Verwaltungskosten",
       maintenanceReserve: "Instandhaltungsrücklage",
       
-      results: "Ergebnis",
+      results: "Bilanz",
       zws: "ZWS (Zwischensumme)",
-      cashflowMonthly: "Cashflow (Monatlich)",
+      cashflowMonthly: "Cashflow",
       
       // Right column - Tax benefits
-      taxBenefitsTitle: "Ihre Steuervorteile",
+      taxBenefitsTitle: "Ihr Steuervorteil (Für erstes Jahr ab Jan. bis Dez.)",
       monthlyTaxBenefit: "Monatlicher Steuervorteil",
       yearlyTaxBenefit: "Jährlicher Steuervorteil",
       
@@ -581,17 +582,17 @@ const translations = {
       propertyData: "Property Data",
       purchasePrice: "Purchase Price",
       purchasePriceTooltip: "The complete purchase price of the property",
-      area: "Area in m²",
+      area: "Area",
       areaTooltip: "The size of the property in square meters",
       coldRent: "Cold Rent (Monthly)",
       coldRentTooltip: "The monthly rental income without utilities",
-      qualityLevel: "Quality Level Maintenance Reserve",
-      qualityLevelTooltip: "Choose the quality level for calculating the maintenance reserve",
+      qualityLevel: "Maintenance Reserve by Quality Level",
+      qualityLevelTooltip: "Select the quality level for calculating the maintenance reserve",
       
       // Quality levels
-      qngQuality: "QNG Quality (70 Cents/m²)",
-      highQuality: "High Quality (90 Cents/m²)",
-      surfaceQuality: "Surface Quality (1.20€/m²)",
+      qngQuality: "Brick Construction: Best Quality acc. to QNG (70 Cents/m²)",
+      highQuality: "Brick Construction: High Quality (90 Cents/m²)",
+      surfaceQuality: "Brick Construction: Low Quality (1.20€/m²)",
       
       // Fixed parameters
       fixedParameters: "Fixed Parameters",
@@ -600,6 +601,7 @@ const translations = {
       repayment: "Repayment:",
       managementCosts: "Management Costs:",
       taxRate: "Tax Rate:",
+      buildingShare: "Building Share or QNG Share:",
       
       // Results
       resultsHeading: "Calculation Results",
@@ -607,7 +609,7 @@ const translations = {
       // Left column categories
       costsFinancing: "Costs & Financing",
       acquisitionCostsResult: "Acquisition Costs (5%)",
-      interestAmount: "Interest Amount (3.7%)",
+      interestAmount: "Interest Amount",
       repaymentAmount: "Repayment Amount (1.5%)",
       monthlyBankRate: "Monthly Bank Payment",
       
@@ -615,12 +617,12 @@ const translations = {
       managementCostsResult: "Management Costs",
       maintenanceReserve: "Maintenance Reserve",
       
-      results: "Results",
+      results: "Balance",
       zws: "IWS (Interim Sum)",
-      cashflowMonthly: "Cashflow (Monthly)",
+      cashflowMonthly: "Cashflow",
       
       // Right column - Tax benefits
-      taxBenefitsTitle: "Your Tax Benefits",
+      taxBenefitsTitle: "Your Tax Benefits (For first year from Jan. to Dec.)",
       monthlyTaxBenefit: "Monthly Tax Benefit",
       yearlyTaxBenefit: "Yearly Tax Benefit",
       

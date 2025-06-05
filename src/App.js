@@ -23,7 +23,7 @@ function App() {
               <Route path="/kontakt" element={<Kontakt />} />
               <Route path="/formular" element={<Formular />} />
               <Route path="/testimonials" element={<Testimonials />} />
-              {/* Weitere Routen hier hinzufügen */}
+              {/* Weitere Routen hier hinzufügen netlify deploy --prod                     */}
             </Routes>
             <Footer />
             <Chatbot />

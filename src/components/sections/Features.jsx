@@ -51,28 +51,52 @@ const Features = () => {
   const { t } = useLanguage();
   
   // Eingabewerte
-  const [kaufpreis, setKaufpreis] = useState(400000);
-  const [flaeche, setFlaeche] = useState(77);
-  const [kaltmiete, setKaltmiete] = useState(1126);
+  const [kaufpreis, setKaufpreis] = useState(500000);
+  const [flaeche, setFlaeche] = useState(96);
+  const [kaltmiete, setKaltmiete] = useState(1450);
   const [qualitaetsstufe, setQualitaetsstufe] = useState(0.70); // QNG Qualität als Standard
 
   // Feste Werte
   const anschaffungskostenProzent = 5;
-  const zinssatz = 3.7;
   const tilgung = 1.5;
   const verwaltungskosten = 40;
   const steuersatz = 42;
-  const afaAnteil = 93;
-  const afaSatz = 10; // 10% im ersten Jahr
+
+  // Dynamische Werte basierend auf Qualitätsstufe
+  const getZinssatz = (qualitaetsstufe) => {
+    switch(qualitaetsstufe) {
+      case 0.70: return 3.5; // QNG
+      case 0.90: return 3.6; // High Quality  
+      case 1.20: return 3.8; // Low Quality
+      default: return 3.5;
+    }
+  };
+
+  const getAfaAnteil = (qualitaetsstufe) => {
+    return 93; // Alle Qualitätsstufen haben 93% Gebäudeanteil
+  };
+
+  const getAfaSatz = (qualitaetsstufe) => {
+    return qualitaetsstufe === 0.70 ? 10 : 5; // QNG: 10%, andere: 5%
+  };
+
+  const zinssatz = getZinssatz(qualitaetsstufe);
+  const afaAnteil = getAfaAnteil(qualitaetsstufe);
+  const afaSatz = getAfaSatz(qualitaetsstufe);
 
   // Berechnete Werte
   const [anschaffungskosten, setAnschaffungskosten] = useState(0);
   const [zinsbetrag, setZinsbetrag] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [tilgungsbetrag, setTilgungsbetrag] = useState(0);
   const [monatlicheBankrate, setMonatlicheBankrate] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [instandhaltungsruecklage, setInstandhaltungsruecklage] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [afaAnschaffungskosten, setAfaAnschaffungskosten] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [afaSatzBetrag, setAfaSatzBetrag] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [absetzung, setAbsetzung] = useState(0);
   const [steuervorteilMonatlich, setSteuervorteilMonatlich] = useState(0);
   const [steuervorteilJaehrlich, setSteuervorteilJaehrlich] = useState(0);
@@ -175,7 +199,7 @@ const Features = () => {
     const cfJaehrlich = cf * 12;
     setCashflowJaehrlich(cfJaehrlich);
     
-  }, [kaufpreis, flaeche, kaltmiete, qualitaetsstufe]);
+  }, [kaufpreis, flaeche, kaltmiete, qualitaetsstufe, zinssatz, afaAnteil, afaSatz]);
 
   // Intersection Observer für Animationen
   useEffect(() => {
@@ -337,6 +361,32 @@ const Features = () => {
                     <span className="parameter-label">{t('features.taxRate')}</span>
                     <span className="parameter-value">{steuersatz}%</span>
                 </div>
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.buildingShare')}</span>
+                    <span className="parameter-value">{afaAnteil}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="calculator-section">
+                <h3 className="calculator-section-title">
+                  <span className="calculator-section-icon">📊</span>
+                  {t('features.costsFinancing')}
+                </h3>
+                
+                <div className="fixed-parameters">
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.acquisitionCostsResult')}</span>
+                    <span className="parameter-value">{formatCurrency(anschaffungskosten)}</span>
+                  </div>
+                  <div className="parameter-item">
+                    <span className="parameter-label">{t('features.interestAmount')} ({zinssatz}%)</span>
+                    <span className="parameter-value">{formatCurrency(zinsbetrag)}</span>
+                  </div>
+                  <div className="parameter-item highlight">
+                    <span className="parameter-label">{t('features.monthlyBankRate')}</span>
+                    <span className="parameter-value">{formatCurrency(monatlicheBankrate)}</span>
+                  </div>
               </div>
               </div>
             </div>
@@ -346,91 +396,48 @@ const Features = () => {
               
               <div className="results-grid">
                 <div className="results-left-column">
-                  <div className="result-category">
-                    <h4 className="category-title">{t('features.costsFinancing')}</h4>
-                    <div className="result-item">
-                      <span className="result-label">{t('features.acquisitionCostsResult')}</span>
-                      <span className="result-value">{formatCurrency(anschaffungskosten)}</span>
-                    </div>
-                    <div className="result-item">
-                      <span className="result-label">{t('features.interestAmount')}</span>
-                      <span className="result-value">{formatCurrency(zinsbetrag)}</span>
-                    </div>
-                    <div className="result-item">
-                      <span className="result-label">{t('features.repaymentAmount')}</span>
-                      <span className="result-value">{formatCurrency(tilgungsbetrag)}</span>
-              </div>
-                    <div className="result-item highlight">
-                      <span className="result-label">{t('features.monthlyBankRate')}</span>
-                      <span className="result-value">{formatCurrency(monatlicheBankrate)}</span>
-              </div>
-              </div>
-              
-                  <div className="result-category">
-                    <h4 className="category-title">{t('features.runningCosts')}</h4>
-                    <div className="result-item">
-                      <span className="result-label">{t('features.managementCostsResult')}</span>
-                      <span className="result-value">{formatCurrency(verwaltungskosten)}</span>
-              </div>
-                    <div className="result-item">
-                      <span className="result-label">{t('features.maintenanceReserve')}</span>
-                      <span className="result-value">{formatCurrency(instandhaltungsruecklage)}</span>
-            </div>
-              </div>
-              
-                  <div className="result-category">
-                    <h4 className="category-title">{t('features.results')}</h4>
-                    <div className="result-item final-result">
-                      <span className="result-label">{t('features.cashflowMonthly')} (nach Steuern & Kosten)</span>
-                      <span className="result-value">{formatCurrency(cashflow)}</span>
-                    </div>
-                    <div className="result-item final-result">
-                      <span className="result-label">{t('features.cashflowFirstYear')} (nach Steuern & Kosten)</span>
-                      <span className="result-value">{formatCurrency(cashflowJaehrlich)}</span>
-                    </div>
-                  </div>
+                  {/* Ergebnisse werden jetzt in der rechten Spalte angezeigt */}
                 </div>
                 
                 <div className="results-right-column">
                   <div className="tax-benefits-overview">
-                    <h4 className="benefits-main-title">{t('features.taxBenefitsTitle')} - Degressive AfA</h4>
+                    <h4 className="benefits-main-title">{t('features.taxBenefitsTitle')}</h4>
                     
                     <div className="benefit-highlight-card">
                       <div className="benefit-amount">
                         <span className="benefit-label">{t('features.monthlyTaxBenefit')} (1. Jahr)</span>
                         <span className="benefit-value">{formatCurrency(steuervorteilMonatlich)}</span>
                       </div>
-                      <div className="benefit-amount">
+                      <div className="benefit-amount benefit-amount-yearly">
                         <span className="benefit-label">{t('features.yearlyTaxBenefit')} (1. Jahr)</span>
                         <span className="benefit-value">{formatCurrency(steuervorteilJaehrlich)}</span>
                       </div>
-                </div>
-              </div>
+                    </div>
+                  </div>
               
-                  <div className="tax-calculation-details">
-                    <h4 className="details-title">{t('features.calculationBasis')} (Degressive AfA 10%)</h4>
+                  <div className="cashflow-results-overview">
+                    <h4 className="cashflow-main-title">{t('features.results')}</h4>
                     
-                    <div className="calculation-flow">
-                      <div className="calc-step">
-                        <span className="step-label">{t('features.afaBasis')} (93% der Anschaffungskosten)</span>
-                        <span className="step-value">{formatCurrency(afaAnschaffungskosten)}</span>
+                    <div className="cashflow-highlight-card">
+                      <div className="cashflow-amount">
+                        <span className="cashflow-label">{t('features.cashflowMonthly')} (nach Steuern, Kosten & Rücklage mtl.)</span>
+                        <span className="cashflow-value">{formatCurrency(cashflow)}</span>
                       </div>
-                      
-                      <div className="calc-arrow">↓</div>
-                      
-                      <div className="calc-step">
-                        <span className="step-label">{t('features.yearlyAfa')} (10% im 1. Jahr)</span>
-                        <span className="step-value negative">{formatCurrency(afaSatzBetrag)}</span>
-                      </div>
-                      
-                      <div className="calc-arrow">↓</div>
-                      
-                      <div className="calc-step final-step">
-                        <span className="step-label">{t('features.taxDeduction')} (bei 42% Steuersatz)</span>
-                        <span className="step-value">{formatCurrency(absetzung)}</span>
+                      <div className="cashflow-amount">
+                        <span className="cashflow-label">{t('features.cashflowFirstYear')} (nach Steuern, Kosten & Rücklage)</span>
+                        <span className="cashflow-value">{formatCurrency(cashflowJaehrlich)}</span>
                       </div>
                 </div>
                 </div>
+
+                  {/* CTA Bereich */}
+                  <div className="results-cta">
+                    <p className="results-cta-text">
+                      Überzeugt von den Ergebnissen? Verwandeln Sie diese Berechnung noch heute in Realität
+                    </p>
+                    <div className="cta-arrow">↓</div>
+              
+                  </div>
                 </div>
               </div>
             </div>
@@ -442,7 +449,7 @@ const Features = () => {
           <div className="cta-content">
             <h3 className="cta-heading">{t('features.ctaTitle')}</h3>
           <p className="cta-text">
-              {t('features.ctaText')} Profitieren Sie von der degressiven Abschreibung und optimieren Sie Ihren Cashflow nach Steuern ab dem ersten Vermietungsjahr.
+              {t('features.ctaText')} Profitieren Sie von der degressiven Abschreibung von bis zu 10% bei QNG-Qualität und optimieren Sie Ihren Cashflow nach Steuern ab dem ersten Vermietungsjahr.
             </p>
             <Link to="/formular">
             <button className="cta-button">
