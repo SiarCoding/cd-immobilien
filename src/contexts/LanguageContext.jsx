@@ -193,7 +193,11 @@ const translations = {
       calculateYour: "Berechnen Sie Ihren",
       cashflow: "Cashflow",
       and: "und",
-      taxBenefit: "Steuervorteil"
+      taxBenefit: "Steuervorteil",
+      
+      // Calculate Button
+      calculateButton: "Berechnen",
+      calculating: "Berechnet..."
     },
     // Process Section
     process: {
@@ -647,7 +651,11 @@ const translations = {
       calculateYour: "Calculate Your",
       cashflow: "Cashflow",
       and: "and",
-      taxBenefit: "Tax Benefit"
+      taxBenefit: "Tax Benefit",
+      
+      // Calculate Button
+      calculateButton: "Calculate",
+      calculating: "Calculating..."
     },
     // Process Section
     process: {

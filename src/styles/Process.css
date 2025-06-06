@@ -504,13 +504,27 @@
 /* Mobiloptimierte Animationen */
 @media (max-width: 767px) {
   .timeline-card-container {
-    transform: translateY(30px);
+    transform: translateY(20px);
     opacity: 0;
+    transition: all 0.4s ease-out;
+    will-change: transform, opacity;
   }
   
   .timeline-card-container.card-visible {
     transform: translateY(0);
     opacity: 1;
+  }
+  
+  /* Touch-Scrolling Optimierung */
+  .timeline-container {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+  }
+  
+  .timeline-card {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 }
 
@@ -554,17 +568,25 @@
   @keyframes slideFromBottom {
     0% {
       opacity: 0;
-      transform: translateY(60px);
-      filter: blur(5px);
+      transform: translateY(20px);
     }
     100% {
       opacity: 1;
       transform: translateY(0);
-      filter: blur(0px);
     }
   }
   
   .timeline-card-container.card-visible {
-    animation: slideFromBottom 0.8s ease-out forwards;
+    animation: slideFromBottom 0.4s ease-out forwards;
+  }
+  
+  /* Performance-Optimierung für Touch-Geräte */
+  .timeline-card-container {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
   }
 } 

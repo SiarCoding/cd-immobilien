@@ -103,6 +103,10 @@ const Features = () => {
   const [cashflow, setCashflow] = useState(0);
   const [cashflowJaehrlich, setCashflowJaehrlich] = useState(0);
 
+  // Loading State für Berechnungen
+  const [isCalculating, setIsCalculating] = useState(false);
+  const [showResults, setShowResults] = useState(true); // Standard-Ergebnisse anzeigen
+
   // Refs für Animation
   const headingRef = useRef(null);
   const calculatorRef = useRef(null);
@@ -141,8 +145,16 @@ const Features = () => {
     };
   };
 
-  // Berechnungen
-  useEffect(() => {
+
+
+  // Berechnungsfunktion (nur bei Button-Klick)
+  const calculateResults = async () => {
+    setIsCalculating(true);
+    setShowResults(false);
+    
+    // Loading-Simulation
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    
     // Konvertiere leere Strings zu 0 für Berechnungen
     const kaufpreisValue = parseFloat(kaufpreis) || 0;
     const flaecheValue = parseFloat(flaeche) || 0;
@@ -199,7 +211,69 @@ const Features = () => {
     const cfJaehrlich = cf * 12;
     setCashflowJaehrlich(cfJaehrlich);
     
-  }, [kaufpreis, flaeche, kaltmiete, qualitaetsstufe, zinssatz, afaAnteil, afaSatz]);
+    setIsCalculating(false);
+    setShowResults(true);
+  };
+
+  // Führe Standard-Berechnungen beim ersten Laden aus
+  useEffect(() => {
+    // Konvertiere leere Strings zu 0 für Berechnungen
+    const kaufpreisValue = parseFloat(kaufpreis) || 0;
+    const flaecheValue = parseFloat(flaeche) || 0;
+    const kaltmieteValue = parseFloat(kaltmiete) || 0;
+    
+    // Anschaffungskosten 5%: A2*0.05
+    const anschaffung = kaufpreisValue * (anschaffungskostenProzent / 100);
+    setAnschaffungskosten(anschaffung);
+
+    // Zinssatz 3,7%: A2*0.037
+    const zins = kaufpreisValue * (zinssatz / 100);
+    setZinsbetrag(zins);
+    
+    // Tilgung 1,5%: A2*0.015
+    const tilg = kaufpreisValue * (tilgung / 100);
+    setTilgungsbetrag(tilg);
+    
+    // Monatlicher Bankbeitrag: (C2+D2)/12
+    const bankrate = (zins + tilg) / 12;
+    setMonatlicheBankrate(bankrate);
+
+    // Instandhaltungsrücklage: F2*0.7
+    const instand = flaecheValue * qualitaetsstufe;
+    setInstandhaltungsruecklage(instand);
+
+    // AfA der Anschaffungskosten 93%: (A2 + B2)*0.93
+    const afaAnsch = (kaufpreisValue + anschaffung) * (afaAnteil / 100);
+    setAfaAnschaffungskosten(afaAnsch);
+    
+    // AfA Satz der Anschaffungskosten: -J2 * 0.1 (negativ!)
+    const afaSatzBetr = -afaAnsch * (afaSatz / 100);
+    setAfaSatzBetrag(afaSatzBetr);
+
+    // Absetzung: K2-C2 + ((G2-H2)*12) (AfA Satz - Zinsbetrag + ((Kaltmiete - Verwaltung)*12))
+    const absetz = afaSatzBetr - zins + ((kaltmieteValue - verwaltungskosten) * 12);
+    setAbsetzung(absetz);
+
+    // Steuervorteil (Monatlich): -M2*0.42/12 (negativ von Absetzung!)
+    const steuervorteilMon = (-absetz * 0.42) / 12;
+    setSteuervorteilMonatlich(steuervorteilMon);
+
+    // Steuervorteil (Jährlich): N2*12
+    const steuervorteilJahr = steuervorteilMon * 12;
+    setSteuervorteilJaehrlich(steuervorteilJahr);
+
+    // ZWS (Zwischensumme): Kaltmiete - Verwaltungskosten - Instandhaltungsrücklage - Monatlicher Bankbeitrag
+    const zws = kaltmieteValue - verwaltungskosten - instand - bankrate;
+    
+    // Cashflow: Steuervorteil (Monatlich) + ZWS
+    const cf = steuervorteilMon + zws;
+    setCashflow(cf);
+    
+    // Cashflow im ersten Jahr
+    const cfJaehrlich = cf * 12;
+    setCashflowJaehrlich(cfJaehrlich);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Nur einmal beim Mounting
 
   // Intersection Observer für Animationen
   useEffect(() => {
@@ -332,6 +406,27 @@ const Features = () => {
                     ))}
                 </select>
               </div>
+              
+              {/* Berechnen Button */}
+              <div className="calculate-button-container">
+                <button 
+                  className={`calculate-button ${isCalculating ? 'calculating' : ''}`}
+                  onClick={calculateResults}
+                  disabled={isCalculating}
+                >
+                  {isCalculating ? (
+                    <div className="calculating-content">
+                      <div className="loading-spinner"></div>
+                      <span>{t('features.calculating')}</span>
+                    </div>
+                  ) : (
+                    <div className="button-content">
+                      <span>{t('features.calculateButton')}</span>
+                      <div className="button-icon"></div>
+                    </div>
+                  )}
+                </button>
+              </div>
             </div>
             
               <div className="calculator-section">
@@ -400,7 +495,7 @@ const Features = () => {
                 </div>
                 
                 <div className="results-right-column">
-                  <div className="tax-benefits-overview">
+                  <div className={`tax-benefits-overview ${showResults ? 'results-visible' : ''} ${isCalculating ? 'results-calculating' : ''}`}>
                     <h4 className="benefits-main-title">{t('features.taxBenefitsTitle')}</h4>
                     
                     <div className="benefit-highlight-card">
@@ -415,7 +510,7 @@ const Features = () => {
                     </div>
                   </div>
               
-                  <div className="cashflow-results-overview">
+                  <div className={`cashflow-results-overview ${showResults ? 'results-visible' : ''} ${isCalculating ? 'results-calculating' : ''}`}>
                     <h4 className="cashflow-main-title">{t('features.results')}</h4>
                     
                     <div className="cashflow-highlight-card">

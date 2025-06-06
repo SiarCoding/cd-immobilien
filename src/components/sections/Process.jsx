@@ -70,10 +70,13 @@ const Process = () => {
   ];
 
   useEffect(() => {
+    // Mobile Geräte erkennen
+    const isMobile = window.innerWidth <= 767;
+    
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.4, // Niedrigerer Threshold für frühere Animation
+      rootMargin: isMobile ? '-10% 0px -10% 0px' : '0px',
+      threshold: isMobile ? 0.3 : 0.4, // Niedrigerer Threshold für Mobile
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -82,10 +85,20 @@ const Process = () => {
           const id = parseInt(entry.target.getAttribute('data-id'));
           setActiveStep(id);
           
-          // Verzögerte Animation hinzufügen
-          setTimeout(() => {
+          // Für Mobile: sofortige Animation ohne Verzögerung
+          if (isMobile) {
             entry.target.classList.add('card-visible');
-          }, 100 * (id - 1)); // Gestaffelte Animation nach ID
+          } else {
+            // Desktop: verzögerte Animation
+            setTimeout(() => {
+              entry.target.classList.add('card-visible');
+            }, 100 * (id - 1));
+          }
+        } else {
+          // Wichtig: Animation zurücksetzen wenn Element nicht mehr sichtbar (nur für Mobile)
+          if (isMobile) {
+            entry.target.classList.remove('card-visible');
+          }
         }
       });
     }, observerOptions);

@@ -1,7 +1,7 @@
 /* Features Sektion mit modernem Design in Blau-Kupfer-Farbschema */
 .features-section {
   position: relative;
-  padding: 3rem 0;
+  padding: 3rem 0 5rem;
   color: #fff;
   overflow: hidden;
   z-index: 1;
@@ -240,24 +240,31 @@
 }
 
 /* Rechner Bereich */
-.calculator-wrapper {
-  background: #082567;
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 0.5rem;
-  margin: 0 auto;
-  max-width: 1100px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  min-height: 650px;
-}
+  .calculator-wrapper {
+    background: #082567;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 0.5rem;
+    margin: 0 auto;
+    max-width: 1100px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    min-height: 750px;
+  }
+  
+  @media (max-width: 768px) {
+    .calculator-wrapper {
+      min-height: auto;
+      padding: 0.3rem;
+    }
+  }
 
 .calculator-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  min-height: 600px;
+  min-height: 700px;
   align-items: stretch;
 }
 
@@ -268,7 +275,7 @@
   gap: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  min-height: 600px;
+  min-height: 700px;
 }
 
 .calculator-right-panel {
@@ -278,7 +285,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 600px;
+  min-height: 700px;
   overflow-y: auto;
 }
 
@@ -415,6 +422,130 @@
   outline: none;
   border-color: #e2ac6b;
   box-shadow: 0 0 0 2px rgba(226, 172, 107, 0.3);
+}
+
+/* Calculate Button */
+.calculate-button-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.calculate-button {
+  background: linear-gradient(135deg, #b87333, #e0ac69);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  color: white;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(184, 115, 51, 0.4);
+  min-width: 180px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculate-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d08c45, #f0bc79);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 115, 51, 0.5);
+}
+
+.calculate-button:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-content .button-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.calculate-button:hover:not(:disabled) .button-icon {
+  transform: scale(1.1);
+}
+
+.calculating-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Results Animation States */
+.tax-benefits-overview,
+.cashflow-results-overview {
+  opacity: 0.3;
+  transition: all 0.8s ease;
+  position: relative;
+}
+
+.tax-benefits-overview.results-calculating,
+.cashflow-results-overview.results-calculating {
+  opacity: 0.3;
+  transform: scale(0.98);
+}
+
+.tax-benefits-overview.results-calculating::before,
+.cashflow-results-overview.results-calculating::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(184, 115, 51, 0.3), transparent);
+  animation: scanAnimation 1.5s infinite;
+}
+
+@keyframes scanAnimation {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.tax-benefits-overview.results-visible,
+.cashflow-results-overview.results-visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: resultsFadeIn 0.8s ease-out;
+}
+
+@keyframes resultsFadeIn {
+  0% {
+    opacity: 0.3;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Info Icon und Tooltip */
@@ -573,6 +704,23 @@
   color: #e2ac6b;
   text-align: center;
   font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.benefit-value::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+  border-radius: 2px;
 }
 
 /* Berechnungsdetails */
@@ -730,6 +878,10 @@
 
 /* Responsive Anpassungen */
 @media (max-width: 992px) {
+  .features-section {
+    padding: 3rem 0 4rem;
+  }
+  
   .calculator-container {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -756,6 +908,10 @@
 }
 
 @media (max-width: 768px) {
+  .features-section {
+    padding: 2.5rem 0 4rem;
+  }
+  
   .benefits-cards-container {
     grid-template-columns: 1fr;
     max-width: 500px;
@@ -848,11 +1004,22 @@
 
 @media (max-width: 576px) {
   .features-section {
-    padding: 2.5rem 0;
+    padding: 2.5rem 0 4rem;
   }
   
   .features-container {
     padding: 0 1rem;
+  }
+  
+  .calculate-button {
+    min-width: 140px;
+    height: 48px;
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+  
+  .calculate-button-container {
+    margin-top: 1.5rem;
   }
   
   /* Mobile Anpassungen für Steuervorteile */
@@ -885,12 +1052,12 @@
   }
   
   .benefit-amount-yearly .benefit-value {
-    font-size: 2.1rem;
+    font-size: 1.4rem;
     font-weight: 800;
   }
   
   .benefit-amount-yearly .benefit-label {
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 700;
   }
   
@@ -1116,6 +1283,23 @@
   color: #e2ac6b;
   text-align: center;
   font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.cashflow-value::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, #b87333, #e2ac6b, #b87333);
+  background-size: 200% 100%;
+  animation: shine-copper 3s infinite linear;
+  border-radius: 2px;
 }
 
 /* Verbesserte Grid-Layout für Desktop */

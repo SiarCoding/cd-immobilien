@@ -91,14 +91,39 @@ const Formular = () => {
 
   const handleSubmit = async () => {
     if (validateStep(3)) {
-      // Hier würde normalerweise die API-Anfrage stattfinden
-      console.log('Form submitted:', formData);
-      setIsSubmitted(true);
-      
-      // Nach 3 Sekunden zur Startseite weiterleiten
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
+      try {
+        // Netlify Forms Submission
+        const formDataForSubmission = new FormData();
+        formDataForSubmission.append('form-name', 'immobilien-beratung');
+        formDataForSubmission.append('familienstand', formData.goal);
+        formDataForSubmission.append('einkommen', formData.income);
+        formDataForSubmission.append('name', formData.name);
+        formDataForSubmission.append('telefon', formData.phone);
+        formDataForSubmission.append('email', formData.email);
+        formDataForSubmission.append('datenschutz', formData.privacyAccepted ? 'Akzeptiert' : 'Nicht akzeptiert');
+        formDataForSubmission.append('submission-time', new Date().toLocaleString('de-DE'));
+
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formDataForSubmission).toString()
+        });
+
+        if (response.ok) {
+          console.log('Form submitted successfully:', formData);
+          setIsSubmitted(true);
+          
+          // Nach 3 Sekunden zur Startseite weiterleiten
+          setTimeout(() => {
+            navigate('/');
+          }, 3000);
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Es gab einen Fehler beim Senden des Formulars. Bitte versuchen Sie es erneut.');
+      }
     }
   };
 
@@ -201,6 +226,22 @@ const Formular = () => {
       <Header />
       <main>
         <div className="formular-page">
+          {/* Verstecktes Netlify Form für Build-Zeit Detection */}
+          <form 
+            name="immobilien-beratung" 
+            method="POST" 
+            data-netlify="true" 
+            hidden
+          >
+            <input type="text" name="familienstand" />
+            <input type="text" name="einkommen" />
+            <input type="text" name="name" />
+            <input type="tel" name="telefon" />
+            <input type="email" name="email" />
+            <input type="text" name="datenschutz" />
+            <input type="text" name="submission-time" />
+          </form>
+          
           <div className="formular-content-wrapper">
             <div className="formular-container">
               <div className="formular-card">
