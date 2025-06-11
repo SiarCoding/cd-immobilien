@@ -67,9 +67,9 @@ const Investment = () => {
   return (
     <section className="investment-section">
       <div className="investment-container">
-        <div className="section-heading">
+        <h2 className="section-heading" id="investment-heading">
           <span className="highlight-blue highlight-text-white">{t('investment.title')}</span> {t('investment.titleHighlight')}
-        </div>
+        </h2>
         
         <div className="investment-content">
           <div className="investment-text-container">

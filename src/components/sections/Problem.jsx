@@ -268,10 +268,10 @@ const Problem = () => {
       <CopperBlurEffect />
       
       <div className="problem-container">
-        <h1 className="section-heading">
+        <h2 className="section-heading" id="problem-heading">
           <span className="problem-title-box">{t('problem.title')}</span>
           <span className="problem-subtitle">{t('problem.subtitle')}</span>
-        </h1>
+        </h2>
 
         <div className="problem-cards-container">
           {problemCards.map((card, index) => (

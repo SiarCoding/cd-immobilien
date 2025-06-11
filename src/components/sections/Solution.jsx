@@ -141,7 +141,7 @@ const Solution = () => {
 
       <div className="solution-container">
         {/* Überschrift im gleichen Stil wie Problem.jsx */}
-        <h2 className="section-heading">
+        <h2 className="section-heading" id="solution-heading">
           <span className="solution-title-box">{t('solution.title')}</span>
           <span className="solution-subtitle">{t('solution.subtitle')}</span>
         </h2>

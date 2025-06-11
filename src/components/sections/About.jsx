@@ -10,9 +10,9 @@ const About = () => {
   return (
     <section className="about-section">
       <div className="about-container">
-        <div className="section-heading">
+        <h2 className="section-heading" id="about-heading">
           <span className="highlight-blue highlight-text-white">{t('about.title')}</span> {t('about.titleHighlight')}
-        </div>
+        </h2>
         
         <div className="about-content">
           <div className="about-text-container">
