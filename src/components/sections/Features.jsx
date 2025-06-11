@@ -298,10 +298,14 @@ const Features = () => {
 
   // Formatiert Euro Währungswerte
   const formatCurrency = (amount) => {
+    // Bei großen Beträgen (über 10.000) weniger Nachkommastellen zeigen für mobile Ansicht
+    const isMobile = window.innerWidth <= 576;
+    const fractionDigits = (isMobile && Math.abs(amount) >= 10000) ? 0 : 2;
+    
     return new Intl.NumberFormat('de-DE', {
       style: 'currency',
       currency: 'EUR',
-      maximumFractionDigits: 2
+      maximumFractionDigits: fractionDigits
     }).format(amount);
   };
 
