@@ -1,3 +1,4 @@
+# ACHTUNG: Setze OPENROUTER_API_KEY als Environment Variable im Netlify-Dashboard (nicht im Code oder netlify.toml)
 [build]
   command = "npm run build"
   publish = "build"

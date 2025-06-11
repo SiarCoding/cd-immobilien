@@ -67,7 +67,8 @@ const Chatbot = () => {
 
   // Funktion zum Abrufen von Antworten von der Mistral AI über OpenRouter
   const fetchMistralResponse = async (prompt) => {
-    const API_KEY = "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";
+    // ACHTUNG: Niemals API-Keys im Frontend verwenden! Hier nur als Platzhalter für Backend-Proxy.
+    const API_KEY = process.env.OPENROUTER_API_KEY; // Wird im Frontend NIE sicher sein!
     const url = "https://openrouter.ai/api/v1/chat/completions";
     
     try {

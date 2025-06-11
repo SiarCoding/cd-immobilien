@@ -32,7 +32,7 @@ export const seoData = {
   kontakt: {
     title: 'Kontakt - CD Immo-Portfolio GmbH | Kostenlose Immobilien Beratung Nürnberg',
     description: '📞 Kontaktieren Sie unsere Immobilien-Experten in Nürnberg! ✅ Kostenlose Erstberatung ✅ Persönliche Betreuung ✅ Steuervorteile bis 90% ✅ Termin online buchen. Bauvereinstr. 47, 90489 Nürnberg ☎ +49 911 13039057',
-    keywords: 'Immobilien Beratung Nürnberg, Kostenlose Immobilien Beratung, Steuerberatung Immobilien Nürnberg, Kontakt CD Immo-Portfolio GmbH, Termin Immobilienberater Nürnberg, Nürnberg Immobilien Experte, Immobilien Finanzierung Nürnberg, Steuervorteile Immobilien Bayern, Vermögensberatung Nürnberg',
+    keywords: 'Immobilien Beratung Nürnberg, Kostenlose Immobilien Beratung, Immobilien Nürnberg, Kontakt CD Immo-Portfolio GmbH, Termin Immobilienberater Nürnberg, Nürnberg Immobilien Experte, Immobilien Finanzierung Nürnberg, Steuervorteile Immobilien Bayern, Vermögensberatung Nürnberg',
     canonical: 'https://www.cd-immo.de/kontakt',
     ogImage: 'https://www.cd-immo.de/assets/og-image-kontakt.jpg'
   },
