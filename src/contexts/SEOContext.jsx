@@ -14,8 +14,8 @@ export const useSEO = () => {
 // Erweiterte SEO Data für verschiedene Seiten
 export const seoData = {
   home: {
-    title: 'CD Immo-Portfolio GmbH - Immobilieninvestition & Steuervorteile bis 90% | Nürnberg',
-    description: '🏢 Bauen Sie mit Immobilien nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast um bis zu 90%. ✅ 20+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden ✅ Kostenlose Beratung in Nürnberg. Eigenkapitalrendite über 10% p.a. ✅ Inflationsschutz ✅ Altersvorsorge',
+    title: 'CD Immo-Portfolio GmbH - Immobilieninvestition & Steuervorteile',
+    description: '🏢 Bauen Sie nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast. ✅ 20+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden ✅ Kostenlose Beratung. Eigenkapitalrendite über 10% p.a. ✅ Inflationsschutz',
     keywords: 'Immobilieninvestition Nürnberg, Steuervorteile Immobilien, Steuerlast senken 90%, Vermögensaufbau Immobilien, Altersvorsorge Immobilien, Cashflow Immobilien, Rendite Immobilien 10%, Immobilien Portfolio, Kapitalanlage Immobilien, Steueroptimierung, Immobilien Nürnberg Bayern, CD Immo-Portfolio GmbH, Eigenkapitalrendite, Inflationsschutz, Immobilienberater Nürnberg, Finanzierung Immobilien, Immobilien Steuern sparen',
     canonical: 'https://www.cd-immo.de/',
     ogImage: 'https://www.cd-immo.de/assets/og-image-home.jpg',
@@ -32,7 +32,7 @@ export const seoData = {
   kontakt: {
     title: 'Kontakt - CD Immo-Portfolio GmbH | Kostenlose Immobilien Beratung Nürnberg',
     description: '📞 Kontaktieren Sie unsere Immobilien-Experten in Nürnberg! ✅ Kostenlose Erstberatung ✅ Persönliche Betreuung ✅ Steuervorteile bis 90% ✅ Termin online buchen. Bauvereinstr. 47, 90489 Nürnberg ☎ +49 911 13039057',
-    keywords: 'Immobilien Beratung Nürnberg, Kostenlose Immobilien Beratung, Immobilien Nürnberg, Kontakt CD Immo-Portfolio GmbH, Termin Immobilienberater Nürnberg, Nürnberg Immobilien Experte, Immobilien Finanzierung Nürnberg, Steuervorteile Immobilien Bayern, Vermögensberatung Nürnberg',
+    keywords: 'Immobilien Beratung Nürnberg, Kostenlose Immobilien Beratung,s Immobilien Nürnberg, Kontakt CD Immo-Portfolio GmbH, Termin Immobilienberater Nürnberg, Nürnberg Immobilien Experte, Immobilien Finanzierung Nürnberg, Steuervorteile Immobilien Bayern, Vermögensberatung Nürnberg',
     canonical: 'https://www.cd-immo.de/kontakt',
     ogImage: 'https://www.cd-immo.de/assets/og-image-kontakt.jpg'
   },

@@ -11,7 +11,7 @@ const Newsletter = () => {
     <div className="newsletter-container">
       <div className="newsletter-content">
         <div className="iphone-mockup">
-          <img src={iphoneMockup} alt={t('newsletter.altText')} />
+          <img src={iphoneMockup} alt={t('newsletter.altText')} loading="lazy" />
         </div>
         
         <div className="newsletter-text">

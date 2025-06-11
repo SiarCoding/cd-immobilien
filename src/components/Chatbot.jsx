@@ -290,7 +290,7 @@ Sage: "Nutzen Sie unseren kostenlosen Rechner, um Ihren individuellen Cashflow u
             <div className="chat-header">
               <div className="chat-header-left">
                 <div className="chat-header-avatar">
-                  <img src={chatbotAvatar} alt="" />
+                  <img src={chatbotAvatar} alt="CD Immo-Portfolio GmbH Chatbot" />
                 </div>
                 <div className="chat-header-info">
                   <h3>Digitale Assistentin</h3>
@@ -305,7 +305,7 @@ Sage: "Nutzen Sie unseren kostenlosen Rechner, um Ihren individuellen Cashflow u
                   <div key={index} className={`message ${msg.sender}`}>
                     {msg.sender === 'bot' && (
                       <div className="bot-avatar-small">
-                        <img src={chatbotAvatar} alt="" className="bot-avatar-small-img" />
+                        <img src={chatbotAvatar} alt="CD Immo-Portfolio GmbH Chatbot" className="bot-avatar-small-img" />
                       </div>
                     )}
                   <div className="message-bubble">
@@ -330,7 +330,7 @@ Sage: "Nutzen Sie unseren kostenlosen Rechner, um Ihren individuellen Cashflow u
               {isTyping && (
                 <div className="message bot">
                   <div className="bot-avatar-small">
-                    <img src={chatbotAvatar} alt="" className="bot-avatar-small-img" />
+                    <img src={chatbotAvatar} alt="CD Immo-Portfolio GmbH Chatbot" className="bot-avatar-small-img" />
                   </div>
                   <div className="message-bubble typing-indicator">
                     <span></span>

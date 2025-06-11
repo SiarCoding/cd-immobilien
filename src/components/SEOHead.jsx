@@ -10,8 +10,8 @@ const SEOHead = ({
   ogType = "website",
   noindex = false 
 }) => {
-  const fullTitle = title || "CD Immo-Portfolio GmbH - Immobilieninvestition & Steuervorteile | Nürnberg";
-  const fullDescription = description || "🏢 Bauen Sie mit Immobilien nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast um bis zu 90%. ✅ 20+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden";
+  const fullTitle = title || "CD Immo-Portfolio GmbH - Immobilieninvestition & Steuervorteile";
+  const fullDescription = description || "🏢 Bauen Sie nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast. ✅ 20+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden";
   const fullKeywords = keywords || "Immobilieninvestition, Steuervorteile Immobilien, Vermögensaufbau, Altersvorsorge, Cashflow Immobilien, Rendite Immobilien, Steuerlast senken, Immobilien Portfolio, Kapitalanlage Immobilien, Nürnberg, Bayern, CD Immo-Portfolio GmbH";
   const fullCanonical = canonical || "https://www.cd-immo.de/";
   const fullOgImage = ogImage || "https://www.cd-immo.de/assets/og-image.jpg";
@@ -26,7 +26,7 @@ const SEOHead = ({
       <meta name="description" content={fullDescription} />
       <meta name="keywords" content={fullKeywords} />
       <meta name="author" content="CD Immo-Portfolio GmbH" />
-      <meta name="language" content="German" />
+      <meta name="language" content="de" />
       <meta name="revisit-after" content="7 days" />
       
       {/* Robots Meta Tag */}
@@ -50,11 +50,13 @@ const SEOHead = ({
       <meta property="og:locale" content="de_DE" />
       
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={fullCanonical} />
-      <meta property="twitter:title" content={fullTitle} />
-      <meta property="twitter:description" content={fullDescription} />
-      <meta property="twitter:image" content={fullOgImage} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={fullCanonical} />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={fullDescription} />
+      <meta name="twitter:image" content={fullOgImage} />
+      <meta name="twitter:site" content="@cdimmobilien" />
+      <meta name="twitter:creator" content="@cdimmobilien" />
       
       {/* Additional SEO improvements */}
       <meta name="theme-color" content="#082567" />

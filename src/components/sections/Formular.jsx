@@ -302,7 +302,7 @@ const Formular = () => {
               <div className="success-icon">
                 <Check size={48} />
               </div>
-              <h1 className="success-title">{t('formular.success.title')}</h1>
+              <h2 className="success-title">{t('formular.success.title')}</h2>
               <p className="success-subtitle">{t('formular.success.subtitle')}</p>
               <button 
                 className="success-button"
@@ -537,24 +537,24 @@ const Formular = () => {
                                   {isVerifyingEmail ? (
                                     <>
                                       <span className="loading-spinner-small"></span>
-                                      Prüfe...
+                                      {t('formular.verification.checking')}
                                     </>
                                   ) : emailVerified ? (
                                     <>
                                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '4px'}}>
                                         <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                       </svg>
-                                      Verifiziert
+                                      {t('formular.verification.verified')}
                                     </>
                                   ) : (
-                                    'Verifizieren'
+                                    t('formular.verification.verify')
                                   )}
                                 </button>
                               </div>
                               {errors.email && <span className="error-message" style={{display: 'block', color: '#ff6b6b', fontSize: '14px', marginTop: '8px'}}>{errors.email}</span>}
                               {emailVerified && !errors.email && (
                                 <span className="success-message" style={{display: 'block', color: '#4ade80', fontSize: '14px', marginTop: '8px'}}>
-                                  ✓ E-Mail erfolgreich verifiziert
+                                  ✓ {t('formular.verification.successMessage')}
                                 </span>
                               )}
                             </div>
@@ -639,13 +639,13 @@ const Formular = () => {
                   {/* Right Side - Team */}
                   <div className="formular-advisor-section">
                     <div className="advisor-image">
-                      <img src={teamImage} alt="Unser Expertenteam" />
+                      <img src={teamImage} alt={t('formular.advisor.title')} loading="lazy" />
                     </div>
                     <div className="advisor-content">
-                      <h3 className="advisor-title">Unser Expertenteam</h3>
-                      <p className="advisor-subtitle">kümmert sich um Ihre Finanzierung und Beratung</p>
+                      <h3 className="advisor-title">{t('formular.advisor.title')}</h3>
+                      <p className="advisor-subtitle">{t('formular.advisor.subtitle')}</p>
                       <div className="advisor-badge">
-                        <span className="badge-text">100% kostenfrei</span>
+                        <span className="badge-text">{t('formular.advisor.badge')}</span>
                       </div>
                     </div>
                   </div>

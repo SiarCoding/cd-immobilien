@@ -276,7 +276,11 @@ const translations = {
       feature3: "100% unabhängig",
       feature4: "Kostentransparent",
       chartTitle: "Entwicklung der Immobilienpreise in Deutschland seit 1975",
-      chartSubtitle: "Immobilienpreise in Deutschland ab 1975 (Nominalindex)"
+      chartSubtitle: "Immobilienpreise in Deutschland ab 1975 (Nominalindex)",
+      chart: {
+        year: "Jahr",
+        priceIndex: "Preisindex"
+      }
     },
     // Blog/Testimonials Section  
     blog: {
@@ -408,7 +412,7 @@ const translations = {
       progress: "Schritt {current} von {total}",
       step1: {
         title: "Wie ist Ihr Familienstand?",
-        subtitle: "Diese Information hilft uns bei der optimalen Steuerberatung",
+        subtitle: "Diese Information hilft uns bei der optimalen Analyse",
         marriedJointly: "Verheiratet - Gemeinsam veranlagt",
         single: "Ledig",
         marriedSeparately: "Verheiratet - Getrennt veranlagt",
@@ -448,6 +452,17 @@ const translations = {
           privacyRequired: "Datenschutzerklärung muss akzeptiert werden",
           messageRequired: "Nachricht ist erforderlich"
         }
+      },
+      advisor: {
+        title: "Unser Expertenteam",
+        subtitle: "kümmert sich um Ihre Finanzierung und Beratung",
+        badge: "100% kostenfrei"
+      },
+      verification: {
+        verify: "Verifizieren",
+        checking: "Prüfe...",
+        verified: "Verifiziert",
+        successMessage: "E-Mail erfolgreich verifiziert"
       },
       success: {
         title: "Vielen Dank!",
@@ -735,7 +750,11 @@ const translations = {
       feature3: "100% Independent", 
       feature4: "Cost Transparent",
       chartTitle: "Development of Real Estate Prices in Germany since 1975",
-      chartSubtitle: "Real Estate Prices in Germany from 1975 (Nominal Index)"
+      chartSubtitle: "Real Estate Prices in Germany from 1975 (Nominal Index)",
+      chart: {
+        year: "Year",
+        priceIndex: "Price Index"
+      }
     },
     // Blog/Testimonials Section
     blog: {
@@ -867,7 +886,7 @@ const translations = {
       progress: "Step {current} of {total}",
       step1: {
         title: "What is your marital status?",
-        subtitle: "This information helps us provide optimal tax advice",
+        subtitle: "This information helps us provide optimal analysis and strategy",
         marriedJointly: "Married - Filing jointly",
         single: "Single",
         marriedSeparately: "Married - Filing separately",
@@ -907,6 +926,17 @@ const translations = {
           privacyRequired: "Privacy policy must be accepted",
           messageRequired: "Message is required"
         }
+      },
+      advisor: {
+        title: "Our Expert Team",
+        subtitle: "takes care of your financing and consultation",
+        badge: "100% free of charge"
+      },
+      verification: {
+        verify: "Verify",
+        checking: "Checking...",
+        verified: "Verified",
+        successMessage: "Email successfully verified"
       },
       success: {
         title: "Thank You!",

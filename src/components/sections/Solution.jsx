@@ -141,10 +141,10 @@ const Solution = () => {
 
       <div className="solution-container">
         {/* Überschrift im gleichen Stil wie Problem.jsx */}
-        <h1 className="section-heading">
+        <h2 className="section-heading">
           <span className="solution-title-box">{t('solution.title')}</span>
           <span className="solution-subtitle">{t('solution.subtitle')}</span>
-        </h1>
+        </h2>
 
         <div className="solutions-grid">
           {solutionCards.map((card, index) => (

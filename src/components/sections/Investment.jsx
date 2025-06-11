@@ -56,7 +56,12 @@ const Investment = () => {
     { year: 2017, preis: 125 },
     { year: 2018, preis: 132 },
     { year: 2019, preis: 140 },
-    { year: 2020, preis: 162 }
+    { year: 2020, preis: 162 },
+    { year: 2021, preis: 175 },
+    { year: 2022, preis: 185 },
+    { year: 2023, preis: 190 },
+    { year: 2024, preis: 196 },
+    { year: 2025, preis: 202 }
   ];
 
   return (
@@ -121,12 +126,12 @@ const Investment = () => {
                     tick={{ fill: '#fff', fontSize: 12 }} 
                     axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                     tickLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
-                    domain={[40, 170]}
+                    domain={[40, 210]}
                   />
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.1)" />
                   <Tooltip 
-                    formatter={(value) => [`${value}`, 'Preisindex']}
-                    labelFormatter={(year) => `Jahr ${year}`}
+                    formatter={(value) => [`${value}`, t('investment.chart.priceIndex')]}
+                    labelFormatter={(year) => `${t('investment.chart.year')} ${year}`}
                     contentStyle={{ 
                       backgroundColor: 'rgba(8, 37, 103, 0.95)',
                       border: '1px solid #e2ac6b',

@@ -14,7 +14,7 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="hero-section">
+    <section className="hero-section" aria-label="Hero">
       <BackgroundVideo />
       
       <div className="hero-main-content">
@@ -22,9 +22,9 @@ const Hero = () => {
           <div className="hero-left-side">
             <div className="hero-text-title">
               <h1 className="hero-title">
-                <div className="title-container">
+                <span className="title-container">
                   {t('hero.title')} <span className="highlight-blue">{t('hero.titleHighlight')}</span> {t('hero.titleEnd')} <span className="underlined-blue-special">{t('hero.titleUnderlined')}</span>
-                </div>
+                </span>
               </h1>
               <div className="hero-subtitle">
                 {t('hero.subtitle')}
@@ -81,7 +81,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

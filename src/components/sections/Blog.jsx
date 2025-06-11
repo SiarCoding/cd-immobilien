@@ -120,7 +120,7 @@ const Testimonials = () => {
               {isVisible && displayedTexts[0].length < testimonialTexts[0].length && <span className="typewriter-cursor">|</span>}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/michael.png")} className="author-image" alt={t('blog.testimonials.michael.alt')} />
+              <img src={require("../../assets/michael.png")} className="author-image" alt={t('blog.testimonials.michael.alt')} loading="lazy" />
               <div className="author-info">
                 <div className="author-name">{t('blog.testimonials.michael.name')}</div>
                 <div className="author-title">{t('blog.testimonials.michael.title')}</div>
@@ -156,7 +156,7 @@ const Testimonials = () => {
               {isVisible && displayedTexts[1].length < testimonialTexts[1].length && <span className="typewriter-cursor">|</span>}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/sarahh.png")} className="author-image" alt={t('blog.testimonials.sarah.alt')} />
+              <img src={require("../../assets/sarahh.png")} className="author-image" alt={t('blog.testimonials.sarah.alt')} loading="lazy" />
               <div className="author-info">
                 <div className="author-name">{t('blog.testimonials.sarah.name')}</div>
                 <div className="author-title">{t('blog.testimonials.sarah.title')}</div>
@@ -192,7 +192,7 @@ const Testimonials = () => {
               {isVisible && displayedTexts[2].length < testimonialTexts[2].length && <span className="typewriter-cursor">|</span>}
             </div>
             <div className="testimonial-author">
-              <img src={require("../../assets/thomas.png")} className="author-image" alt={t('blog.testimonials.thomas.alt')} />
+              <img src={require("../../assets/thomas.png")} className="author-image" alt={t('blog.testimonials.thomas.alt')} loading="lazy" />
               <div className="author-info">
                 <div className="author-name">{t('blog.testimonials.thomas.name')}</div>
                 <div className="author-title">{t('blog.testimonials.thomas.title')}</div>
