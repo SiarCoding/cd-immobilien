@@ -630,6 +630,29 @@
     font-size: 12px;
   }
   
+  .phone-input-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .country-select {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  
+  .email-input-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .verify-email-btn {
+    width: 100%;
+    min-width: auto;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  
   .action-button {
     padding: 12px 16px;
     font-size: 13px;
@@ -838,6 +861,152 @@
   border-color: #e2ac6b;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 20px rgba(226, 172, 107, 0.3);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Disabled button state */
+.action-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Phone Input Group */
+.phone-input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.country-select {
+  width: 120px;
+  padding: 14px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(15px);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.country-select:focus {
+  outline: none;
+  border-color: #e2ac6b;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(226, 172, 107, 0.3);
+}
+
+.country-select option {
+  background: #1a1a1a;
+  color: white;
+  padding: 8px;
+}
+
+.phone-input {
+  flex: 1;
+}
+
+/* Improved Checkbox */
+.checkmark.checked {
+  background: #e2ac6b !important;
+  border-color: #e2ac6b !important;
+}
+
+.privacy-section {
+  position: relative;
+}
+
+.privacy-section .error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+/* Email Verification Styles */
+.email-input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.verify-email-btn {
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(15px);
+  white-space: nowrap;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verify-email-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(226, 172, 107, 0.6);
+  transform: translateY(-1px);
+}
+
+.verify-email-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.verify-email-btn.verified {
+  background: rgba(74, 222, 128, 0.2);
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+.loading-spinner-small {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.form-input.verified {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.success-message {
+  color: #4ade80;
+  font-size: 14px;
+  margin-top: 8px;
+  display: block;
 }
 
 /* Action Buttons Container */

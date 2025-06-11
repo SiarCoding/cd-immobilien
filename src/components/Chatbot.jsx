@@ -44,7 +44,7 @@ const Chatbot = () => {
       setTimeout(() => {
         setMessages([
           { 
-            text: "Willkommen beim Kundenservice von CD Immobilien Portfolio GmbH! Ich bin die digitale Assistentin und helfe Ihnen gerne bei Fragen zu Immobilieninvestitionen, Steuervorteilen und Vermögensaufbau weiter.", 
+            text: "Willkommen beim Kundenservice von CD Immo-Portfolio GmbH! Ich bin die digitale Assistentin und helfe Ihnen gerne bei Fragen zu Immobilieninvestitionen, Steuervorteilen und Vermögensaufbau weiter.", 
                 sender: 'bot' 
               }
             ]);
@@ -74,7 +74,7 @@ const Chatbot = () => {
       console.log("Sending request to Mistral AI via OpenRouter...");
       
       // Erweiterte Knowledge Base mit Website-Inhalten
-      const systemContext = `Du bist die digitale Assistentin von CD Immobilien Portfolio GmbH, einem Spezialisten für Immobilieninvestitionen und Steueroptimierung mit Sitz in Nürnberg.
+      const systemContext = `Du bist die digitale Assistentin von CD Immo-Portfolio GmbH, einem Spezialisten für Immobilieninvestitionen und Steueroptimierung mit Sitz in Nürnberg.
 
 WICHTIGE ANWEISUNGEN:
 - Antworte immer kurz und prägnant (max. 2-3 Sätze)
@@ -83,10 +83,10 @@ WICHTIGE ANWEISUNGEN:
 - Bei Fragen zu Steuervorteilen oder Cashflow-Berechnung verweise auf unseren Rechner
 - Nutze die folgende Knowledge Base für deine Antworten
 
-KNOWLEDGE BASE - CD IMMOBILIEN PORTFOLIO GMBH:
+KNOWLEDGE BASE - CD IMMO-PORTFOLIO GMBH:
 
 ÜBER UNS:
-- 15+ Jahre Erfahrung im Immobilienbereich
+- 20+ Jahre Erfahrung im Immobilienbereich
 - 1400+ zufriedene Kunden
 - 500+ Mio. € Projektvolumen
 - Standort: Bauvereinstr. 47, 90489 Nürnberg
@@ -174,7 +174,7 @@ Sage: "Nutzen Sie unseren kostenlosen Rechner, um Ihren individuellen Cashflow u
         headers: {
           "Authorization": `Bearer ${API_KEY}`,
           "HTTP-Referer": "https://www.cd-immo.de",
-          "X-Title": "CD Immobilien Portfolio GmbH",
+          "X-Title": "CD Immo-Portfolio GmbH",
           "Content-Type": "application/json"
         },
         body: JSON.stringify(requestBody),
@@ -360,7 +360,7 @@ Sage: "Nutzen Sie unseren kostenlosen Rechner, um Ihren individuellen Cashflow u
             </form>
             
             <div className="chat-footer">
-              <p>Powered by CD Immobilien Portfolio GmbH</p>
+              <p>Powered by CD Immo-Portfolio GmbH</p>
             </div>
           </div>
         )}

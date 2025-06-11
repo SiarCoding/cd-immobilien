@@ -1048,17 +1048,26 @@
   }
   
   .benefit-amount-yearly {
-    padding: 1.2rem 0.8rem;
+    padding: 0.8rem 0.5rem;
+    border-width: 2px;
   }
   
   .benefit-amount-yearly .benefit-value {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 800;
+    padding-bottom: 0.1rem;
   }
   
   .benefit-amount-yearly .benefit-label {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  
+  .benefit-amount-yearly {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
   .benefit-highlight-card,

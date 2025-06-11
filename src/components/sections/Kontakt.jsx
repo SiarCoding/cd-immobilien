@@ -111,7 +111,7 @@ const Kontakt = () => {
                  itemScope 
                  itemType="https://schema.org/LocalBusiness">
               
-              <meta itemProp="name" content="CD Immobilien Portfolio GmbH" />
+              <meta itemProp="name" content="CD Immo-Portfolio GmbH" />
               <meta itemProp="description" content="Spezialist für Immobilieninvestitionen und Steueroptimierung in Nürnberg" />
               
               <div className="kontakt-info">

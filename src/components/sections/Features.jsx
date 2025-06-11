@@ -48,7 +48,7 @@ const BenefitCard = ({ icon, title, value, description }) => {
 };
 
 const Features = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   // Eingabewerte
   const [kaufpreis, setKaufpreis] = useState(500000);
@@ -144,8 +144,6 @@ const Features = () => {
       }
     };
   };
-
-
 
   // Berechnungsfunktion (nur bei Button-Klick)
   const calculateResults = async () => {
@@ -500,11 +498,11 @@ const Features = () => {
                     
                     <div className="benefit-highlight-card">
                       <div className="benefit-amount">
-                        <span className="benefit-label">{t('features.monthlyTaxBenefit')} (1. Jahr)</span>
+                        <span className="benefit-label">{t('features.monthlyTaxBenefit')}</span>
                         <span className="benefit-value">{formatCurrency(steuervorteilMonatlich)}</span>
                       </div>
                       <div className="benefit-amount benefit-amount-yearly">
-                        <span className="benefit-label">{t('features.yearlyTaxBenefit')} (1. Jahr)</span>
+                        <span className="benefit-label">{t('features.yearlyTaxBenefit')}</span>
                         <span className="benefit-value">{formatCurrency(steuervorteilJaehrlich)}</span>
                       </div>
                     </div>
@@ -515,11 +513,11 @@ const Features = () => {
                     
                     <div className="cashflow-highlight-card">
                       <div className="cashflow-amount">
-                        <span className="cashflow-label">{t('features.cashflowMonthly')} (nach Steuern, Kosten & Rücklage mtl.)</span>
+                        <span className="cashflow-label">{t('features.cashflowMonthly')}</span>
                         <span className="cashflow-value">{formatCurrency(cashflow)}</span>
                       </div>
                       <div className="cashflow-amount">
-                        <span className="cashflow-label">{t('features.cashflowFirstYear')} (nach Steuern, Kosten & Rücklage)</span>
+                        <span className="cashflow-label">{t('features.cashflowFirstYear')}</span>
                         <span className="cashflow-value">{formatCurrency(cashflowJaehrlich)}</span>
                       </div>
                 </div>
@@ -528,7 +526,7 @@ const Features = () => {
                   {/* CTA Bereich */}
                   <div className="results-cta">
                     <p className="results-cta-text">
-                      Überzeugt von den Ergebnissen? Verwandeln Sie diese Berechnung noch heute in Realität
+                      {t('features.resultsCta')}
                     </p>
                     <div className="cta-arrow">↓</div>
               
@@ -543,14 +541,22 @@ const Features = () => {
         <div ref={ctaRef} className="features-cta">
           <div className="cta-content">
             <h3 className="cta-heading">{t('features.ctaTitle')}</h3>
-          <p className="cta-text">
-              {t('features.ctaText')} Profitieren Sie von der degressiven Abschreibung von bis zu 10% bei QNG-Qualität und optimieren Sie Ihren Cashflow nach Steuern ab dem ersten Vermietungsjahr.
+            <p className="cta-text">
+              {language === 'DE' ? (
+                <>
+                  {t('features.ctaText')}
+                </>
+              ) : (
+                <>
+                  {t('features.ctaText')}
+                </>
+              )}
             </p>
             <Link to="/formular">
-            <button className="cta-button">
+              <button className="cta-button">
                 <span className="button-text">{t('features.ctaButton')}</span>
-              <span className="button-icon">→</span>
-            </button>
+                <span className="button-icon">→</span>
+              </button>
             </Link>
           </div>
         </div>

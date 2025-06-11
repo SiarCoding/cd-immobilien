@@ -100,7 +100,7 @@ const translations = {
         title: "Langfristiger Vermögensaufbau",
         description: "Profitieren Sie vom Hebeleffekt durch Fremdkapital und bauen Sie systematisch Vermögen auf. Unsere Strategie zielt auf nachhaltiges Wachstum und kontinuierliche Wertsteigerung."
       },
-      ctaTitle: "Starten Sie jetzt Ihren Vermögensaufbau mit Immobilien",
+      ctaTitle: "Seriös Steuern sparen und planbar Vermögen aufbauen",
       ctaText: "Unsere Immobilienstrategie bietet Ihnen eine sichere, renditestarke und steueroptimierte Möglichkeit, Vermögen aufzubauen und langfristig für Ihre Altersvorsorge vorzusorgen. Profitieren Sie von unserem Experten-Netzwerk.",
       ctaButton: "Jetzt Beratungstermin vereinbaren"
     },
@@ -165,12 +165,12 @@ const translations = {
       
       results: "Bilanz",
       zws: "ZWS (Zwischensumme)",
-      cashflowMonthly: "Cashflow",
+      cashflowMonthly: "Cashflow (nach Steuern, Kosten & Rücklage mtl.)",
       
       // Right column - Tax benefits
       taxBenefitsTitle: "Ihr Steuervorteil (Für erstes Jahr ab Jan. bis Dez.)",
-      monthlyTaxBenefit: "Monatlicher Steuervorteil",
-      yearlyTaxBenefit: "Jährlicher Steuervorteil",
+      monthlyTaxBenefit: "Monatlicher Steuervorteil (1. Jahr)",
+      yearlyTaxBenefit: "Jährlicher Steuervorteil (1. Jahr)",
       
       calculationBasis: "Berechnungsgrundlage",
       afaBasis: "AfA-Basis (93% der Gesamtkosten)",
@@ -182,10 +182,10 @@ const translations = {
       cumulativeCashflow: "Kumulativer Cashflow",
       year: "Jahr",
       cumulativeCashflow30: "Kumulativer Cashflow (30 Jahre):",
-      cashflowFirstYear: "Cashflow im ersten Jahr",
+      cashflowFirstYear: "Cashflow im ersten Jahr (nach Steuern, Kosten & Rücklage)",
       
       // CTA
-      ctaTitle: "Optimieren Sie Ihren Immobilien-Cashflow",
+      ctaTitle: "Seriös Steuern sparen und planbar Vermögen aufbauen",
       ctaText: "Lassen Sie sich von unseren Experten beraten, wie Sie mit cleveren Immobilieninvestitionen maximalen Cashflow und Steuervorteile erzielen können.",
       ctaButton: "Beratungstermin vereinbaren",
       
@@ -197,7 +197,8 @@ const translations = {
       
       // Calculate Button
       calculateButton: "Berechnen",
-      calculating: "Berechnet..."
+      calculating: "Berechnet...",
+      resultsCta: "Convinced by the results? Turn this calculation into reality today"
     },
     // Process Section
     process: {
@@ -329,8 +330,8 @@ const translations = {
       button: "Beratungstermin vereinbaren",
       questions: [
         {
-          question: "Was macht CD Immobilien Portfolio GmbH einzigartig?",
-          answer: "Als CD Immobilien Portfolio GmbH bieten wir einen ganzheitlichen Ansatz zur Immobilieninvestition. Wir kombinieren Expertise in Steueroptimierung, nachhaltiger Vermögensplanung und strategischer Immobilienauswahl. Unser Team aus Experten begleitet Sie von der ersten Beratung bis zur langfristigen Betreuung Ihrer Investition."
+          question: "Was macht CD Immo-Portfolio GmbH einzigartig?",
+          answer: "Als CD Immo-Portfolio GmbH bieten wir einen ganzheitlichen Ansatz zur Immobilieninvestition. Wir kombinieren Expertise in Steueroptimierung, nachhaltiger Vermögensplanung und strategischer Immobilienauswahl. Unser Team aus Experten begleitet Sie von der ersten Beratung bis zur langfristigen Betreuung Ihrer Investition."
         },
         {
           question: "Welche steuerlichen Vorteile bieten Immobilieninvestitionen?",
@@ -361,7 +362,7 @@ const translations = {
         status: "Ich beantworte Ihre Fragen"
       },
       messages: {
-        welcome: "Willkommen beim Kundenservice von CD Immobilien Portfolio GmbH!",
+        welcome: "Willkommen beim Kundenservice von CD Immo-Portfolio GmbH!",
         intro: "Haben Sie Fragen zu Immobilieninvestitionen oder wie Sie von den aktuellen Steuervorteilen profitieren können? Ich helfe Ihnen gerne weiter.",
         askName: "Um Ihnen besser helfen zu können, würde ich gerne Ihren Namen wissen. Wie darf ich Sie nennen?",
         askPhone: "Danke {name}! Bitte geben Sie Ihre Telefonnummer ein, damit wir Sie für ein persönliches Beratungsgespräch kontaktieren können:",
@@ -373,9 +374,9 @@ const translations = {
         name: "Bitte geben Sie Ihren Namen ein...",
         phone: "Bitte geben Sie Ihre Telefonnummer ein..."
       },
-      footer: "© CD Immobilien Portfolio GmbH",
+      footer: "© CD Immo-Portfolio GmbH",
       ariaLabel: "Chat öffnen",
-      systemPrompt: "Du bist ein Kundenberater für CD Immobilien Portfolio GmbH. Dein Name ist Azim Choudry. CD steht für 'Capital Development', eine Immobilien-Investmentgesellschaft in Deutschland. Das Unternehmen hat Immobilien in verschiedenen Großstädten Deutschlands, vor allem in Berlin, München, Hamburg und Frankfurt. CD Immobilien Portfolio GmbH bietet Wohnimmobilien, Gewerbeimmobilien und Grundstücke zur Kapitalanlage an. Bei Fragen nach Immobilien antworte, dass CD Immobilien Portfolio GmbH verschiedene Immobilien in deutschen Großstädten anbietet, von Wohnungen in Berlin und München bis zu Gewerbeobjekten in Hamburg und Frankfurt. Halte deine Antworten knapp, freundlich und informativ. Betone die Vorteile von Immobilieninvestitionen als Inflationsschutz und zur Steueroptimierung. Antworte auf Deutsch."
+      systemPrompt: "Du bist ein Kundenberater für CD Immo-Portfolio GmbH. Dein Name ist Azim Choudry. CD steht für 'Capital Development', eine Immobilien-Investmentgesellschaft in Deutschland. Das Unternehmen hat Immobilien in verschiedenen Großstädten Deutschlands, vor allem in Berlin, München, Hamburg und Frankfurt. CD Immo-Portfolio GmbH bietet Wohnimmobilien, Gewerbeimmobilien und Grundstücke zur Kapitalanlage an. Bei Fragen nach Immobilien antworte, dass CD Immo-Portfolio GmbH verschiedene Immobilien in deutschen Großstädten anbietet, von Wohnungen in Berlin und München bis zu Gewerbeobjekten in Hamburg und Frankfurt. Halte deine Antworten knapp, freundlich und informativ. Betone die Vorteile von Immobilieninvestitionen als Inflationsschutz und zur Steueroptimierung. Antworte auf Deutsch."
     },
     // Footer Section
     footer: {
@@ -392,11 +393,11 @@ const translations = {
       imprint: "Impressum",
       privacy: "Datenschutz",
       contactTitle: "Kontakt",
-      address: "CD Immobilien Portfolio GmbH\nBauvereinstr. 47\n90489 Nürnberg\nDeutschland",
+      address: "CD Immo-Portfolio GmbH\nBauvereinstr. 47\n90489 Nürnberg\nDeutschland",
       phone: "+49 911 13039057",
       email: "p.chowdhury@cd-immo.de",
-      copyright: "© {year} CD Immobilien Portfolio GmbH. Alle Rechte vorbehalten.",
-      logoAlt: "CD Immobilien Portfolio GmbH",
+      copyright: "© {year} CD Immo-Portfolio GmbH. Alle Rechte vorbehalten.",
+      logoAlt: "CD Immo-Portfolio GmbH",
       socialInstagram: "Instagram",
       socialLinkedIn: "LinkedIn", 
       socialFacebook: "Facebook"
@@ -558,7 +559,7 @@ const translations = {
         title: "Long-term wealth building",
         description: "Benefit from leverage through debt capital and systematically build wealth. Our strategy aims for sustainable growth and continuous value appreciation."
       },
-      ctaTitle: "Start building your wealth with real estate now",
+      ctaTitle: "Save taxes seriously and build wealth in a predictable way",
       ctaText: "Our real estate strategy offers you a secure, high-yield and tax-optimized way to build wealth and provide for your retirement in the long term. Benefit from our expert network.",
       ctaButton: "Schedule consultation now"
     },
@@ -623,12 +624,12 @@ const translations = {
       
       results: "Balance",
       zws: "IWS (Interim Sum)",
-      cashflowMonthly: "Cashflow",
+      cashflowMonthly: "Cashflow (after taxes, costs & reserve p.m.)",
       
       // Right column - Tax benefits
       taxBenefitsTitle: "Your Tax Benefits (For first year from Jan. to Dec.)",
-      monthlyTaxBenefit: "Monthly Tax Benefit",
-      yearlyTaxBenefit: "Yearly Tax Benefit",
+      monthlyTaxBenefit: "Monthly Tax Benefit (1st year)",
+      yearlyTaxBenefit: "Yearly Tax Benefit (1st year)",
       
       calculationBasis: "Calculation Basis",
       afaBasis: "Depreciation Basis (93% of Total Costs)",
@@ -640,11 +641,11 @@ const translations = {
       cumulativeCashflow: "Cumulative Cashflow",
       year: "Year",
       cumulativeCashflow30: "Cumulative Cashflow (30 Years):",
-      cashflowFirstYear: "Cashflow in the first year",
+      cashflowFirstYear: "Cashflow in the first year (after taxes, costs & reserve)",
       
       // CTA
-      ctaTitle: "Optimize Your Real Estate Cashflow",
-      ctaText: "Let our experts advise you on how to achieve maximum cashflow and tax benefits with smart real estate investments.",
+      ctaTitle: "Save taxes seriously and build wealth in a predictable way",
+      ctaText: "Let our experts advise you on how to achieve maximum cashflow and tax benefits with smart real estate investments. Benefit from the declining balance depreciation of up to 10% with QNG quality and optimize your after-tax cashflow from the first year of rental.",
       ctaButton: "Schedule Consultation",
       
       // Title parts
@@ -655,7 +656,8 @@ const translations = {
       
       // Calculate Button
       calculateButton: "Calculate",
-      calculating: "Calculating..."
+      calculating: "Calculating...",
+      resultsCta: "Convinced by the results? Turn this calculation into reality today"
     },
     // Process Section
     process: {
@@ -787,8 +789,8 @@ const translations = {
       button: "Schedule consultation",
       questions: [
         {
-          question: "What makes CD Immobilien Portfolio GmbH unique?",
-          answer: "As CD Immobilien Portfolio GmbH, we offer a holistic approach to real estate investment. We combine expertise in tax optimization, sustainable wealth planning and strategic real estate selection. Our team of experts accompanies you from the first consultation to the long-term support of your investment."
+          question: "What makes CD Immo-Portfolio GmbH unique?",
+          answer: "As CD Immo-Portfolio GmbH, we offer a holistic approach to real estate investment. We combine expertise in tax optimization, sustainable wealth planning and strategic real estate selection. Our team of experts accompanies you from the first consultation to the long-term support of your investment."
         },
         {
           question: "What tax benefits do real estate investments offer?",
@@ -819,7 +821,7 @@ const translations = {
         status: "I answer your questions"
       },
       messages: {
-        welcome: "Welcome to the customer service of CD Immobilien Portfolio GmbH!",
+        welcome: "Welcome to the customer service of CD Immo-Portfolio GmbH!",
         intro: "Do you have questions about real estate investments or how you can benefit from current tax advantages? I'm happy to help you.",
         askName: "To better assist you, I would like to know your name. What should I call you?",
         askPhone: "Thank you {name}! Please enter your phone number so we can contact you for a personal consultation:",
@@ -831,9 +833,9 @@ const translations = {
         name: "Please enter your name...",
         phone: "Please enter your phone number..."
       },
-      footer: "© CD Immobilien Portfolio GmbH",
+      footer: "© CD Immo-Portfolio GmbH",
       ariaLabel: "Open chat",
-      systemPrompt: "You are a customer advisor for CD Immobilien Portfolio GmbH. Your name is Azim Choudry. CD stands for 'Capital Development', a real estate investment company in Germany. The company has real estate in various major German cities, especially in Berlin, Munich, Hamburg and Frankfurt. CD Immobilien Portfolio GmbH offers residential real estate, commercial real estate and land for capital investment. When asked about real estate, respond that CD Immobilien Portfolio GmbH offers various real estate in German major cities, from apartments in Berlin and Munich to commercial properties in Hamburg and Frankfurt. Keep your answers concise, friendly and informative. Emphasize the benefits of real estate investments as inflation protection and for tax optimization. Respond in English."
+      systemPrompt: "You are a customer advisor for CD Immo-Portfolio GmbH. Your name is Azim Choudry. CD stands for 'Capital Development', a real estate investment company in Germany. The company has real estate in various major German cities, especially in Berlin, Munich, Hamburg and Frankfurt. CD Immo-Portfolio GmbH offers residential real estate, commercial real estate and land for capital investment. When asked about real estate, respond that CD Immo-Portfolio GmbH offers various real estate in German major cities, from apartments in Berlin and Munich to commercial properties in Hamburg and Frankfurt. Keep your answers concise, friendly and informative. Emphasize the benefits of real estate investments as inflation protection and for tax optimization. Respond in English."
     },
     // Footer Section
     footer: {
@@ -850,11 +852,11 @@ const translations = {
       imprint: "Imprint",
       privacy: "Privacy",
       contactTitle: "Contact",
-      address: "CD Immobilien Portfolio GmbH\nBauvereinstr. 47\n90489 Nuremberg\nGermany",
+      address: "CD Immo-Portfolio GmbH\nBauvereinstr. 47\n90489 Nuremberg\nGermany",
       phone: "+49 911 13039057",
       email: "p.chowdhury@cd-immo.de",
-      copyright: "© {year} CD Immobilien Portfolio GmbH. All rights reserved.",
-      logoAlt: "CD Immobilien Portfolio GmbH",
+      copyright: "© {year} CD Immo-Portfolio GmbH. All rights reserved.",
+      logoAlt: "CD Immo-Portfolio GmbH",
       socialInstagram: "Instagram",
       socialLinkedIn: "LinkedIn",
       socialFacebook: "Facebook"

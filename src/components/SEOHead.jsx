@@ -10,9 +10,9 @@ const SEOHead = ({
   ogType = "website",
   noindex = false 
 }) => {
-  const fullTitle = title || "CD Immobilien Portfolio GmbH - Immobilieninvestition & Steuervorteile | Nürnberg";
-  const fullDescription = description || "🏢 Bauen Sie mit Immobilien nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast um bis zu 90%. ✅ 15+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden";
-  const fullKeywords = keywords || "Immobilieninvestition, Steuervorteile Immobilien, Vermögensaufbau, Altersvorsorge, Cashflow Immobilien, Rendite Immobilien, Steuerlast senken, Immobilien Portfolio, Kapitalanlage Immobilien, Nürnberg, Bayern, CD Immobilien";
+  const fullTitle = title || "CD Immo-Portfolio GmbH - Immobilieninvestition & Steuervorteile | Nürnberg";
+  const fullDescription = description || "🏢 Bauen Sie mit Immobilien nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast um bis zu 90%. ✅ 20+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden";
+  const fullKeywords = keywords || "Immobilieninvestition, Steuervorteile Immobilien, Vermögensaufbau, Altersvorsorge, Cashflow Immobilien, Rendite Immobilien, Steuerlast senken, Immobilien Portfolio, Kapitalanlage Immobilien, Nürnberg, Bayern, CD Immo-Portfolio GmbH";
   const fullCanonical = canonical || "https://www.cd-immo.de/";
   const fullOgImage = ogImage || "https://www.cd-immo.de/assets/og-image.jpg";
 
@@ -25,7 +25,7 @@ const SEOHead = ({
       <meta name="title" content={fullTitle} />
       <meta name="description" content={fullDescription} />
       <meta name="keywords" content={fullKeywords} />
-      <meta name="author" content="CD Immobilien Portfolio GmbH" />
+      <meta name="author" content="CD Immo-Portfolio GmbH" />
       <meta name="language" content="German" />
       <meta name="revisit-after" content="7 days" />
       
@@ -46,7 +46,7 @@ const SEOHead = ({
       <meta property="og:image" content={fullOgImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="CD Immobilien Portfolio GmbH" />
+      <meta property="og:site_name" content="CD Immo-Portfolio GmbH" />
       <meta property="og:locale" content="de_DE" />
       
       {/* Twitter */}
@@ -59,8 +59,8 @@ const SEOHead = ({
       {/* Additional SEO improvements */}
       <meta name="theme-color" content="#082567" />
       <meta name="msapplication-TileColor" content="#082567" />
-      <meta name="apple-mobile-web-app-title" content="CD Immobilien" />
-      <meta name="application-name" content="CD Immobilien Portfolio GmbH" />
+      <meta name="apple-mobile-web-app-title" content="CD Immo-Portfolio GmbH" />
+      <meta name="application-name" content="CD Immo-Portfolio GmbH" />
       
       {/* Geo Tags */}
       <meta name="geo.region" content="DE-BY" />
