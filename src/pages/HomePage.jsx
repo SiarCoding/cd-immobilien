@@ -14,7 +14,6 @@ import Newsletter from "../components/sections/Newsletter";
 import Faq from "../components/sections/Faq";
 import SEOHead from "../components/SEOHead";
 import { useSEO } from "../contexts/SEOContext";
-import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const { seoData } = useSEO();
