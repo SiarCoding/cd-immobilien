@@ -1,0 +1,6 @@
+Docker image
+node:18
+Command
+npm install --legacy-peer-deps && npm run build
+Publish directory
+build

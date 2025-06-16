@@ -30,8 +30,55 @@
   }
 }
 
-/* Typography */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Outfit:wght@400;500;700&family=Urbanist:wght@800&display=swap");
+/* Typography - Local Fonts */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/plus-jakarta-sans-v11-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Plus Jakarta Sans Bold'), local('PlusJakartaSans-Bold');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Plus Jakarta Sans ExtraBold'), local('PlusJakartaSans-ExtraBold');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/outfit-v14-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Outfit Medium'), local('Outfit-Medium');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Outfit Bold'), local('Outfit-Bold');
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/urbanist-v17-latin-regular.woff2') format('woff2');
+}
 
 /* Common Button Styles */
 .btn {

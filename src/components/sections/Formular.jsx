@@ -122,8 +122,6 @@ const Formular = () => {
           newErrors.email = t('formular.step3.validation.emailRequired');
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
           newErrors.email = t('formular.step3.validation.emailInvalid');
-        } else if (!emailVerified) {
-          newErrors.email = 'E-Mail muss erst verifiziert werden';
         }
         if (!formData.privacyAccepted) {
           newErrors.privacy = t('formular.step3.validation.privacyRequired');
@@ -138,24 +136,43 @@ const Formular = () => {
   };
 
   const handleNext = async () => {
-    if (currentStep === 3 && formData.email && !emailVerified) {
-      // E-Mail verifizieren bevor Submit
-      const verification = await verifyEmailWithMailboxlayer(formData.email);
-      if (verification.valid) {
-        setEmailVerified(true);
-        setErrors(prev => ({ ...prev, email: null }));
-      } else {
-        setErrors(prev => ({ ...prev, email: verification.message }));
-        return;
-      }
-    }
-    
     if (validateStep(currentStep)) {
       if (currentStep < totalSteps) {
         setCurrentStep(currentStep + 1);
+        
+        // Wenn wir zu Schritt 3 wechseln und eine E-Mail vorhanden ist, verifizieren wir sie im Hintergrund
+        if (currentStep === 2 && formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+          verifyEmailInBackground(formData.email);
+        }
       } else {
+        // Im letzten Schritt verifizieren wir die E-Mail im Hintergrund und senden dann das Formular
+        if (formData.email && !emailVerified) {
+          setIsVerifyingEmail(true);
+          const verification = await verifyEmailWithMailboxlayer(formData.email);
+          setIsVerifyingEmail(false);
+          setEmailVerified(verification.valid);
+        }
         handleSubmit();
       }
+    }
+  };
+  
+  // E-Mail im Hintergrund verifizieren
+  const verifyEmailInBackground = async (email) => {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      return;
+    }
+    
+    setIsVerifyingEmail(true);
+    try {
+      const verification = await verifyEmailWithMailboxlayer(email);
+      if (verification.valid) {
+        setEmailVerified(true);
+      }
+    } catch (error) {
+      console.error('Error verifying email in background:', error);
+    } finally {
+      setIsVerifyingEmail(false);
     }
   };
 
@@ -170,33 +187,31 @@ const Formular = () => {
     if (validateStep(3)) {
       setIsLoading(true);
       try {
-        // Netlify Forms Submission
-        const formDataForSubmission = new FormData();
-        formDataForSubmission.append('form-name', 'immobilienberatung');
-        formDataForSubmission.append('familienstand', formData.goal);
-        formDataForSubmission.append('einkommen', formData.income);
-        formDataForSubmission.append('name', formData.name);
-        formDataForSubmission.append('telefon', formData.countryCode + formData.phone);
-        formDataForSubmission.append('email', formData.email);
-        formDataForSubmission.append('datenschutz', formData.privacyAccepted ? 'Akzeptiert' : 'Nicht akzeptiert');
-        formDataForSubmission.append('submission-time', new Date().toLocaleString('de-DE'));
-
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formDataForSubmission).toString()
+        // Zapier Webhook Submission (über FormData)
+        const zapierData = {
+          familienstand: formData.goal,
+          einkommen: formData.income,
+          name: formData.name,
+          telefon: formData.countryCode + formData.phone,
+          email: formData.email,
+          datenschutz: formData.privacyAccepted ? 'Akzeptiert' : 'Nicht akzeptiert',
+          submission_time: new Date().toISOString()
+        };
+        const formDataForZapier = new FormData();
+        Object.entries(zapierData).forEach(([key, value]) => {
+          formDataForZapier.append(key, value);
         });
-
-        if (response.ok) {
-          console.log('Form submitted successfully:', formData);
+        const zapierResponse = await fetch('https://hooks.zapier.com/hooks/catch/21594490/uookb2j/', {
+          method: 'POST',
+          body: formDataForZapier
+        });
+        if (zapierResponse.ok) {
           setIsSubmitted(true);
-          
-          // Nach 3 Sekunden zur Startseite weiterleiten
           setTimeout(() => {
             navigate('/');
           }, 3000);
         } else {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`Zapier status: ${zapierResponse.status}`);
         }
       } catch (error) {
         console.error('Error submitting form:', error);
@@ -216,6 +231,11 @@ const Formular = () => {
     // E-Mail-Verifizierung zurücksetzen wenn E-Mail geändert wird
     if (field === 'email') {
       setEmailVerified(false);
+      
+      // Automatische E-Mail-Verifizierung im Hintergrund starten, wenn gültige E-Mail
+      if (value && /\S+@\S+\.\S+/.test(value)) {
+        verifyEmailInBackground(value);
+      }
     }
     
     // Clear errors when user makes changes
@@ -236,23 +256,7 @@ const Formular = () => {
     }
   };
 
-  // E-Mail-Verifizierung Handler
-  const handleEmailVerification = async () => {
-    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      setErrors(prev => ({ ...prev, email: 'Bitte geben Sie eine gültige E-Mail-Adresse ein' }));
-      return;
-    }
-    
-    const verification = await verifyEmailWithMailboxlayer(formData.email);
-    
-    if (verification.valid) {
-      setEmailVerified(true);
-      setErrors(prev => ({ ...prev, email: null }));
-    } else {
-      setEmailVerified(false);
-      setErrors(prev => ({ ...prev, email: verification.message }));
-    }
-  };
+  // Diese Funktion wird nicht mehr benötigt, da die E-Mail-Verifizierung automatisch im Hintergrund erfolgt
 
   const ProgressBar = () => (
     <div className="progress-container">
@@ -330,23 +334,6 @@ const Formular = () => {
       <Header />
       <main>
         <div className="formular-page">
-          {/* Verstecktes Netlify Form für Build-Zeit Detection */}
-          <form 
-            name="immobilienberatung" 
-            method="POST" 
-            data-netlify="true" 
-            netlify
-            style={{ display: 'none' }}
-          >
-            <input type="text" name="familienstand" />
-            <input type="text" name="einkommen" />
-            <input type="text" name="name" />
-            <input type="tel" name="telefon" />
-            <input type="email" name="email" />
-            <input type="text" name="datenschutz" />
-            <input type="text" name="submission-time" />
-          </form>
-          
           <div className="formular-content-wrapper">
             <div className="formular-container">
               <div className="formular-card">
@@ -528,35 +515,22 @@ const Formular = () => {
                                   className={`form-input ${errors.email ? 'error' : ''} ${emailVerified ? 'verified' : ''}`}
                                   required
                                 />
-                                <button
-                                  type="button"
-                                  onClick={handleEmailVerification}
-                                  disabled={isVerifyingEmail || !formData.email || emailVerified}
-                                  className={`verify-email-btn ${emailVerified ? 'verified' : ''}`}
-                                >
-                                  {isVerifyingEmail ? (
-                                    <>
-                                      <span className="loading-spinner-small"></span>
-                                      {t('formular.verification.checking')}
-                                    </>
-                                  ) : emailVerified ? (
-                                    <>
-                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '4px'}}>
-                                        <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                      </svg>
-                                      {t('formular.verification.verified')}
-                                    </>
-                                  ) : (
-                                    t('formular.verification.verify')
-                                  )}
-                                </button>
+                                {isVerifyingEmail && (
+                                  <div className="email-verification-status">
+                                    <span className="loading-spinner-small"></span>
+                                    <span className="verification-text">{t('formular.verification.checking')}</span>
+                                  </div>
+                                )}
+                                {emailVerified && !isVerifyingEmail && (
+                                  <div className="email-verification-status verified">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '4px'}}>
+                                      <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                    <span className="verification-text">{t('formular.verification.verified')}</span>
+                                  </div>
+                                )}
                               </div>
                               {errors.email && <span className="error-message" style={{display: 'block', color: '#ff6b6b', fontSize: '14px', marginTop: '8px'}}>{errors.email}</span>}
-                              {emailVerified && !errors.email && (
-                                <span className="success-message" style={{display: 'block', color: '#4ade80', fontSize: '14px', marginTop: '8px'}}>
-                                  ✓ {t('formular.verification.successMessage')}
-                                </span>
-                              )}
                             </div>
                             
                             <div className="privacy-section" style={{marginTop: '24px'}}>
@@ -621,10 +595,10 @@ const Formular = () => {
                         onClick={handleNext}
                         disabled={isLoading}
                       >
-                        {isLoading ? (
+                        {isLoading || isVerifyingEmail ? (
                           <>
                             <span className="loading-spinner"></span>
-                            Wird gesendet...
+                            {isLoading ? 'Wird gesendet...' : 'E-Mail wird geprüft...'}
                           </>
                         ) : (
                           <>
