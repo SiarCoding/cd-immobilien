@@ -11,6 +11,7 @@ import Kontakt from './components/sections/Kontakt';
 import Formular from './components/sections/Formular';
 import Footer from './components/sections/Footer';
 import Testimonials from "./components/sections/Blog";
+import Datenschutz from './pages/Datenschutz';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/kontakt" element={<Kontakt />} />
               <Route path="/formular" element={<Formular />} />
               <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/datenschutz" element={<Datenschutz />} />
               {/* Weitere Routen hier hinzufügen netlify deploy --prod                     */}
             </Routes>
             <Footer />

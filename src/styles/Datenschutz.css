@@ -1,0 +1,107 @@
+.datenschutz-section {
+  min-height: 100vh;
+  background: #082567;
+  color: #fff;
+  padding-top: 120px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.datenschutz-container {
+  background: rgba(8, 37, 103, 0.85);
+  color: #fff;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 48px 32px 40px 32px;
+  margin: 0 auto;
+  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.datenschutz-container h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.datenschutz-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 2.2rem 0 1.2rem 0;
+  color: #fff;
+}
+
+.datenschutz-container h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 1.5rem 0 0.7rem 0;
+  color: #fff;
+}
+
+.datenschutz-container h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 1.2rem 0 0.5rem 0;
+  color: #fff;
+}
+
+.datenschutz-container p, .datenschutz-container ul, .datenschutz-container li {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #fff;
+  margin-bottom: 1.1rem;
+}
+
+.datenschutz-container ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.datenschutz-container a {
+  color: #b87333;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.datenschutz-container a:hover {
+  color: #e2ac6b;
+}
+
+.datenschutz-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: rgba(255,255,255,0.04);
+}
+
+.datenschutz-container th, .datenschutz-container td {
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.6rem 0.8rem;
+  color: #fff;
+}
+
+.datenschutz-container th {
+  background: rgba(255,255,255,0.08);
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .datenschutz-container {
+    padding: 28px 8px 24px 8px;
+    border-radius: 10px;
+  }
+  .datenschutz-container h1 {
+    font-size: 2rem;
+  }
+  .datenschutz-container h2 {
+    font-size: 1.3rem;
+  }
+  .datenschutz-container h3 {
+    font-size: 1.1rem;
+  }
+} 
