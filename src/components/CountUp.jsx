@@ -6,7 +6,7 @@ export default function CountUp({
   from = 0,
   direction = "up",
   delay = 0,
-  duration = 2,
+  duration = 4,
   className = "",
   startWhen = true,
   separator = "",
@@ -15,15 +15,11 @@ export default function CountUp({
 }) {
   const ref = useRef(null);
   const motionValue = useMotionValue(direction === "down" ? to : from);
-
-  const damping = 20 + 40 * (1 / duration);
-  const stiffness = 100 * (1 / duration);
-
   const springValue = useSpring(motionValue, {
-    damping,
-    stiffness,
+    damping: 100,
+    stiffness: 100,
+    mass: 2,
   });
-
   const isInView = useInView(ref, { once: true, margin: "0px" });
 
   useEffect(() => {

@@ -34,6 +34,31 @@ const translations = {
       contact: "Kontakt",
       consultation: "Beratung anfragen"
     },
+    // Cookie Banner
+    cookieBanner: {
+      title: "Wir respektieren Ihre Privatsphäre",
+      description: "Wir nutzen Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Einige sind für den Betrieb der Seite notwendig, während andere uns helfen, Inhalte zu personalisieren und die Zugriffe zu analysieren. Weitere Informationen finden Sie in unserer ",
+      privacyPolicyLink: "Datenschutzerklärung",
+      settings: "Einstellungen",
+      rejectAll: "Alle ablehnen",
+      acceptAll: "Alle akzeptieren",
+      settingsTitle: "Cookie-Einstellungen anpassen",
+      settingsDescription: "Wählen Sie, welche Arten von Cookies Sie zulassen möchten. Ihre Auswahl wird für zukünftige Besuche gespeichert.",
+      necessary: {
+        title: "Notwendig",
+        description: "Diese Cookies sind für die Grundfunktionen der Website unerlässlich und können nicht deaktiviert werden. Sie gewährleisten die Sicherheit und korrekte Darstellung der Seite."
+      },
+      statistics: {
+        title: "Statistik",
+        description: "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie Informationen anonym sammeln und melden. Dies ermöglicht uns, die Seite kontinuierlich zu verbessern."
+      },
+      marketing: {
+        title: "Marketing",
+        description: "Diese Cookies werden verwendet, um Ihnen relevante Werbung auf anderen Plattformen anzuzeigen und den Erfolg unserer Marketingkampagnen zu messen."
+      },
+      alwaysActive: "Immer aktiv",
+      saveSettings: "Einstellungen speichern"
+    },
     // Stats Section
     stats: {
       title: "Unsere Zahlen",
@@ -511,6 +536,31 @@ const translations = {
       testimonials: "Testimonials",
       contact: "Contact",
       consultation: "Request consultation"
+    },
+    // Cookie Banner
+    cookieBanner: {
+      title: "We respect your privacy",
+      description: "We use cookies to improve your experience on our website. Some are necessary for the operation of the site, while others help us personalize content and analyze traffic. More information can be found in our ",
+      privacyPolicyLink: "Privacy Policy",
+      settings: "Settings",
+      rejectAll: "Reject all",
+      acceptAll: "Accept all",
+      settingsTitle: "Adjust cookie settings",
+      settingsDescription: "Choose which types of cookies you would like to allow. Your selection will be saved for future visits.",
+      necessary: {
+        title: "Necessary",
+        description: "These cookies are essential for the basic functions of the website and cannot be disabled. They ensure security and correct display of the site."
+      },
+      statistics: {
+        title: "Statistics",
+        description: "These cookies help us understand how visitors interact with our website by anonymously collecting information and reporting it. This allows us to continuously improve the site."
+      },
+      marketing: {
+        title: "Marketing",
+        description: "These cookies are used to display relevant advertising on other platforms and measure the success of our marketing campaigns."
+      },
+      alwaysActive: "Always active",
+      saveSettings: "Save settings"
     },
     // Stats Section
     stats: {

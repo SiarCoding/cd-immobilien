@@ -2,9 +2,11 @@ import React from "react";
 import "../../styles/Footer.css";
 import logo from '../../assets/logo-csd.webp';
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useConsent } from "../../contexts/ConsentContext";
 
 const Footer = () => {
   const { t } = useLanguage();
+  const { openConsentManager } = useConsent();
   
   return (
     <div className="footer-section">
@@ -51,6 +53,9 @@ const Footer = () => {
             <a href="/formular" className="footer-link">{t('footer.appointment')}</a>
             <a href="/impressum" className="footer-link">{t('footer.imprint')}</a>
             <a href="/datenschutz" className="footer-link">{t('footer.privacy')}</a>
+            <button onClick={openConsentManager} className="footer-link cookie-settings-btn">
+              Cookie-Einstellungen
+            </button>
           </div>
         </div>
 

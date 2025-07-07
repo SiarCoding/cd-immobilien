@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import "../../styles/Hero.css";
 import trustpilotExpert from '../../assets/trustpilot-expert.webp';
 import provenExpert from "../../assets/ProvenExpert.svg";
@@ -7,20 +7,15 @@ import { HoverButton } from "../ui/animated-hover-button";
 import "../../styles/AnimatedButton.css";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { Link } from 'react-router-dom';
-
-// Lazy load heavy components for better performance
-const BackgroundVideo = lazy(() => import("../BackgroundVideo"));
-const Video = lazy(() => import("../Video"));
+import BackgroundVideo from "../BackgroundVideo";
+import Video from "../Video";
 
 const Hero = () => {
   const { t } = useLanguage();
 
   return (
     <section className="hero-section" aria-label="Hero">
-      {/* Lazy load background video with fallback */}
-      <Suspense fallback={<div className="video-fallback"></div>}>
-        <BackgroundVideo />
-      </Suspense>
+      <BackgroundVideo />
       
       <div className="hero-main-content">
         <div className="hero-content-wrapper">
@@ -37,9 +32,7 @@ const Hero = () => {
             </div>
             
             <div className="hero-video-mobile">
-              <Suspense fallback={<div className="video-loading-placeholder">Loading...</div>}>
-                <Video />
-              </Suspense>
+              <Video />
             </div>
             
             <div className="hero-cta">
@@ -107,9 +100,7 @@ const Hero = () => {
           
           <div className="hero-video-desktop">
             <div className="video-container">
-              <Suspense fallback={<div className="video-loading-placeholder">Loading...</div>}>
-                <Video />
-              </Suspense>
+              <Video />
             </div>
             <div className="avatar-stats-container">
               <div className="avatar-row">

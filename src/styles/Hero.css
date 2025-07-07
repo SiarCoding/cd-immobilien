@@ -216,20 +216,19 @@
 
 .hero-main-content {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 40px auto 0; /* Further reduced top margin */
-  padding: 0 60px; /* Increased padding for better spacing */
+  padding: 0 40px; /* Increased padding for better spacing */
   display: flex;
   justify-content: center;
   align-items: center; /* Changed to center alignment */
   gap: 30px; /* Further reduced gap */
   flex: 1; /* Take up available space */
-  transform: scale(1.05); /* Slightly larger scale for all elements */
   /* Performance optimization - Critical */
   contain: layout style;
   will-change: transform;
-  -webkit-transform: translateZ(0) scale(1.05);
-  transform: translateZ(0) scale(1.05);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .hero-content-wrapper {
@@ -1053,17 +1052,7 @@
 /* Video background styles wurden nach BackgroundVideo.css verschoben */
 
 /* Responsive Styles with better spacing */
-@media (max-width: 1440px) {
-  .hero-main-content {
-    padding: 0 80px; /* Increased padding for larger screens */
-  }
-}
-
 @media (max-width: 1200px) {
-  .hero-main-content {
-    padding: 0 60px; /* Good spacing for medium screens */
-  }
-  
   .hero-title {
     font-size: 50px;
   }
@@ -1078,10 +1067,6 @@
 }
 
 @media (max-width: 1024px) {
-  .hero-main-content {
-    padding: 0 50px; /* Maintain good spacing */
-  }
-  
   .hero-title {
     font-size: 46px;
   }
@@ -1166,7 +1151,6 @@
   
   .hero-main-content {
     margin-top: 20px;
-    padding: 0 40px; /* Better mobile spacing */
   }
   
   /* Hero section padding für mobile */
@@ -1187,6 +1171,17 @@
   .hero-subtitle {
     text-align: center;
     max-width: 600px;
+  }
+
+  .hero-title .underlined-blue-special::after {
+    animation: none;
+    background: #b87333;
+  }
+  
+  .hero-title .highlight-blue {
+    animation: none;
+    background: #b87333;
+    color: #fff;
   }
 }
 
@@ -1352,10 +1347,6 @@
 
 /* Optimized for high-resolution screens */
 @media (min-width: 1600px) {
-  .hero-main-content {
-    padding: 0 100px; /* Extra spacing for large screens */
-  }
-  
   .hero-content-wrapper {
     gap: 60px; /* More breathing room */
   }

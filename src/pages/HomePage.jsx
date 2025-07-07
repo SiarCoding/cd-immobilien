@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Header";
 import Hero from "../components/sections/Hero";
 import Stats from "../components/sections/Stats";
 import Problem from "../components/sections/Problem";
@@ -27,7 +26,6 @@ const HomePage = () => {
         ogImage={homePageSEO.ogImage}
         ogType="website"
       />
-      <Header />
       <main>
         <Hero />
         <Stats />

@@ -1,0 +1,255 @@
+/* Main Overlay */
+.cookie-banner-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  padding: 16px;
+}
+
+/* Cookie Banner Container */
+.cookie-banner {
+  width: 100%;
+  max-width: 1100px;
+  background-color: #1a1a1e;
+  color: #f0f0f0;
+  border-radius: 16px;
+  padding: 24px 32px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease-in-out;
+  font-family: 'Outfit', sans-serif;
+}
+
+.cookie-banner.settings-open {
+  max-width: 700px;
+}
+
+/* First Layer: Main Banner View */
+.banner-main {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.banner-icon {
+  flex-shrink: 0;
+  color: #b87333;
+  width: 40px;
+  height: 40px;
+}
+
+.banner-text h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.banner-text p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.banner-text a {
+  color: #b87333;
+  text-decoration: underline;
+}
+
+.banner-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Common Button Styles */
+.cookie-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cookie-btn.btn-primary {
+  background-color: #b87333;
+  color: #fff;
+}
+.cookie-btn.btn-primary:hover {
+  background-color: #a06020;
+}
+
+.cookie-btn.btn-secondary {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+.cookie-btn.btn-secondary:hover {
+  background-color: #444;
+}
+
+
+/* Second Layer: Settings View */
+.banner-settings {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.banner-settings h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.banner-settings p {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #ccc;
+}
+
+.settings-category {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.settings-category:last-of-type {
+  border-bottom: none;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+.category-title h4 {
+  margin: 0;
+  font-size: 16px;
+}
+.category-description {
+  font-size: 13px !important;
+  color: #aaa !important;
+  margin-top: 8px;
+  margin-bottom: 0 !important;
+  text-align: left !important;
+}
+
+.category-toggle.always-on {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b87333;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #555;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #b87333;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+.slider.round {
+  border-radius: 24px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cookie-banner-overlay {
+    padding: 8px;
+  }
+  .cookie-banner {
+    padding: 24px;
+  }
+  .banner-main {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .banner-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  .cookie-btn {
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cookie-banner {
+    padding: 16px;
+  }
+  .banner-text h3 {
+    font-size: 18px;
+  }
+  .banner-text p {
+    font-size: 13px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+} 
