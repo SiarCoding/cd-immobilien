@@ -1,7 +1,5 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "../../styles/Hero.css";
-import BackgroundVideo from "../BackgroundVideo";
-import Video from "../Video";
 import trustpilotExpert from '../../assets/trustpilot-expert.webp';
 import provenExpert from "../../assets/ProvenExpert.svg";
 import googleLogo from '../../assets/google.webp';
@@ -10,12 +8,19 @@ import "../../styles/AnimatedButton.css";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { Link } from 'react-router-dom';
 
+// Lazy load heavy components for better performance
+const BackgroundVideo = lazy(() => import("../BackgroundVideo"));
+const Video = lazy(() => import("../Video"));
+
 const Hero = () => {
   const { t } = useLanguage();
 
   return (
     <section className="hero-section" aria-label="Hero">
-      <BackgroundVideo />
+      {/* Lazy load background video with fallback */}
+      <Suspense fallback={<div className="video-fallback"></div>}>
+        <BackgroundVideo />
+      </Suspense>
       
       <div className="hero-main-content">
         <div className="hero-content-wrapper">
@@ -32,7 +37,9 @@ const Hero = () => {
             </div>
             
             <div className="hero-video-mobile">
-              <Video />
+              <Suspense fallback={<div className="video-loading-placeholder">Loading...</div>}>
+                <Video />
+              </Suspense>
             </div>
             
             <div className="hero-cta">
@@ -49,14 +56,47 @@ const Hero = () => {
             </div>
             
             <div className="partner-logos">
-              <img src={trustpilotExpert} className="partner-logo" alt="Trustpilot Expert" />
-              <img src={provenExpert} className="partner-logo" alt="Proven Expert" />
-              <img src={googleLogo} className="partner-logo" alt="Google" />
+              {/* Lazy load images with proper attributes for performance */}
+              <img 
+                src={trustpilotExpert} 
+                className="partner-logo" 
+                alt="Trustpilot Expert" 
+                loading="lazy"
+                decoding="async"
+                width="110"
+                height="37"
+              />
+              <img 
+                src={provenExpert} 
+                className="partner-logo" 
+                alt="Proven Expert" 
+                loading="lazy"
+                decoding="async"
+                width="110"
+                height="37"
+              />
+              <img 
+                src={googleLogo} 
+                className="partner-logo" 
+                alt="Google" 
+                loading="lazy"
+                decoding="async"
+                width="110"
+                height="37"
+              />
             </div>
             
             <div className="avatar-stats-container">
               <div className="avatar-row">
-                <img src="https://cdn.builder.io/api/v1/image/assets/01010c1908714387a93ae9c751f363fe/df1918dfac1ace0b9b963e11e494eaa6c57cff82?placeholderIfAbsent=true" className="stats-image" alt="Rating stars" />
+                <img 
+                  src="https://cdn.builder.io/api/v1/image/assets/01010c1908714387a93ae9c751f363fe/df1918dfac1ace0b9b963e11e494eaa6c57cff82?placeholderIfAbsent=true" 
+                  className="stats-image" 
+                  alt="Rating stars" 
+                  loading="lazy"
+                  decoding="async"
+                  width="175"
+                  height="55"
+                />
               </div>
               <div className="stats-text">
                 <div className="stats-number">{t('hero.statsNumber')}</div>
@@ -67,11 +107,21 @@ const Hero = () => {
           
           <div className="hero-video-desktop">
             <div className="video-container">
-              <Video />
+              <Suspense fallback={<div className="video-loading-placeholder">Loading...</div>}>
+                <Video />
+              </Suspense>
             </div>
             <div className="avatar-stats-container">
               <div className="avatar-row">
-                <img src="https://cdn.builder.io/api/v1/image/assets/01010c1908714387a93ae9c751f363fe/df1918dfac1ace0b9b963e11e494eaa6c57cff82?placeholderIfAbsent=true" className="stats-image" alt="Rating stars" />
+                <img 
+                  src="https://cdn.builder.io/api/v1/image/assets/01010c1908714387a93ae9c751f363fe/df1918dfac1ace0b9b963e11e494eaa6c57cff82?placeholderIfAbsent=true" 
+                  className="stats-image" 
+                  alt="Rating stars" 
+                  loading="lazy"
+                  decoding="async"
+                  width="175"
+                  height="55"
+                />
               </div>
               <div className="stats-text">
                 <div className="stats-number">{t('hero.statsNumber')}</div>

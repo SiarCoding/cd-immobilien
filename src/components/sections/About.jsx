@@ -42,6 +42,7 @@ const About = () => {
               src={planingImage} 
               className="about-image" 
               alt="Strategische Immobilienplanung" 
+              loading="lazy" 
             />
             <div className="image-overlay"></div>
           </div>
@@ -55,6 +56,7 @@ const About = () => {
                 src={planing2Image} 
                 className="about-image" 
                 alt="Vertrauensvolle Zusammenarbeit" 
+                loading="lazy" 
               />
               <div className="image-overlay"></div>
             </div>

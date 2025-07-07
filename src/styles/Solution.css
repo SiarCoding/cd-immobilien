@@ -1,18 +1,14 @@
 /* Solution Section Styles */
 .solution-section {
   position: relative;
-  /*background-color: #f8f9fa;*/ /* Hintergrund wurde nach JSX verschoben */
-  
-  /* Background Image Properties - Desktop uses team.webp */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/team.webp');
+  background-color: #082567;
+  padding: 80px 20px;
+  overflow: hidden;
+  color: #fff;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.webp');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   background-attachment: fixed;
-  
-  color: white; /* Textfarbe auf weiß geändert für dunklen Hintergrund */
-  padding: 80px 20px 100px;
-  overflow: hidden;
 }
 
 .solution-copper-effect {
@@ -262,7 +258,7 @@
 @media (max-width: 992px) {
   .solution-section {
     background-attachment: scroll;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.webp');
     background-size: cover;
     background-position: center center;
   }
@@ -289,11 +285,9 @@
 
 @media (max-width: 768px) {
   .solution-section {
-    padding: 60px 15px;
-    background-attachment: scroll;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.png');
-    background-size: cover;
-    background-position: center center;
+    padding: 40px 15px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.webp');
+    background-attachment: scroll; /* Für bessere Performance auf Mobilgeräten */
   }
   
   .solution-title-box, 
@@ -316,11 +310,9 @@
 
 @media (max-width: 480px) {
   .solution-section {
-    padding: 60px 15px 80px;
-    background-attachment: scroll;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.png');
-    background-size: cover;
-    background-position: center center;
+    padding: 30px 10px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/ruegen.webp');
+    background-attachment: scroll; /* Bessere Performance */
   }
   
   .solution-title-box, 

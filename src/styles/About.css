@@ -64,15 +64,16 @@
   color: #000 !important;
 }
 
+.about-section .section-heading {
+  color: #fff;
+}
+
 /* Blue highlight effect exactly like in Stats.css */
 .about-section .highlight-blue,
 .section-heading .highlight-blue {
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(90deg, #082567, #3a5ca9, #082567);
-  background-size: 200% 100%;
-  animation: shine-blue 3s infinite linear;
-  color: #000 !important; /* Schwarze Schrift statt weiß */
+  background: #082567;
+  color: #fff !important;
+  -webkit-text-fill-color: white;
   padding: 8px 18px;
   border-radius: 6px;
   white-space: nowrap;
@@ -381,7 +382,5 @@
 }
 
 .highlight-text-white {
-  color: #000 !important;
-  -webkit-text-fill-color: #000 !important;
-  text-fill-color: #000 !important;
+  color: #fff !important;
 }

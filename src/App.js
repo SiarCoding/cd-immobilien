@@ -1,35 +1,30 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { SEOProvider } from './contexts/SEOContext';
+import Footer from "./components/sections/Footer"; // Import Footer
 
-// Import all section components
-import Chatbot from './components/Chatbot';
-import HomePage from './pages/HomePage';
-import Kontakt from './components/sections/Kontakt';
-import Formular from './components/sections/Formular';
-import Footer from './components/sections/Footer';
-import Testimonials from "./components/sections/Blog";
-import Datenschutz from './pages/Datenschutz';
+// Lazy-load the page components
+const HomePage = lazy(() => import("./pages/HomePage"));
+const Impressum = lazy(() => import("./pages/Impressum"));
+const Datenschutz = lazy(() => import("./pages/Datenschutz"));
+const Formular = lazy(() => import("./components/sections/Formular"));
 
 function App() {
   return (
     <SEOProvider>
       <LanguageProvider>
         <Router>
-          <div className="App">
+          <Suspense fallback={<div>Wird geladen...</div>}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/kontakt" element={<Kontakt />} />
-              <Route path="/formular" element={<Formular />} />
-              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/impressum" element={<Impressum />} />
               <Route path="/datenschutz" element={<Datenschutz />} />
-              {/* Weitere Routen hier hinzufügen netlify deploy --prod                     */}
+              <Route path="/formular" element={<Formular />} />
             </Routes>
-            <Footer />
-            <Chatbot />
-          </div>
+          </Suspense>
+          <Footer />
         </Router>
       </LanguageProvider>
     </SEOProvider>

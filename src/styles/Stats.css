@@ -16,24 +16,18 @@
 }
 
 .stats-section .section-heading {
-  color: #023c38;
-  font-size: 48px;
-  font-family: 'Plus Jakarta Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 3rem;
   font-weight: 700;
-  line-height: 1.2;
+  margin-bottom: 2rem;
+  color: #fff;
   text-align: center;
-  margin-bottom: 20px;
-  letter-spacing: -0.025em;
 }
 
 /* Blue highlight effect similar to the copper one in Hero */
 .stats-section .highlight-blue {
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(90deg, #082567, #3a5ca9, #082567);
-  background-size: 200% 100%;
-  animation: shine-blue 3s infinite linear;
-  color: #fff;
+  background: #082567;
+  color: #fff !important; /* Wichtig, um andere Regeln zu überschreiben */
+  -webkit-text-fill-color: white; /* Für Safari */
   padding: 8px 18px;
   border-radius: 6px;
   white-space: nowrap;

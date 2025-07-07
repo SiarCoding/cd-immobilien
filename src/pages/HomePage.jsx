@@ -7,10 +7,8 @@ import Solution from "../components/sections/Solution";
 import About from "../components/sections/About";
 import Features from "../components/sections/Features";
 import Process from "../components/sections/Process";
-import Investment from "../components/sections/Investment";
 import Team from "../components/sections/Team";
 import Blog from "../components/sections/Blog";
-import Newsletter from "../components/sections/Newsletter";
 import Faq from "../components/sections/Faq";
 import SEOHead from "../components/SEOHead";
 import { useSEO } from "../contexts/SEOContext";
@@ -42,14 +40,12 @@ const HomePage = () => {
           <Features />
         </div>
         <Process />
-        <Investment />
         <div id="team">
           <Team />
         </div>
         <div id="blog">
           <Blog />
         </div>
-        <Newsletter />
         <Faq />
       </main>
     </>
