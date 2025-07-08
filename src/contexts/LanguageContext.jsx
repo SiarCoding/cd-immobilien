@@ -223,7 +223,7 @@ const translations = {
       // Calculate Button
       calculateButton: "Berechnen",
       calculating: "Berechnet...",
-      resultsCta: "Convinced by the results? Turn this calculation into reality today"
+      resultsCta: "Von den Ergebnissen überzeugt? Setzen Sie diese Berechnung noch heute in die Realität um!"
     },
     // Process Section
     process: {
