@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/Kontakt.css";
-import Header from "../Header";
-import SEOHead from "../SEOHead";
-import { useSEO } from "../../contexts/SEOContext";
-import { useLanguage } from "../../contexts/LanguageContext";
+import "../styles/Kontakt.css";
+import SEOHead from "../components/SEOHead";
+import { useSEO } from "../contexts/SEOContext";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Kontakt = () => {
   const { seoData } = useSEO();
@@ -19,6 +18,8 @@ const Kontakt = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Automatisches Scrollen zum Seitenanfang
   useEffect(() => {
@@ -65,23 +66,48 @@ const Kontakt = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     
     if (Object.keys(newErrors).length === 0) {
-      // Formular senden
-      console.log('Formular gesendet:', formData);
-      alert('Vielen Dank! Ihre Nachricht wurde gesendet.');
-      
-      // Formular zurücksetzen
-      setFormData({
-        name: '',
-        email: '',
-        telefon: '',
-        nachricht: '',
-        datenschutz: false
-      });
+      setIsLoading(true);
+      try {
+        const zapierData = {
+          ...formData,
+          datenschutz: formData.datenschutz ? 'Akzeptiert' : 'Nicht akzeptiert',
+          submission_time: new Date().toISOString()
+        };
+
+        const formDataForZapier = new FormData();
+        Object.entries(zapierData).forEach(([key, value]) => {
+          formDataForZapier.append(key, value);
+        });
+
+        const zapierResponse = await fetch('https://hooks.zapier.com/hooks/catch/21594490/u308qkc/', {
+          method: 'POST',
+          body: formDataForZapier
+        });
+
+        if (zapierResponse.ok) {
+          setIsSubmitted(true);
+          // Formular zurücksetzen
+          setFormData({
+            name: '',
+            email: '',
+            telefon: '',
+            nachricht: '',
+            datenschutz: false
+          });
+        } else {
+          throw new Error(`Zapier status: ${zapierResponse.status}`);
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Es gab einen Fehler beim Senden des Formulars. Bitte versuchen Sie es erneut.');
+      } finally {
+        setIsLoading(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -97,9 +123,7 @@ const Kontakt = () => {
         ogImage={kontaktPageSEO.ogImage}
         ogType="website"
       />
-      <Header />
-      <main>
-        <section className="kontakt-section">
+      <section className="kontakt-section">
           <div className="kontakt-container">
             <header>
               <h1 className="section-heading">
@@ -182,84 +206,91 @@ const Kontakt = () => {
                 </div>
                 
                 <div className="kontakt-form-container">
-                  <form className="kontakt-form" onSubmit={handleSubmit}>
-                    <h3>{t('contact.sendMessage')}</h3>
-                    
-                    <div className="form-group">
-                      <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        placeholder={t('formular.step3.name')}
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className={errors.name ? 'error' : ''}
-                        required 
-                      />
-                      {errors.name && <span className="error-message">{errors.name}</span>}
+                  {isSubmitted ? (
+                    <div className="success-content" style={{textAlign: 'center', padding: '40px', color: 'white'}}>
+                      <p>Vielen Dank!</p>
+                      <p>Ihre Daten wurden erfolgreich übermittelt. Unser Experte wird sich in Kürze bei Ihnen melden.</p>
                     </div>
-                    
-                    <div className="form-group">
-                      <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder={t('formular.step3.email')}
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className={errors.email ? 'error' : ''}
-                        required 
-                      />
-                      {errors.email && <span className="error-message">{errors.email}</span>}
-                    </div>
-                    
-                    <div className="form-group">
-                      <input 
-                        type="tel" 
-                        id="telefon" 
-                        name="telefon" 
-                        placeholder={t('formular.step3.phone')}
-                        value={formData.telefon}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    
-                    <div className="form-group">
-                      <textarea 
-                        id="nachricht" 
-                        name="nachricht" 
-                        placeholder={t('contact.messagePlaceholder')}
-                        rows="5" 
-                        value={formData.nachricht}
-                        onChange={handleInputChange}
-                        className={errors.nachricht ? 'error' : ''}
-                        required
-                      ></textarea>
-                      {errors.nachricht && <span className="error-message">{errors.nachricht}</span>}
-                    </div>
-                    
-                    <div className="form-group checkbox-group">
-                      <label className="checkbox-label">
+                  ) : (
+                    <form className="kontakt-form" onSubmit={handleSubmit}>
+                      <h3>{t('contact.sendMessage')}</h3>
+                      
+                      <div className="form-group">
                         <input 
-                          type="checkbox" 
-                          name="datenschutz" 
-                          checked={formData.datenschutz}
+                          type="text" 
+                          id="name" 
+                          name="name" 
+                          placeholder={t('formular.step3.name')}
+                          value={formData.name}
                           onChange={handleInputChange}
-                          className={errors.datenschutz ? 'error' : ''}
-                          required
+                          className={errors.name ? 'error' : ''}
+                          required 
                         />
-                        <span className="checkmark"></span>
-                        <span className="checkbox-text">
-                          {t('formular.step3.privacy')} <a href="/datenschutz" target="_blank" rel="noopener noreferrer">{t('formular.step3.privacyLink')}</a>
-                        </span>
-                      </label>
-                      {errors.datenschutz && <span className="error-message">{errors.datenschutz}</span>}
-                    </div>
-                    
-                    <button type="submit" className="submit-button">
-                      {t('contact.sendButton')}
-                    </button>
-                  </form>
+                        {errors.name && <span className="error-message">{errors.name}</span>}
+                      </div>
+                      
+                      <div className="form-group">
+                        <input 
+                          type="email" 
+                          id="email" 
+                          name="email" 
+                          placeholder={t('formular.step3.email')}
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className={errors.email ? 'error' : ''}
+                          required 
+                        />
+                        {errors.email && <span className="error-message">{errors.email}</span>}
+                      </div>
+                      
+                      <div className="form-group">
+                        <input 
+                          type="tel" 
+                          id="telefon" 
+                          name="telefon" 
+                          placeholder={t('formular.step3.phone')}
+                          value={formData.telefon}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      
+                      <div className="form-group">
+                        <textarea 
+                          id="nachricht" 
+                          name="nachricht" 
+                          placeholder={t('contact.messagePlaceholder')}
+                          rows="5" 
+                          value={formData.nachricht}
+                          onChange={handleInputChange}
+                          className={errors.nachricht ? 'error' : ''}
+                          required
+                        ></textarea>
+                        {errors.nachricht && <span className="error-message">{errors.nachricht}</span>}
+                      </div>
+                      
+                      <div className="form-group checkbox-group">
+                        <label className="checkbox-label">
+                          <input 
+                            type="checkbox" 
+                            name="datenschutz" 
+                            checked={formData.datenschutz}
+                            onChange={handleInputChange}
+                            className={errors.datenschutz ? 'error' : ''}
+                            required
+                          />
+                          <span className="checkmark"></span>
+                          <span className="checkbox-text">
+                            {t('formular.step3.privacy')} <a href="/datenschutz" target="_blank" rel="noopener noreferrer">{t('formular.step3.privacyLink')}</a>
+                          </span>
+                        </label>
+                        {errors.datenschutz && <span className="error-message">{errors.datenschutz}</span>}
+                      </div>
+                      
+                      <button type="submit" className="submit-button" disabled={isLoading}>
+                        {isLoading ? 'Wird gesendet...' : t('contact.sendButton')}
+                      </button>
+                    </form>
+                  )}
                 </div>
               </div>
               
@@ -278,9 +309,8 @@ const Kontakt = () => {
             </div>
           </div>
         </section>
-      </main>
     </>
   );
 };
 
-export default Kontakt; 
+export default Kontakt;

@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage"; // Import directly
 const Impressum = lazy(() => import("./pages/Impressum"));
 const Datenschutz = lazy(() => import("./pages/Datenschutz"));
 const Formular = lazy(() => import("./components/sections/Formular"));
+const Kontakt = lazy(() => import("./pages/Kontakt"));
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                   <Route path="/impressum" element={<Impressum />} />
                   <Route path="/datenschutz" element={<Datenschutz />} />
                   <Route path="/formular" element={<Formular />} />
+                  <Route path="/kontakt" element={<Kontakt />} />
                 </Routes>
               </PageLayout>
             </Suspense>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import '../styles/Impressum.css';
 
@@ -53,7 +52,6 @@ const Impressum = () => {
   const { language } = useLanguage();
   return (
     <div className="impressum-section">
-      <Header />
       <div className="impressum-container">
         <div
           dangerouslySetInnerHTML={{ __html: language?.toUpperCase() === 'EN' ? impressumEN : impressumDE }}

@@ -79,11 +79,7 @@ const Team = () => {
       position: t('team.members.panadda.position'),
       bio: t('team.members.panadda.bio'),
       image: thaiImage,
-      imagePosition: "center 25%", // Nach oben verschoben
-      social: {
-        linkedin: "https://linkedin.com",
-        xing: "https://xing.com"
-      }
+      imagePosition: "center 25%" // Nach oben verschoben
     },
     {
       id: 2,
@@ -91,11 +87,7 @@ const Team = () => {
       position: t('team.members.azim.position'),
       bio: t('team.members.azim.bio'),
       image: azimchoudryImage,
-      imagePosition: "center 25%", // Nach oben verschoben
-      social: {
-        linkedin: "https://linkedin.com",
-        xing: "https://xing.com"
-      }
+      imagePosition: "center 25%" // Nach oben verschoben
     },
     {
       id: 3,
@@ -103,11 +95,7 @@ const Team = () => {
       position: t('team.members.chris.position'),
       bio: t('team.members.chris.bio'),
       image: chrisImage,
-      imagePosition: "center center", // Standard-Position
-      social: {
-        linkedin: "https://linkedin.com",
-        xing: "https://xing.com"
-      }
+      imagePosition: "center center" // Standard-Position
     },
     {
       id: 4,
@@ -115,11 +103,7 @@ const Team = () => {
       position: t('team.members.gavino.position'),
       bio: t('team.members.gavino.bio'),
       image: gavinoImage,
-      imagePosition: "center center", // Standard-Position
-      social: {
-        linkedin: "https://linkedin.com",
-        xing: "https://xing.com"
-      }
+      imagePosition: "center center" // Standard-Position
     },
     {
       id: 5,
@@ -127,11 +111,7 @@ const Team = () => {
       position: t('team.members.peter.position'),
       bio: t('team.members.peter.bio'),
       image: mauriceImage,
-      imagePosition: "center center", // Standard-Position
-      social: {
-        linkedin: "https://linkedin.com",
-        xing: "https://xing.com"
-      }
+      imagePosition: "center center" // Standard-Position
     }
   ];
 
@@ -165,18 +145,6 @@ const Team = () => {
                   style={{ objectPosition: member.imagePosition }}
                   loading="lazy" // Lazy-Loading für Bilder
                 />
-                <div className="member-social">
-                  <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                  </a>
-                  <a href={member.social.xing} target="_blank" rel="noopener noreferrer" className="social-icon xing">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-14.085 15.744c-.421 0-.636-.343-.415-.75l3.342-5.858c.017-.02.033-.038.051-.056v-.001l-2.13-3.67c-.225-.4-.005-.759.42-.759h3.08c.426 0 .624.159.762.529l2.148 3.72c.035.061.011.13-.026.206l-3.522 6.145c-.136.377-.334.494-.763.494h-2.947zm13.05-3.474c.036.063.043.134.018.209l-3.233 5.658c-.137.372-.335.484-.764.484h-3.078c-.419 0-.634-.339-.414-.745l3.232-5.664c.033-.063.042-.134.018-.209l-2.09-3.655c-.22-.406-.001-.744.418-.744h3.082c.426 0 .621.161.76.529l2.051 3.66c.033.061.042.133.018.209l-.018-.039.018.031-.018.032.018.028-.018.031.018.029-.018.029.018.03-.018.027z"/>
-                    </svg>
-                  </a>
-                </div>
               </div>
               <div className="member-info">
                 <h3 className="member-name">{member.name}</h3>
@@ -200,4 +168,4 @@ const Team = () => {
   );
 };
 
-export default Team; 
+export default Team;
