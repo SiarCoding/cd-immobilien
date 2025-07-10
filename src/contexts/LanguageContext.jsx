@@ -410,23 +410,18 @@ const translations = {
     // Footer Section
     footer: {
       description: "Wir helfen Ihnen dabei, Ihre finanziellen Ziele zu erreichen und Ihr Vermögen langfristig aufzubauen.",
-      services: "Leistungen",
-      wealthConsulting: "Vermögensberatung",
-      financialStrategy: "Finanzstrategie", 
-      fullPackage: "Rund-um-Paket",
       quickAccess: "Schnellzugriff",
       home: "Startseite",
       about: "Über uns",
       calculator: "Immobilien-Rechner",
       team: "Team",
       testimonials: "Kundenstimmen",
-      services2: "Leistungen",
       appointment: "Termin vereinbaren",
       contact: "Kontakt",
       imprint: "Impressum",
       privacy: "Datenschutz",
       contactTitle: "Kontakt",
-      address: "CD Immo-Portfolio GmbH\nBauvereinstr. 47\n90489 Nürnberg\nDeutschland",
+      address: "CD Immo-Portfolio GmbH\nBauvereinstraße 47\n90489 Nürnberg\nDeutschland",
       phone: "+49 911 13039057",
       email: "p.chowdhury@cd-immo.de",
       copyright: "© {year} CD Immo-Portfolio GmbH. Alle Rechte vorbehalten.",
@@ -512,7 +507,11 @@ const translations = {
       openingHoursText: "Mo-Fr: 9:00 - 18:00 Uhr\nSa: Nach Vereinbarung",
       sendMessage: "Nachricht senden",
       messagePlaceholder: "Ihre Nachricht",
-      sendButton: "Nachricht senden"
+      sendButton: "Nachricht senden",
+      success: {
+        title: "Vielen Dank!",
+        subtitle: "Ihre Daten wurden erfolgreich übermittelt. Unser Experte wird sich in Kürze bei Ihnen melden."
+      }
     }
   },
   EN: {
@@ -913,23 +912,18 @@ const translations = {
     // Footer Section
     footer: {
       description: "We help you achieve your financial goals and build your wealth long-term.",
-      services: "Services",
-      wealthConsulting: "Wealth consulting",
-      financialStrategy: "Financial strategy",
-      fullPackage: "Full package",
       quickAccess: "Quick access",
       home: "Home",
       about: "About us",
       calculator: "Real Estate Calculator",
       team: "Team",
       testimonials: "Testimonials",
-      services2: "Services", 
       appointment: "Schedule appointment",
       contact: "Contact",
       imprint: "Imprint",
       privacy: "Privacy",
       contactTitle: "Contact",
-      address: "CD Immo-Portfolio GmbH\nBauvereinstr. 47\n90489 Nuremberg\nGermany",
+      address: "CD Immo-Portfolio GmbH\nBauvereinstraße 47\n90489 Nuremberg\nGermany",
       phone: "+49 911 13039057",
       email: "p.chowdhury@cd-immo.de",
       copyright: "© {year} CD Immo-Portfolio GmbH. All rights reserved.",
@@ -1015,7 +1009,11 @@ const translations = {
       openingHoursText: "Mon-Fri: 9:00 AM - 6:00 PM\nSat: By appointment",
       sendMessage: "Send Message",
       messagePlaceholder: "Your message",
-      sendButton: "Send Message"
+      sendButton: "Send Message",
+      success: {
+        title: "Thank You!",
+        subtitle: "Your data has been successfully submitted. Our expert will contact you shortly."
+      }
     }
   }
 };
@@ -1050,4 +1048,4 @@ export const LanguageProvider = ({ children }) => {
       {children}
     </LanguageContext.Provider>
   );
-}; 
+};

@@ -208,8 +208,8 @@ const Kontakt = () => {
                 <div className="kontakt-form-container">
                   {isSubmitted ? (
                     <div className="success-content" style={{textAlign: 'center', padding: '40px', color: 'white'}}>
-                      <p>Vielen Dank!</p>
-                      <p>Ihre Daten wurden erfolgreich übermittelt. Unser Experte wird sich in Kürze bei Ihnen melden.</p>
+                      <p>{t('contact.success.title')}</p>
+                      <p>{t('contact.success.subtitle')}</p>
                     </div>
                   ) : (
                     <form className="kontakt-form" onSubmit={handleSubmit}>

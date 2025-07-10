@@ -3,11 +3,13 @@ import "../styles/Header.css";
 import logo from '../assets/logo-csd.webp';
 import { HoverButton } from "./ui/animated-hover-button";
 import "../styles/AnimatedButton.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Header = () => {
   const { language, changeLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,6 +37,26 @@ const Header = () => {
       window.scrollTo({
         top: elementPosition,
         behavior: 'smooth'
+      });
+    }
+    closeMobileMenu();
+  };
+
+  const handleNavigation = (sectionId) => {
+    if (location.pathname === "/") {
+      scrollToSection(sectionId);
+    } else {
+      navigate(`/#${sectionId}`);
+    }
+    closeMobileMenu();
+  };
+
+  const handleHomeClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
       });
     }
     closeMobileMenu();
@@ -157,28 +179,28 @@ const Header = () => {
               <div className="nav-center">
                 <nav className="nav-items">
                   <div className="nav-links-flex">
-                    <Link to="/" className="nav-item" onClick={closeMobileMenu}>{t('header.home')}</Link>
+                    <Link to="/" className="nav-item" onClick={handleHomeClick}>{t('header.home')}</Link>
                     <button 
                       className="nav-item nav-button" 
-                      onClick={() => scrollToSection('about')}
+                      onClick={() => handleNavigation('about')}
                     >
                       {t('header.about')}
                     </button>
                     <button 
                       className="nav-item nav-button" 
-                      onClick={() => scrollToSection('team')}
+                      onClick={() => handleNavigation('team')}
                     >
                       {t('header.team')}
                     </button>
                     <button 
                       className="nav-item nav-button" 
-                      onClick={() => scrollToSection('features')}
+                      onClick={() => handleNavigation('features')}
                     >
                       {t('header.calculator')}
                     </button>
                     <button 
                       className="nav-item nav-button" 
-                      onClick={() => scrollToSection('blog')}
+                      onClick={() => handleNavigation('blog')}
                     >
                       {t('header.testimonials')}
                     </button>
@@ -300,28 +322,28 @@ const Header = () => {
           >
             <nav className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`} ref={menuRef}>
               <div className="mobile-menu-content">
-                <Link to="/" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.home')}</Link>
+                <Link to="/" className="mobile-nav-item" onClick={handleHomeClick}>{t('header.home')}</Link>
                 <button 
                   className="mobile-nav-item nav-button" 
-                  onClick={() => scrollToSection('about')}
+                  onClick={() => handleNavigation('about')}
                 >
                   {t('header.about')}
                 </button>
                 <button 
                   className="mobile-nav-item nav-button" 
-                  onClick={() => scrollToSection('team')}
+                  onClick={() => handleNavigation('team')}
                 >
                   {t('header.team')}
                 </button>
                 <button 
                   className="mobile-nav-item nav-button" 
-                  onClick={() => scrollToSection('features')}
+                  onClick={() => handleNavigation('features')}
                 >
                   {t('header.calculator')}
                 </button>
                 <button 
                   className="mobile-nav-item nav-button" 
-                  onClick={() => scrollToSection('blog')}
+                  onClick={() => handleNavigation('blog')}
                 >
                   {t('header.testimonials')}
                 </button>
@@ -357,4 +379,4 @@ const Header = () => {
   );
 };
 
-export default Header; 
+export default Header;

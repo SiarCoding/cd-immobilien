@@ -32,14 +32,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="footer-link-block">
-          <div className="footer-heading">{t('footer.services')}</div>
-          <div className="footer-links">
-            <a href="/formular" className="footer-link">{t('footer.wealthConsulting')}</a>
-            <a href="/formular" className="footer-link">{t('footer.financialStrategy')}</a>
-            <a href="/formular" className="footer-link">{t('footer.fullPackage')}</a>
-          </div>
-        </div>
 
         <div className="footer-link-block">
           <div className="footer-heading">{t('footer.quickAccess')}</div>

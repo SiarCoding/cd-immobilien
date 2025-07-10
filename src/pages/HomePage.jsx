@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/sections/Hero";
 import Stats from "../components/sections/Stats";
 import Problem from "../components/sections/Problem";
@@ -11,10 +11,30 @@ import Blog from "../components/sections/Blog";
 import Faq from "../components/sections/Faq";
 import SEOHead from "../components/SEOHead";
 import { useSEO } from "../contexts/SEOContext";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const { seoData } = useSEO();
   const homePageSEO = seoData.home;
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const headerHeight = 80; // Header height in pixels
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+          window.scrollTo({
+            top: elementPosition,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <>
