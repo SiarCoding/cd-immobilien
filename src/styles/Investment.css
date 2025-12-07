@@ -332,7 +332,7 @@
 }
 
 .highlight-text-white {
-  color: #000 !important;
-  -webkit-text-fill-color: #000 !important;
-  text-fill-color: #000 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  text-fill-color: #fff !important;
 } 

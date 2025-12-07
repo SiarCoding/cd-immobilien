@@ -282,7 +282,7 @@ const translations = {
         gavino: {
           name: "Gavino Crabu",
           position: "Director of Key Account",
-          bio: "Herr Crabu ist unser Sprachgenie. Ob Englisch, Spanisch, Italienisch oder Deutsch – er vermittelt auf kompetentem Niveau klar und verständlich die Botschaft zur effektiven und chancenreichen Immobilieninvestition. Seine Erfahrungen als Weltenbummler, Sänger und Künstler ermöglichen es ihm, gezielt auf die Wünsche und Träume zukünftiger Immobilieninvestoren einzugehen."
+          bio: "Herr Crabu ist unser Sprachgenie. Ob Englisch, Spanisch, Italienisch oder Deutsch – er vermittelt auf kompetentem Niveau klar und verständlich die Botschaft zur effektiven und chancenreichen Immobilieninvestition. Seine umfassende internationale Erfahrung und der kreative Background ermöglichen es ihm, gezielt auf die Wünsche und Träume zukünftiger Immobilieninvestoren einzugehen."
         },
         peter: {
           name: "Peter Friedlhuber",
@@ -784,7 +784,7 @@ const translations = {
         gavino: {
           name: "Gavino Crabu",
           position: "Director of Key Account",
-          bio: "Mr. Crabu is our language genius. Whether English, Spanish, Italian or German – he conveys the message of effective and promising real estate investment clearly and understandably at a competent level. His experiences as a globetrotter, singer and artist enable him to specifically address the wishes and dreams of future real estate investors."
+          bio: "Mr. Crabu is our language genius. Whether English, Spanish, Italian or German – he conveys the message of effective and promising real estate investment clearly and understandably at a competent level. His extensive international experience and creative background enable him to specifically address the wishes and dreams of future real estate investors."
         },
         peter: {
           name: "Peter Friedlhuber",
