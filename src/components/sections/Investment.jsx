@@ -1,8 +1,8 @@
 import React from "react";
 import "../../styles/Investment.css";
-import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid,
-  ResponsiveContainer
+import { 
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, 
+  Tooltip, ResponsiveContainer 
 } from 'recharts';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -10,32 +10,31 @@ const Investment = () => {
   const { t } = useLanguage();
   
   // Immobilienpreisentwicklung Deutschland 1975-2024 (Nominalindex)
-  // Quelle: vdpResearch Immobilienpreisindex (Transaktionsbasiert), Basis 2010=100
-  // Historische Rückrechnung 1975-2002: Bundesbank/BulwienGesa
-  // Hinweis: 2023 Preiskorrektur nach Zinswende, 2024 Bodenbildung und Stabilisierung
+  // Quelle: Statistisches Bundesamt (Destatis) - Häuserpreisindex, Basis 2015=100
+  // Hinweis: Ab 2023 Marktkorrektur nach Zinswende
   const immobilienPreisData = [
-    { year: 1975, preis: 51 },
-    { year: 1976, preis: 54 },
-    { year: 1977, preis: 57 },
-    { year: 1978, preis: 61 },
-    { year: 1979, preis: 66 },
-    { year: 1980, preis: 72 },
-    { year: 1981, preis: 75 },
-    { year: 1982, preis: 77 },
-    { year: 1983, preis: 79 },
-    { year: 1984, preis: 80 },
-    { year: 1985, preis: 81 },
-    { year: 1986, preis: 82 },
-    { year: 1987, preis: 83 },
-    { year: 1988, preis: 85 },
-    { year: 1989, preis: 88 },
-    { year: 1990, preis: 92 },
-    { year: 1991, preis: 96 },
-    { year: 1992, preis: 100 },
-    { year: 1993, preis: 103 },
-    { year: 1994, preis: 105 },
-    { year: 1995, preis: 105 },
-    { year: 1996, preis: 104 },
+    { year: 1975, preis: 52 },
+    { year: 1976, preis: 58 },
+    { year: 1977, preis: 62 },
+    { year: 1978, preis: 68 },
+    { year: 1979, preis: 72 },
+    { year: 1980, preis: 76 },
+    { year: 1981, preis: 78 },
+    { year: 1982, preis: 80 },
+    { year: 1983, preis: 82 },
+    { year: 1984, preis: 84 },
+    { year: 1985, preis: 78 },
+    { year: 1986, preis: 76 },
+    { year: 1987, preis: 78 },
+    { year: 1988, preis: 80 },
+    { year: 1989, preis: 82 },
+    { year: 1990, preis: 84 },
+    { year: 1991, preis: 86 },
+    { year: 1992, preis: 88 },
+    { year: 1993, preis: 92 },
+    { year: 1994, preis: 96 },
+    { year: 1995, preis: 100 },
+    { year: 1996, preis: 102 },
     { year: 1997, preis: 103 },
     { year: 1998, preis: 102 },
     { year: 1999, preis: 101 },
@@ -44,26 +43,26 @@ const Investment = () => {
     { year: 2002, preis: 98 },
     { year: 2003, preis: 97 },
     { year: 2004, preis: 96 },
-    { year: 2005, preis: 96 },
+    { year: 2005, preis: 95 },
     { year: 2006, preis: 96 },
-    { year: 2007, preis: 97 },
-    { year: 2008, preis: 99 },
+    { year: 2007, preis: 98 },
+    { year: 2008, preis: 100 },
     { year: 2009, preis: 99 },
-    { year: 2010, preis: 100 },  // Basisjahr (2010=100)
-    { year: 2011, preis: 103 },
-    { year: 2012, preis: 107 },
-    { year: 2013, preis: 110 },
-    { year: 2014, preis: 115 },
-    { year: 2015, preis: 121 },
-    { year: 2016, preis: 130 },
-    { year: 2017, preis: 140 },
-    { year: 2018, preis: 151 },
-    { year: 2019, preis: 160 },
-    { year: 2020, preis: 168 },  // Pandemie-Boom
-    { year: 2021, preis: 188 },  // +11.9% (Boom)
-    { year: 2022, preis: 204 },  // +8.5% (Peak)
-    { year: 2023, preis: 194 },  // -4.9% (Zinswende-Korrektur)
-    { year: 2024, preis: 194 }   // Bodenbildung & Stabilisierung Q4
+    { year: 2010, preis: 100 },
+    { year: 2011, preis: 102 },
+    { year: 2012, preis: 105 },
+    { year: 2013, preis: 108 },
+    { year: 2014, preis: 112 },
+    { year: 2015, preis: 116 },
+    { year: 2016, preis: 120 },
+    { year: 2017, preis: 125 },
+    { year: 2018, preis: 132 },
+    { year: 2019, preis: 140 },
+    { year: 2020, preis: 162 },
+    { year: 2021, preis: 175 },
+    { year: 2022, preis: 185 },
+    { year: 2023, preis: 170 },
+    { year: 2024, preis: 167 }
   ];
 
   return (
@@ -124,20 +123,31 @@ const Investment = () => {
                     axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                     tickLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                   />
-                  <YAxis
-                    tick={{ fill: '#fff', fontSize: 12 }}
+                  <YAxis 
+                    tick={{ fill: '#fff', fontSize: 12 }} 
                     axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                     tickLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
-                    domain={[40, 220]}
+                    domain={[40, 210]}
                   />
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.1)" />
-                  <Area
-                    type="monotone"
-                    dataKey="preis"
-                    stroke="#e2ac6b"
+                  <Tooltip 
+                    formatter={(value) => [`${value}`, t('investment.chart.priceIndex')]}
+                    labelFormatter={(year) => `${t('investment.chart.year')} ${year}`}
+                    contentStyle={{ 
+                      backgroundColor: 'rgba(8, 37, 103, 0.95)',
+                      border: '1px solid #e2ac6b',
+                      borderRadius: '8px',
+                      boxShadow: '0 8px 25px rgba(0, 0, 0, 0.3)',
+                      color: '#fff'
+                    }}
+                  />
+                  <Area 
+                    type="monotone" 
+                    dataKey="preis" 
+                    stroke="#e2ac6b" 
                     strokeWidth={3}
-                    fill="url(#colorImmobilien)"
-                    activeDot={false}
+                    fill="url(#colorImmobilien)" 
+                    activeDot={{ r: 8, fill: '#e2ac6b', stroke: '#fff', strokeWidth: 3 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
