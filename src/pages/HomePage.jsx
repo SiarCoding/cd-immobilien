@@ -8,7 +8,6 @@ import Features from "../components/sections/Features";
 import Process from "../components/sections/Process";
 import Investment from "../components/sections/Investment";
 import Team from "../components/sections/Team";
-import Blog from "../components/sections/Blog";
 import Faq from "../components/sections/Faq";
 import SEOHead from "../components/SEOHead";
 import { useSEO } from "../contexts/SEOContext";
@@ -62,9 +61,6 @@ const HomePage = () => {
         <Investment />
         <div id="team">
           <Team />
-        </div>
-        <div id="blog">
-          <Blog />
         </div>
         <Faq />
       </main>
