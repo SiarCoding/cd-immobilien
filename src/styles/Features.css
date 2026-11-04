@@ -424,6 +424,12 @@
   box-shadow: 0 0 0 2px rgba(226, 172, 107, 0.3);
 }
 
+/* Dropdown-Liste: heller Text auf dunklem Grund, passend zum Rechner */
+.select-input option {
+  background-color: #0b1f4a;
+  color: #ffffff;
+}
+
 /* Calculate Button */
 .calculate-button-container {
   margin-top: 2rem;

@@ -1,8 +1,5 @@
 import React from "react";
 import "../../styles/Hero.css";
-import trustpilotExpert from '../../assets/trustpilot-expert.webp';
-import provenExpert from "../../assets/ProvenExpert.svg";
-import googleLogo from '../../assets/google.webp';
 import { HoverButton } from "../ui/animated-hover-button";
 import "../../styles/AnimatedButton.css";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -48,49 +45,7 @@ const Hero = () => {
               </Link>
             </div>
             
-            <div className="partner-logos">
-              {/* Lazy load images with proper attributes for performance */}
-              <img 
-                src={trustpilotExpert} 
-                className="partner-logo" 
-                alt="Trustpilot Expert" 
-                loading="lazy"
-                decoding="async"
-                width="110"
-                height="37"
-              />
-              <img 
-                src={provenExpert} 
-                className="partner-logo" 
-                alt="Proven Expert" 
-                loading="lazy"
-                decoding="async"
-                width="110"
-                height="37"
-              />
-              <img 
-                src={googleLogo} 
-                className="partner-logo" 
-                alt="Google" 
-                loading="lazy"
-                decoding="async"
-                width="110"
-                height="37"
-              />
-            </div>
-            
             <div className="avatar-stats-container">
-              <div className="avatar-row">
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/01010c1908714387a93ae9c751f363fe/df1918dfac1ace0b9b963e11e494eaa6c57cff82?placeholderIfAbsent=true" 
-                  className="stats-image" 
-                  alt="Rating stars" 
-                  loading="lazy"
-                  decoding="async"
-                  width="175"
-                  height="55"
-                />
-              </div>
               <div className="stats-text">
                 <div className="stats-number">{t('hero.statsNumber')}</div>
                 <div className="stats-label">{t('hero.statsLabel')}</div>
@@ -103,17 +58,6 @@ const Hero = () => {
               <Video />
             </div>
             <div className="avatar-stats-container">
-              <div className="avatar-row">
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets/01010c1908714387a93ae9c751f363fe/df1918dfac1ace0b9b963e11e494eaa6c57cff82?placeholderIfAbsent=true" 
-                  className="stats-image" 
-                  alt="Rating stars" 
-                  loading="lazy"
-                  decoding="async"
-                  width="175"
-                  height="55"
-                />
-              </div>
               <div className="stats-text">
                 <div className="stats-number">{t('hero.statsNumber')}</div>
                 <div className="stats-label">{t('hero.statsLabel')}</div>

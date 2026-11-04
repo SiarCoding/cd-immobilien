@@ -9,7 +9,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 const Investment = () => {
   const { t } = useLanguage();
   
-  // Immobilienpreisentwicklung Deutschland 1975-2024 (Nominalindex)
+  // Immobilienpreisentwicklung Deutschland 1975-2025 (Nominalindex)
   // Quelle: Statistisches Bundesamt (Destatis) - Häuserpreisindex, Basis 2015=100
   // Hinweis: Ab 2023 Marktkorrektur nach Zinswende
   const immobilienPreisData = [
@@ -62,7 +62,8 @@ const Investment = () => {
     { year: 2021, preis: 175 },
     { year: 2022, preis: 185 },
     { year: 2023, preis: 170 },
-    { year: 2024, preis: 167 }
+    { year: 2024, preis: 167 },
+    { year: 2025, preis: 140 } // Vorgabe Siar 04.11.2026, kein Destatis-Wert
   ];
 
   return (

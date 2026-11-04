@@ -6,27 +6,58 @@ import "../styles/AnimatedButton.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 
+const FlagDE = () => (
+  <svg className="lang-flag" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <rect width="5" height="1" y="0" fill="#000" />
+    <rect width="5" height="1" y="1" fill="#D00" />
+    <rect width="5" height="1" y="2" fill="#FFCE00" />
+  </svg>
+);
+
+const FlagGB = () => (
+  <svg className="lang-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <rect width="60" height="30" fill="#012169" />
+    <path d="M0 0L60 30M60 0L0 30" stroke="#fff" strokeWidth="6" />
+    <path d="M0 0L30 15H25.53L0 2.24ZM60 30L30 15H34.47L60 27.76ZM60 0L30 15V12.76L55.53 0ZM0 30L30 15V17.24L4.47 30Z" fill="#C8102E" />
+    <path d="M30 0V30M0 15H60" stroke="#fff" strokeWidth="10" />
+    <path d="M30 0V30M0 15H60" stroke="#C8102E" strokeWidth="6" />
+  </svg>
+);
+
+const LANGUAGES = [
+  { code: 'DE', name: 'Deutsch', Flag: FlagDE },
+  { code: 'EN', name: 'English', Flag: FlagGB },
+];
+
+const LanguageToggle = ({ language, onChange }) => (
+  <div className="lang-toggle" role="group" aria-label="Sprache / Language" data-active={language}>
+    <span className="lang-toggle-thumb" aria-hidden="true" />
+    {LANGUAGES.map(({ code, name, Flag }) => (
+      <button
+        key={code}
+        type="button"
+        className="lang-toggle-option"
+        aria-pressed={language === code}
+        aria-label={name}
+        title={name}
+        onClick={() => onChange(code)}
+      >
+        <Flag />
+        <span className="lang-toggle-code">{code}</span>
+      </button>
+    ))}
+  </div>
+);
+
 const Header = () => {
   const { language, changeLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
-  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(language);
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const btnRef = useRef(null);
-  const langRef = useRef(null);
-  const langBtnRef = useRef(null);
-  const mobileLangRef = useRef(null);
-  const mobileLangBtnRef = useRef(null);
-  
-  // Synchronisiere selectedLanguage mit language aus Context
-  useEffect(() => {
-    setSelectedLanguage(language);
-  }, [language]);
-  
   // Smooth scroll function für Anchor-Links
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -84,78 +115,31 @@ const Header = () => {
     };
   }, [isScrolled]);
   
-  // Verbesserte Klick-außerhalb-Erkennung für Mobile Menu und Language Dropdown
+  // Mobile Menu bei Klick außerhalb schließen (der Sprach-Toggle lässt es offen)
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      // Prüfe Mobile Menu (aber nicht Language Dropdown)
       if (
-        isMobileMenuOpen && 
-        menuRef.current && 
+        isMobileMenuOpen &&
+        menuRef.current &&
         !menuRef.current.contains(e.target) &&
-        btnRef.current && 
+        btnRef.current &&
         !btnRef.current.contains(e.target) &&
-        langRef.current &&
-        !langRef.current.contains(e.target) &&
-        langBtnRef.current &&
-        !langBtnRef.current.contains(e.target) &&
-        mobileLangRef.current &&
-        !mobileLangRef.current.contains(e.target) &&
-        mobileLangBtnRef.current &&
-        !mobileLangBtnRef.current.contains(e.target)
+        !e.target.closest('.lang-toggle')
       ) {
         setIsMobileMenuOpen(false);
       }
-      
-      // Prüfe Desktop Language Dropdown separat
-      if (
-        isLangDropdownOpen &&
-        langRef.current &&
-        !langRef.current.contains(e.target) &&
-        langBtnRef.current &&
-        !langBtnRef.current.contains(e.target) &&
-        mobileLangRef.current &&
-        !mobileLangRef.current.contains(e.target) &&
-        mobileLangBtnRef.current &&
-        !mobileLangBtnRef.current.contains(e.target)
-      ) {
-        setIsLangDropdownOpen(false);
-      }
     };
-    
+
     document.addEventListener('mousedown', handleOutsideClick);
     document.addEventListener('touchstart', handleOutsideClick);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
       document.removeEventListener('touchstart', handleOutsideClick);
     };
-  }, [isMobileMenuOpen, isLangDropdownOpen]);
-  
-  const toggleLangDropdown = (e) => {
-    e.stopPropagation();
-    setIsLangDropdownOpen(!isLangDropdownOpen);
-  };
-  
-  const selectLanguage = (lang, e) => {
-    e.stopPropagation();
-    console.log('Changing language to:', lang); // Debug log
-    setSelectedLanguage(lang);
-    changeLanguage(lang);
-    setIsLangDropdownOpen(false);
-    
-    // Schließe auch das Mobile Menu wenn eine Sprache gewählt wird
-    if (isMobileMenuOpen) {
-      setTimeout(() => {
-        setIsMobileMenuOpen(false);
-      }, 300); // Kurze Verzögerung für bessere UX
-    }
-  };
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    // Schließe Language Dropdown wenn Mobile Menu geöffnet wird
-    if (!isMobileMenuOpen) {
-      setIsLangDropdownOpen(false);
-    }
   };
 
   const closeMobileMenu = () => {
@@ -222,41 +206,7 @@ const Header = () => {
                     </HoverButton>
                   </Link>
                   
-                  <div className="language-selector" ref={langRef}>
-                    <div className="language-selected" onClick={toggleLangDropdown} ref={langBtnRef}>
-                      <div className="language-wrapper">
-                        <div className="language-icon">
-                          <span className="current-flag">
-                            {selectedLanguage === 'DE' ? '🇩🇪' : '🇬🇧'}
-                          </span>
-                        </div>
-                        <span className="language-text">{selectedLanguage}</span>
-                        <div className="dropdown-arrow">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 10L12 15L17 10H7Z" fill="currentColor"/>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    {isLangDropdownOpen && (
-                      <div className="language-dropdown-menu">
-                        <div 
-                          className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
-                          onClick={(e) => selectLanguage('DE', e)}
-                        >
-                          <span className="flag-icon">🇩🇪</span>
-                          <span>Deutsch</span>
-                        </div>
-                        <div 
-                          className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
-                          onClick={(e) => selectLanguage('EN', e)}
-                        >
-                          <span className="flag-icon">🇬🇧</span>
-                          <span>English</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <LanguageToggle language={language} onChange={changeLanguage} />
                 </div>
               </div>
             </div>
@@ -264,41 +214,7 @@ const Header = () => {
             {/* Mobile Actions - Language Selector und Menu Button */}
             <div className="mobile-actions">
               {/* Mobile Language Selector */}
-              <div className="language-selector mobile-language-selector" ref={mobileLangRef}>
-                <div className="language-selected" onClick={toggleLangDropdown} ref={mobileLangBtnRef}>
-                  <div className="language-wrapper">
-                    <div className="language-icon">
-                      <span className="current-flag">
-                        {selectedLanguage === 'DE' ? '🇩🇪' : '🇬🇧'}
-                      </span>
-                    </div>
-                    <span className="language-text">{selectedLanguage}</span>
-                    <div className="dropdown-arrow">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 10L12 15L17 10H7Z" fill="currentColor"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                {isLangDropdownOpen && (
-                  <div className="language-dropdown-menu mobile-language-dropdown">
-                    <div 
-                      className={`language-item ${selectedLanguage === 'DE' ? 'language-active' : ''}`}
-                      onClick={(e) => selectLanguage('DE', e)}
-                    >
-                      <span className="flag-icon">🇩🇪</span>
-                      <span>Deutsch</span>
-                    </div>
-                    <div 
-                      className={`language-item ${selectedLanguage === 'EN' ? 'language-active' : ''}`}
-                      onClick={(e) => selectLanguage('EN', e)}
-                    >
-                      <span className="flag-icon">🇬🇧</span>
-                      <span>English</span>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <LanguageToggle language={language} onChange={changeLanguage} />
               
               {/* Mobile Menu Button */}
               <button 

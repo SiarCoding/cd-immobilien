@@ -59,16 +59,16 @@ const Features = () => {
   // Feste Werte
   const anschaffungskostenProzent = 5;
   const tilgung = 1.5;
-  const verwaltungskosten = 40;
+  const verwaltungskosten = 50;
   const steuersatz = 42;
 
   // Dynamische Werte basierend auf Qualitätsstufe
   const getZinssatz = (qualitaetsstufe) => {
     switch(qualitaetsstufe) {
-      case 0.70: return 3.5; // QNG
-      case 0.90: return 3.6; // High Quality  
-      case 1.20: return 3.8; // Low Quality
-      default: return 3.5;
+      case 0.70: return 4.5; // QNG
+      case 0.80: return 4.5; // High Quality  
+      case 1.20: return 4.5; // Low Quality
+      default: return 4.5;
     }
   };
 
@@ -116,7 +116,7 @@ const Features = () => {
   // Qualitätsstufen-Optionen mit Übersetzungen
   const qualitaetsstufen = [
     { value: 0.70, label: t('features.qngQuality') },
-    { value: 0.90, label: t('features.highQuality') },
+    { value: 0.80, label: t('features.highQuality') },
     { value: 1.20, label: t('features.surfaceQuality') }
   ];
 

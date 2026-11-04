@@ -21,7 +21,7 @@ const translations = {
       titleUnderlined: "Steuerlast",
       subtitle: "Mit unserer Expertise helfen wir Ihnen, durch strategische Immobilieninvestitionen ein nachhaltiges Vermögen aufzubauen und Ihre finanzielle Zukunft zu sichern.",
       ctaButton: "Kostenlose Beratung sichern",
-      statsNumber: "1400+",
+      statsNumber: "2000+",
       statsLabel: "Zufriedene Kunden"
     },
     // Header Navigation
@@ -111,11 +111,11 @@ const translations = {
       },
       stableReturns: {
         title: "Stabile Rendite",
-        description: "Erzielen Sie attraktive Eigenkapitalrenditen von mindestens über 10% p. a. durch konservative Mietrenditen."
+        description: "Erzielen Sie attraktive Eigenkapitalrenditen von mindestens über 10% p. a. durch konservative Mietrenditen und Annahmen."
       },
       inflationProtection: {
         title: "Inflationsschutz",
-        description: "Schützen Sie Ihr Vermögen vor Inflation. Immobilien bieten einen natürlichen Inflationsschutz, da Mieten und Immobilienwerte in der Regel mit der Inflation steigen."
+        description: "Schützen Sie Ihr Vermögen vor Inflation."
       },
       wealthTransfer: {
         title: "Vermögensübertragung",
@@ -123,21 +123,21 @@ const translations = {
       },
       longTermWealth: {
         title: "Langfristiger Vermögensaufbau",
-        description: "Profitieren Sie vom Hebeleffekt durch Fremdkapital und bauen Sie systematisch Vermögen auf. Unsere Strategie zielt auf nachhaltiges Wachstum und kontinuierliche Wertsteigerung."
+        description: "Profitieren Sie vom Hebeleffekt durch Fremdkapital und bauen Sie systematisch Vermögen auf. Unsere Strategie zielt auf Werterhalt in Top-Lagen."
       },
       ctaTitle: "Seriös Steuern sparen und planbar Vermögen aufbauen",
-      ctaText: "Unsere Immobilienstrategie bietet Ihnen eine sichere, renditestarke und steueroptimierte Möglichkeit, Vermögen aufzubauen und langfristig für Ihre Altersvorsorge vorzusorgen. Profitieren Sie von unserem Experten-Netzwerk.",
+      ctaText: "Unsere Immobilienstrategie bietet Ihnen eine sichere, renditestarke und steueroptimierte Möglichkeit, Vermögen aufzubauen und langfristig für Ihre finanzielle Zukunft vorzusorgen. Profitieren Sie von unserem Experten-Netzwerk.",
       ctaButton: "Jetzt Beratungstermin vereinbaren"
     },
     // About Section
     about: {
       title: "Unsere Expertise",
       titleHighlight: "für Ihren Erfolg",
-      description: "Mit unserer umfassenden Expertise im Immobilienbereich unterstützen wir Sie dabei, fundierte Investitionsentscheidungen zu treffen. Wir bieten maßgeschneiderte Lösungen, die auf Ihre individuellen finanziellen Ziele und Bedürfnisse zugeschnitten sind.",
+      description: "Lernen Sie, Investmententscheidungen genauso zu treffen, wie es professionelle Investoren tun. Wir bieten maßgeschneiderte Lösungen auf Basis professioneller KPIs.",
       personalConsulting: "Persönliche Beratung",
       tailoredStrategies: "Maßgeschneiderte Strategien", 
       experience: "Langjährige Erfahrung",
-      secondDescription: "Unser Erfolg basiert auf dem Vertrauen unserer Kunden. Wir arbeiten transparent, ehrlich und stets in Ihrem besten Interesse. Was uns von anderen unterscheidet, ist unsere Verpflichtung zu langfristigen Kundenbeziehungen statt kurzfristigen Gewinnen.",
+      secondDescription: "Unser Erfolg basiert auf dem Vertrauen unserer Kunden. Dieses Vertrauen gewinnen wir durch eine wissenschaftliche Vorgehensweise, basierend auf Zahlen, Daten und Fakten. Was uns von anderen unterscheidet, ist unsere Verpflichtung zu langfristigen Kundenbeziehungen statt kurzfristigen Gewinnen.",
       transparentCommunication: "Transparente Kommunikation",
       progressReports: "Regelmäßige Fortschrittsberichte",
       satisfaction: "Garantierte Zufriedenheit"
@@ -162,7 +162,7 @@ const translations = {
       
       // Quality levels
       qngQuality: "Stein auf Stein: Best Quality gem. QNG (70 Cent/m²) ",
-      highQuality: "Stein auf Stein: High Quality (90 Cent/m²)",
+      highQuality: "Stein auf Stein: High Quality (80 Cent/m²)",
       surfaceQuality: "Stein auf Stein: Low Quality (1,20€/m²)",
       
       // Fixed parameters
@@ -231,28 +231,33 @@ const translations = {
       titleHighlight: "Prozess",
       subtitle: "Wir begleiten Sie durch jeden Schritt Ihrer Immobilieninvestition",
       consultation: {
-        title: "Beratungsgespräch",
+        title: "Persönliches Gespräch",
         phase: "Phase 1",
-        content: "In einem persönlichen Gespräch analysieren wir Ihre finanzielle Situation und Ihre Ziele für die Immobilieninvestition."
+        content: "In einem persönlichen Gespräch klären wir Sie über den Immobilienmarkt auf: Preisentwicklung, die 6 Immobilienkategorien, ROI und KPIs."
+      },
+      potential: {
+        title: "Investmentpotenzial",
+        phase: "Phase 2",
+        content: "Gemeinsam analysieren wir Ihre finanzielle Situation und Ihre Ziele für die Immobilieninvestition."
       },
       search: {
-        title: "Objektsuche", 
-        phase: "Phase 2",
-        content: "Wir suchen gemeinsam nach passenden Immobilien und analysieren deren Rentabilität und Steuervorteile."
+        title: "Objektangebot",
+        phase: "Phase 3",
+        content: "Wir bewerten Ihr Objekt nach wissenschaftlichen Kriterien und vergleichen es mit unseren Angeboten."
       },
       financing: {
         title: "Finanzierung",
-        phase: "Phase 3", 
+        phase: "Phase 4",
         content: "Wir optimieren Ihre Finanzierungsstruktur und nutzen alle verfügbaren Fördermittel für maximale Rendite."
       },
       purchase: {
-        title: "Kaufabwicklung",
-        phase: "Phase 4",
-        content: "Wir begleiten Sie durch den gesamten Kaufprozess - vom Notartermin bis zur Schlüsselübergabe."
+        title: "Kaufabwicklung & Besichtigung",
+        phase: "Phase 5",
+        content: "Wir begleiten Sie bei Besichtigung, Kaufvertrag und Notartermin und lassen den Abschluss bei einem gemeinsamen Abendessen ausklingen."
       },
       rental: {
         title: "Vermietungsbetreuung",
-        phase: "Phase 5", 
+        phase: "Phase 6",
         content: "Nach dem Kauf unterstützen wir Sie bei der Vermietung und der laufenden Verwaltung Ihrer Immobilie."
       },
       relatedPhases: "Verbundene Phasen"
@@ -523,7 +528,7 @@ const translations = {
       titleUnderlined: "tax burden",
       subtitle: "With our expertise, we help you build sustainable wealth through strategic real estate investments and secure your financial future.",
       ctaButton: "Get consultation",
-      statsNumber: "1400+",
+      statsNumber: "2000+",
       statsLabel: "Satisfied customers"
     },
     // Header Navigation
@@ -613,11 +618,11 @@ const translations = {
       },
       stableReturns: {
         title: "Stable returns",
-        description: "Achieve attractive equity returns of at least over 10% p.a. through conservative rental returns."
+        description: "Achieve attractive equity returns of at least over 10% p.a. through conservative rental returns and assumptions."
       },
       inflationProtection: {
         title: "Inflation protection",
-        description: "Protect your wealth from inflation. Real estate offers natural inflation protection, as rents and real estate values typically rise with inflation."
+        description: "Protect your wealth from inflation."
       },
       wealthTransfer: {
         title: "Wealth transfer",
@@ -625,21 +630,21 @@ const translations = {
       },
       longTermWealth: {
         title: "Long-term wealth building",
-        description: "Benefit from leverage through debt capital and systematically build wealth. Our strategy aims for sustainable growth and continuous value appreciation."
+        description: "Benefit from leverage through debt capital and systematically build wealth. Our strategy aims for value preservation in prime locations."
       },
       ctaTitle: "Save taxes seriously and build wealth in a predictable way",
-      ctaText: "Our real estate strategy offers you a secure, high-yield and tax-optimized way to build wealth and provide for your retirement in the long term. Benefit from our expert network.",
+      ctaText: "Our real estate strategy offers you a secure, high-yield and tax-optimized way to build wealth and provide for your financial future in the long term. Benefit from our expert network.",
       ctaButton: "Schedule consultation now"
     },
     // About Section  
     about: {
       title: "Our expertise",
       titleHighlight: "for your success",
-      description: "With our comprehensive expertise in real estate, we support you in making well-founded investment decisions. We offer tailored solutions that are customized to your individual financial goals and needs.",
+      description: "Learn to make investment decisions the same way professional investors do. We offer tailored solutions based on professional KPIs.",
       personalConsulting: "Personal consulting",
       tailoredStrategies: "Tailored strategies",
       experience: "Years of experience", 
-      secondDescription: "Our success is based on the trust of our customers. We work transparently, honestly and always in your best interest. What sets us apart from others is our commitment to long-term customer relationships instead of short-term gains.",
+      secondDescription: "Our success is based on the trust of our customers. We earn this trust through a scientific approach based on numbers, data and facts. What sets us apart from others is our commitment to long-term customer relationships instead of short-term gains.",
       transparentCommunication: "Transparent communication",
       progressReports: "Regular progress reports",
       satisfaction: "Guaranteed satisfaction"
@@ -664,7 +669,7 @@ const translations = {
       
       // Quality levels
       qngQuality: "Brick Construction: Best Quality acc. to QNG (70 Cents/m²)",
-      highQuality: "Brick Construction: High Quality (90 Cents/m²)",
+      highQuality: "Brick Construction: High Quality (80 Cents/m²)",
       surfaceQuality: "Brick Construction: Low Quality (1.20€/m²)",
       
       // Fixed parameters
@@ -733,28 +738,33 @@ const translations = {
       titleHighlight: "process",
       subtitle: "We guide you through every step of your real estate investment",
       consultation: {
-        title: "Consultation meeting",
+        title: "Personal consultation",
         phase: "Phase 1",
-        content: "In a personal conversation, we analyze your financial situation and your goals for real estate investment."
+        content: "In a personal conversation, we explain the real estate market to you: price development, the 6 property categories, ROI and KPIs."
+      },
+      potential: {
+        title: "Investment potential",
+        phase: "Phase 2",
+        content: "Together we analyze your financial situation and your goals for the real estate investment."
       },
       search: {
-        title: "Property search",
-        phase: "Phase 2", 
-        content: "We search together for suitable properties and analyze their profitability and tax benefits."
+        title: "Property offer",
+        phase: "Phase 3",
+        content: "We evaluate your property using scientific criteria and compare it with our offers."
       },
       financing: {
         title: "Financing",
-        phase: "Phase 3",
+        phase: "Phase 4",
         content: "We optimize your financing structure and utilize all available subsidies for maximum return."
       },
       purchase: {
-        title: "Purchase processing",
-        phase: "Phase 4",
-        content: "We guide you through the entire purchase process - from notary appointment to key handover."
+        title: "Purchase processing & viewing",
+        phase: "Phase 5",
+        content: "We accompany you through the viewing, purchase contract and notary appointment and round off the closing with a dinner together."
       },
       rental: {
         title: "Rental management",
-        phase: "Phase 5",
+        phase: "Phase 6",
         content: "After purchase, we support you with rental and ongoing management of your property."
       },
       relatedPhases: "Connected phases"

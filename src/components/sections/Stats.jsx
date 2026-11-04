@@ -10,8 +10,8 @@ const Stats = () => {
   // Stats data
   const statsData = [
     { value: 500, label: t('stats.projectVolume'), suffix: '+', prefix: '' },
-    { value: 1400, label: t('stats.customers'), suffix: '+', prefix: '' },
-    { value: 20, label: t('stats.experience'), suffix: '+', prefix: '' }
+    { value: 2000, label: t('stats.customers'), suffix: '+', prefix: '' },
+    { value: 28, label: t('stats.experience'), suffix: '+', prefix: '' }
   ];
 
   return (

@@ -349,16 +349,6 @@
   width: 100%;
 }
 
-.partner-logos {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 30px;
-}
-
 .hero-right-column {
   display: none;
 }
@@ -970,17 +960,6 @@
   display: block;
 }
 
-.partner-logo {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  /* Performance optimization */
-  contain: layout size;
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
 /* Copper effect styling */
 .copper-effect {
   position: absolute;
@@ -1142,13 +1121,6 @@
     width: 100%;
   }
   
-  .partner-logos {
-    order: 4;
-    justify-content: center;
-    margin-top: 0;
-    width: 100%;
-  }
-  
   .hero-main-content {
     margin-top: 20px;
   }
@@ -1295,14 +1267,6 @@
   
   .stats-label {
     font-size: 12px;
-  }
-  
-  .partner-logos {
-    gap: 15px;
-  }
-  
-  .partner-logo {
-    height: 30px;
   }
   
   .hero-image {

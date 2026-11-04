@@ -5,7 +5,8 @@ import {
   FileSearch, 
   PiggyBank, 
   Key, 
-  Users 
+  Users,
+  TrendingUp
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -29,41 +30,51 @@ const Process = () => {
     },
     {
       id: 2,
+      title: t('process.potential.title'),
+      date: t('process.potential.phase'),
+      content: t('process.potential.content'),
+      icon: TrendingUp,
+      relatedIds: [1, 3],
+      status: "in-progress",
+      energy: 85
+    },
+    {
+      id: 3,
       title: t('process.search.title'),
       date: t('process.search.phase'),
       content: t('process.search.content'),
       icon: FileSearch,
-      relatedIds: [1, 3],
-      status: "in-progress",
-      energy: 80
+      relatedIds: [2, 4],
+      status: "pending",
+      energy: 70
     },
     {
-      id: 3,
+      id: 4,
       title: t('process.financing.title'),
       date: t('process.financing.phase'),
       content: t('process.financing.content'),
       icon: PiggyBank,
-      relatedIds: [2, 4],
+      relatedIds: [3, 5],
       status: "pending",
-      energy: 60
+      energy: 55
     },
     {
-      id: 4,
+      id: 5,
       title: t('process.purchase.title'),
       date: t('process.purchase.phase'),
       content: t('process.purchase.content'),
       icon: Key,
-      relatedIds: [3, 5],
+      relatedIds: [4, 6],
       status: "pending",
       energy: 40
     },
     {
-      id: 5,
+      id: 6,
       title: t('process.rental.title'),
       date: t('process.rental.phase'),
       content: t('process.rental.content'),
       icon: Users,
-      relatedIds: [4],
+      relatedIds: [5],
       status: "pending",
       energy: 20
     }
