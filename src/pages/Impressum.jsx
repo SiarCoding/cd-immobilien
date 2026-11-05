@@ -19,12 +19,13 @@ E-Mail: p.chowdhury@cd-immo.de</p>
 Handelsregisternummer: HRB 41173</p>
 <h2>Gesellschaftszweck</h2>
 <p>Immobilienhandel sowie Immobilienbestandsaufbau im Sinne des § 34 c GewO, ausgenommen Kreditvermittlung.</p>
-<h2>Online-Streitbeilegung (OS)</h2>
-<p>Plattform der EU-Kommission: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a><br />
-(erreichbar bis 19. Juli 2025)</p>
+<h2>Zuständige Aufsichtsbehörde</h2>
+<p>Industrie- und Handelskammer für München und Oberbayern<br />
+Max-Joseph-Straße 2<br />
+80333 München</p>
 <h2>Verbraucher­streit­­beilegung (§ 36 VSBG)</h2>
 <p>Wir sind weder bereit noch verpflichtet, an Streitbeilegungs­verfahren vor einer Verbraucher­schlichtungs­stelle teilzunehmen.</p>
-<p>Stand: Juli 2025</p>`;
+<p>Stand: November 2026</p>`;
 
 const impressumEN = `
 <h1>Complete Legal Notice – English</h1>
@@ -43,10 +44,13 @@ Email: p.chowdhury@cd-immo.de</p>
 Registration No.: HRB 41173</p>
 <h2>Corporate purpose</h2>
 <p>Real-estate trading and portfolio build-up within the meaning of Sec. 34 c GewO (excluding credit brokerage).</p>
-<h2>Online Dispute Resolution (ODR)</h2>
-<p>The European Commission provides an ODR platform until 19 July 2025: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a></p>
+<h2>Competent supervisory authority</h2>
+<p>Chamber of Industry and Commerce for Munich and Upper Bavaria (IHK für München und Oberbayern)<br />
+Max-Joseph-Straße 2<br />
+80333 Munich, Germany</p>
 <h2>Consumer Dispute Resolution (§ 36 VSBG)</h2>
-<p>We are neither willing nor obliged to participate in dispute-resolution proceedings before a consumer arbitration board.</p>`;
+<p>We are neither willing nor obliged to participate in dispute-resolution proceedings before a consumer arbitration board.</p>
+<p>As of: November 2026</p>`;
 
 const Impressum = () => {
   const { language } = useLanguage();

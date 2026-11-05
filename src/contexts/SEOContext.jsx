@@ -15,7 +15,7 @@ export const useSEO = () => {
 export const seoData = {
   home: {
     title: 'CD Immo-Portfolio GmbH - Immobilieninvestition & Steuervorteile',
-    description: '🏢 Bauen Sie nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast. ✅ 20+ Jahre Erfahrung ✅ 1400+ zufriedene Kunden ✅ Kostenlose Beratung. Eigenkapitalrendite über 10% p.a. ✅ Inflationsschutz',
+    description: '🏢 Bauen Sie nachhaltiges Vermögen auf & senken Sie Ihre Steuerlast. ✅ 28+ Jahre Erfahrung ✅ 2000+ zufriedene Kunden ✅ Kostenlose Beratung. Eigenkapitalrendite über 10% p.a. ✅ Inflationsschutz',
     keywords: 'Immobilieninvestition Nürnberg, Steuervorteile Immobilien, Steuerlast senken 90%, Vermögensaufbau Immobilien, Altersvorsorge Immobilien, Cashflow Immobilien, Rendite Immobilien 10%, Immobilien Portfolio, Kapitalanlage Immobilien, Steueroptimierung, Immobilien Nürnberg Bayern, CD Immo-Portfolio GmbH, Eigenkapitalrendite, Inflationsschutz, Immobilienberater Nürnberg, Finanzierung Immobilien, Immobilien Steuern sparen',
     canonical: 'https://www.cd-immo.de/',
     ogImage: 'https://www.cd-immo.de/assets/og-image-home.jpg',
@@ -43,13 +43,6 @@ export const seoData = {
     canonical: 'https://www.cd-immo.de/formular',
     ogImage: 'https://www.cd-immo.de/assets/og-image-formular.jpg'
   },
-  testimonials: {
-    title: 'Kundenstimmen - CD Immo-Portfolio GmbH | 1400+ Zufriedene Kunden',
-    description: '⭐ Lesen Sie Erfahrungsberichte unserer 1400+ zufriedenen Kunden! ✅ Erfolgreiche Immobilieninvestitionen ✅ Steuervorteile realisiert ✅ Vermögensaufbau dokumentiert. Echte Bewertungen von Immobilieninvestoren aus Nürnberg und ganz Deutschland.',
-    keywords: 'Kundenstimmen Immobilien Nürnberg, Erfahrungen CD Immo-Portfolio GmbH, Bewertungen Immobilienberater, Testimonials Immobilieninvestition, Kundenbewertungen Steuervorteile, Immobilien Erfolgsgeschichten, Zufriedene Kunden Nürnberg',
-    canonical: 'https://www.cd-immo.de/testimonials',
-    ogImage: 'https://www.cd-immo.de/assets/og-image-testimonials.jpg'
-  }
 };
 
 // Globale SEO Konstanten

@@ -4,7 +4,6 @@ import { HoverButton } from "../ui/animated-hover-button";
 import "../../styles/AnimatedButton.css";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { Link } from 'react-router-dom';
-import BackgroundVideo from "../BackgroundVideo";
 import Video from "../Video";
 
 const Hero = () => {
@@ -12,17 +11,16 @@ const Hero = () => {
 
   return (
     <section className="hero-section" aria-label="Hero">
-      <BackgroundVideo />
       
       <div className="hero-main-content">
         <div className="hero-content-wrapper">
           <div className="hero-left-side">
             <div className="hero-text-title">
-              <h1 className="hero-title">
+              <h2 className="hero-title">
                 <span className="title-container">
                   {t('hero.title')} <span className="highlight-blue">{t('hero.titleHighlight')}</span> {t('hero.titleEnd')} <span className="underlined-blue-special">{t('hero.titleUnderlined')}</span>
                 </span>
-              </h1>
+              </h2>
               <div className="hero-subtitle">
                 {t('hero.subtitle')}
               </div>

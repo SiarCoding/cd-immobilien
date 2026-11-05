@@ -45,13 +45,12 @@ const Footer = () => {
             <a href="#about" className="footer-link">{t('footer.about')}</a>
             <a href="#features" className="footer-link">{t('footer.calculator')}</a>
             <a href="#team" className="footer-link">{t('footer.team')}</a>
-            <a href="#blog" className="footer-link">{t('footer.testimonials')}</a>
             <a href="/kontakt" className="footer-link">{t('footer.contact')}</a>
             <a href="/formular" className="footer-link">{t('footer.appointment')}</a>
             <a href="/impressum" className="footer-link">{t('footer.imprint')}</a>
             <a href="/datenschutz" className="footer-link">{t('footer.privacy')}</a>
             <button onClick={openConsentManager} className="footer-link cookie-settings-btn">
-              Cookie-Einstellungen
+              {t('footer.cookieSettings')}
             </button>
           </div>
         </div>

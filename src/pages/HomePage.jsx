@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import Hero from "../components/sections/Hero";
+// Reihenfolge beibehalten: Diese Styles müssen vor denen der Sections geladen werden
+import "../styles/Hero.css";
+import "../styles/AnimatedButton.css";
+import AboutVideo from "../components/sections/AboutVideo";
 import Stats from "../components/sections/Stats";
 import Problem from "../components/sections/Problem";
 import Solution from "../components/sections/Solution";
@@ -47,16 +50,16 @@ const HomePage = () => {
         ogType="website"
       />
       <main>
-        <Hero />
-        <Stats />
-        <Problem />
-        <Solution />
-        <div id="about">
-          <About />
-        </div>
         <div id="features">
           <Features />
         </div>
+        <div id="about">
+          <AboutVideo />
+        </div>
+        <Stats />
+        <Problem />
+        <Solution />
+        <About />
         <Process />
         <Investment />
         <div id="team">

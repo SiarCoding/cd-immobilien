@@ -1,32 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/Features.css';
-import apartmentBg from '../../assets/apartment.webp';
+import '../../styles/Hero.css';
+import '../../styles/AnimatedButton.css';
+import '../../styles/CalculatorHero.css';
+import neubauImage from '../../assets/neubau-freisteller.webp';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Link } from 'react-router-dom';
-
-// Kupfer-Effekt Komponente für Features-Sektion
-const CopperBlurEffect = () => (
-  <div className="features-copper-effect">
-    <svg className="copper-effect-svg" viewBox="0 0 444 536" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M225.919 112.719C343.98 64.6648 389.388 -70.487 437.442 47.574C485.496 165.635 253.266 481.381 135.205 529.435C17.1445 577.488 57.9596 339.654 9.9057 221.593C-38.1482 103.532 107.858 160.773 225.919 112.719Z" fill="url(#copper-gradient)" />
-      <defs>
-        <linearGradient id="copper-gradient" x1="82.7339" y1="550.792" x2="-39.945" y2="118.965" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#B87333" />
-          <stop offset="50%" stopColor="#E2AC6B" />
-          <stop offset="100%" stopColor="#B87333" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-);
+import { HoverButton } from '../ui/animated-hover-button';
 
 // Info-Icon Komponente mit Tooltip
 const InfoIcon = ({ tooltip }) => {
   return (
-    <div className="info-icon">
+    <span className="calc-info" tabIndex={0} aria-label={tooltip}>
       i
-      <div className="info-tooltip">{tooltip}</div>
-    </div>
+      <span className="calc-info-tip" aria-hidden="true">{tooltip}</span>
+    </span>
   );
 };
 
@@ -48,7 +36,7 @@ const BenefitCard = ({ icon, title, value, description }) => {
 };
 
 const Features = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   
   // Eingabewerte
   const [kaufpreis, setKaufpreis] = useState(500000);
@@ -310,259 +298,256 @@ const Features = () => {
   };
 
   return (
-    <section className="features-section" style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.75)), url(${apartmentBg})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundAttachment: 'fixed'
-    }}>
-      <CopperBlurEffect />
-      
-      <div className="features-container">
-        <h1 className="section-heading">
-          <span className="features-subtitle">{t('features.calculateYour')} <span className="features-title-box">{t('features.cashflow')}</span> {t('features.and')} <span className="features-title-box">{t('features.taxBenefit')}</span></span>
-        </h1>
+    <section className="calc-hero" aria-labelledby="calc-title">
+      <div className="calc-shell">
+        <div ref={calculatorRef} className="calc-stage">
+          <div className="calc-main">
+          <div ref={headingRef} className="calc-intro">
+            <h1 id="calc-title" className="calc-title">
+              {t('hero.title')} <span className="calc-title-box">{t('hero.titleHighlight')}</span> {t('hero.titleEnd')} <span className="calc-title-mark">{t('hero.titleUnderlined')}</span>
+            </h1>
+            <p className="calc-lead">{t('hero.subtitle')}</p>
+            <div className="calc-intro-cta">
+              <Link to="/formular">
+                <HoverButton
+                  startColor="#b87333"
+                  endColor="#e0ac69"
+                  animationIntensity="medium"
+                  className="hero-animated-button"
+                >
+                  {t('hero.ctaButton')}
+                </HoverButton>
+              </Link>
+            </div>
+          </div>
 
-        <div className="calculator-wrapper">
-        <div ref={calculatorRef} className="calculator-container">
-            <div className="calculator-left-panel">
-              <div className="calculator-section">
-                <h3 className="calculator-section-title">
-                  <span className="calculator-section-icon">🏢</span>
-                {t('features.propertyData')}
-              </h3>
-              
-                <div className="input-group modern-input">
-                  <label htmlFor="kaufpreis">
-                    {t('features.purchasePrice')}
-                    <InfoIcon tooltip={`${t('features.purchasePriceTooltip')} Basis für degressive AfA nach Wachstumschancengesetz 2024.`} />
-                  </label>
-                <div className="input-with-currency">
+          <div className="calc-tool">
+          <h2 className="calc-tool-title">
+            {t('features.calculateYour')} {t('features.cashflow')} {t('features.and')} {t('features.taxBenefit')}
+          </h2>
+          <p className="calc-tool-lead">{t('features.heroLead')}</p>
+
+          <div className="calc-inputs">
+            <h3 className="calc-group-title">{t('features.propertyData')}</h3>
+
+            <div className="calc-field">
+              <label htmlFor="kaufpreis">
+                {t('features.purchasePrice')}
+                <InfoIcon tooltip={t('features.purchasePriceTooltip')} />
+              </label>
+              <div className="calc-input-wrap">
+                <input
+                  type="number"
+                  id="kaufpreis"
+                  className="calc-input calc-input--lead"
+                  value={kaufpreis}
+                  onChange={handleKaufpreisChange}
+                  onBlur={handleBlur(setKaufpreis)}
+                  min="0"
+                />
+                <span className="calc-unit">€</span>
+              </div>
+            </div>
+
+            <div className="calc-field-row">
+              <div className="calc-field">
+                <label htmlFor="flaeche">
+                  {t('features.area')}
+                  <InfoIcon tooltip={t('features.areaTooltip')} />
+                </label>
+                <div className="calc-input-wrap">
                   <input
                     type="number"
-                      id="kaufpreis"
-                    className="currency-input"
-                      value={kaufpreis}
-                      onChange={handleKaufpreisChange}
-                    onBlur={handleBlur(setKaufpreis)}
+                    id="flaeche"
+                    className="calc-input"
+                    value={flaeche}
+                    onChange={handleFlaecheChange}
+                    onBlur={handleBlur(setFlaeche)}
                     min="0"
                   />
-                  <span className="currency-symbol">€</span>
+                  <span className="calc-unit">m²</span>
                 </div>
               </div>
-              
-                <div className="input-group modern-input">
-                  <label htmlFor="flaeche">
-                    {t('features.area')}
-                    <InfoIcon tooltip={t('features.areaTooltip')} />
-                  </label>
-                  <div className="input-with-currency">
-                    <input
-                      type="number"
-                      id="flaeche"
-                      className="currency-input"
-                      value={flaeche}
-                      onChange={handleFlaecheChange}
-                      onBlur={handleBlur(setFlaeche)}
-                      min="0"
-                    />
-                    <span className="currency-symbol">m²</span>
-                      </div>
-                    </div>
-                    
-                <div className="input-group modern-input">
-                  <label htmlFor="kaltmiete">
-                    {t('features.coldRent')}
-                    <InfoIcon tooltip={`${t('features.coldRentTooltip')} Gültig bei Vermietung ab 01.01. des Steuerjahres.`} />
-                  </label>
-                  <div className="input-with-currency">
-                    <input
-                      type="number"
-                      id="kaltmiete"
-                      className="currency-input"
-                      value={kaltmiete}
-                      onChange={handleKaltmieteChange}
-                      onBlur={handleBlur(setKaltmiete)}
-                      min="0"
-                    />
-                    <span className="currency-symbol">€</span>
-                  </div>
-                </div>
 
-                <div className="input-group modern-input">
-                  <label htmlFor="qualitaetsstufe">
-                    {t('features.qualityLevel')}
-                    <InfoIcon tooltip={t('features.qualityLevelTooltip')} />
-                  </label>
-                <select 
-                    id="qualitaetsstufe"
-                  className="select-input"
-                    value={qualitaetsstufe}
-                    onChange={(e) => setQualitaetsstufe(parseFloat(e.target.value))}
-                  >
-                    {qualitaetsstufen.map((stufe) => (
-                      <option key={stufe.value} value={stufe.value}>
-                        {stufe.label}
-                      </option>
-                    ))}
-                </select>
+              <div className="calc-field">
+                <label htmlFor="kaltmiete">
+                  {t('features.coldRent')}
+                  <InfoIcon tooltip={t('features.coldRentTooltip')} />
+                </label>
+                <div className="calc-input-wrap">
+                  <input
+                    type="number"
+                    id="kaltmiete"
+                    className="calc-input"
+                    value={kaltmiete}
+                    onChange={handleKaltmieteChange}
+                    onBlur={handleBlur(setKaltmiete)}
+                    min="0"
+                  />
+                  <span className="calc-unit">€</span>
+                </div>
               </div>
-              
-              {/* Berechnen Button */}
-              <div className="calculate-button-container">
-                <button 
-                  className={`calculate-button ${isCalculating ? 'calculating' : ''}`}
-                  onClick={calculateResults}
-                  disabled={isCalculating}
+            </div>
+
+            <div className="calc-field">
+              <label htmlFor="qualitaetsstufe">
+                {t('features.qualityLevel')}
+                <InfoIcon tooltip={t('features.qualityLevelTooltip')} />
+              </label>
+              <select
+                id="qualitaetsstufe"
+                className="calc-select"
+                value={qualitaetsstufe}
+                onChange={(e) => setQualitaetsstufe(parseFloat(e.target.value))}
+              >
+                {qualitaetsstufen.map((stufe) => (
+                  <option key={stufe.value} value={stufe.value}>
+                    {stufe.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="calc-button-row">
+              <HoverButton
+                type="button"
+                startColor="#b87333"
+                endColor="#e0ac69"
+                animationIntensity="medium"
+                className="hero-animated-button"
+                onClick={calculateResults}
+                disabled={isCalculating}
+              >
+                <span className="button-text calc-button-label">
+                  {isCalculating && <span className="calc-spinner" aria-hidden="true"></span>}
+                  {isCalculating ? t('features.calculating') : t('features.calculateButton')}
+                </span>
+              </HoverButton>
+            </div>
+          </div>
+          </div>
+          </div>
+
+          <div className="calc-results-col">
+          <div className="calc-building-wrap">
+            <img src={neubauImage} className="calc-building" alt="" width="840" height="689" decoding="async" />
+            <span className="calc-building-caption">{t('features.imageCaption')}</span>
+          </div>
+          <div
+            ref={resultsRef}
+            className={`calc-results ${showResults ? 'is-ready' : ''} ${isCalculating ? 'is-calculating' : ''}`}
+            aria-live="polite"
+            aria-busy={isCalculating}
+          >
+            <h2 className="calc-visually-hidden">{t('features.resultsHeading')}</h2>
+            <p className="calc-results-title">{t('features.taxBenefitsTitle')}</p>
+
+            <p className="calc-main-label">{t('features.yearlyTaxBenefit')}</p>
+            <p className="calc-main-value">{formatCurrency(steuervorteilJaehrlich)}</p>
+
+            <dl>
+              <div className="calc-result-row">
+                <dt>{t('features.monthlyTaxBenefit')}</dt>
+                <dd>{formatCurrency(steuervorteilMonatlich)}</dd>
+              </div>
+            </dl>
+
+            <p className="calc-balance-title">{t('features.results')}</p>
+            <dl>
+              <div className="calc-result-row">
+                <dt>{t('features.cashflowMonthly')}</dt>
+                <dd>{formatCurrency(cashflow)}</dd>
+              </div>
+              <div className="calc-result-row">
+                <dt>{t('features.cashflowFirstYear')}</dt>
+                <dd>{formatCurrency(cashflowJaehrlich)}</dd>
+              </div>
+            </dl>
+
+            <div className="calc-results-cta">
+              <p>{t('features.resultsCta')}</p>
+              <Link to="/formular">
+                <HoverButton
+                  startColor="#b87333"
+                  endColor="#e0ac69"
+                  animationIntensity="medium"
+                  className="hero-animated-button"
                 >
-                  {isCalculating ? (
-                    <div className="calculating-content">
-                      <div className="loading-spinner"></div>
-                      <span>{t('features.calculating')}</span>
-                    </div>
-                  ) : (
-                    <div className="button-content">
-                      <span>{t('features.calculateButton')}</span>
-                      <div className="button-icon"></div>
-                    </div>
-                  )}
-                </button>
-              </div>
+                  {t('features.ctaButton')}
+                </HoverButton>
+              </Link>
             </div>
-            
-              <div className="calculator-section">
-                <h3 className="calculator-section-title">
-                  <span className="calculator-section-icon">💰</span>
-                  {t('features.fixedParameters')}
-              </h3>
-              
-                <div className="fixed-parameters">
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.acquisitionCosts')}</span>
-                    <span className="parameter-value">{anschaffungskostenProzent}%</span>
-                  </div>
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.interestRate')}</span>
-                    <span className="parameter-value">{zinssatz}%</span>
-                  </div>
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.repayment')}</span>
-                    <span className="parameter-value">{tilgung}%</span>
-                  </div>
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.managementCosts')}</span>
-                    <span className="parameter-value">{formatCurrency(verwaltungskosten)}</span>
-              </div>
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.taxRate')}</span>
-                    <span className="parameter-value">{steuersatz}%</span>
-                </div>
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.buildingShare')}</span>
-                    <span className="parameter-value">{afaAnteil}%</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="calculator-section">
-                <h3 className="calculator-section-title">
-                  <span className="calculator-section-icon">📊</span>
-                  {t('features.costsFinancing')}
-                </h3>
-                
-                <div className="fixed-parameters">
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.acquisitionCostsResult')}</span>
-                    <span className="parameter-value">{formatCurrency(anschaffungskosten)}</span>
-                  </div>
-                  <div className="parameter-item">
-                    <span className="parameter-label">{t('features.interestAmount')} ({zinssatz}%)</span>
-                    <span className="parameter-value">{formatCurrency(zinsbetrag)}</span>
-                  </div>
-                  <div className="parameter-item highlight">
-                    <span className="parameter-label">{t('features.monthlyBankRate')}</span>
-                    <span className="parameter-value">{formatCurrency(monatlicheBankrate)}</span>
-                  </div>
-              </div>
-              </div>
-            </div>
-            
-            <div ref={resultsRef} className="calculator-right-panel">
-              <h3 className="results-heading">{t('features.resultsHeading')}</h3>
-              
-              <div className="results-grid">
-                <div className="results-left-column">
-                  {/* Ergebnisse werden jetzt in der rechten Spalte angezeigt */}
-                </div>
-                
-                <div className="results-right-column">
-                  <div className={`tax-benefits-overview ${showResults ? 'results-visible' : ''} ${isCalculating ? 'results-calculating' : ''}`}>
-                    <h4 className="benefits-main-title">{t('features.taxBenefitsTitle')}</h4>
-                    
-                    <div className="benefit-highlight-card">
-                      <div className="benefit-amount">
-                        <span className="benefit-label">{t('features.monthlyTaxBenefit')}</span>
-                        <span className="benefit-value">{formatCurrency(steuervorteilMonatlich)}</span>
-                      </div>
-                      <div className="benefit-amount benefit-amount-yearly">
-                        <span className="benefit-label">{t('features.yearlyTaxBenefit')}</span>
-                        <span className="benefit-value">{formatCurrency(steuervorteilJaehrlich)}</span>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <div className={`cashflow-results-overview ${showResults ? 'results-visible' : ''} ${isCalculating ? 'results-calculating' : ''}`}>
-                    <h4 className="cashflow-main-title">{t('features.results')}</h4>
-                    
-                    <div className="cashflow-highlight-card">
-                      <div className="cashflow-amount">
-                        <span className="cashflow-label">{t('features.cashflowMonthly')}</span>
-                        <span className="cashflow-value">{formatCurrency(cashflow)}</span>
-                      </div>
-                      <div className="cashflow-amount">
-                        <span className="cashflow-label">{t('features.cashflowFirstYear')}</span>
-                        <span className="cashflow-value">{formatCurrency(cashflowJaehrlich)}</span>
-                      </div>
-                </div>
-                </div>
-
-                  {/* CTA Bereich */}
-                  <div className="results-cta">
-                    <p className="results-cta-text">
-                      {t('features.resultsCta')}
-                    </p>
-                    <div className="cta-arrow">↓</div>
-              
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
           </div>
         </div>
-        
-        {/* Call-to-Action */}
-        <div ref={ctaRef} className="features-cta">
-          <div className="cta-content">
-            <h3 className="cta-heading">{t('features.ctaTitle')}</h3>
-            <p className="cta-text">
-              {language === 'DE' ? (
-                <>
-                  {t('features.ctaText')}
-                </>
-              ) : (
-                <>
-                  {t('features.ctaText')}
-                </>
-              )}
-            </p>
-            <Link to="/formular">
-              <button className="cta-button">
-                <span className="button-text">{t('features.ctaButton')}</span>
-                <span className="button-icon">→</span>
-              </button>
-            </Link>
+
+        <div className="calc-assumptions">
+          <div>
+            <h3 className="calc-group-title">{t('features.fixedParameters')}</h3>
+            <dl className="calc-assumption-list">
+              <div className="calc-assumption-row">
+                <dt>{t('features.acquisitionCosts')}</dt>
+                <dd>{anschaffungskostenProzent}%</dd>
+              </div>
+              <div className="calc-assumption-row">
+                <dt>{t('features.interestRate')}</dt>
+                <dd>{zinssatz}%</dd>
+              </div>
+              <div className="calc-assumption-row">
+                <dt>{t('features.repayment')}</dt>
+                <dd>{tilgung}%</dd>
+              </div>
+              <div className="calc-assumption-row">
+                <dt>{t('features.managementCosts')}</dt>
+                <dd>{formatCurrency(verwaltungskosten)}</dd>
+              </div>
+              <div className="calc-assumption-row">
+                <dt>{t('features.taxRate')}</dt>
+                <dd>{steuersatz}%</dd>
+              </div>
+              <div className="calc-assumption-row">
+                <dt>{t('features.buildingShare')}</dt>
+                <dd>{afaAnteil}%</dd>
+              </div>
+            </dl>
           </div>
+
+          <div>
+            <h3 className="calc-group-title">{t('features.costsFinancing')}</h3>
+            <dl className="calc-assumption-list">
+              <div className="calc-assumption-row">
+                <dt>{t('features.acquisitionCostsResult')}</dt>
+                <dd>{formatCurrency(anschaffungskosten)}</dd>
+              </div>
+              <div className="calc-assumption-row">
+                <dt>{t('features.interestAmount')} ({zinssatz}%)</dt>
+                <dd>{formatCurrency(zinsbetrag)}</dd>
+              </div>
+              <div className="calc-assumption-row calc-assumption-row--total">
+                <dt>{t('features.monthlyBankRate')}</dt>
+                <dd>{formatCurrency(monatlicheBankrate)}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <p className="calc-disclaimer">{t('features.disclaimer')}</p>
+
+        <div ref={ctaRef} className="calc-closing">
+          <div>
+            <h3 className="calc-closing-title">{t('features.ctaTitle')}</h3>
+            <p className="calc-closing-text">{t('features.ctaText')}</p>
+          </div>
+          <Link to="/formular" className="calc-closing-link">
+            <HoverButton
+              startColor="#b87333"
+              endColor="#e0ac69"
+              animationIntensity="medium"
+              className="hero-animated-button"
+            >
+              {t('features.ctaButton')}
+            </HoverButton>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,9 +1,12 @@
 import React from 'react';
 import '../styles/Video.css';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useConsent } from '../contexts/ConsentContext';
+import ExternalMediaPlaceholder from './consent/ExternalMediaPlaceholder';
 
 const Video = () => {
   const { language } = useLanguage();
+  const { hasMediaConsent } = useConsent();
 
   // Video URLs für verschiedene Sprachen
   const videoUrls = {
@@ -18,16 +21,20 @@ const Video = () => {
       <div className="video-effect-wrapper">
         <div className="video-player">
           <div className="video-wrapper">
-            <iframe
-              key={language} // Force re-render when language changes
-              className="video-iframe"
-              loading="lazy"
-              title="Gumlet video player"
-              src={currentVideoUrl}
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"
-              frameBorder="0"
-              referrerPolicy="origin"
-            />
+            {hasMediaConsent ? (
+              <iframe
+                key={language} // Force re-render when language changes
+                className="video-iframe"
+                loading="lazy"
+                title="Gumlet video player"
+                src={currentVideoUrl}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"
+                frameBorder="0"
+                referrerPolicy="origin"
+              />
+            ) : (
+              <ExternalMediaPlaceholder type="video" />
+            )}
           </div>
         </div>
       </div>

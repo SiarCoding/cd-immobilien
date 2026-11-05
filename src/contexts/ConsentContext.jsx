@@ -58,10 +58,17 @@ export const ConsentProvider = ({ children }) => {
     });
   }, []);
 
+  // Direkte Einwilligung ueber den Platzhalter bei Video oder Karte
+  const grantMedia = useCallback(() => {
+    saveConsent({ necessary: true, media: true });
+  }, [saveConsent]);
+
   const value = {
     consent,
     saveConsent,
     openConsentManager,
+    grantMedia,
+    hasMediaConsent: Boolean(consent?.media),
     // Show banner if not loading AND (no consent is stored OR the user wants to see it)
     isPending: !isLoading && (consent === null || consent?.needsAction),
   };

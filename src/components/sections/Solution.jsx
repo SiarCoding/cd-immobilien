@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../../styles/Solution.css';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,14 @@ const Solution = () => {
   const { t } = useLanguage();
   const solutionCardsRef = useRef([]);
   const ctaRef = useRef(null);
+  const [canRefract, setCanRefract] = useState(false);
+
+  // Die Lichtbrechung funktioniert nur in Chromium und ist auf Handys zu rechenintensiv
+  useEffect(() => {
+    const brands = navigator.userAgentData?.brands || [];
+    const isChromium = brands.some((entry) => entry.brand === 'Chromium');
+    setCanRefract(isChromium && window.matchMedia('(min-width: 769px)').matches);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -118,7 +126,14 @@ const Solution = () => {
   ];
 
   return (
-    <section className="solution-section">
+    <section className={`solution-section ${canRefract ? 'solution-section--refract' : ''}`}>
+      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
+        <filter id="solution-liquid-glass" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="2" result="softNoise" />
+          <feDisplacementMap in="SourceGraphic" in2="softNoise" scale="48" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
       <div className="solution-copper-effect">
         <svg className="copper-effect-svg" width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_f_12_56)">

@@ -17,9 +17,9 @@ const translations = {
     hero: {
       title: "Bauen Sie mit Immobilien nachhaltig",
       titleHighlight: "Vermögen",
-      titleEnd: "auf und senken Sie Ihre",
-      titleUnderlined: "Steuerlast",
-      subtitle: "Mit unserer Expertise helfen wir Ihnen, durch strategische Immobilieninvestitionen ein nachhaltiges Vermögen aufzubauen und Ihre finanzielle Zukunft zu sichern.",
+      titleEnd: "auf und senken Sie Ihre Steuerlast um bis zu",
+      titleUnderlined: "70-90%",
+      subtitle: "Mit unserer Expertise helfen wir Ihnen, durch strategische Immobilieninvestitionen ein nachhaltiges Vermögen aufzubauen und Ihre finanzielle Zukunft auf Basis von Zahlen und Fakten zu sichern.",
       ctaButton: "Kostenlose Beratung sichern",
       statsNumber: "2000+",
       statsLabel: "Zufriedene Kunden"
@@ -37,27 +37,38 @@ const translations = {
     // Cookie Banner
     cookieBanner: {
       title: "Wir respektieren Ihre Privatsphäre",
-      description: "Wir nutzen Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Einige sind für den Betrieb der Seite notwendig, während andere uns helfen, Inhalte zu personalisieren und die Zugriffe zu analysieren. Weitere Informationen finden Sie in unserer ",
+      description: "Wir speichern nur Ihre Auswahl auf Ihrem Gerät und nutzen keine Analyse- oder Werbe-Tools. Video (Gumlet, Singapur) und Karte (Google Maps, USA möglich) laden wir nur mit Ihrer Einwilligung. Dabei kann Ihre IP-Adresse auch in Länder außerhalb der EU gelangen. Weitere Informationen finden Sie in unserer ",
       privacyPolicyLink: "Datenschutzerklärung",
       settings: "Einstellungen",
       rejectAll: "Alle ablehnen",
       acceptAll: "Alle akzeptieren",
       settingsTitle: "Cookie-Einstellungen anpassen",
-      settingsDescription: "Wählen Sie, welche Arten von Cookies Sie zulassen möchten. Ihre Auswahl wird für zukünftige Besuche gespeichert.",
+      settingsDescription: "Wählen Sie, welche Inhalte geladen werden dürfen. Sie können Ihre Auswahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.",
       necessary: {
         title: "Notwendig",
-        description: "Diese Cookies sind für die Grundfunktionen der Website unerlässlich und können nicht deaktiviert werden. Sie gewährleisten die Sicherheit und korrekte Darstellung der Seite."
+        description: "Speichert nur Ihre Auswahl in diesem Banner auf Ihrem Gerät. Das ist technisch erforderlich und kann nicht deaktiviert werden."
       },
-      statistics: {
-        title: "Statistik",
-        description: "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie Informationen anonym sammeln und melden. Dies ermöglicht uns, die Seite kontinuierlich zu verbessern."
-      },
-      marketing: {
-        title: "Marketing",
-        description: "Diese Cookies werden verwendet, um Ihnen relevante Werbung auf anderen Plattformen anzuzeigen und den Erfolg unserer Marketingkampagnen zu messen."
+      media: {
+        title: "Externe Medien",
+        description: "Lädt unser Video über Gumlet (Gumlet Pte. Ltd., Singapur) und die Karte über Google Maps (Google Ireland Limited, Übermittlung in die USA möglich). Die Anbieter erhalten dabei Ihre IP-Adresse und können Cookies setzen. Für Singapur besteht kein EU-Angemessenheitsbeschluss, das Datenschutzniveau kann dort niedriger sein. Mit Ihrer Zustimmung willigen Sie auch in eine solche Übermittlung ein."
       },
       alwaysActive: "Immer aktiv",
       saveSettings: "Einstellungen speichern"
+    },
+    // Hinweise fuer Inhalte, die erst nach Einwilligung laden
+    externalMedia: {
+      privacyLink: "Mehr in der Datenschutzerklärung",
+      video: {
+        title: "Video laden",
+        text: "Das Video wird über Gumlet (Gumlet Pte. Ltd., Singapur) bereitgestellt. Beim Laden erhält der Anbieter Ihre IP-Adresse und kann Cookies setzen. Für Singapur besteht kein EU-Angemessenheitsbeschluss.",
+        button: "Einwilligen und Video laden"
+      },
+      map: {
+        title: "Karte laden",
+        text: "Die Karte wird über Google Maps (Google Ireland Limited) bereitgestellt. Beim Laden erhält Google Ihre IP-Adresse und kann Cookies setzen. Eine Übermittlung in die USA ist möglich.",
+        button: "Einwilligen und Karte laden",
+        link: "Standort stattdessen direkt bei Google Maps öffnen"
+      }
     },
     // Stats Section
     stats: {
@@ -103,19 +114,19 @@ const translations = {
       subtitle: "für nachhaltigen Vermögensaufbau",
       realAssets: {
         title: "Sachwerte für Ihre Altersvorsorge",
-        description: "Immobilieninvestitionen bieten einen beständigen Einkommensstrom und eine hohe Liquiditätsreserve bei einem potentiellen Verkauf."
+        description: "Immobilieninvestitionen können einen beständigen Einkommensstrom und bei einem späteren Verkauf eine Liquiditätsreserve bieten."
       },
       taxBenefits: {
         title: "Steuervorteile nutzen", 
-        description: "Profitieren Sie von erheblichen Steuerentlastungen durch Abschreibungen und Werbungskosten. Mit unserer Expertise maximieren Sie Ihre Steuervorteile und optimieren Ihre Netto-Rendite."
+        description: "Nutzen Sie mögliche Steuerentlastungen durch Abschreibungen und Werbungskosten. Wir zeigen Ihnen, welche Möglichkeiten in Betracht kommen. Die verbindliche steuerliche Beurteilung übernimmt Ihr Steuerberater."
       },
       stableReturns: {
-        title: "Stabile Rendite",
-        description: "Erzielen Sie attraktive Eigenkapitalrenditen von mindestens über 10% p. a. durch konservative Mietrenditen und Annahmen."
+        title: "Renditepotenzial",
+        description: "Unser Ziel sind Eigenkapitalrenditen von über 10% p. a. auf Basis konservativer Mietrenditen und Annahmen. Das Ergebnis hängt vom Objekt, der Finanzierung und Ihrer Steuersituation ab und ist nicht garantiert."
       },
       inflationProtection: {
         title: "Inflationsschutz",
-        description: "Schützen Sie Ihr Vermögen vor Inflation."
+        description: "Sachwerte können dazu beitragen, Ihr Vermögen vor Inflation zu schützen."
       },
       wealthTransfer: {
         title: "Vermögensübertragung",
@@ -126,7 +137,7 @@ const translations = {
         description: "Profitieren Sie vom Hebeleffekt durch Fremdkapital und bauen Sie systematisch Vermögen auf. Unsere Strategie zielt auf Werterhalt in Top-Lagen."
       },
       ctaTitle: "Seriös Steuern sparen und planbar Vermögen aufbauen",
-      ctaText: "Unsere Immobilienstrategie bietet Ihnen eine sichere, renditestarke und steueroptimierte Möglichkeit, Vermögen aufzubauen und langfristig für Ihre finanzielle Zukunft vorzusorgen. Profitieren Sie von unserem Experten-Netzwerk.",
+      ctaText: "Unsere Immobilienstrategie bietet Ihnen eine planbare, renditestarke und steueroptimierte Möglichkeit, Vermögen aufzubauen und langfristig für Ihre finanzielle Zukunft vorzusorgen. Profitieren Sie von unserem Experten-Netzwerk.",
       ctaButton: "Jetzt Beratungstermin vereinbaren"
     },
     // About Section
@@ -140,11 +151,16 @@ const translations = {
       secondDescription: "Unser Erfolg basiert auf dem Vertrauen unserer Kunden. Dieses Vertrauen gewinnen wir durch eine wissenschaftliche Vorgehensweise, basierend auf Zahlen, Daten und Fakten. Was uns von anderen unterscheidet, ist unsere Verpflichtung zu langfristigen Kundenbeziehungen statt kurzfristigen Gewinnen.",
       transparentCommunication: "Transparente Kommunikation",
       progressReports: "Regelmäßige Fortschrittsberichte",
-      satisfaction: "Garantierte Zufriedenheit"
+      satisfaction: "Fokus auf Ihre Zufriedenheit",
+      imageAltPlanning: "Strategische Immobilienplanung",
+      imageAltCollaboration: "Vertrauensvolle Zusammenarbeit"
     },
     // Features Section  
     features: {
       title: "Immobilien-Rechner",
+      imageCaption: "Symbolbild (KI-generiert)",
+      disclaimer: "Unverbindliche Beispielrechnung mit vereinfachten Annahmen, u. a. 42% Steuersatz, 93% Gebäudeanteil und Vermietung ab 1. Januar. Bei Best Quality (QNG) wird im ersten Jahr mit 10% AfA gerechnet, sonst mit 5%. Erhöhte Abschreibungen sind an gesetzliche Voraussetzungen gebunden, z. B. an Baubeginn, Baukostenobergrenzen und Gebäudestandard. Das tatsächliche Ergebnis kann abweichen. Keine Steuer-, Rechts- oder Anlageberatung und keine Garantie. Bitte lassen Sie Ihre persönliche Situation von einem Steuerberater prüfen.",
+      heroLead: "Tragen Sie Kaufpreis, Fläche und Miete ein und sehen Sie, was eine Immobilie im ersten Jahr für Ihre Steuer und Ihren Cashflow bewirkt.",
       subtitle: "Berechne selber wie du mit unseren Immobilien",
       subtitleHighlight: "profitieren",
       subtitleEnd: "kannst",
@@ -152,11 +168,11 @@ const translations = {
       // Calculator sections
       propertyData: "Immobiliendaten",
       purchasePrice: "Kaufpreis",
-      purchasePriceTooltip: "Der vollständige Kaufpreis der Immobilie",
+      purchasePriceTooltip: "Der vollständige Kaufpreis der Immobilie. Grundlage der Abschreibungsberechnung.",
       area: "Fläche",
       areaTooltip: "Die Größe der Immobilie in Quadratmetern",
       coldRent: "Kaltmiete (monatlich)",
-      coldRentTooltip: "Die monatliche Mieteinnahme ohne Nebenkosten",
+      coldRentTooltip: "Die monatliche Mieteinnahme ohne Nebenkosten. Gültig bei Vermietung ab 01.01. des Steuerjahres.",
       qualityLevel: "Instandhaltungsrücklage nach Qualitätsstufe",
       qualityLevelTooltip: "Wählen Sie die Qualitätsstufe für die Berechnung der Instandhaltungsrücklage",
       
@@ -211,7 +227,7 @@ const translations = {
       
       // CTA
       ctaTitle: "Seriös Steuern sparen und planbar Vermögen aufbauen",
-      ctaText: "Lassen Sie sich von unseren Experten beraten, wie Sie mit cleveren Immobilieninvestitionen maximalen Cashflow und Steuervorteile erzielen können.",
+      ctaText: "Lassen Sie sich von unseren Experten beraten, wie clevere Immobilieninvestitionen Ihren Cashflow und mögliche Steuervorteile verbessern können.",
       ctaButton: "Beratungstermin vereinbaren",
       
       // Title parts
@@ -248,7 +264,7 @@ const translations = {
       financing: {
         title: "Finanzierung",
         phase: "Phase 4",
-        content: "Wir optimieren Ihre Finanzierungsstruktur und nutzen alle verfügbaren Fördermittel für maximale Rendite."
+        content: "Wir besprechen mit Ihnen mögliche Finanzierungsstrukturen und Fördermittel. Darlehen vermitteln wir nicht selbst."
       },
       purchase: {
         title: "Kaufabwicklung & Besichtigung",
@@ -303,7 +319,7 @@ const translations = {
       description: "Kostspielige und unrentable Finanzprodukte oder undurchsichtige Rentenversicherungen sind längst überholt. Wir entwickeln Ihre maßgeschneiderte Immobilien-Anlagestrategie und identifizieren für Sie die optimale Lösung, die auf zeitgemäße und wissenschaftlich fundierte Ansätze setzt.",
       feature1: "Passives Investieren",
       feature2: "Steueroptimiert", 
-      feature3: "100% unabhängig",
+      feature3: "Kennzahlenbasiert",
       feature4: "Kostentransparent",
       chartTitle: "Entwicklung der Immobilienpreise in Deutschland seit 1975",
       chartSubtitle: "Immobilienpreise in Deutschland ab 1975 (Nominalindex)",
@@ -369,7 +385,7 @@ const translations = {
         },
         {
           question: "Welche steuerlichen Vorteile bieten Immobilieninvestitionen?",
-          answer: "Immobilieninvestitionen bieten zahlreiche steuerliche Vorteile, darunter die AfA (Absetzung für Abnutzung), die es ermöglicht, die Anschaffungskosten über die Nutzungsdauer abzuschreiben. Zusätzlich können Werbungskosten wie Zinsen, Instandhaltungskosten und Verwaltungskosten steuerlich geltend gemacht werden. Bei Neubauten ab 2023 profitieren Sie von der erhöhten linearen AfA von 3% oder der degressiven AfA. Wir beraten Sie individuell, wie Sie diese Vorteile optimal nutzen können."
+          answer: "Immobilieninvestitionen bieten zahlreiche steuerliche Vorteile, darunter die AfA (Absetzung für Abnutzung), die es ermöglicht, die Anschaffungskosten über die Nutzungsdauer abzuschreiben. Zusätzlich können Werbungskosten wie Zinsen, Instandhaltungskosten und Verwaltungskosten steuerlich geltend gemacht werden. Bei Neubauten ab 2023 profitieren Sie von der erhöhten linearen AfA von 3% oder der degressiven AfA. Wir zeigen Ihnen, welche Möglichkeiten in Betracht kommen. Die verbindliche steuerliche Beurteilung übernimmt Ihr Steuerberater."
         },
         {
           question: "Für wen eignen sich unsere Immobilieninvestments?",
@@ -377,7 +393,7 @@ const translations = {
         },
         {
           question: "Wie läuft der Investitionsprozess mit uns ab?",
-          answer: "Der Investitionsprozess beginnt mit einer kostenfreien Erstberatung, in der wir Ihre finanziellen Ziele und Möglichkeiten analysieren. Anschließend erarbeiten wir ein personalisiertes Investitionskonzept und präsentieren Ihnen passende Immobilienobjekte. Nach Ihrer Entscheidung begleiten wir Sie durch den gesamten Kaufprozess, inklusive Finanzierungsberatung, Vertragsgestaltung und steuerlicher Optimierung. Auch nach dem Kauf stehen wir Ihnen mit unserem Vermietungs- und Verwaltungsservice zur Seite."
+          answer: "Der Investitionsprozess beginnt mit einer kostenfreien Erstberatung, in der wir Ihre finanziellen Ziele und Möglichkeiten analysieren. Anschließend erarbeiten wir ein personalisiertes Investitionskonzept und präsentieren Ihnen passende Immobilienobjekte. Nach Ihrer Entscheidung begleiten wir Sie organisatorisch durch den Kaufprozess. Rechts-, Steuer- und Darlehensfragen klären Sie mit Notar, Rechtsanwalt, Steuerberater oder Ihrer Bank. Auch nach dem Kauf stehen wir Ihnen mit unserem Vermietungs- und Verwaltungsservice zur Seite."
         },
         {
           question: "Welche Renditen können mit Immobilieninvestitionen erzielt werden?",
@@ -425,6 +441,7 @@ const translations = {
       contact: "Kontakt",
       imprint: "Impressum",
       privacy: "Datenschutz",
+      cookieSettings: "Cookie-Einstellungen",
       contactTitle: "Kontakt",
       address: "CD Immo-Portfolio GmbH\nBauvereinstraße 47\n90489 Nürnberg\nDeutschland",
       phone: "+49 911 13039057",
@@ -439,28 +456,25 @@ const translations = {
     formular: {
       pageTitle: "Geben Sie Ihr Anliegen ein",
       progress: "Schritt {current} von {total}",
+      sending: "Wird gesendet...",
+      submitError: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie uns an.",
       step1: {
         title: "Wie ist Ihr Familienstand?",
         subtitle: "Diese Information hilft uns bei der optimalen Analyse",
-        marriedJointly: "Verheiratet - Gemeinsam veranlagt",
-        single: "Ledig",
-        marriedSeparately: "Verheiratet - Getrennt veranlagt",
+        married: "Verheiratet",
+        single: "Single",
         continue: "Weiter"
       },
       step2: {
         title: "Wie hoch ist Ihr monatliches Nettoeinkommen?",
         subtitle: "Diese Informationen helfen uns, die beste Strategie für Sie zu entwickeln",
         income: {
-          under3000: "Unter 3.000€",
-          range3000_4000: "3.000€ - 4.000€",
-          range4000_5000: "4.000€ - 5.000€",
-          above5000: "Über 5.000€"
-        },
-        equity: "Wie viel Eigenkapital steht Ihnen zur Verfügung?",
-        equityOptions: {
-          under20k: "Unter 20.000€",
-          range20k_50k: "20.000€ - 50.000€",
-          above50k: "Über 50.000€"
+          range4000_5000: "4.000 € - 5.000 €",
+          range5000_8000: "5.000 € - 8.000 €",
+          above8000: "Über 8.000 €",
+          range5000_6000: "5.000 € - 6.000 €",
+          range6000_10000: "6.000 € - 10.000 €",
+          above10000: "Über 10.000 €"
         },
         continue: "Weiter"
       },
@@ -468,30 +482,26 @@ const translations = {
         title: "Ihre Kontaktdaten",
         subtitle: "Unser Experte wird sich in Kürze bei Ihnen melden",
         name: "Vollständiger Name",
+        countryCode: "Ländervorwahl",
         phone: "Telefonnummer",
         email: "E-Mail-Adresse",
-        privacy: "Mit dem Absenden des Formulars erkläre ich mich einverstanden mit",
         privacyLink: "Datenschutzerklärung",
+        consentBefore: "Ich habe die",
+        consentAfter: "zur Kenntnis genommen. Meine Angaben werden zur Bearbeitung meiner Anfrage verwendet. *",
         submit: "Daten absenden",
         validation: {
           nameRequired: "Name ist erforderlich",
           phoneRequired: "Telefonnummer ist erforderlich",
           emailRequired: "E-Mail ist erforderlich",
           emailInvalid: "Ungültige E-Mail-Adresse",
-          privacyRequired: "Datenschutzerklärung muss akzeptiert werden",
+          privacyRequired: "Bitte bestätigen Sie den Datenschutzhinweis",
           messageRequired: "Nachricht ist erforderlich"
         }
       },
       advisor: {
         title: "Unser Expertenteam",
-        subtitle: "kümmert sich um Ihre Finanzierung und Beratung",
+        subtitle: "begleitet Sie bei Ihrer Anfrage und Beratung",
         badge: "100% kostenfrei"
-      },
-      verification: {
-        verify: "Verifizieren",
-        checking: "Prüfe...",
-        verified: "Verifiziert",
-        successMessage: "E-Mail erfolgreich verifiziert"
       },
       success: {
         title: "Vielen Dank!",
@@ -524,9 +534,9 @@ const translations = {
     hero: {
       title: "Build sustainable",
       titleHighlight: "wealth",
-      titleEnd: "with real estate and reduce your",
-      titleUnderlined: "tax burden",
-      subtitle: "With our expertise, we help you build sustainable wealth through strategic real estate investments and secure your financial future.",
+      titleEnd: "with real estate and reduce your tax burden by up to",
+      titleUnderlined: "70-90%",
+      subtitle: "With our expertise, we help you build sustainable wealth through strategic real estate investments and secure your financial future based on facts and figures.",
       ctaButton: "Get consultation",
       statsNumber: "2000+",
       statsLabel: "Satisfied customers"
@@ -544,27 +554,38 @@ const translations = {
     // Cookie Banner
     cookieBanner: {
       title: "We respect your privacy",
-      description: "We use cookies to improve your experience on our website. Some are necessary for the operation of the site, while others help us personalize content and analyze traffic. More information can be found in our ",
+      description: "We only save your choice on your device and use no analytics or advertising tools. We load the video (Gumlet, Singapore) and map (Google Maps, USA possible) only with your consent. Your IP address may also reach countries outside the EU. More information can be found in our ",
       privacyPolicyLink: "Privacy Policy",
       settings: "Settings",
       rejectAll: "Reject all",
       acceptAll: "Accept all",
       settingsTitle: "Adjust cookie settings",
-      settingsDescription: "Choose which types of cookies you would like to allow. Your selection will be saved for future visits.",
+      settingsDescription: "Choose which content may be loaded. You can change your choice at any time under \"Cookie settings\" in the footer.",
       necessary: {
         title: "Necessary",
-        description: "These cookies are essential for the basic functions of the website and cannot be disabled. They ensure security and correct display of the site."
+        description: "Only saves your choice in this banner on your device. This is technically required and cannot be disabled."
       },
-      statistics: {
-        title: "Statistics",
-        description: "These cookies help us understand how visitors interact with our website by anonymously collecting information and reporting it. This allows us to continuously improve the site."
-      },
-      marketing: {
-        title: "Marketing",
-        description: "These cookies are used to display relevant advertising on other platforms and measure the success of our marketing campaigns."
+      media: {
+        title: "External media",
+        description: "Loads our video via Gumlet (Gumlet Pte. Ltd., Singapore) and the map via Google Maps (Google Ireland Limited, transfer to the USA possible). The providers receive your IP address and may set cookies. There is no EU adequacy decision for Singapore, so the level of data protection there may be lower. By agreeing, you also consent to such a transfer."
       },
       alwaysActive: "Always active",
       saveSettings: "Save settings"
+    },
+    // Notices for content that only loads after consent
+    externalMedia: {
+      privacyLink: "More in the Privacy Policy",
+      video: {
+        title: "Load video",
+        text: "The video is provided via Gumlet (Gumlet Pte. Ltd., Singapore). When it loads, the provider receives your IP address and may set cookies. There is no EU adequacy decision for Singapore.",
+        button: "Agree and load video"
+      },
+      map: {
+        title: "Load map",
+        text: "The map is provided via Google Maps (Google Ireland Limited). When it loads, Google receives your IP address and may set cookies. A transfer to the USA is possible.",
+        button: "Agree and load map",
+        link: "Open the location directly in Google Maps instead"
+      }
     },
     // Stats Section
     stats: {
@@ -600,7 +621,7 @@ const translations = {
         title: "Longevity risk",
         subtitle: "Insufficient pension payments", 
         highlight: "Risk of old-age poverty",
-        description: "Pension payments and savings often do not last until the end of life, as income, benefits and payments in retirement often do not keep pace with inflation. On the contrary, the result is old-age poverty and homeopathic pension payments."
+        description: "Pension payments and savings often do not last until the end of life, as income, benefits and payments in retirement often do not keep pace with inflation due to high costs. Therefore, the result is old-age poverty and homeopathically low pension payments."
       },
       cta: "Protect yourself and your future"
     },
@@ -610,19 +631,19 @@ const translations = {
       subtitle: "for sustainable wealth building",
       realAssets: {
         title: "Real assets for your retirement provision",
-        description: "Real estate investments offer a steady income stream and high liquidity reserves in case of a potential sale."
+        description: "Real estate investments can offer a steady income stream and a liquidity reserve in the event of a later sale."
       },
       taxBenefits: {
         title: "Utilize tax benefits",
-        description: "Benefit from significant tax relief through depreciation and business expenses. With our expertise, you maximize your tax benefits and optimize your net return."
+        description: "Use potential tax relief through depreciation and business expenses. We show you which options may apply. Your tax advisor provides the binding tax assessment."
       },
       stableReturns: {
-        title: "Stable returns",
-        description: "Achieve attractive equity returns of at least over 10% p.a. through conservative rental returns and assumptions."
+        title: "Return potential",
+        description: "We aim for equity returns of over 10% p.a. based on conservative rental returns and assumptions. The result depends on the property, the financing and your tax situation and is not guaranteed."
       },
       inflationProtection: {
         title: "Inflation protection",
-        description: "Protect your wealth from inflation."
+        description: "Real assets can help protect your wealth from inflation."
       },
       wealthTransfer: {
         title: "Wealth transfer",
@@ -632,8 +653,8 @@ const translations = {
         title: "Long-term wealth building",
         description: "Benefit from leverage through debt capital and systematically build wealth. Our strategy aims for value preservation in prime locations."
       },
-      ctaTitle: "Save taxes seriously and build wealth in a predictable way",
-      ctaText: "Our real estate strategy offers you a secure, high-yield and tax-optimized way to build wealth and provide for your financial future in the long term. Benefit from our expert network.",
+      ctaTitle: "Save taxes reputably and build wealth in a significant way",
+      ctaText: "Our real estate strategy offers you a structured, high-yield and tax-optimized way to build wealth and provide for your financial future in the long term. Benefit from our expert network.",
       ctaButton: "Schedule consultation now"
     },
     // About Section  
@@ -647,11 +668,16 @@ const translations = {
       secondDescription: "Our success is based on the trust of our customers. We earn this trust through a scientific approach based on numbers, data and facts. What sets us apart from others is our commitment to long-term customer relationships instead of short-term gains.",
       transparentCommunication: "Transparent communication",
       progressReports: "Regular progress reports",
-      satisfaction: "Guaranteed satisfaction"
+      satisfaction: "Focus on your satisfaction",
+      imageAltPlanning: "Strategic real estate planning",
+      imageAltCollaboration: "Trusted collaboration"
     },
     // Features Section
     features: {
       title: "Real Estate Calculator",
+      imageCaption: "Illustrative image (AI-generated)",
+      disclaimer: "Non-binding example calculation using simplified assumptions, including a 42% tax rate, a 93% building share and rental from 1 January. Best Quality (QNG) assumes 10% depreciation in the first year, other levels 5%. Increased depreciation depends on statutory requirements such as construction start, building cost limits and building standard. The actual result may differ. This is not tax, legal or investment advice and not a guarantee. Please have your personal situation reviewed by a tax advisor.",
+      heroLead: "Enter the purchase price, area and rent to see what a property does for your taxes and cashflow in the first year.",
       subtitle: "Calculate yourself how you can",
       subtitleHighlight: "benefit",
       subtitleEnd: "from our real estate",
@@ -659,11 +685,11 @@ const translations = {
       // Calculator sections
       propertyData: "Property Data",
       purchasePrice: "Purchase Price",
-      purchasePriceTooltip: "The complete purchase price of the property",
+      purchasePriceTooltip: "The complete purchase price of the property. Basis for the depreciation calculation.",
       area: "Area",
       areaTooltip: "The size of the property in square meters",
-      coldRent: "Cold Rent (Monthly)",
-      coldRentTooltip: "The monthly rental income without utilities",
+      coldRent: "Base Rent (Monthly)",
+      coldRentTooltip: "The monthly rental income without utilities. Applies when rented from 1 January of the tax year.",
       qualityLevel: "Maintenance Reserve by Quality Level",
       qualityLevelTooltip: "Select the quality level for calculating the maintenance reserve",
       
@@ -717,8 +743,8 @@ const translations = {
       cashflowFirstYear: "Cashflow in the first year (after taxes, costs & reserve)",
       
       // CTA
-      ctaTitle: "Save taxes seriously and build wealth in a predictable way",
-      ctaText: "Let our experts advise you on how to achieve maximum cashflow and tax benefits with smart real estate investments. Benefit from the declining balance depreciation of up to 10% with QNG quality and optimize your after-tax cashflow from the first year of rental.",
+      ctaTitle: "Save taxes reputably and build wealth in a significant way",
+      ctaText: "Let our experts advise you on how smart real estate investments can improve your cashflow and potential tax benefits.",
       ctaButton: "Schedule Consultation",
       
       // Title parts
@@ -755,7 +781,7 @@ const translations = {
       financing: {
         title: "Financing",
         phase: "Phase 4",
-        content: "We optimize your financing structure and utilize all available subsidies for maximum return."
+        content: "We discuss possible financing structures and subsidies with you. We do not broker loans ourselves."
       },
       purchase: {
         title: "Purchase processing & viewing",
@@ -805,12 +831,12 @@ const translations = {
     },
     // Investment Section
     investment: {
-      title: "Financial Scientific",
+      title: "Science-Based",
       titleHighlight: "Wealth Building",
       description: "Costly and unprofitable financial products or opaque pension insurances are long outdated. We develop your customized real estate investment strategy and identify the optimal solution for you, based on contemporary and scientifically founded approaches.",
       feature1: "Passive Investing",
       feature2: "Tax Optimized",
-      feature3: "100% Independent", 
+      feature3: "KPI-Based",
       feature4: "Cost Transparent",
       chartTitle: "Development of Real Estate Prices in Germany since 1975",
       chartSubtitle: "Real Estate Prices in Germany from 1975 (Nominal Index)",
@@ -876,7 +902,7 @@ const translations = {
         },
         {
           question: "What tax benefits do real estate investments offer?",
-          answer: "Real estate investments offer numerous tax benefits, including depreciation (AfA), which allows you to write off acquisition costs over the useful life. Additionally, business expenses such as interest, maintenance costs and management costs can be claimed for tax purposes. For new buildings from 2023, you benefit from the increased linear depreciation of 3% or the declining balance depreciation. We advise you individually on how to optimally use these benefits."
+          answer: "Real estate investments offer numerous tax benefits, including depreciation (AfA), which allows you to write off acquisition costs over the useful life. Additionally, business expenses such as interest, maintenance costs and management costs can be claimed for tax purposes. For new buildings from 2023, you benefit from the increased linear depreciation of 3% or the declining balance depreciation. We show you which options may apply. Your tax advisor provides the binding tax assessment."
         },
         {
           question: "Who are our real estate investments suitable for?",
@@ -884,7 +910,7 @@ const translations = {
         },
         {
           question: "How does the investment process work with us?",
-          answer: "The investment process begins with a free initial consultation in which we analyze your financial goals and possibilities. We then develop a personalized investment concept and present you with suitable real estate properties. After your decision, we accompany you through the entire purchase process, including financing advice, contract design and tax optimization. Even after the purchase, we are at your side with our rental and management service."
+          answer: "The investment process begins with a free initial consultation in which we analyze your financial goals and possibilities. We then develop a personalized investment concept and present you with suitable real estate properties. After your decision, we support you organizationally through the purchase process. You clarify legal, tax and loan questions with a notary, lawyer, tax advisor or your bank. Even after the purchase, we are at your side with our rental and management service."
         },
         {
           question: "What returns can be achieved with real estate investments?",
@@ -932,6 +958,7 @@ const translations = {
       contact: "Contact",
       imprint: "Imprint",
       privacy: "Privacy",
+      cookieSettings: "Cookie settings",
       contactTitle: "Contact",
       address: "CD Immo-Portfolio GmbH\nBauvereinstraße 47\n90489 Nuremberg\nGermany",
       phone: "+49 911 13039057",
@@ -946,28 +973,25 @@ const translations = {
     formular: {
       pageTitle: "Submit Your Request",
       progress: "Step {current} of {total}",
+      sending: "Sending...",
+      submitError: "Your request could not be sent. Please try again or call us.",
       step1: {
         title: "What is your marital status?",
         subtitle: "This information helps us provide optimal analysis and strategy",
-        marriedJointly: "Married - Filing jointly",
+        married: "Married",
         single: "Single",
-        marriedSeparately: "Married - Filing separately",
         continue: "Continue"
       },
       step2: {
         title: "What is your monthly net income?",
         subtitle: "This information helps us develop the best strategy for you",
         income: {
-          under3000: "Under €3,000",
-          range3000_4000: "€3,000 - €4,000",
           range4000_5000: "€4,000 - €5,000",
-          above5000: "Over €5,000"
-        },
-        equity: "How much equity is available to you?",
-        equityOptions: {
-          under20k: "Under €20,000",
-          range20k_50k: "€20,000 - €50,000",
-          above50k: "Over €50,000"
+          range5000_8000: "€5,000 - €8,000",
+          above8000: "Over €8,000",
+          range5000_6000: "€5,000 - €6,000",
+          range6000_10000: "€6,000 - €10,000",
+          above10000: "Over €10,000"
         },
         continue: "Continue"
       },
@@ -975,30 +999,26 @@ const translations = {
         title: "Your Contact Details",
         subtitle: "Our expert will contact you shortly",
         name: "Full Name",
+        countryCode: "Country code",
         phone: "Phone Number",
         email: "Email Address",
-        privacy: "By submitting the form, I agree to the",
         privacyLink: "Privacy Policy",
+        consentBefore: "I have read the",
+        consentAfter: "and understand that my details will be used to handle my request. *",
         submit: "Submit Data",
         validation: {
           nameRequired: "Name is required",
           phoneRequired: "Phone number is required",
           emailRequired: "Email is required",
           emailInvalid: "Invalid email address",
-          privacyRequired: "Privacy policy must be accepted",
+          privacyRequired: "Please confirm the privacy notice",
           messageRequired: "Message is required"
         }
       },
       advisor: {
         title: "Our Expert Team",
-        subtitle: "takes care of your financing and consultation",
+        subtitle: "supports you with your request and consultation",
         badge: "100% free of charge"
-      },
-      verification: {
-        verify: "Verify",
-        checking: "Checking...",
-        verified: "Verified",
-        successMessage: "Email successfully verified"
       },
       success: {
         title: "Thank You!",

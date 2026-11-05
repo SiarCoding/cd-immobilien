@@ -41,7 +41,7 @@ const About = () => {
             <img 
               src={planingImage} 
               className="about-image" 
-              alt="Strategische Immobilienplanung" 
+              alt={t('about.imageAltPlanning')} 
               loading="lazy" 
             />
             <div className="image-overlay"></div>
@@ -55,7 +55,7 @@ const About = () => {
               <img 
                 src={planing2Image} 
                 className="about-image" 
-                alt="Vertrauensvolle Zusammenarbeit" 
+                alt={t('about.imageAltCollaboration')} 
                 loading="lazy" 
               />
               <div className="image-overlay"></div>

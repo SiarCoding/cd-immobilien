@@ -3,10 +3,13 @@ import "../styles/Kontakt.css";
 import SEOHead from "../components/SEOHead";
 import { useSEO } from "../contexts/SEOContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useConsent } from "../contexts/ConsentContext";
+import ExternalMediaPlaceholder from "../components/consent/ExternalMediaPlaceholder";
 
 const Kontakt = () => {
   const { seoData } = useSEO();
   const { t } = useLanguage();
+  const { hasMediaConsent } = useConsent();
   const kontaktPageSEO = seoData.kontakt;
 
   const [formData, setFormData] = useState({
@@ -20,6 +23,8 @@ const Kontakt = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // Unsichtbares Feld gegen Spam-Bots, wird nicht uebertragen
+  const [honeypot, setHoneypot] = useState('');
 
   // Automatisches Scrollen zum Seitenanfang
   useEffect(() => {
@@ -71,6 +76,11 @@ const Kontakt = () => {
     const newErrors = validateForm();
     
     if (Object.keys(newErrors).length === 0) {
+      // Von einem Bot ausgefuellt: Erfolg anzeigen, aber nichts senden
+      if (honeypot) {
+        setIsSubmitted(true);
+        return;
+      }
       setIsLoading(true);
       try {
         const zapierData = {
@@ -268,6 +278,17 @@ const Kontakt = () => {
                         {errors.nachricht && <span className="error-message">{errors.nachricht}</span>}
                       </div>
                       
+                      <div style={{ position: 'absolute', left: '-10000px' }} aria-hidden="true">
+                        <input
+                          type="text"
+                          name="website"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={honeypot}
+                          onChange={(e) => setHoneypot(e.target.value)}
+                        />
+                      </div>
+
                       <div className="form-group checkbox-group">
                         <label className="checkbox-label">
                           <input 
@@ -280,7 +301,7 @@ const Kontakt = () => {
                           />
                           <span className="checkmark"></span>
                           <span className="checkbox-text">
-                            {t('formular.step3.privacy')} <a href="/datenschutz" target="_blank" rel="noopener noreferrer">{t('formular.step3.privacyLink')}</a>
+                            {t('formular.step3.consentBefore')} <a href="/datenschutz" target="_blank" rel="noopener noreferrer">{t('formular.step3.privacyLink')}</a> {t('formular.step3.consentAfter')}
                           </span>
                         </label>
                         {errors.datenschutz && <span className="error-message">{errors.datenschutz}</span>}
@@ -295,16 +316,23 @@ const Kontakt = () => {
               </div>
               
               <div className="map-container">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.3!2d11.07783!3d49.44471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479f57ad2bb2c35d%3A0x65b2b5be5b9a3a4e!2sBauvereinstra%C3%9Fe%2C%20N%C3%BCrnberg!5e0!3m2!1sde!2sde!4v1656413989425!5m2!1sde!2sde" 
-                  width="100%" 
-                  height="500" 
-                  style={{ border: 0 }} 
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Google Maps - Bauvereinstr. 47, Nürnberg"
-                ></iframe>
+                {hasMediaConsent ? (
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.3!2d11.07783!3d49.44471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479f57ad2bb2c35d%3A0x65b2b5be5b9a3a4e!2sBauvereinstra%C3%9Fe%2C%20N%C3%BCrnberg!5e0!3m2!1sde!2sde!4v1656413989425!5m2!1sde!2sde" 
+                    width="100%" 
+                    height="500" 
+                    style={{ border: 0 }} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Google Maps - Bauvereinstr. 47, Nürnberg"
+                  ></iframe>
+                ) : (
+                  <ExternalMediaPlaceholder
+                    type="map"
+                    href="https://www.google.com/maps/search/?api=1&query=Bauvereinstra%C3%9Fe%2047%2C%2090489%20N%C3%BCrnberg"
+                  />
+                )}
               </div>
             </div>
           </div>

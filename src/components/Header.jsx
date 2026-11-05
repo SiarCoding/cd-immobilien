@@ -182,12 +182,6 @@ const Header = () => {
                     >
                       {t('header.calculator')}
                     </button>
-                    <button 
-                      className="nav-item nav-button" 
-                      onClick={() => handleNavigation('blog')}
-                    >
-                      {t('header.testimonials')}
-                    </button>
                     <Link to="/kontakt" className="nav-item" onClick={closeMobileMenu}>{t('header.contact')}</Link>
                   </div>
                 </nav>
@@ -256,12 +250,6 @@ const Header = () => {
                   onClick={() => handleNavigation('features')}
                 >
                   {t('header.calculator')}
-                </button>
-                <button 
-                  className="mobile-nav-item nav-button" 
-                  onClick={() => handleNavigation('blog')}
-                >
-                  {t('header.testimonials')}
                 </button>
                 <Link to="/kontakt" className="mobile-nav-item" onClick={closeMobileMenu}>{t('header.contact')}</Link>
 

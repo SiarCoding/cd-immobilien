@@ -1,39 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/CookieBanner.css';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useConsent } from '../../contexts/ConsentContext';
-import { ShieldCheck, BarChart2, Megaphone, Check } from 'lucide-react';
+import { ShieldCheck, Play, Check } from 'lucide-react';
 
 const CookieBanner = () => {
   const { t } = useLanguage();
-  const { saveConsent, isPending } = useConsent();
+  const { consent, saveConsent, isPending } = useConsent();
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [localConsent, setLocalConsent] = useState({
-    necessary: true,
-    statistics: false,
-    marketing: false,
-  });
+  const [mediaAllowed, setMediaAllowed] = useState(false);
 
-  const handleToggle = (category) => {
-    setLocalConsent((prev) => ({
-      ...prev,
-      [category]: !prev[category],
-    }));
-  };
+  // Beim erneuten Oeffnen die bereits getroffene Auswahl anzeigen
+  useEffect(() => {
+    setMediaAllowed(Boolean(consent?.media));
+  }, [consent]);
 
   const handleAcceptAll = () => {
-    const newConsent = { necessary: true, statistics: true, marketing: true };
-    saveConsent(newConsent);
+    saveConsent({ necessary: true, media: true });
   };
 
   const handleRejectAll = () => {
-    const newConsent = { necessary: true, statistics: false, marketing: false };
-    saveConsent(newConsent);
+    saveConsent({ necessary: true, media: false });
   };
-  
+
   const handleSaveSettings = () => {
-    saveConsent(localConsent);
+    saveConsent({ necessary: true, media: mediaAllowed });
   };
 
   if (!isPending) {
@@ -65,7 +57,7 @@ const CookieBanner = () => {
           <div className="banner-settings">
             <h3>{t('cookieBanner.settingsTitle')}</h3>
             <p>{t('cookieBanner.settingsDescription')}</p>
-            
+
             <div className="settings-category">
               <div className="category-header">
                 <div className="category-title">
@@ -79,33 +71,24 @@ const CookieBanner = () => {
               </div>
               <p className="category-description">{t('cookieBanner.necessary.description')}</p>
             </div>
-            
-            <div className="settings-category">
-              <div className="category-header">
-                <div className="category-title">
-                  <BarChart2 size={20} />
-                  <h4>{t('cookieBanner.statistics.title')}</h4>
-                </div>
-                <label className="switch">
-                  <input type="checkbox" checked={localConsent.statistics} onChange={() => handleToggle('statistics')} />
-                  <span className="slider round"></span>
-                </label>
-              </div>
-              <p className="category-description">{t('cookieBanner.statistics.description')}</p>
-            </div>
 
             <div className="settings-category">
               <div className="category-header">
                 <div className="category-title">
-                  <Megaphone size={20} />
-                  <h4>{t('cookieBanner.marketing.title')}</h4>
+                  <Play size={20} />
+                  <h4>{t('cookieBanner.media.title')}</h4>
                 </div>
                 <label className="switch">
-                  <input type="checkbox" checked={localConsent.marketing} onChange={() => handleToggle('marketing')} />
+                  <input
+                    type="checkbox"
+                    checked={mediaAllowed}
+                    onChange={() => setMediaAllowed((allowed) => !allowed)}
+                    aria-label={t('cookieBanner.media.title')}
+                  />
                   <span className="slider round"></span>
                 </label>
               </div>
-              <p className="category-description">{t('cookieBanner.marketing.description')}</p>
+              <p className="category-description">{t('cookieBanner.media.description')}</p>
             </div>
 
             <div className="settings-actions">
@@ -118,4 +101,4 @@ const CookieBanner = () => {
   );
 };
 
-export default CookieBanner; 
+export default CookieBanner;

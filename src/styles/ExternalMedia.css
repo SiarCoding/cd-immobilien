@@ -1,0 +1,98 @@
+/* Platzhalter fuer Video und Karte vor der Einwilligung */
+.external-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  background-color: #082567;
+  color: #fff;
+  font-family: "Outfit", -apple-system, Roboto, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.external-media--video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: auto;
+}
+
+.external-media--map {
+  min-height: 500px;
+}
+
+.external-media-icon {
+  color: #e2ac6b;
+  flex-shrink: 0;
+}
+
+.external-media-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.external-media-text {
+  max-width: 60ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.external-media-text a,
+.external-media-link {
+  color: #e2ac6b;
+  text-decoration: underline;
+}
+
+.external-media-button {
+  min-height: 44px;
+  margin-top: 4px;
+  padding: 10px 22px;
+  background-color: #b87333;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.external-media-button:hover {
+  background-color: #d08c45;
+}
+
+.external-media-button:focus-visible,
+.external-media a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.external-media-link {
+  font-size: 0.9375rem;
+}
+
+/* Text ist auf schmalen Videos laenger als die 16:9-Flaeche */
+@media (max-width: 600px) {
+  .external-media--video {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .external-media-button {
+    transition: none;
+  }
+}
+
+/* Auf schmalen Geraeten bestimmt der Text die Hoehe, nicht das 16:9-Format */
+@media (max-width: 600px) {
+  .video-wrapper:has(.external-media) {
+    padding-top: 0;
+  }
+}
