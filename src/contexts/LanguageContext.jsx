@@ -57,17 +57,12 @@ const translations = {
     },
     // Hinweise fuer Inhalte, die erst nach Einwilligung laden
     externalMedia: {
-      privacyLink: "Mehr in der Datenschutzerklärung",
       video: {
-        title: "Video laden",
-        text: "Das Video wird über Gumlet (Gumlet Pte. Ltd., Singapur) bereitgestellt. Beim Laden erhält der Anbieter Ihre IP-Adresse und kann Cookies setzen. Für Singapur besteht kein EU-Angemessenheitsbeschluss.",
-        button: "Einwilligen und Video laden"
+        button: "Video abspielen"
       },
       map: {
-        title: "Karte laden",
-        text: "Die Karte wird über Google Maps (Google Ireland Limited) bereitgestellt. Beim Laden erhält Google Ihre IP-Adresse und kann Cookies setzen. Eine Übermittlung in die USA ist möglich.",
-        button: "Einwilligen und Karte laden",
-        link: "Standort stattdessen direkt bei Google Maps öffnen"
+        button: "Karte anzeigen",
+        link: "Standort direkt bei Google Maps öffnen"
       }
     },
     // Stats Section
@@ -574,17 +569,12 @@ const translations = {
     },
     // Notices for content that only loads after consent
     externalMedia: {
-      privacyLink: "More in the Privacy Policy",
       video: {
-        title: "Load video",
-        text: "The video is provided via Gumlet (Gumlet Pte. Ltd., Singapore). When it loads, the provider receives your IP address and may set cookies. There is no EU adequacy decision for Singapore.",
-        button: "Agree and load video"
+        button: "Play video"
       },
       map: {
-        title: "Load map",
-        text: "The map is provided via Google Maps (Google Ireland Limited). When it loads, Google receives your IP address and may set cookies. A transfer to the USA is possible.",
-        button: "Agree and load map",
-        link: "Open the location directly in Google Maps instead"
+        button: "Show map",
+        link: "Open the location directly in Google Maps"
       }
     },
     // Stats Section

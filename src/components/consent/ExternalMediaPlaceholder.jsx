@@ -1,32 +1,41 @@
 import React from 'react';
 import { Play, MapPin } from 'lucide-react';
 import '../../styles/ExternalMedia.css';
+import posterImage from '../../assets/azim2.webp';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useConsent } from '../../contexts/ConsentContext';
 
-// Platzhalter fuer externe Inhalte: Solange keine Einwilligung vorliegt,
-// wird keine Verbindung zum Anbieter aufgebaut.
+// Solange keine Einwilligung vorliegt, wird keine Verbindung zum Anbieter aufgebaut.
+// Die Einwilligung selbst erfolgt ausschliesslich im Cookie-Banner.
 const ExternalMediaPlaceholder = ({ type, href }) => {
   const { t } = useLanguage();
-  const { grantMedia } = useConsent();
-  const Icon = type === 'map' ? MapPin : Play;
+  const { openConsentManager } = useConsent();
+
+  if (type === 'video') {
+    return (
+      <button
+        type="button"
+        className="external-media-poster"
+        onClick={openConsentManager}
+        aria-label={t('externalMedia.video.button')}
+      >
+        <img src={posterImage} alt="" loading="lazy" />
+        <span className="external-media-play" aria-hidden="true">
+          <Play size={34} fill="currentColor" />
+        </span>
+      </button>
+    );
+  }
 
   return (
-    <div className={`external-media external-media--${type}`}>
-      <Icon className="external-media-icon" size={32} aria-hidden="true" />
-      <p className="external-media-title">{t(`externalMedia.${type}.title`)}</p>
-      <p className="external-media-text">
-        {t(`externalMedia.${type}.text`)}{' '}
-        <a href="/datenschutz" target="_blank" rel="noopener noreferrer">
-          {t('externalMedia.privacyLink')}
-        </a>
-      </p>
-      <button type="button" className="external-media-button" onClick={grantMedia}>
-        {t(`externalMedia.${type}.button`)}
+    <div className="external-media-map">
+      <MapPin className="external-media-pin" size={36} aria-hidden="true" />
+      <button type="button" className="external-media-button" onClick={openConsentManager}>
+        {t('externalMedia.map.button')}
       </button>
       {href && (
         <a className="external-media-link" href={href} target="_blank" rel="noopener noreferrer">
-          {t(`externalMedia.${type}.link`)}
+          {t('externalMedia.map.link')}
         </a>
       )}
     </div>
