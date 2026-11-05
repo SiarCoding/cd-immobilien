@@ -16,6 +16,12 @@ E-Mail: p.chowdhury@cd-immo.de</p>
 
 <h2>2. Überblick</h2>
 <p>Diese Website verwendet keine Analyse- oder Werbe-Tools und keine eingebundenen Social-Media-Plugins. Personenbezogene Daten verarbeiten wir beim technischen Bereitstellen der Website, wenn Sie externe Inhalte (Video, Karte) freigeben und wenn Sie uns über ein Formular, per E-Mail oder telefonisch kontaktieren. Der Immobilien-Rechner läuft nur in Ihrem Browser. Ihre Eingaben dort werden nicht an uns übertragen.</p>
+<p><strong>Kurz erklärt:</strong></p>
+<ul>
+<li>Video und Karte laden erst, wenn Sie im Cookie-Banner zustimmen. Beim Video ist der Anbieter Gumlet aus Singapur, bei der Karte Google.</li>
+<li>Formularanfragen gelangen über den US-Dienst Zapier in unsere internen Systeme zur Bearbeitung von Anfragen.</li>
+<li>Ihre Einwilligung können Sie jederzeit über „Cookie-Einstellungen“ im Footer ändern.</li>
+</ul>
 
 <h2>3. Hosting und Domain</h2>
 <h3>Hosting</h3>
@@ -93,6 +99,12 @@ Email: p.chowdhury@cd-immo.de</p>
 
 <h2>2. Overview</h2>
 <p>This website uses no analytics or advertising tools and no embedded social media plugins. We process personal data to provide the website technically, when you enable external content (video, map) and when you contact us by form, email or phone. The real estate calculator runs only in your browser. What you enter there is not sent to us.</p>
+<p><strong>In short:</strong></p>
+<ul>
+<li>The video and map only load once you agree in the cookie banner. The video provider is Gumlet from Singapore, the map provider is Google.</li>
+<li>Form requests reach our internal systems for handling requests via the US service Zapier.</li>
+<li>You can change your consent at any time under "Cookie settings" in the footer.</li>
+</ul>
 
 <h2>3. Hosting and domain</h2>
 <h3>Hosting</h3>

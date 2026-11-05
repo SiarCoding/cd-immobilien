@@ -18,7 +18,7 @@ E-Mail: p.chowdhury@cd-immo.de</p>
 <p>Registergericht: Amtsgericht Nürnberg<br />
 Handelsregisternummer: HRB 41173</p>
 <h2>Gesellschaftszweck</h2>
-<p>Immobilienhandel sowie Immobilienbestandsaufbau im Sinne des § 34 c GewO, ausgenommen Kreditvermittlung.</p>
+<p>Immobilienhandel sowie Immobilienbestandsaufbau im Sinne des § 34 c GewO, ausgenommen Kreditvermittlung. Darlehen vermitteln wir nicht selbst.</p>
 <h2>Zuständige Aufsichtsbehörde</h2>
 <p>Industrie- und Handelskammer für München und Oberbayern<br />
 Max-Joseph-Straße 2<br />
@@ -43,7 +43,7 @@ Email: p.chowdhury@cd-immo.de</p>
 <p>Register Court: Local Court (Nuremberg)<br />
 Registration No.: HRB 41173</p>
 <h2>Corporate purpose</h2>
-<p>Real-estate trading and portfolio build-up within the meaning of Sec. 34 c GewO (excluding credit brokerage).</p>
+<p>Real-estate trading and portfolio build-up within the meaning of Sec. 34 c GewO (excluding credit brokerage). We do not broker loans ourselves.</p>
 <h2>Competent supervisory authority</h2>
 <p>Chamber of Industry and Commerce for Munich and Upper Bavaria (IHK für München und Oberbayern)<br />
 Max-Joseph-Straße 2<br />
